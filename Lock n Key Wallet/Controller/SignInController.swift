@@ -19,7 +19,7 @@ class SignInController: UIViewController {
     @IBOutlet weak var loginViewWithLogo: UIView!
     @IBOutlet weak var loginView: UIStackView!
     fileprivate var currentNonce: String?
-    public var deletingAccount = false
+//    public var deletingAccount = false
     private var signedPreviously = false
         
     override func viewDidLoad() {
@@ -32,33 +32,40 @@ class SignInController: UIViewController {
 //            print ("error signin out")
 //        }
         
-        if !deletingAccount {
-            setupInitials()
-        } else {
-            signinApple()
-        }
+//        if !deletingAccount {
+//            setupInitials()
+//        } else {
+//            signinApple()
+//        }
+        setupInitials()
     }
     
     private func setupInitials() {
-        if UserDefaults.standard.value(forKey: "instant_auto_lock_time") == nil {
-            UserDefaults.standard.set(true, forKey: "instant_auto_lock_time")
+//        if UserDefaults.standard.value(forKey: "instant_auto_lock_time") == nil {
+//            UserDefaults.standard.set(true, forKey: "instant_auto_lock_time")
+//            UserDefaults.standard.set(true, forKey: "locked_app")
+//            UserDefaults.standard.set(true, forKey: "is_new_user")
+//            UserDefaults.standard.set(false, forKey: "found_passcode")
+//        }
+//        if UserDefaults.standard.value(forKey: "save_offline") == nil {
+//            UserDefaults.standard.set(false, forKey: "save_offline")
+//        }
+//        if UserDefaults.standard.value(forKey: "wrong_passcode") == nil {
+//            UserDefaults.standard.set("0", forKey: "wrong_passcode")
+//        }
+        if UserDefaults.standard.value(forKey: "auto_lock_time") == nil {
+            UserDefaults.standard.set(0, forKey: "auto_lock_time")
             UserDefaults.standard.set(true, forKey: "locked_app")
             UserDefaults.standard.set(true, forKey: "is_new_user")
-            UserDefaults.standard.set(false, forKey: "found_passcode")
         }
-        if UserDefaults.standard.value(forKey: "save_offline") == nil {
-            UserDefaults.standard.set(false, forKey: "save_offline")
-        }
-        if UserDefaults.standard.value(forKey: "wrong_passcode") == nil {
-            UserDefaults.standard.set("0", forKey: "wrong_passcode")
-        }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        if !deletingAccount {
-            verifyNetwork()
-        }
+        verifyNetwork()
+//        if !deletingAccount {
+//            verifyNetwork()
+//        }
     }
     
     private func verifyNetwork() {
@@ -92,10 +99,10 @@ class SignInController: UIViewController {
     }
     
     private func isFirstLaunched() -> Bool {
-        let isFirstLaunched = UserDefaults.standard.value(forKey: "firstLaunchingLaunch")
+        let isFirstLaunched = UserDefaults.standard.value(forKey: "firstLaunching")
         if isFirstLaunched == nil {
             //Means it's new launched
-            UserDefaults.standard.set(false, forKey: "firstLaunchingLaunch")
+            UserDefaults.standard.set(false, forKey: "firstLaunching")
             UserDefaults.standard.synchronize()
             return true
         } else {
@@ -119,7 +126,7 @@ class SignInController: UIViewController {
                     print("doesnt exists")
                     do {
                         try Auth.auth().signOut()
-                        UserDefaults.standard.set(true, forKey: "instant_auto_lock_time")
+                        UserDefaults.standard.set(true, forKey: "auto_lock_time")
                         UserDefaults.standard.set(true, forKey: "locked_app")
                         UserDefaults.standard.synchronize()
                         
@@ -220,7 +227,7 @@ extension SignInController: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-            if !deletingAccount {
+//            if !deletingAccount {
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     if error != nil {
                         print(error?.localizedDescription ?? "")
@@ -256,10 +263,10 @@ extension SignInController: ASAuthorizationControllerDelegate {
                         }
                     }
                 }
-            } else {
-                //Deleting account
-                self.completion!(credential)
-            }
+//            } else {
+//                //Deleting account
+//                self.completion!(credential)
+//            }
         }
     }
     

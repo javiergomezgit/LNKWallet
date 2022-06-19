@@ -9,7 +9,22 @@ import UIKit
 import FirebaseAuth
 import CloudKit
 
-class PasscodeController: UIViewController {
+class MasterPasswordController: UIViewController {
+    
+    @IBOutlet weak var passwordText: UITextField!
+    
+    
+    @IBAction func passwordButtonTapped(_ sender: Any) {
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+      
+        
+      
+    }
+    
     /*
     var NSApp: UIApplication!
 

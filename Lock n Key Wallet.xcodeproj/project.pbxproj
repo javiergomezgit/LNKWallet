@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		220ADAF9274DA60F0030FAAD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220ADAF8274DA60F0030FAAD /* CloudKit.framework */; };
 		220ADAFB274DA9D70030FAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220ADAFA274DA9D70030FAAD /* Model.swift */; };
-		222384C7274D361D00FBF76A /* PasscodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384C6274D361D00FBF76A /* PasscodeController.swift */; };
+		222384C7274D361D00FBF76A /* MasterPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384C6274D361D00FBF76A /* MasterPasswordController.swift */; };
 		222384EE2751793700FBF76A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384ED2751793700FBF76A /* DBManager.swift */; };
 		222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384EF27517FFF00FBF76A /* DatasViewCell.swift */; };
 		222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222384F027517FFF00FBF76A /* DatasViewCell.xib */; };
@@ -41,7 +41,7 @@
 		0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lock_n_Key_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		220ADAF8274DA60F0030FAAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		220ADAFA274DA9D70030FAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		222384C6274D361D00FBF76A /* PasscodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeController.swift; sourceTree = "<group>"; };
+		222384C6274D361D00FBF76A /* MasterPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordController.swift; sourceTree = "<group>"; };
 		222384ED2751793700FBF76A /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		222384EF27517FFF00FBF76A /* DatasViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasViewCell.swift; sourceTree = "<group>"; };
 		222384F027517FFF00FBF76A /* DatasViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatasViewCell.xib; sourceTree = "<group>"; };
@@ -151,9 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				222C971F27487AAD004C077E /* SignInController.swift */,
+				222384C6274D361D00FBF76A /* MasterPasswordController.swift */,
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
-				222384C6274D361D00FBF76A /* PasscodeController.swift */,
 				222C972527487C6D004C077E /* SaveDataController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
 				222384F42752B2BC00FBF76A /* EditDataController.swift */,
@@ -395,7 +395,7 @@
 				222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */,
 				227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */,
 				2295C5772748722E0050FA7D /* SceneDelegate.swift in Sources */,
-				222384C7274D361D00FBF76A /* PasscodeController.swift in Sources */,
+				222384C7274D361D00FBF76A /* MasterPasswordController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
