@@ -34,11 +34,11 @@
 		2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5822748722F0050FA7D /* LaunchScreen.storyboard */; };
 		22AA2334276D184A00E46D1B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22AA2336276D184A00E46D1B /* Localizable.strings */; };
 		22CAFBD127543937006D02AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
-		62DC04E213CFA73C93629E45 /* Pods_Lock_n_Key_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAFDF2580A73FA3D6F116E3 /* Pods_Lock_n_Key_Wallet.framework */; };
+		450F955A5EC869D8393191BC /* Pods_Lock_n_Key_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15B687B47525BCCFE4CAA91D /* Pods-Lock n Key Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.release.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.release.xcconfig"; sourceTree = "<group>"; };
+		0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lock_n_Key_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		220ADAF8274DA60F0030FAAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		220ADAFA274DA9D70030FAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		222384C6274D361D00FBF76A /* PasscodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeController.swift; sourceTree = "<group>"; };
@@ -71,8 +71,8 @@
 		22AA2335276D184A00E46D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22AA2337276D185E00E46D1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22CAFBD027543937006D02AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		2BAFDF2580A73FA3D6F116E3 /* Pods_Lock_n_Key_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lock_n_Key_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		74987E2F1E74A028B64CC6D7 /* Pods-Lock n Key Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.debug.xcconfig"; sourceTree = "<group>"; };
+		3AB8ED985C69AA62012D93F8 /* Pods-Lock n Key Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.release.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.release.xcconfig"; sourceTree = "<group>"; };
+		C725C8AD654A6E12103BED73 /* Pods-Lock n Key Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +81,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				220ADAF9274DA60F0030FAAD /* CloudKit.framework in Frameworks */,
-				62DC04E213CFA73C93629E45 /* Pods_Lock_n_Key_Wallet.framework in Frameworks */,
 				227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */,
+				450F955A5EC869D8393191BC /* Pods_Lock_n_Key_Wallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				220ADAF8274DA60F0030FAAD /* CloudKit.framework */,
-				2BAFDF2580A73FA3D6F116E3 /* Pods_Lock_n_Key_Wallet.framework */,
+				0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 		958EFBAC3130A2ABABC21C9B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				74987E2F1E74A028B64CC6D7 /* Pods-Lock n Key Wallet.debug.xcconfig */,
-				15B687B47525BCCFE4CAA91D /* Pods-Lock n Key Wallet.release.xcconfig */,
+				C725C8AD654A6E12103BED73 /* Pods-Lock n Key Wallet.debug.xcconfig */,
+				3AB8ED985C69AA62012D93F8 /* Pods-Lock n Key Wallet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -238,12 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2295C5882748722F0050FA7D /* Build configuration list for PBXNativeTarget "Lock n Key Wallet" */;
 			buildPhases = (
-				3248C2969ED0750397FD1C78 /* [CP] Check Pods Manifest.lock */,
+				1ABCB6D1AC69A2DBF497C90C /* [CP] Check Pods Manifest.lock */,
 				2295C56D2748722E0050FA7D /* Sources */,
 				2295C56E2748722E0050FA7D /* Frameworks */,
 				2295C56F2748722E0050FA7D /* Resources */,
 				22AA2339276D261A00E46D1B /* ShellScript */,
-				C99F8C346032D6AE5E6974BE /* [CP] Embed Pods Frameworks */,
+				455E039CC7C032F860116C36 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,26 +312,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22AA2339276D261A00E46D1B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		3248C2969ED0750397FD1C78 /* [CP] Check Pods Manifest.lock */ = {
+		1ABCB6D1AC69A2DBF497C90C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,9 +334,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C99F8C346032D6AE5E6974BE /* [CP] Embed Pods Frameworks */ = {
+		22AA2339276D261A00E46D1B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+		455E039CC7C032F860116C36 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -551,7 +552,7 @@
 		};
 		2295C5892748722F0050FA7D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74987E2F1E74A028B64CC6D7 /* Pods-Lock n Key Wallet.debug.xcconfig */;
+			baseConfigurationReference = C725C8AD654A6E12103BED73 /* Pods-Lock n Key Wallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -562,7 +563,7 @@
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Lock n Key Wallet";
+				INFOPLIST_KEY_CFBundleDisplayName = "LNK Wallet";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library to capture the number of your credit card.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture the number of your credit card.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to capture the number of your credit card.";
@@ -588,7 +589,7 @@
 		};
 		2295C58A2748722F0050FA7D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15B687B47525BCCFE4CAA91D /* Pods-Lock n Key Wallet.release.xcconfig */;
+			baseConfigurationReference = 3AB8ED985C69AA62012D93F8 /* Pods-Lock n Key Wallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -599,7 +600,7 @@
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Lock n Key Wallet";
+				INFOPLIST_KEY_CFBundleDisplayName = "LNK Wallet";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library to capture the number of your credit card.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture the number of your credit card.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to capture the number of your credit card.";
