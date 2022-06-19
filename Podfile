@@ -8,10 +8,12 @@ target 'Lock n Key Wallet' do
   # Pods for Lock n Key Wallet
   pod 'SDWebImage'
   pod 'SwiftyOnboard'
-  pod 'Firebase'
-  pod 'FirebaseAuth'
-  pod 'FirebaseAnalytics'
-  pod 'FirebaseFirestore'
-  pod 'FirebaseCrashlytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Firestore'
 
 end

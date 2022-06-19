@@ -5465,3 +5465,8 @@ Pods/BoringSSL-GRPC/src/crypto/chacha/internal.h
 Pods/BoringSSL-GRPC/src/crypto/chacha/chacha.c.grpc_back
 Pods/BoringSSL-GRPC/src/crypto/chacha/chacha.c
 Pods/BoringSSL-GRPC/src/crypto/bytestring/unicode.c.grpc_back
+Lock n Key Wallet/Extras/Encryption/Encryption.swift
+Lock n Key Wallet/Extras/Encryption/EncryptionPassword.swift
+Lock n Key Wallet/Resources/GoogleService-Info.plist
+Lock n Key Wallet/Extras/Encryption/Encryption.swift
+Lock n Key Wallet/Extras/Encryption/EncryptionPassword.swift

@@ -20,6 +20,8 @@
 		222C972627487C6D004C077E /* SaveDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972527487C6D004C077E /* SaveDataController.swift */; };
 		222C972827487CED004C077E /* OpenVaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972727487CED004C077E /* OpenVaultController.swift */; };
 		222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222C972927487D9C004C077E /* Onboarding.storyboard */; };
+		224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
+		224E868D285F6FE200F4A575 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868B285F6FE200F4A575 /* Encryption.swift */; };
 		227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 227B18F6285EB3320092D67E /* CreditCardScanner */; };
 		227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB79E275FABCB0013647B /* OnboardingController.swift */; };
 		227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB7A0275FAEBA0013647B /* Reachability.swift */; };
@@ -50,6 +52,8 @@
 		222C972527487C6D004C077E /* SaveDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataController.swift; sourceTree = "<group>"; };
 		222C972727487CED004C077E /* OpenVaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenVaultController.swift; sourceTree = "<group>"; };
 		222C972927487D9C004C077E /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		224E868A285F6FE100F4A575 /* EncryptionPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionPassword.swift; sourceTree = "<group>"; };
+		224E868B285F6FE200F4A575 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		227FB79E275FABCB0013647B /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		227FB7A0275FAEBA0013647B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		22932C26275A683E008778C2 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		222C9704274873BD004C077E /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				224E8689285F6FCA00F4A575 /* Encryption */,
 				2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */,
 				2295C5762748722E0050FA7D /* SceneDelegate.swift */,
 				2295C5742748722E0050FA7D /* AppDelegate.swift */,
@@ -166,6 +171,15 @@
 				2295C5802748722F0050FA7D /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		224E8689285F6FCA00F4A575 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				224E868B285F6FE200F4A575 /* Encryption.swift */,
+				224E868A285F6FE100F4A575 /* EncryptionPassword.swift */,
+			);
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 		2295C5682748722E0050FA7D = {
@@ -373,7 +387,9 @@
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
 				222384F52752B2BC00FBF76A /* EditDataController.swift in Sources */,
 				222384EE2751793700FBF76A /* DBManager.swift in Sources */,
+				224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */,
 				222C972827487CED004C077E /* OpenVaultController.swift in Sources */,
+				224E868D285F6FE200F4A575 /* Encryption.swift in Sources */,
 				22CAFBD127543937006D02AA /* Extensions.swift in Sources */,
 				222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */,
 				227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */,
