@@ -37,7 +37,7 @@ extension UITextField {
     fileprivate func setPasswordToggleImage(_ button: UIButton) {
         if(isSecureTextEntry){
             button.setImage(UIImage(named: "eye"), for: .normal)
-           
+            
             if traitCollection.userInterfaceStyle == .light {
                 button.tintColor = UIColor(named: "darkblueAccent")!
             } else {
@@ -53,7 +53,7 @@ extension UITextField {
             
         }
     }
-
+    
     func enablePasswordToggle(){
         let button = UIButton(type: .custom)
         setPasswordToggleImage(button)
@@ -78,4 +78,35 @@ extension String {
             value: self,
             comment: self)
     }
+    
+    var cleanPasswordCharacters: String {
+        let allowCharacters = Set("abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM1234567890_~!@#$%^&*()_+;':<>?/.,")
+        return self.filter {allowCharacters.contains($0) }
+    }
+    
+//    var isOnlyCharacters: Bool {
+//        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ1234567890_~!@#$%^&*()_+;':<>?/.,")
+//        if self.rangeOfCharacter(from: characterset.inverted) == nil {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    var isValidPassword: Bool {
+//        let allowCharacters = ".*[^A-Z0-9].*"
+//        let testString = NSPredicate(format:"SELF MATCHES %@", allowCharacters)
+//        return testString.evaluate(with: self)
+//    }
+    
+    func hasCharacter(in characterSet: CharacterSet) -> Bool {
+        return rangeOfCharacter(from: characterSet) != nil
+    }
+    
 }
+
+
+
+
+
+

@@ -12,24 +12,84 @@ import CloudKit
 class MasterPasswordController: UIViewController {
     
     @IBOutlet weak var passwordText: UITextField!
-    
-    
-    @IBAction func passwordButtonTapped(_ sender: Any) {
-    }
-    
+    @IBOutlet weak var passwordButton: UIButton!
+
+    var setPassword = true
+    var temporalPassword = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         
+        passwordButton.isEnabled = false
+      
+        self.hideKeyboardWhenTappedAround()
+        passwordText.addTarget(self, action: #selector(MasterPasswordController.textFieldDidChange(_:)), for: .editingChanged)
+        passwordText.enablePasswordToggle()
+        passwordText.enablePasswordToggle()
+        
+        if setPassword {
+            passwordText.placeholder = "Set Master Password"
+            passwordButton.setTitle("Set Password", for: .normal)
+        } else {
+            passwordText.placeholder = "Type Password"
+            passwordButton.setTitle("Unlock", for: .normal)
+        }
       
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+    }
+    
+
+    @IBAction func passwordButtonTapped(_ sender: Any) {
+        
+        let cleanPassword = passwordText.text!.cleanPasswordCharacters
+        
+        if setPassword {
+            if temporalPassword == "" {
+                temporalPassword = cleanPassword
+                passwordText.text = ""
+                passwordText.placeholder = "Verify Password"
+                passwordButton.setTitle("Verify Password", for: .normal)
+            } else {
+                if cleanPassword == temporalPassword {
+                    //Pass password setup
+                    //TODO: encrypt password
+                    //TODO: Save in cloud kit data base
+                    print ("Good pass \(cleanPassword)")
+                } else {
+                    let alertController = UIAlertController(title: "Warning", message: "Passwords do not match", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alertController.addAction(action)
+                    self.present(alertController, animated: true)
+                }
+            }
+        } else {
+            //verify normal to unlock app
+            //TODO: Download encrypted password from cloud database
+            //TODO: Compare if so, unlock, if not go back
+        }
+    }
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let uppercase = textField.text!.hasCharacter(in: .uppercaseLetters)
+        let specialCharacter = textField.text!.hasCharacter(in: .punctuationCharacters)
+        let sizePassword = textField.text!.count
+
+        if sizePassword > 8 && specialCharacter && uppercase {
+            passwordButton.isEnabled = true
+        } else {
+            passwordButton.isEnabled = false
+        }
+    }
+    
     
     /*
     var NSApp: UIApplication!
 
     public var completion: ((Bool) -> (Void))?
-    
+     
     @IBOutlet weak var passwordStackView: UIStackView!
     @IBOutlet weak var label: UILabel!
     
