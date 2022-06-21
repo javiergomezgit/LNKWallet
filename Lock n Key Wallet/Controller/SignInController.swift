@@ -239,10 +239,14 @@ extension SignInController: ASAuthorizationControllerDelegate {
                         if isNewUser {
                             UserDefaults.standard.set(true, forKey: "is_new_user")
                             
+                            
                             let email = user.email ?? ""
                             let displayName = user.displayName ?? ""
+                            let timeStampSignup = Int(NSDate().timeIntervalSince1970)
+                            UserDefaults.standard.set(timeStampSignup, forKey: "date_creation_user")
+                            
                             let db = Firestore.firestore()
-                            db.collection("User").document(user.uid).setData(["email": email, "displayName": displayName, "uid": user.uid]) { err in
+                            db.collection("User").document(user.uid).setData(["email": email, "displayName": displayName, "uid": user.uid, "dateCreated" : timeStampSignup]) { err in
                                 if let err = err {
                                     print("Error writing document: \(err)")
                                 } else {

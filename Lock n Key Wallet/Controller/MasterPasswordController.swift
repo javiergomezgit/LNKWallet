@@ -45,7 +45,7 @@ class MasterPasswordController: UIViewController {
     @IBAction func passwordButtonTapped(_ sender: Any) {
         
         let cleanPassword = passwordText.text!.cleanPasswordCharacters
-        
+                            
         if setPassword {
             if temporalPassword == "" {
                 temporalPassword = cleanPassword
@@ -54,10 +54,14 @@ class MasterPasswordController: UIViewController {
                 passwordButton.setTitle("Verify Password", for: .normal)
             } else {
                 if cleanPassword == temporalPassword {
-                    //Pass password setup
-                    //TODO: encrypt password
+                    
+                    //TODO: Download from cloud kit
+            
+                    let timeStampSignup = Int(NSDate().timeIntervalSince1970)  //Download date epoch from cloud kit
+                    let encrypted = EncryptionPassword.shared.encryptMasterPassword(encrypting: true, masterPassword: cleanPassword, timeStamp: timeStampSignup)
                     //TODO: Save in cloud kit data base
                     print ("Good pass \(cleanPassword)")
+                    print ("Encrypted pass \(encrypted)")
                 } else {
                     let alertController = UIAlertController(title: "Warning", message: "Passwords do not match", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -67,7 +71,9 @@ class MasterPasswordController: UIViewController {
             }
         } else {
             //verify normal to unlock app
-            //TODO: Download encrypted password from cloud database
+            //TODO: Download encrypted password and date utc from cloud database
+            //TODO: Decrypt password
+            //let decryptedPassword = EncryptionPassword.shared.encryptMasterPassword(encrypting: false, masterPassword: encrypted, timeStamp: 1655829748)
             //TODO: Compare if so, unlock, if not go back
         }
     }
