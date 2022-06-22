@@ -116,17 +116,18 @@ class SignInController: UIViewController {
                 print (exists)
                 if exists {
                     DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
-                        vc.modalPresentationStyle = .fullScreen
-                        vc.modalTransitionStyle = .crossDissolve
-                        self.show(vc, sender: nil)
+//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                        let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
+//                        vc.modalPresentationStyle = .fullScreen
+//                        vc.modalTransitionStyle = .crossDissolve
+//                        self.show(vc, sender: nil)
+                        print ("GOING TO MAIN")
                     }
                 } else {
                     print("doesnt exists")
                     do {
                         try Auth.auth().signOut()
-                        UserDefaults.standard.set(true, forKey: "auto_lock_time")
+                        UserDefaults.standard.set(0, forKey: "auto_lock_time")
                         UserDefaults.standard.set(true, forKey: "locked_app")
                         UserDefaults.standard.synchronize()
                         
@@ -229,24 +230,28 @@ extension SignInController: ASAuthorizationControllerDelegate {
                                                       rawNonce: nonce)
 //            if !deletingAccount {
                 Auth.auth().signIn(with: credential) { (authResult, error) in
+                    
+                    let timeStampSignup = Int(authResult!.user.metadata.creationDate!.timeIntervalSince1970)
+                    UserDefaults.standard.set(timeStampSignup, forKey: "date_creation_user")
+
                     if error != nil {
                         print(error?.localizedDescription ?? "")
                         return
                     } else {
                         guard let user = authResult?.user else { return }
                         let isNewUser = authResult!.additionalUserInfo!.isNewUser
-                        
+                                                
                         if isNewUser {
                             UserDefaults.standard.set(true, forKey: "is_new_user")
-                            
+                            UserDefaults.standard.set(true, forKey: "locked_app")
+
                             
                             let email = user.email ?? ""
                             let displayName = user.displayName ?? ""
-                            let timeStampSignup = Int(NSDate().timeIntervalSince1970)
-                            UserDefaults.standard.set(timeStampSignup, forKey: "date_creation_user")
+                            let photoURL = user.photoURL?.absoluteString  ?? ""
                             
                             let db = Firestore.firestore()
-                            db.collection("User").document(user.uid).setData(["email": email, "displayName": displayName, "uid": user.uid, "dateCreated" : timeStampSignup]) { err in
+                            db.collection("User").document(user.uid).setData(["email": email, "displayName": displayName, "uid": user.uid, "dateCreated" : timeStampSignup, "photoURL": photoURL]) { err in
                                 if let err = err {
                                     print("Error writing document: \(err)")
                                 } else {

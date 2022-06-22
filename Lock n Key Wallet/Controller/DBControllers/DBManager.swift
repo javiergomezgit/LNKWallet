@@ -32,6 +32,51 @@ final class DBManager {
     //        }
     //    }
     
+    public func saveMasterPassword(userID: String, encryptedPassword: String, completion: @escaping(Bool) -> Void) {
+        let ckRecordZoneID = CKRecordZone.ID(zoneName: "_defaultZone", ownerName: CKCurrentUserDefaultName)
+        let ckRecordID = CKRecord.ID(recordName: self.firebaseNameDB, zoneID: ckRecordZoneID)
+        let record = CKRecord(recordType: recordTypeName, recordID: ckRecordID)
+        record.setValue(encryptedPassword, forKey: passcodeNameDB)
+        record.setValue(userID, forKey: firebaseNameDB)
+        
+        databaseCloudKit.save(record) { record, error in
+                if record != nil, error == nil {
+                    print ("saved")
+                    UserDefaults.standard.set(true, forKey: "found_passcode")
+                    UserDefaults.standard.set(true, forKey: "passcode_saved")
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+    }
+    
+    
+    public func downloadMasterPassword(userID: String, completion: @escaping(String?) -> Void) {
+        let query = CKQuery(recordType: recordTypeName, predicate: NSPredicate(value: true))
+        let ckRecordZoneID = CKRecordZone.ID(zoneName: "_defaultZone", ownerName: CKCurrentUserDefaultName)
+        databaseCloudKit.perform(query, inZoneWith: ckRecordZoneID) { [weak self] records, error in
+            guard let records = records, error == nil else {
+                return
+            }
+            
+            for record in records {
+                let id = record.value(forKey: self!.firebaseNameDB) as! String
+                if id == userID {
+                    print ("found general passcode")
+                    let foundRecord = record.value(forKey: self!.passcodeNameDB) as! String
+                    UserDefaults.standard.set(true, forKey: "found_passcode")
+                    completion(foundRecord)
+                } else {
+                    UserDefaults.standard.set(false, forKey: "found_passcode")
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+
+    
     public func verifyUserExists(userID: String, completion: @escaping(Bool) -> Void) {
         database.collection("User").getDocuments { snapshot, error in
             var foundUser = ""

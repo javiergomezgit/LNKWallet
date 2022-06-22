@@ -20,6 +20,8 @@ class OpenVaultController: UIViewController {
         super.viewDidLoad()
         title = "Open Vault".localized()
         configureTops()
+        configureSecurity()
+        
         
         tableView.register(DatasViewCell.nib, forCellReuseIdentifier: DatasViewCell.identifier)
         tableView.delegate = self
@@ -38,6 +40,32 @@ class OpenVaultController: UIViewController {
         getAllDatas()
         
     }
+    
+    
+    @objc private func configureSecurity() {
+//        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
+//            UserDefaults.standard.set(true, forKey: "is_new_user")
+//        }
+        
+        if UserDefaults.standard.value(forKey: "is_new_user") as! Bool == true {
+            print ("NEW USER")
+            //TODO: SHOW master password set password
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
+            vc.setPassword = true
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        } else {
+            if UserDefaults.standard.value(forKey: "locked_app") as! Bool == true {
+                //TODO: Goto master password unlock
+            } else {
+                //TODO: Dismiss master password
+            }
+        }
+    }
+    
+    
+    
 
     private func configureTops() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToSave))

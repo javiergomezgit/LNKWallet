@@ -54,14 +54,24 @@ class MasterPasswordController: UIViewController {
                 passwordButton.setTitle("Verify Password", for: .normal)
             } else {
                 if cleanPassword == temporalPassword {
+                    guard let user = Auth.auth().currentUser else {
+                        return
+                    }
                     
-                    //TODO: Download from cloud kit
-            
-                    let timeStampSignup = Int(NSDate().timeIntervalSince1970)  //Download date epoch from cloud kit
-                    let encrypted = EncryptionPassword.shared.encryptMasterPassword(encrypting: true, masterPassword: cleanPassword, timeStamp: timeStampSignup)
-                    //TODO: Save in cloud kit data base
-                    print ("Good pass \(cleanPassword)")
-                    print ("Encrypted pass \(encrypted)")
+                    let timeStamp = Int(user.metadata.creationDate!.timeIntervalSince1970)
+                    UserDefaults.standard.set(timeStamp, forKey: "date_creation_user")
+                    let encrypted = EncryptionPassword.shared.encryptMasterPassword(encrypting: true, masterPassword: cleanPassword, timeStamp: timeStamp)
+                    
+                    DBManager.shared.saveMasterPassword(userID: user.uid, encryptedPassword: encrypted) { success in
+                        if success {
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true)
+                            }
+                        }
+                        print ("Good pass \(cleanPassword)")
+                        print ("Encrypted pass \(encrypted)")
+                    }
+                    
                 } else {
                     let alertController = UIAlertController(title: "Warning", message: "Passwords do not match", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
