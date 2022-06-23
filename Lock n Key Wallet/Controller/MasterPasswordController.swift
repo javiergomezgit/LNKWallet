@@ -45,6 +45,10 @@ class MasterPasswordController: UIViewController {
     @IBAction func passwordButtonTapped(_ sender: Any) {
         
         let cleanPassword = passwordText.text!.cleanPasswordCharacters
+        
+        guard let user = Auth.auth().currentUser else { return }
+        let timeStamp = Int(user.metadata.creationDate!.timeIntervalSince1970)
+        UserDefaults.standard.set(timeStamp, forKey: "date_creation_user")
                             
         if setPassword {
             if temporalPassword == "" {
@@ -54,12 +58,7 @@ class MasterPasswordController: UIViewController {
                 passwordButton.setTitle("Verify Password", for: .normal)
             } else {
                 if cleanPassword == temporalPassword {
-                    guard let user = Auth.auth().currentUser else {
-                        return
-                    }
                     
-                    let timeStamp = Int(user.metadata.creationDate!.timeIntervalSince1970)
-                    UserDefaults.standard.set(timeStamp, forKey: "date_creation_user")
                     let encrypted = EncryptionPassword.shared.encryptMasterPassword(encrypting: true, masterPassword: cleanPassword, timeStamp: timeStamp)
                     
                     DBManager.shared.saveMasterPassword(userID: user.uid, encryptedPassword: encrypted) { success in
@@ -80,11 +79,21 @@ class MasterPasswordController: UIViewController {
                 }
             }
         } else {
-            //verify normal to unlock app
             //TODO: Download encrypted password and date utc from cloud database
-            //TODO: Decrypt password
-            //let decryptedPassword = EncryptionPassword.shared.encryptMasterPassword(encrypting: false, masterPassword: encrypted, timeStamp: 1655829748)
-            //TODO: Compare if so, unlock, if not go back
+            DBManager.shared.downloadMasterPassword(userID: user.uid) { encryptedPassword in
+                if encryptedPassword != nil {
+                    let decrypted = EncryptionPassword.shared.encryptMasterPassword(encrypting: false, masterPassword: encryptedPassword!, timeStamp: timeStamp)
+                    
+                    if cleanPassword == decrypted {
+                        DispatchQueue.main.async {
+                            print ("PASS GOOD PASSWORD")
+                            self.dismiss(animated: true)
+                        }
+                    } else {
+                        print ("NO bueno password")
+                    }
+                }
+            }
         }
     }
 

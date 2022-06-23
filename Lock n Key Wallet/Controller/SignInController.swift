@@ -116,12 +116,13 @@ class SignInController: UIViewController {
                 print (exists)
                 if exists {
                     DispatchQueue.main.async {
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                        let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
-//                        vc.modalPresentationStyle = .fullScreen
-//                        vc.modalTransitionStyle = .crossDissolve
-//                        self.show(vc, sender: nil)
-                        print ("GOING TO MAIN")
+                        print("GOING to MAIN")
+                        UserDefaults.standard.set(false, forKey: "is_new_user")
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
+                        vc.modalPresentationStyle = .fullScreen
+                        vc.modalTransitionStyle = .crossDissolve
+                        self.show(vc, sender: nil)
                     }
                 } else {
                     print("doesnt exists")

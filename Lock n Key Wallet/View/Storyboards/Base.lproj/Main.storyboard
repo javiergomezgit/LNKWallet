@@ -140,26 +140,65 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lock N Key" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9az-xs-wkh">
+                                <rect key="frame" x="91.5" y="194" width="231.5" height="45.5"/>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scF-wh-PoB">
-                                <rect key="frame" x="62" y="416" width="290" height="40"/>
+                                <rect key="frame" x="62" y="501" width="290" height="40"/>
+                                <color key="backgroundColor" name="darkBackground"/>
                                 <color key="tintColor" name="lightBackground"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Set Password" cornerStyle="medium">
-                                    <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" name="darkBackground"/>
-                                        <color key="strokeColor" name="lightBackground"/>
-                                    </backgroundConfiguration>
+                                <buttonConfiguration key="configuration" style="plain" title="Set Password">
+                                    <color key="baseForegroundColor" name="lightBackground"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="passwordButtonTapped:" destination="PmB-Db-CMj" eventType="touchUpInside" id="NkD-14-J0v"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCK N KEY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9az-xs-wkh">
-                                <rect key="frame" x="124" y="194" width="166" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EYH-On-HhW">
+                                <rect key="frame" x="67" y="404" width="148.5" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password must include" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeG-Az-P35">
+                                        <rect key="frame" x="0.0" y="0.0" width="148.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="R2k-AS-ZRf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uppercase: ABC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QZ-7T-ANp">
+                                        <rect key="frame" x="0.0" y="20" width="148.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="fFc-qQ-Zn5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers: 123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ha-s8-uYT">
+                                        <rect key="frame" x="0.0" y="40" width="148.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="OXZ-Vl-XBi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbols: !#.$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6W6-gV-ZGS">
+                                        <rect key="frame" x="0.0" y="60" width="148.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="3eB-l4-lIL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CXU-9E-Bgt"/>
                         <color key="backgroundColor" name="mainOrange"/>
@@ -172,10 +211,12 @@
                             <constraint firstItem="tYd-en-nNo" firstAttribute="centerX" secondItem="CKM-Ca-k5p" secondAttribute="centerX" id="KVG-4Y-Wok"/>
                             <constraint firstItem="scF-wh-PoB" firstAttribute="height" secondItem="6nm-VK-p7D" secondAttribute="height" id="LDz-u9-a9r"/>
                             <constraint firstItem="tYd-en-nNo" firstAttribute="top" secondItem="CXU-9E-Bgt" secondAttribute="top" constant="50" id="Nuj-cR-fX5"/>
+                            <constraint firstItem="EYH-On-HhW" firstAttribute="leading" secondItem="6nm-VK-p7D" secondAttribute="leading" constant="5" id="XrA-Sr-Idb"/>
                             <constraint firstItem="scF-wh-PoB" firstAttribute="width" secondItem="6nm-VK-p7D" secondAttribute="width" id="aSc-cs-Y6W"/>
                             <constraint firstItem="9az-xs-wkh" firstAttribute="centerX" secondItem="tYd-en-nNo" secondAttribute="centerX" id="jfl-Gk-EKR"/>
-                            <constraint firstItem="scF-wh-PoB" firstAttribute="top" secondItem="6nm-VK-p7D" secondAttribute="bottom" constant="15" id="kQe-P8-Jlq"/>
+                            <constraint firstItem="scF-wh-PoB" firstAttribute="top" secondItem="6nm-VK-p7D" secondAttribute="bottom" constant="100" id="kQe-P8-Jlq"/>
                             <constraint firstItem="6nm-VK-p7D" firstAttribute="centerY" secondItem="CKM-Ca-k5p" secondAttribute="centerY" multiplier="0.85" id="o7f-ex-Mb5"/>
+                            <constraint firstItem="EYH-On-HhW" firstAttribute="top" secondItem="6nm-VK-p7D" secondAttribute="bottom" constant="3" id="wjg-WX-MOn"/>
                         </constraints>
                     </view>
                     <connections>

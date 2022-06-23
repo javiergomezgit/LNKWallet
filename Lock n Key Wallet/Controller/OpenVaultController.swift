@@ -58,6 +58,12 @@ class OpenVaultController: UIViewController {
         } else {
             if UserDefaults.standard.value(forKey: "locked_app") as! Bool == true {
                 //TODO: Goto master password unlock
+                print ("NOT NEW USER")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
+                vc.setPassword = false
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             } else {
                 //TODO: Dismiss master password
             }
