@@ -13,7 +13,9 @@ class MasterPasswordController: UIViewController {
     
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var passwordButton: UIButton!
-
+    
+    @IBOutlet weak var requirementsLabel: UILabel!
+    
     var setPassword = true
     var temporalPassword = ""
     
@@ -90,7 +92,12 @@ class MasterPasswordController: UIViewController {
                             self.dismiss(animated: true)
                         }
                     } else {
-                        print ("NO bueno password")
+                        DispatchQueue.main.async {
+                            let alertController = UIAlertController(title: "Warning", message: "Wrong password", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                            alertController.addAction(action)
+                            self.present(alertController, animated: true)
+                        }
                     }
                 }
             }
@@ -104,7 +111,11 @@ class MasterPasswordController: UIViewController {
 
         if sizePassword > 8 && specialCharacter && uppercase {
             passwordButton.isEnabled = true
+            requirementsLabel.alpha = 0.9
+            requirementsLabel.textColor = .blue
         } else {
+            requirementsLabel.alpha = 0.5
+            requirementsLabel.textColor = .label
             passwordButton.isEnabled = false
         }
     }

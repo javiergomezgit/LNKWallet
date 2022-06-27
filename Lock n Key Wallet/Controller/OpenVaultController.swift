@@ -64,8 +64,6 @@ class OpenVaultController: UIViewController {
                 vc.setPassword = false
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true)
-            } else {
-                //TODO: Dismiss master password
             }
         }
     }

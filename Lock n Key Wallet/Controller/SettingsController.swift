@@ -13,6 +13,7 @@ class SettingsController: UITableViewController {
     
     @IBOutlet weak var attemptsTextField: UITextField!
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var instantAutoLockSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,19 @@ class SettingsController: UITableViewController {
         
         self.hideKeyboardWhenTappedAround()
         loadAttempts()
+        
+        if let autoLock = UserDefaults.standard.value(forKey: "instant_auto_lock") as? Bool {
+            if let lockedApp = UserDefaults.standard.value(forKey: "locked_app") as? Bool {
+                UserDefaults.standard.set(lockedApp, forKey: "locked_app")
+            } else {
+                UserDefaults.standard.set(true, forKey: "locked_app")
+            }
+            instantAutoLockSwitch.isOn = autoLock
+        } else {
+            UserDefaults.standard.set(true, forKey: "instant_auto_lock")
+            UserDefaults.standard.set(true, forKey: "locked_app")
+            instantAutoLockSwitch.isOn = true
+        }
     }
     
     @IBAction func attemptsChanged(_ sender: UITextField) {
@@ -32,6 +46,13 @@ class SettingsController: UITableViewController {
         }
        
     }
+    
+    @IBAction func instantAutoLockChanged(_ sender: UISwitch) {
+        print (instantAutoLockSwitch.isOn)
+        UserDefaults.standard.set(instantAutoLockSwitch.isOn, forKey: "locked_app")
+        UserDefaults.standard.set(instantAutoLockSwitch.isOn, forKey: "instant_auto_lock")
+    }
+    
     
     func loadAttempts(){
         if let attempts = UserDefaults.standard.value(forKey: "amount_attempts") as? Int {
