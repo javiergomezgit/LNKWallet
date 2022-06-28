@@ -25,6 +25,7 @@
 		227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 227B18F6285EB3320092D67E /* CreditCardScanner */; };
 		227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB79E275FABCB0013647B /* OnboardingController.swift */; };
 		227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB7A0275FAEBA0013647B /* Reachability.swift */; };
+		228671D0286BA5B60010AEAF /* GeneratePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */; };
 		22932C27275A683E008778C2 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22932C26275A683E008778C2 /* EditPasswordController.swift */; };
 		2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295C5742748722E0050FA7D /* AppDelegate.swift */; };
 		2295C5772748722E0050FA7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295C5762748722E0050FA7D /* SceneDelegate.swift */; };
@@ -56,6 +57,7 @@
 		224E868B285F6FE200F4A575 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		227FB79E275FABCB0013647B /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		227FB7A0275FAEBA0013647B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratePasswordController.swift; sourceTree = "<group>"; };
 		22932C26275A683E008778C2 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
 		2295C5712748722E0050FA7D /* Lock n Key Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lock n Key Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2295C5742748722E0050FA7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
 				222C972527487C6D004C077E /* SaveDataController.swift */,
+				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
 				222384F42752B2BC00FBF76A /* EditDataController.swift */,
 				22932C26275A683E008778C2 /* EditPasswordController.swift */,
@@ -389,6 +392,7 @@
 				222384F52752B2BC00FBF76A /* EditDataController.swift in Sources */,
 				222384EE2751793700FBF76A /* DBManager.swift in Sources */,
 				224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */,
+				228671D0286BA5B60010AEAF /* GeneratePasswordController.swift in Sources */,
 				222C972827487CED004C077E /* OpenVaultController.swift in Sources */,
 				224E868D285F6FE200F4A575 /* Encryption.swift in Sources */,
 				22CAFBD127543937006D02AA /* Extensions.swift in Sources */,
