@@ -17,19 +17,18 @@ class GeneratePasswordController: UIViewController {
     @IBOutlet weak var amountCharactersLabel: UILabel!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         amountCharactersSlider.isContinuous = false
-
-        // Do any additional setup after loading the view.
-        let amountCharacters = Int(amountCharactersSlider.value)
+        passwordLabel.text = "P@55W#RD"
+        let amountCharacters = passwordLabel.text!.count
         amountCharactersLabel.text = String(amountCharacters)
+        amountCharactersSlider.value = Float(amountCharacters)
         
         generatePassword()
     }
-    
+        
     @IBAction func capitalLetterChanged(_ sender: UISwitch) {
         generatePassword()
     }
@@ -37,7 +36,6 @@ class GeneratePasswordController: UIViewController {
     @IBAction func digitsChanged(_ sender: UISwitch) {
         generatePassword()
     }
-    
     
     @IBAction func symbolsChanged(_ sender: UISwitch) {
         generatePassword()
@@ -56,6 +54,12 @@ class GeneratePasswordController: UIViewController {
         amountCharactersLabel.text = String(Int(sender.value))
     }
     
+    @IBAction func copyButtonTapped(_ sender: UIButton) {
+        let pasteboard = UIPasteboard.general
+         pasteboard.string = passwordLabel.text
+        
+    }
+    
     
     private func generatePassword() {
         let amountCharacters = Int(amountCharactersSlider.value)
@@ -63,20 +67,16 @@ class GeneratePasswordController: UIViewController {
         passwordLabel.text = randomPass
     }
     
-    @IBAction func copyButtonTapped(_ sender: UIButton) {
-        
-    }
-    
-    func randomNonceString(length: Int) -> String {
-        var arrayString = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+    private func randomNonceString(length: Int) -> String {
+        var arrayString = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
         if capitalSwitch.isOn {
-            arrayString += "ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ"
+            arrayString += "ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ"
         }
         if digitsSwitch.isOn {
             arrayString += "1234567890123456789012345678901234567890"
         }
         if symbolsSwitch.isOn {
-            arrayString += "~!@#$%^&*()._+=-<>?,"
+            arrayString += "~!@#$%^&*().,_+=-<>?"
         }
         let charset: Array<Character> = Array(arrayString)
         var result = ""
@@ -105,5 +105,6 @@ class GeneratePasswordController: UIViewController {
         }
         return result
     }
-    
 }
+
+
