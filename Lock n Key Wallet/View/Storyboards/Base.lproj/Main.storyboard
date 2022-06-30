@@ -199,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="2362" y="-1"/>
         </scene>
-        <!--Save Data-->
+        <!--New Data-->
         <scene sceneID="Ofm-SA-VqP">
             <objects>
-                <viewController storyboardIdentifier="SaveDataController" title="Save Data" id="aoo-x7-blg" customClass="SaveDataController" customModule="Lock_n_Key_Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewDataController" title="New Data" id="aoo-x7-blg" customClass="NewDataController" customModule="Lock_n_Key_Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oWG-Ah-Xu5">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

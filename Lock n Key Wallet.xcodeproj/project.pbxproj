@@ -17,7 +17,7 @@
 		222C971C27487841004C077E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 222C971B27487841004C077E /* GoogleService-Info.plist */; };
 		222C972027487AAD004C077E /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C971F27487AAD004C077E /* SignInController.swift */; };
 		222C972427487B8F004C077E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972327487B8F004C077E /* SettingsController.swift */; };
-		222C972627487C6D004C077E /* SaveDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972527487C6D004C077E /* SaveDataController.swift */; };
+		222C972627487C6D004C077E /* NewDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972527487C6D004C077E /* NewDataController.swift */; };
 		222C972827487CED004C077E /* OpenVaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972727487CED004C077E /* OpenVaultController.swift */; };
 		222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222C972927487D9C004C077E /* Onboarding.storyboard */; };
 		224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
@@ -50,7 +50,7 @@
 		222C971B27487841004C077E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		222C971F27487AAD004C077E /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		222C972327487B8F004C077E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		222C972527487C6D004C077E /* SaveDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataController.swift; sourceTree = "<group>"; };
+		222C972527487C6D004C077E /* NewDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataController.swift; sourceTree = "<group>"; };
 		222C972727487CED004C077E /* OpenVaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenVaultController.swift; sourceTree = "<group>"; };
 		222C972927487D9C004C077E /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		224E868A285F6FE100F4A575 /* EncryptionPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionPassword.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				222384C6274D361D00FBF76A /* MasterPasswordController.swift */,
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
-				222C972527487C6D004C077E /* SaveDataController.swift */,
+				222C972527487C6D004C077E /* NewDataController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
 				222384F42752B2BC00FBF76A /* EditDataController.swift */,
@@ -383,7 +383,7 @@
 			files = (
 				222C972427487B8F004C077E /* SettingsController.swift in Sources */,
 				2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */,
-				222C972627487C6D004C077E /* SaveDataController.swift in Sources */,
+				222C972627487C6D004C077E /* NewDataController.swift in Sources */,
 				2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */,
 				22932C27275A683E008778C2 /* EditPasswordController.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,

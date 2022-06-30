@@ -11,7 +11,7 @@ import FirebaseAuth
 class OpenVaultController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
+    
     let refreshControl = UIRefreshControl()
     
     private var lnkDatas = [LNKData]()
@@ -43,9 +43,9 @@ class OpenVaultController: UIViewController {
     
     
     @objc private func configureSecurity() {
-//        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
-//            UserDefaults.standard.set(true, forKey: "is_new_user")
-//        }
+        //        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
+        //            UserDefaults.standard.set(true, forKey: "is_new_user")
+        //        }
         
         if UserDefaults.standard.value(forKey: "is_new_user") as! Bool == true {
             print ("NEW USER")
@@ -70,12 +70,27 @@ class OpenVaultController: UIViewController {
     
     
     
-
+    
     private func configureTops() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToSave))
-//        let rightButtonImage = UIImage(systemName: "icloud.and.arrow.up.fill")?.withRenderingMode(.alwaysTemplate)
-//        let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self, action: #selector(saveData))
-//        self.navigationItem.rightBarButtonItem = rightButton
+        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "person.fill")) { (action) in
+            print("Credit card was tapped")
+            self.goToController(typeOfData: "credit_card")
+        }
+        
+        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.plus")) { (action) in
+            print("Password action was tapped")
+            self.goToController(typeOfData: "password")
+        }
+        
+        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "person.fill.xmark.rtl")) { (action) in
+            print("Secure note was tapped")
+            self.goToController(typeOfData: "secure_note")
+        }
+        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [creditCardItem , passwordItem , secureNote])
+        
+        let rightButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
+        
+        self.navigationItem.rightBarButtonItem = rightButtonItem
         
         
         if traitCollection.userInterfaceStyle == .light {
@@ -85,8 +100,15 @@ class OpenVaultController: UIViewController {
         }
     }
     
-    @objc private func goToSave() {
-        self.tabBarController?.selectedIndex = 0
+    @objc private func goToController(typeOfData: String) {
+        //NewDataController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewDataController") as! NewDataController
+        vc.typeOfData = typeOfData
+        
+        vc.modalPresentationStyle = .formSheet
+        vc.modalTransitionStyle = .crossDissolve
+        self.show(vc, sender: nil)
     }
     
     private func getAllDatas(){
@@ -129,7 +151,7 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         if model.userData == nil {
             let decryptedContent = Encryption.shared.encryptDecrypt(oldMessage: model.contentData, encryptedPasscode: encryptedPasscode, secretKey: Auth.auth().currentUser!.uid, encrypt: false)
             let data = convertContentForReading(mergedContent: decryptedContent, nameData: model.nameData)
-
+            
             let vc = storyboard?.instantiateViewController(withIdentifier: "EditDataController") as! EditDataController
             vc.title = "Editing"
             vc.configure(lockData: data)
@@ -189,7 +211,7 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func convertPassForReading(passwordContent: String, userContent: String, namePassword: String) -> LockDataPassword {
-
+        
         let components = userContent.components(separatedBy: " ")
         let username = components[0]
         let email = components[1]

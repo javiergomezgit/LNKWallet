@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import CreditCardScanner
 
-class SaveDataController: UIViewController {
+class NewDataController: UIViewController {
     
     @IBOutlet weak var dataSelector: UISegmentedControl!
     @IBOutlet weak var passwordView: UIView!
@@ -20,7 +20,7 @@ class SaveDataController: UIViewController {
     @IBOutlet weak var numberCardText: UITextField!
     @IBOutlet weak var securityCodeText: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
-
+    
     var monthNames: [Int: String] = [Int: String]()
     var expirationDate: String?
     
@@ -31,6 +31,8 @@ class SaveDataController: UIViewController {
     @IBOutlet weak var nameDataPassText: UITextField!
     @IBOutlet weak var yearText: UITextField!
     @IBOutlet weak var monthText: UITextField!
+    
+    public var typeOfData = ""
     
     @IBAction func changed(_ sender: Any) {
         
@@ -66,7 +68,7 @@ class SaveDataController: UIViewController {
             yearValue = 23
             yearName = "20\(yearValue)"
         }
-                
+        
         monthText.text = String(monthValue)
         yearText.text = String(yearValue)
         let dateName = "\(monthName) / \(yearName)"
@@ -93,18 +95,27 @@ class SaveDataController: UIViewController {
             yearValue = 23
             yearName = "20\(yearValue)"
         }
-              
+        
         monthText.text = String(monthValue)
         yearText.text = String(yearValue)
         let dateName = "\(monthName) / \(yearName)"
         dateLabel.text = dateName
         expirationDate = "\(monthValue)/\(yearName)"
-
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch typeOfData {
+        case "credit_card":
+            dataSelector.selectedSegmentIndex = 0
+        case "password" :
+            dataSelector.selectedSegmentIndex = 1
+        default:
+            print ("selected secure note")
+        }
         
         self.hideKeyboardWhenTappedAround()
         passPassText.enablePasswordToggle()
@@ -130,31 +141,31 @@ class SaveDataController: UIViewController {
             11: "Nov".localized(),
             12: "Dec".localized()
         ]
-
+        
     }
     
     @objc private func configureSecurity() {
-//        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
-//            UserDefaults.standard.set(true, forKey: "is_new_user")
-//        }
+        //        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
+        //            UserDefaults.standard.set(true, forKey: "is_new_user")
+        //        }
         
         if (UserDefaults.standard.value(forKey: "is_new_user") as! Bool) == true {
             print ("NEW USER")
             UserDefaults.standard.set(false, forKey: "is_new_user")
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
-//            vc.statusOfPasscode = .settingPasscode
-//            vc.modalPresentationStyle = .fullScreen
-//            vc.completion = { success in
-//                if success {
-//                    print ("Set up passcode")
-//                    UserDefaults.standard.set(0, forKey: "attemptedPasscode")
-//                    UserDefaults.standard.set(3, forKey: "amount_attempts")
-//                } else {
-//                    print ("no success")
-//                }
-//            }
-//            self.present(vc, animated: true)
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //            let vc = storyboard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
+            //            vc.statusOfPasscode = .settingPasscode
+            //            vc.modalPresentationStyle = .fullScreen
+            //            vc.completion = { success in
+            //                if success {
+            //                    print ("Set up passcode")
+            //                    UserDefaults.standard.set(0, forKey: "attemptedPasscode")
+            //                    UserDefaults.standard.set(3, forKey: "amount_attempts")
+            //                } else {
+            //                    print ("no success")
+            //                }
+            //            }
+            //            self.present(vc, animated: true)
         } else {
             print ("NO NEW")
             var attempted = UserDefaults.standard.value(forKey: "attemptedPasscode") as? Int
@@ -170,18 +181,18 @@ class SaveDataController: UIViewController {
             }
             
             if attempted! < amountAttempts! {
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
-//                vc.statusOfPasscode = .verifyPasscode
-//                vc.modalPresentationStyle = .fullScreen
-//                vc.completion = { success in
-//                    if success {
-//                        print (success)
-//                    } else {
-//                        print ("failed")
-//                    }
-//                }
-//                self.present(vc, animated: true)
+                //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                //                let vc = storyboard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
+                //                vc.statusOfPasscode = .verifyPasscode
+                //                vc.modalPresentationStyle = .fullScreen
+                //                vc.completion = { success in
+                //                    if success {
+                //                        print (success)
+                //                    } else {
+                //                        print ("failed")
+                //                    }
+                //                }
+                //                self.present(vc, animated: true)
             } else {
                 //delete info
                 print ("delete info")
@@ -214,7 +225,7 @@ class SaveDataController: UIViewController {
 }
 
 //MARK: Save credit card information
-extension SaveDataController {
+extension NewDataController {
     @IBAction func dataSelectorChanged(_ sender: Any) {
         if dataSelector.selectedSegmentIndex == 0 {
             passwordView.isHidden = true
@@ -341,7 +352,7 @@ extension SaveDataController {
 //    }
 //}
 
-extension SaveDataController: CreditCardScannerViewControllerDelegate {
+extension NewDataController: CreditCardScannerViewControllerDelegate {
     func creditCardScannerViewControllerDidCancel(_ viewController: CreditCardScannerViewController) {
         viewController.dismiss(animated: true, completion: nil)
         print("cancel")
@@ -377,11 +388,11 @@ extension SaveDataController: CreditCardScannerViewControllerDelegate {
         
         if var yearDate = card.expireDate?.year, let monthDate = card.expireDate?.month {
             yearDate = yearDate - 2000
-//            dateLabel.text = "\(monthNames[monthDate - 1])/\(yearDate)"
+            //            dateLabel.text = "\(monthNames[monthDate - 1])/\(yearDate)"
             
             let tempYearPicker = yearDate - 21
-//            monthPicker.selectRow(monthDate - 1, inComponent: 0, animated: true)
-//            monthPicker.selectRow(tempYearPicker, inComponent: 1, animated: true)
+            //            monthPicker.selectRow(monthDate - 1, inComponent: 0, animated: true)
+            //            monthPicker.selectRow(tempYearPicker, inComponent: 1, animated: true)
             
         }
     }
@@ -389,7 +400,7 @@ extension SaveDataController: CreditCardScannerViewControllerDelegate {
 
 
 //MARK: Save password
-extension SaveDataController {
+extension NewDataController {
     private func saveDataPassword() {
         if verifyPassFields() {
             var username = "N/A"
