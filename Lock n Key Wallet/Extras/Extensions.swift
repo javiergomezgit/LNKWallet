@@ -30,7 +30,50 @@ extension UIButton {
         self.layer.shadowOffset = CGSize.init(width: 10, height: 5)
         self.layer.shadowColor = UIColor.lightGray.cgColor
     }
+    
+    
+    ///Round the corners of button, with given percentage
+    func roundCorners(amountCornerPercentage: CGFloat) {
+        var smallerSideCorner = self.frame.height / 2
+        if self.frame.height > self.frame.width {
+            smallerSideCorner = self.frame.width / 2
+        }
+        self.layer.cornerRadius = (smallerSideCorner * amountCornerPercentage) / 100
+        self.layer.shadowOpacity = 0.1
+        self.layer.shadowRadius = 1.0
+        self.layer.shadowOffset = CGSize.init(width: 5, height: 5)
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+    }
 }
+
+
+
+extension UIImageView {
+    func cornersImage(circleImage: Bool, border: Bool, roundedCorner: CGFloat?) {
+        if border {
+            self.layer.borderWidth = 0.5
+            self.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        self.layer.masksToBounds = false
+
+        if circleImage {
+            self.layer.cornerRadius = self.frame.height / 2
+        } else {
+            if roundedCorner != nil {
+                self.layer.cornerRadius = self.frame.height / roundedCorner!
+            } else {
+                self.layer.cornerRadius = self.frame.height / 10 //In case that is not round image and user forgets to set the corners
+            }
+        }
+        self.clipsToBounds = true
+    }
+}
+
+
+
+
+
+
 
 
 extension UITextField {

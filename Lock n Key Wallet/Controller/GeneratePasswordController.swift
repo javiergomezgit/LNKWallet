@@ -15,10 +15,17 @@ class GeneratePasswordController: UIViewController {
     @IBOutlet weak var digitsSwitch: UISwitch!
     @IBOutlet weak var symbolsSwitch: UISwitch!
     @IBOutlet weak var amountCharactersLabel: UILabel!
+    @IBOutlet weak var copyButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        copyButton.roundCorners(amountCornerPercentage: 30)
+        copyButton.setTitle("", for: .normal)
+        resetButton.roundCorners(amountCornerPercentage: 30)
+        resetButton.setTitle("", for: .normal)
         
         amountCharactersSlider.isContinuous = false
         passwordLabel.text = "P@55W#RD"
