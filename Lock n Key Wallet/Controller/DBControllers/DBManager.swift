@@ -34,23 +34,22 @@ final class DBManager {
     
     public func saveMasterPassword(userID: String, encryptedPassword: String, completion: @escaping(Bool) -> Void) {
         let ckRecordZoneID = CKRecordZone.ID(zoneName: "_defaultZone", ownerName: CKCurrentUserDefaultName)
-        let ckRecordID = CKRecord.ID(recordName: self.firebaseNameDB, zoneID: ckRecordZoneID)
+        let ckRecordID = CKRecord.ID(recordName: userID, zoneID: ckRecordZoneID)
         let record = CKRecord(recordType: recordTypeName, recordID: ckRecordID)
         record.setValue(encryptedPassword, forKey: passcodeNameDB)
         record.setValue(userID, forKey: firebaseNameDB)
         
         databaseCloudKit.save(record) { record, error in
-                if record != nil, error == nil {
-                    print ("saved")
-                    UserDefaults.standard.set(true, forKey: "found_passcode")
-                    UserDefaults.standard.set(true, forKey: "passcode_saved")
-                    completion(true)
-                } else {
-                    completion(false)
-                }
+            if record != nil, error == nil {
+                print ("saved")
+                UserDefaults.standard.set(true, forKey: "found_passcode")
+                UserDefaults.standard.set(true, forKey: "passcode_saved")
+                completion(true)
+            } else {
+                completion(false)
             }
+        }
     }
-    
     
     public func downloadMasterPassword(userID: String, completion: @escaping(String?) -> Void) {
         let query = CKQuery(recordType: recordTypeName, predicate: NSPredicate(value: true))
@@ -75,8 +74,6 @@ final class DBManager {
         }
     }
     
-
-    
     public func verifyUserExists(userID: String, completion: @escaping(Bool) -> Void) {
         database.collection("User").getDocuments { snapshot, error in
             var foundUser = ""
@@ -97,7 +94,7 @@ final class DBManager {
                     completion(true)
                 }
             }
-        }        
+        }
     }
     
     public func saveEncryptedData(nameOfData: String, contentData: String, userID: String, completion: @escaping(Bool) -> Void) {
