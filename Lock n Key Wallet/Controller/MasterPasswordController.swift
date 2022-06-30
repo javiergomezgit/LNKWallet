@@ -36,11 +36,37 @@ class MasterPasswordController: UIViewController {
             passwordText.placeholder = "Type Password"
             passwordButton.setTitle("Unlock", for: .normal)
         }
+        
+        downloadMasterPassword()
       
     }
     
     override func viewWillAppear(_ animated: Bool) {
        
+    }
+    
+    private func downloadMasterPassword() {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        DBManager.shared.downloadMasterPassword(userID: user.uid) { encryptedPassword in
+            print ("Encrypted pass is: \(String(describing: encryptedPassword))")
+            if encryptedPassword == nil {
+                //Didn't find password, even after creating account
+                print ("Failed download master password")
+                self.setPassword = true
+                DispatchQueue.main.async {
+                    self.passwordText.placeholder = "Set Master Password"
+                    self.passwordButton.setTitle("Set Password", for: .normal)
+                }
+            } else {
+                print ("FOUND")
+                self.setPassword = false
+                DispatchQueue.main.async {
+                    self.passwordText.placeholder = "Type Password"
+                    self.passwordButton.setTitle("Unlock", for: .normal)
+                }
+            }
+        }
     }
     
 
@@ -81,7 +107,6 @@ class MasterPasswordController: UIViewController {
                 }
             }
         } else {
-            //TODO: Download encrypted password and date utc from cloud database
             DBManager.shared.downloadMasterPassword(userID: user.uid) { encryptedPassword in
                 if encryptedPassword != nil {
                     let decrypted = EncryptionPassword.shared.encryptMasterPassword(encrypting: false, masterPassword: encryptedPassword!, timeStamp: timeStamp)
