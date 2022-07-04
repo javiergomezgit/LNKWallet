@@ -17,10 +17,13 @@ class GeneratePasswordController: UIViewController {
     @IBOutlet weak var amountCharactersLabel: UILabel!
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var viewBackPassword: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewBackPassword.cornersView(border: false, roundedCorner: 10)
         
         copyButton.roundCorners(amountCornerPercentage: 30)
         copyButton.setTitle("", for: .normal)
@@ -64,7 +67,6 @@ class GeneratePasswordController: UIViewController {
     @IBAction func copyButtonTapped(_ sender: UIButton) {
         let pasteboard = UIPasteboard.general
          pasteboard.string = passwordLabel.text
-        
     }
     
     

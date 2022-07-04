@@ -6,25 +6,25 @@
 //
 
 import Foundation
-import CloudKit
 
-struct LockData {
+struct LNKDataCreditCard {
     let nameData: String
     let nameOnCard: String
     let numberCard: String
-    let expDate: String
     let securityCode: String
+    let zipCode: String
+    let expDate: String
 }
 
-struct LockDataPassword {
+struct LNKDataPassword {
     let nameData: String
-    let username: String?
-    let email: String?
+    let email: String
+    let username: String
     let password: String
+    let website: String
 }
 
 struct LNKData {
     let nameData: String
-    let userData: String?
-    let contentData: String
+    let typeData: String
 }

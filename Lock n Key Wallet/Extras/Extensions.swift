@@ -69,12 +69,22 @@ extension UIImageView {
     }
 }
 
+extension UIView {
+    func cornersView(border: Bool, roundedCorner: CGFloat?) {
+        if border {
+            self.layer.borderWidth = 0.5
+            self.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        self.layer.masksToBounds = false
 
-
-
-
-
-
+        if roundedCorner != nil {
+            self.layer.cornerRadius = self.frame.height / roundedCorner!
+        } else {
+            self.layer.cornerRadius = self.frame.height / 10 //In case that is not round image and user forgets to set the corners
+        }
+        self.clipsToBounds = true
+    }
+}
 
 extension UITextField {
     fileprivate func setPasswordToggleImage(_ button: UIButton) {

@@ -22,7 +22,6 @@ class OpenVaultController: UIViewController {
         configureTops()
         configureSecurity()
         
-        
         tableView.register(DatasViewCell.nib, forCellReuseIdentifier: DatasViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
@@ -40,7 +39,6 @@ class OpenVaultController: UIViewController {
         getAllDatas()
         
     }
-    
     
     @objc private func configureSecurity() {
         //        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
@@ -67,24 +65,22 @@ class OpenVaultController: UIViewController {
             }
         }
     }
-    
-    
-    
-    
+     
     private func configureTops() {
-        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "person.fill")) { (action) in
+        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard")) { (action) in
             print("Credit card was tapped")
-            self.goToController(typeOfData: "credit_card")
+            self.goToController(nameController: "DataCreditCardController")
         }
         
-        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.plus")) { (action) in
+        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "staroflife.fill")) { (action) in
             print("Password action was tapped")
-            self.goToController(typeOfData: "password")
+            self.goToController(nameController: "DataPasswordController")
         }
         
-        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "person.fill.xmark.rtl")) { (action) in
+        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "eye.slash")) { (action) in
             print("Secure note was tapped")
-            self.goToController(typeOfData: "secure_note")
+            self.goToController(nameController: "DataSecureNoteController")
+            //TODO: Crete controller for secure data
         }
         let menu = UIMenu(title: "Store new information", options: .displayInline, children: [creditCardItem , passwordItem , secureNote])
         
@@ -100,22 +96,21 @@ class OpenVaultController: UIViewController {
         }
     }
     
-    @objc private func goToController(typeOfData: String) {
-        //NewDataController
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "NewDataController") as! NewDataController
-        vc.typeOfData = typeOfData
+    @objc private func goToController(nameController: String) {
         
-        vc.modalPresentationStyle = .formSheet
-        vc.modalTransitionStyle = .crossDissolve
-        self.show(vc, sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: nameController)
+        
+        self.present(vc, animated: true)
+//        vc.modalPresentationStyle = .formSheet
+//        vc.modalTransitionStyle = .crossDissolve
+//        self.show(vc, sender: nil)
     }
     
     private func getAllDatas(){
         DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
             
             self.refreshControl.endRefreshing()
-            
             if result != nil {
                 self.lnkDatas = result!
                 self.tableView.reloadData()
@@ -147,40 +142,23 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         
         let model = lnkDatas[indexPath.row]
         
-        let encryptedPasscode = UserDefaults.standard.value(forKey: "general_passcode") as! String
-        if model.userData == nil {
-            let decryptedContent = Encryption.shared.encryptDecrypt(oldMessage: model.contentData, encryptedPasscode: encryptedPasscode, secretKey: Auth.auth().currentUser!.uid, encrypt: false)
-            let data = convertContentForReading(mergedContent: decryptedContent, nameData: model.nameData)
-            
-            let vc = storyboard?.instantiateViewController(withIdentifier: "EditDataController") as! EditDataController
-            vc.title = "Editing"
-            vc.configure(lockData: data)
-            vc.navigationItem.largeTitleDisplayMode = .always
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            let decryptedContent = Encryption.shared.encryptDecrypt(oldMessage: model.contentData, encryptedPasscode: encryptedPasscode, secretKey: Auth.auth().currentUser!.uid, encrypt: false)
-            let decryptedUser = Encryption.shared.encryptDecrypt(oldMessage: model.userData!, encryptedPasscode: encryptedPasscode, secretKey: Auth.auth().currentUser!.uid, encrypt: false)
-            
-            print (decryptedContent)
-            print (decryptedUser)
-            print (model)
-            
-            let data = convertPassForReading(passwordContent: decryptedContent, userContent: decryptedUser, namePassword: model.nameData)
-            let vc = storyboard?.instantiateViewController(withIdentifier: "EditPasswordController") as! EditPasswordController
-            //self.present(vc, animated: true)
-            vc.title = "Editing".localized()
-            vc.configurePass(lockDataPassword: data)
-            vc.navigationItem.largeTitleDisplayMode = .always
-            self.navigationController?.pushViewController(vc, animated: true)
+        if model.typeData == "type_2" {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DataPasswordController") as! DataPasswordController
+            vc.nameData = model.nameData
+//            self.navigationController?.pushViewController(vc, animated: true)
+            self.present(vc, animated: true)
+        } else if model.typeData == "type_1"{
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DataCreditCardController") as! DataCreditCardController
+            vc.nameData = model.nameData
+            self.present(vc, animated: true)
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         let lnkData = lnkDatas[indexPath.row]
-        print (lnkData.nameData)
         
         if editingStyle == .delete {
             DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, nameOfData: lnkData.nameData) { deleted in
@@ -197,27 +175,4 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
-    func convertContentForReading(mergedContent: String, nameData: String) -> LockData{
-        
-        let components = mergedContent.components(separatedBy: "*")
-        let code = components[0]
-        let date = components[1]
-        let number = components[2]
-        let name = components[3]
-        
-        let data = LockData(nameData: nameData, nameOnCard: name, numberCard: number, expDate: date, securityCode: code)
-        return data
-    }
-    
-    func convertPassForReading(passwordContent: String, userContent: String, namePassword: String) -> LockDataPassword {
-        
-        let components = userContent.components(separatedBy: " ")
-        let username = components[0]
-        let email = components[1]
-        
-        let data = LockDataPassword(nameData: namePassword, username: username, email: email, password: passwordContent)
-        return data
-    }
-    
 }

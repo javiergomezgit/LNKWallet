@@ -30,8 +30,7 @@ class DatasViewCell: UITableViewCell {
     public func configure(model: LNKData) {
         
         self.nameOfDataLabel.text = model.nameData
-        
-        if model.userData == nil {
+        if model.typeData == "type_1" {
             passwordImage.isHidden = true
             dataImage.isHidden = false
         } else {

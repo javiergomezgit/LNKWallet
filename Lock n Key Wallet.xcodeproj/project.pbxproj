@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		220ADAF9274DA60F0030FAAD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220ADAF8274DA60F0030FAAD /* CloudKit.framework */; };
 		220ADAFB274DA9D70030FAAD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220ADAFA274DA9D70030FAAD /* Model.swift */; };
+		220D757C2870BC88003461D1 /* DataCreditCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D757B2870BC88003461D1 /* DataCreditCardController.swift */; };
+		220D757E287116AC003461D1 /* DataPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D757D287116AC003461D1 /* DataPasswordController.swift */; };
 		222384C7274D361D00FBF76A /* MasterPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384C6274D361D00FBF76A /* MasterPasswordController.swift */; };
 		222384EE2751793700FBF76A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384ED2751793700FBF76A /* DBManager.swift */; };
 		222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384EF27517FFF00FBF76A /* DatasViewCell.swift */; };
 		222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222384F027517FFF00FBF76A /* DatasViewCell.xib */; };
-		222384F52752B2BC00FBF76A /* EditDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384F42752B2BC00FBF76A /* EditDataController.swift */; };
 		222C971C27487841004C077E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 222C971B27487841004C077E /* GoogleService-Info.plist */; };
 		222C972027487AAD004C077E /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C971F27487AAD004C077E /* SignInController.swift */; };
 		222C972427487B8F004C077E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972327487B8F004C077E /* SettingsController.swift */; };
-		222C972627487C6D004C077E /* NewDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972527487C6D004C077E /* NewDataController.swift */; };
 		222C972827487CED004C077E /* OpenVaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972727487CED004C077E /* OpenVaultController.swift */; };
 		222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222C972927487D9C004C077E /* Onboarding.storyboard */; };
 		224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
@@ -26,7 +26,6 @@
 		227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB79E275FABCB0013647B /* OnboardingController.swift */; };
 		227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB7A0275FAEBA0013647B /* Reachability.swift */; };
 		228671D0286BA5B60010AEAF /* GeneratePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */; };
-		22932C27275A683E008778C2 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22932C26275A683E008778C2 /* EditPasswordController.swift */; };
 		2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295C5742748722E0050FA7D /* AppDelegate.swift */; };
 		2295C5772748722E0050FA7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295C5762748722E0050FA7D /* SceneDelegate.swift */; };
 		2295C57C2748722E0050FA7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2295C57A2748722E0050FA7D /* Main.storyboard */; };
@@ -42,15 +41,15 @@
 		0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lock_n_Key_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		220ADAF8274DA60F0030FAAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		220ADAFA274DA9D70030FAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		220D757B2870BC88003461D1 /* DataCreditCardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCreditCardController.swift; sourceTree = "<group>"; };
+		220D757D287116AC003461D1 /* DataPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPasswordController.swift; sourceTree = "<group>"; };
 		222384C6274D361D00FBF76A /* MasterPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordController.swift; sourceTree = "<group>"; };
 		222384ED2751793700FBF76A /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		222384EF27517FFF00FBF76A /* DatasViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasViewCell.swift; sourceTree = "<group>"; };
 		222384F027517FFF00FBF76A /* DatasViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatasViewCell.xib; sourceTree = "<group>"; };
-		222384F42752B2BC00FBF76A /* EditDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataController.swift; sourceTree = "<group>"; };
 		222C971B27487841004C077E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		222C971F27487AAD004C077E /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		222C972327487B8F004C077E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		222C972527487C6D004C077E /* NewDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataController.swift; sourceTree = "<group>"; };
 		222C972727487CED004C077E /* OpenVaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenVaultController.swift; sourceTree = "<group>"; };
 		222C972927487D9C004C077E /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		224E868A285F6FE100F4A575 /* EncryptionPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionPassword.swift; sourceTree = "<group>"; };
@@ -58,7 +57,6 @@
 		227FB79E275FABCB0013647B /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		227FB7A0275FAEBA0013647B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratePasswordController.swift; sourceTree = "<group>"; };
-		22932C26275A683E008778C2 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
 		2295C5712748722E0050FA7D /* Lock n Key Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lock n Key Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2295C5742748722E0050FA7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2295C5762748722E0050FA7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,12 +153,11 @@
 				222C971F27487AAD004C077E /* SignInController.swift */,
 				222384C6274D361D00FBF76A /* MasterPasswordController.swift */,
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
+				220D757B2870BC88003461D1 /* DataCreditCardController.swift */,
+				220D757D287116AC003461D1 /* DataPasswordController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
-				222C972527487C6D004C077E /* NewDataController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
-				222384F42752B2BC00FBF76A /* EditDataController.swift */,
-				22932C26275A683E008778C2 /* EditPasswordController.swift */,
 				222384EC2751791400FBF76A /* DBControllers */,
 			);
 			path = Controller;
@@ -272,6 +269,7 @@
 				TargetAttributes = {
 					2295C5702748722E0050FA7D = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -381,15 +379,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220D757E287116AC003461D1 /* DataPasswordController.swift in Sources */,
 				222C972427487B8F004C077E /* SettingsController.swift in Sources */,
 				2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */,
-				222C972627487C6D004C077E /* NewDataController.swift in Sources */,
 				2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */,
-				22932C27275A683E008778C2 /* EditPasswordController.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
-				222384F52752B2BC00FBF76A /* EditDataController.swift in Sources */,
+				220D757C2870BC88003461D1 /* DataCreditCardController.swift in Sources */,
 				222384EE2751793700FBF76A /* DBManager.swift in Sources */,
 				224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */,
 				228671D0286BA5B60010AEAF /* GeneratePasswordController.swift in Sources */,
@@ -560,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.2.10;
@@ -586,6 +584,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -597,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.2.10;

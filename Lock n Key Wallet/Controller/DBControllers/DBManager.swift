@@ -13,8 +13,8 @@ import FirebaseAuth
 
 final class DBManager {
     static let shared = DBManager()
-    
-    private let database = Firestore.firestore()
+        
+    //MARK: iCloud Database
     private let databaseCloudKit = CKContainer(identifier: "iCloud.com.jdev.Lock-n-Key-Wallet").publicCloudDatabase
     private let recordTypeName = "Passcodes"
     private let passcodeNameDB = "encrypted_passcode"
@@ -74,6 +74,10 @@ final class DBManager {
         }
     }
     
+    
+    //MARK: Firebase Database
+    private let database = Firestore.firestore()
+    
     public func verifyUserExists(userID: String, completion: @escaping(Bool) -> Void) {
         database.collection("User").getDocuments { snapshot, error in
             var foundUser = ""
@@ -97,21 +101,38 @@ final class DBManager {
         }
     }
     
-    public func saveEncryptedData(nameOfData: String, contentData: String, userID: String, completion: @escaping(Bool) -> Void) {
-        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(["data_content" : contentData]) { error in
-            if error != nil {
-                completion(false)
+    public func getEncryptedDataCreditCard(userID: String, nameData: String, completion: @escaping(LNKDataCreditCard?) -> Void) {
+        database.collection("User").document(userID).collection("secret_datas").document(nameData).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion(nil)
             } else {
-                print ("save encrypted data")
-                completion(true)
+                //let typeData = snapshot!.get("key0") as! String //type
+                //let name = snapshot!.get("key1") as! String //name
+                let name = snapshot!.get("key2") as! String //name on card
+                let number = snapshot!.get("key3") as! String //number
+                let ccv = snapshot!.get("key4") as! String //ccv
+                let zip = snapshot!.get("key5") as! String //zip code
+                let exp = snapshot!.get("key6") as! String //expiration
+                
+                let lnkDataPassword = LNKDataCreditCard(nameData: nameData, nameOnCard: name, numberCard: number, securityCode: ccv, zipCode: zip, expDate: exp)
+                completion(lnkDataPassword)
             }
         }
     }
     
-    public func saveEncryptedDataPasswords(nameOfDataPassword: String, contentDataPassword: String, user: String, userID: String, completion: @escaping(Bool) -> Void) {
-        let content = ["data_content" : contentDataPassword, "user" : user]
+    public func saveEncryptedCreditCard(nameOfData: String, lnkDataCreditCard: LNKDataCreditCard, userID: String, completion: @escaping(Bool) -> Void) {
+        //Using generic words for security.
+        let content = ["key0" : "type_1",
+                       "key1" : lnkDataCreditCard.nameData,
+                       "key2" : lnkDataCreditCard.nameOnCard,
+                       "key3" : lnkDataCreditCard.numberCard,
+                       "key4" : lnkDataCreditCard.securityCode,
+                       "key5" : lnkDataCreditCard.zipCode,
+                       "key6" : lnkDataCreditCard.expDate
+                       ]
         
-        database.collection("User").document(userID).collection("secret_datas").document(nameOfDataPassword).setData(content) { error in
+        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
             if error != nil {
                 completion(false)
             } else {
@@ -121,27 +142,113 @@ final class DBManager {
         }
     }
     
+    public func updateEncryptedCreditCard(nameOfData: String, lnkDataCreditCard: LNKDataCreditCard, userID: String, completion: @escaping(Bool) -> Void) {
+        //Using generic words for security.
+        let content = ["key0" : "type_1",
+                       "key1" : lnkDataCreditCard.nameData,
+                       "key2" : lnkDataCreditCard.nameOnCard,
+                       "key3" : lnkDataCreditCard.numberCard,
+                       "key4" : lnkDataCreditCard.securityCode,
+                       "key5" : lnkDataCreditCard.zipCode,
+                       "key6" : lnkDataCreditCard.expDate
+                       ]
+                
+        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
+            if error != nil {
+                completion(false)
+            } else {
+                print ("save encrypted data")
+                completion(true)
+            }
+        }
+    }
+    
+    public func getEncryptedDataPassword(userID: String, nameData: String, completion: @escaping(LNKDataPassword?) -> Void) {
+        database.collection("User").document(userID).collection("secret_datas").document(nameData).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion(nil)
+            } else {
+                
+                //let typeData = snapshot!.get("key0") as! String //type
+                //let name = snapshot!.get("key1") as! String //name
+                let username = snapshot!.get("key2") as! String //username
+                let email = snapshot!.get("key3") as! String //email
+                let password = snapshot!.get("key4") as! String //password
+                let website = snapshot!.get("key5") as! String //website
+                
+                let lnkDataPassword = LNKDataPassword(nameData: nameData, email: email, username: username, password: password, website: website)
+                completion(lnkDataPassword)
+            }
+        }
+    }
+    
+    public func saveEncryptedDataPassword(nameOfData: String, lnkDataPassword: LNKDataPassword, userID: String, completion: @escaping(Bool) -> Void) {
+        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).getDocument { snap, error in
+            if error == nil {
+                var newNameOfData = nameOfData
+                if snap!.exists {
+                    //Alredy exists, can't have repeted names
+                    newNameOfData = "\(nameOfData)-2"
+                }
+                //Using generic words for security.
+                let content = ["key0" : "type_2",
+                               "key1" : lnkDataPassword.nameData,
+                               "key2" : lnkDataPassword.username,
+                               "key3" : lnkDataPassword.email,
+                               "key4" : lnkDataPassword.password,
+                               "key5" : lnkDataPassword.website
+                               ]
+                        
+                self.database.collection("User").document(userID).collection("secret_datas").document(newNameOfData).setData(content) { error in
+                    if error != nil {
+                        completion(false)
+                    } else {
+                        print ("save encrypted data")
+                        completion(true)
+                    }
+                }
+            } else {
+                print ("error find the database \(String(describing: error))")
+                completion(false)
+            }
+        }
+    }
+    
+    public func updateEncryptedDataPassword(nameOfData: String, lnkDataPassword: LNKDataPassword, userID: String, completion: @escaping(Bool) -> Void) {
+        //Using generic words for security.
+        let content = ["key0" : "type_2",
+                       "key1" : lnkDataPassword.nameData,
+                       "key2" : lnkDataPassword.username,
+                       "key3" : lnkDataPassword.email,
+                       "key4" : lnkDataPassword.password,
+                       "key5" : lnkDataPassword.website
+                       ]
+                
+        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
+            if error != nil {
+                completion(false)
+            } else {
+                print ("save encrypted data")
+                completion(true)
+            }
+        }
+    }
+        
     public func getAllDatas(userID: String, completion: @escaping([LNKData]?) -> Void) {
         database.collection("User").document(userID).collection("secret_datas").getDocuments { (snapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 completion(nil)
             } else {
-                var lnkDatas: [LNKData] = [LNKData]()
-                
+                var datasFound: [LNKData] = [LNKData]()
                 for document in snapshot!.documents {
                     let nameData = document.documentID
-                    let contentData = document.get("data_content") as! String
-                    
-                    if let userPass = document.get("user") as? String {
-                        let lnkPass = LNKData(nameData: nameData, userData: userPass, contentData: contentData)
-                        lnkDatas.append(lnkPass)
-                    } else {
-                        let lnkData = LNKData(nameData: nameData, userData: nil, contentData: contentData)
-                        lnkDatas.append(lnkData)
-                    }
+                    let typeData = document.get("key0") as! String
+                    let lnkData = LNKData(nameData: nameData, typeData: typeData)
+                    datasFound.append(lnkData)
                 }
-                completion(lnkDatas)
+                completion(datasFound)
             }
         }
     }
@@ -228,4 +335,5 @@ final class DBManager {
             }
         }
     }
+
 }
