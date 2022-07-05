@@ -26,9 +26,7 @@ class GeneratePasswordController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewBackPassword.cornersView(border: false, roundedCorner: 10)
-        
+                
         copyButton.roundCorners(amountCornerPercentage: 30)
         copyButton.setTitle("", for: .normal)
         resetButton.roundCorners(amountCornerPercentage: 30)

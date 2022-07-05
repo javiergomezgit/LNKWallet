@@ -57,6 +57,7 @@ class SignInController: UIViewController {
             UserDefaults.standard.set(0, forKey: "auto_lock_time")
             UserDefaults.standard.set(true, forKey: "locked_app")
             UserDefaults.standard.set(true, forKey: "is_new_user")
+            UserDefaults.standard.set(3, forKey: "amount_attempts")
         }
 
     }

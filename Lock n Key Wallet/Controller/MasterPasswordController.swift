@@ -118,10 +118,30 @@ class MasterPasswordController: UIViewController {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            let alertController = UIAlertController(title: "Warning", message: "Wrong password", preferredStyle: .alert)
-                            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                            alertController.addAction(action)
-                            self.present(alertController, animated: true)
+                            let attempts = UserDefaults.standard.value(forKey: "amount_attempts") as! Int
+                            var attempted = UserDefaults.standard.value(forKey: "attempted_failed") as! Int
+                            self.passwordText.text = ""
+                            
+                            if attempted < attempts {
+                                attempted += 1
+                                UserDefaults.standard.set(attempted, forKey: "attempted_failed")
+                                let alertController = UIAlertController(title: "Warning", message: "Wrong password, your information will be erased if you try \((attempts + 1) - attempted) times", preferredStyle: .alert)
+                                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                                alertController.addAction(action)
+                                self.present(alertController, animated: true)
+                            } else {
+                                DBManager.shared.deleteAllDatas(userID: Auth.auth().currentUser!.uid) { success in
+                                    if success {
+                                        print ("erased")
+                                        UserDefaults.standard.set(3, forKey: "amount_attempts")
+                                        UserDefaults.standard.set(0, forKey: "attempted_failed")
+                                        UserDefaults.standard.set(true, forKey: "locked_app")
+
+                                        self.passwordText.text = ""
+                                        exit(0)
+                                    }
+                                }
+                            }
                         }
                     }
                 }
