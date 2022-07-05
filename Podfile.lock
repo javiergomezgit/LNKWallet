@@ -807,6 +807,7 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (2.0.0)
+  - IndicateKit (1.0.5)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -833,6 +834,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - Firebase/Storage
+  - IndicateKit (~> 1.0.5)
   - SDWebImage
   - SwiftyOnboard
 
@@ -862,6 +864,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - IndicateKit
     - leveldb-library
     - Libuv-gRPC
     - nanopb
@@ -894,6 +897,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
+  IndicateKit: 7bf5096b3f768c4d5a7cf5e81771c8bda88b2ce4
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
@@ -901,6 +905,6 @@ SPEC CHECKSUMS:
   SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
   SwiftyOnboard: 76a648dc1dcbc844343b6b95fe5883cb64a62f4a
 
-PODFILE CHECKSUM: 9edd59cf4e3c5f97fea504e01f8d9b0d765d1059
+PODFILE CHECKSUM: c79b288696fda1ad7638d73f04c7d8c3998ad8a0
 
 COCOAPODS: 1.11.3

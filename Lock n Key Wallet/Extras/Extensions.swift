@@ -73,7 +73,9 @@ extension UIView {
     func cornersView(border: Bool, roundedCorner: CGFloat?) {
         if border {
             self.layer.borderWidth = 0.5
-            self.layer.borderColor = UIColor.lightGray.cgColor
+            let color = UIColor.lightGray.withAlphaComponent(0.5)
+//            self.layer.borderColor = UIColor.lightGray.cgColor
+            self.layer.borderColor = color.cgColor //.init(gray: UIColor.lightGray.cgColor as! CGFloat, alpha: 0.5)
         }
         self.layer.masksToBounds = false
 

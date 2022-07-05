@@ -24,6 +24,11 @@ struct LNKDataPassword {
     let website: String
 }
 
+struct LNKDataSecureNote {
+    let nameData: String
+    let secureNote: String
+}
+
 struct LNKData {
     let nameData: String
     let typeData: String

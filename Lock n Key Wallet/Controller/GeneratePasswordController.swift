@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Indicate
 
 class GeneratePasswordController: UIViewController {
 
@@ -18,6 +19,9 @@ class GeneratePasswordController: UIViewController {
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var viewBackPassword: UIView!
+    @IBOutlet weak var copiedView: UIView!
+    
+    
     
     
     override func viewDidLoad() {
@@ -67,6 +71,20 @@ class GeneratePasswordController: UIViewController {
     @IBAction func copyButtonTapped(_ sender: UIButton) {
         let pasteboard = UIPasteboard.general
          pasteboard.string = passwordLabel.text
+        
+        let content = Indicate.Content(title: .init(value: " COPIED 👍", alignment: .center))//,
+                                       //attachment: .emoji(.init(value: "👍", alignment: .natural)))
+
+        let config = Indicate.Configuration()
+            .with(backgroundColor: .label)
+            .with(titleColor: .systemBackground)
+            .with(duration: 2)
+            .with(tap: { controller in
+                controller.dismiss()
+            })
+
+        let controller = Indicate.PresentationController(content: content, configuration: config)
+        controller.present(in: copiedView)
     }
     
     

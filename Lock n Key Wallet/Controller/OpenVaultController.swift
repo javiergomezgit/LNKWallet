@@ -29,6 +29,7 @@ class OpenVaultController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized())
         refreshControl.addTarget(self, action: #selector(self.refreshTable), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
     }
     
     @objc func refreshTable(notification: NSNotification) {
@@ -77,7 +78,7 @@ class OpenVaultController: UIViewController {
             self.goToController(nameController: "DataPasswordController")
         }
         
-        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "eye.slash")) { (action) in
+        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "note.text")) { (action) in
             print("Secure note was tapped")
             self.goToController(nameController: "DataSecureNoteController")
             //TODO: Crete controller for secure data
@@ -100,10 +101,10 @@ class OpenVaultController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: nameController)
-        
+//        vc.definesPresentationContext = true
+//        vc.modalPresentationStyle = .overCurrentContext
+//        navigationController?.present(vc, animated: true, completion: nil)
         self.present(vc, animated: true)
-//        vc.modalPresentationStyle = .formSheet
-//        vc.modalTransitionStyle = .crossDissolve
 //        self.show(vc, sender: nil)
     }
     
@@ -152,6 +153,10 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
             vc.nameData = model.nameData
             self.present(vc, animated: true)
 //            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DataSecureNoteController") as! DataSecureNoteController
+            vc.nameData = model.nameData
+            self.present(vc, animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

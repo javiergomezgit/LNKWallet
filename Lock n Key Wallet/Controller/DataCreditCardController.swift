@@ -59,13 +59,14 @@ class DataCreditCardController: UITableViewController {
             }
         }
     }
-    
+    //TODO: WHen new credit card, ccv doesn get cleaned
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedAround()
         configureTops()
+        expirationButton.cornersView(border: true, roundedCorner: 10)
         
         if user  != nil {
             secretKey = user!.uid

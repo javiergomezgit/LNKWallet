@@ -15,5 +15,6 @@ target 'Lock n Key Wallet' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'Firebase/Firestore'
+  pod 'IndicateKit', '~> 1.0.5'
 
 end

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xh3-28-J6Z">
-                        <rect key="frame" x="10" y="19" width="200" height="35"/>
+                        <rect key="frame" x="15" y="19" width="200" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="V3O-PM-WhB"/>
                             <constraint firstAttribute="width" constant="200" id="VtI-uc-1uz"/>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-fp-HFy">
-                        <rect key="frame" x="266" y="16" width="44" height="41.5"/>
+                        <rect key="frame" x="257.5" y="14.5" width="47.5" height="44.5"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="wXB-fp-HFy" secondAttribute="height" multiplier="1:1" id="kAl-QR-UFG"/>
@@ -39,22 +39,32 @@
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="default" weight="thin"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yVV-O5-7qG">
-                        <rect key="frame" x="266" y="14.5" width="44" height="44"/>
+                        <rect key="frame" x="266" y="22" width="29" height="29"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <imageReference key="image" image="staroflife.circle" symbolScale="default"/>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" scale="default" weight="ultraLight"/>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="34x-8t-EZu">
+                        <rect key="frame" x="266" y="23" width="29" height="26.5"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <imageReference key="image" image="note.text" catalog="system" symbolScale="default"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" scale="default" weight="regular"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yVV-O5-7qG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2Ur-GN-Vfw"/>
-                    <constraint firstItem="Xh3-28-J6Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Ge8-lL-UhP"/>
+                    <constraint firstAttribute="trailing" secondItem="34x-8t-EZu" secondAttribute="trailing" constant="25" id="85N-pU-wN8"/>
+                    <constraint firstItem="Xh3-28-J6Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Ge8-lL-UhP"/>
+                    <constraint firstItem="34x-8t-EZu" firstAttribute="width" secondItem="34x-8t-EZu" secondAttribute="height" multiplier="1:1" id="LBp-GE-qQn"/>
                     <constraint firstItem="yVV-O5-7qG" firstAttribute="width" secondItem="yVV-O5-7qG" secondAttribute="height" multiplier="1:1" id="Mix-Hp-EGy"/>
-                    <constraint firstItem="yVV-O5-7qG" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.6" id="k3q-TD-FtM"/>
-                    <constraint firstAttribute="trailing" secondItem="wXB-fp-HFy" secondAttribute="trailing" constant="10" id="kzC-gh-NN4"/>
-                    <constraint firstItem="wXB-fp-HFy" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.6" id="n7y-i9-enq"/>
-                    <constraint firstAttribute="trailing" secondItem="yVV-O5-7qG" secondAttribute="trailing" constant="10" id="nJJ-sc-nYQ"/>
+                    <constraint firstItem="34x-8t-EZu" firstAttribute="bottom" secondItem="yVV-O5-7qG" secondAttribute="bottom" id="cNp-o6-vCA"/>
+                    <constraint firstItem="yVV-O5-7qG" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="k3q-TD-FtM"/>
+                    <constraint firstAttribute="trailing" secondItem="wXB-fp-HFy" secondAttribute="trailing" constant="15" id="kzC-gh-NN4"/>
+                    <constraint firstItem="wXB-fp-HFy" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.65" id="n7y-i9-enq"/>
+                    <constraint firstAttribute="trailing" secondItem="yVV-O5-7qG" secondAttribute="trailing" constant="25" id="nJJ-sc-nYQ"/>
                     <constraint firstItem="Xh3-28-J6Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vhh-sS-c2R"/>
                     <constraint firstItem="wXB-fp-HFy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vty-ra-fmb"/>
+                    <constraint firstItem="34x-8t-EZu" firstAttribute="top" secondItem="yVV-O5-7qG" secondAttribute="top" id="zSN-dL-Cgp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -62,12 +72,14 @@
                 <outlet property="dataImage" destination="wXB-fp-HFy" id="jw1-Q0-zJA"/>
                 <outlet property="nameOfDataLabel" destination="Xh3-28-J6Z" id="bb2-W4-Ovo"/>
                 <outlet property="passwordImage" destination="yVV-O5-7qG" id="sW3-pR-EIQ"/>
+                <outlet property="secureNoteImage" destination="34x-8t-EZu" id="AWm-H8-Qru"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="123.54910714285714"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="creditcard.and.123" catalog="system" width="128" height="90"/>
+        <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="staroflife.circle" width="13" height="13"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

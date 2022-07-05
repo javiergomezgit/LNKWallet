@@ -234,6 +234,69 @@ final class DBManager {
             }
         }
     }
+    
+    public func getEncryptedDataSecureNote(userID: String, nameData: String, completion: @escaping(LNKDataSecureNote?) -> Void) {
+        database.collection("User").document(userID).collection("secret_datas").document(nameData).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion(nil)
+            } else {
+                
+                //let typeData = snapshot!.get("key0") as! String //type
+                //let name = snapshot!.get("key1") as! String //name
+                let secureNote = snapshot!.get("key2") as! String //secure note
+                
+                let lnkDataSecureNote = LNKDataSecureNote(nameData: nameData, secureNote: secureNote)
+                completion(lnkDataSecureNote)
+            }
+        }
+    }
+    
+    public func saveEncryptedDataSecureNote(nameOfData: String, lnkDataSecureNote: LNKDataSecureNote, userID: String, completion: @escaping(Bool) -> Void) {
+        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).getDocument { snap, error in
+            if error == nil {
+                var newNameOfData = nameOfData
+                if snap!.exists {
+                    //Alredy exists, can't have repeted names
+                    newNameOfData = "\(nameOfData)-2"
+                }
+                //Using generic words for security.
+                let content = ["key0" : "type_3",
+                               "key1" : lnkDataSecureNote.nameData,
+                               "key2" : lnkDataSecureNote.secureNote
+                               ]
+                        
+                self.database.collection("User").document(userID).collection("secret_datas").document(newNameOfData).setData(content) { error in
+                    if error != nil {
+                        completion(false)
+                    } else {
+                        print ("save encrypted data")
+                        completion(true)
+                    }
+                }
+            } else {
+                print ("error find the database \(String(describing: error))")
+                completion(false)
+            }
+        }
+    }
+    
+    public func updateEncryptedDataSecureNote(nameOfData: String, lnkDataSecureNote: LNKDataSecureNote, userID: String, completion: @escaping(Bool) -> Void) {
+        //Using generic words for security.
+        let content = ["key0" : "type_3",
+                       "key1" : lnkDataSecureNote.nameData,
+                       "key2" : lnkDataSecureNote.secureNote
+                       ]
+                
+        database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
+            if error != nil {
+                completion(false)
+            } else {
+                print ("save encrypted data")
+                completion(true)
+            }
+        }
+    }
         
     public func getAllDatas(userID: String, completion: @escaping([LNKData]?) -> Void) {
         database.collection("User").document(userID).collection("secret_datas").getDocuments { (snapshot, err) in

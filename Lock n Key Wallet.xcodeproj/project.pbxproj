@@ -25,6 +25,7 @@
 		227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 227B18F6285EB3320092D67E /* CreditCardScanner */; };
 		227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB79E275FABCB0013647B /* OnboardingController.swift */; };
 		227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB7A0275FAEBA0013647B /* Reachability.swift */; };
+		2283FD3E2873B01600F8B21C /* DataSecureNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2283FD3D2873B01600F8B21C /* DataSecureNoteController.swift */; };
 		228671D0286BA5B60010AEAF /* GeneratePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */; };
 		2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295C5742748722E0050FA7D /* AppDelegate.swift */; };
 		2295C5772748722E0050FA7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295C5762748722E0050FA7D /* SceneDelegate.swift */; };
@@ -56,6 +57,7 @@
 		224E868B285F6FE200F4A575 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		227FB79E275FABCB0013647B /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		227FB7A0275FAEBA0013647B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		2283FD3D2873B01600F8B21C /* DataSecureNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSecureNoteController.swift; sourceTree = "<group>"; };
 		228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratePasswordController.swift; sourceTree = "<group>"; };
 		2295C5712748722E0050FA7D /* Lock n Key Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lock n Key Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2295C5742748722E0050FA7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
 				220D757B2870BC88003461D1 /* DataCreditCardController.swift */,
 				220D757D287116AC003461D1 /* DataPasswordController.swift */,
+				2283FD3D2873B01600F8B21C /* DataSecureNoteController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
@@ -384,6 +387,7 @@
 				2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */,
 				2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,
+				2283FD3E2873B01600F8B21C /* DataSecureNoteController.swift in Sources */,
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
 				220D757C2870BC88003461D1 /* DataCreditCardController.swift in Sources */,

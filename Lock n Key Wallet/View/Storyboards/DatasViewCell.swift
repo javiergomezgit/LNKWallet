@@ -12,6 +12,7 @@ class DatasViewCell: UITableViewCell {
     @IBOutlet weak var nameOfDataLabel: UILabel!
     @IBOutlet weak var dataImage: UIImageView!
     @IBOutlet weak var passwordImage: UIImageView!
+    @IBOutlet weak var secureNoteImage: UIImageView!
     
     static let identifier = "DatasViewCell"
 
@@ -31,11 +32,17 @@ class DatasViewCell: UITableViewCell {
         
         self.nameOfDataLabel.text = model.nameData
         if model.typeData == "type_1" {
-            passwordImage.isHidden = true
             dataImage.isHidden = false
-        } else {
-            dataImage.isHidden = true
+            passwordImage.isHidden = true
+            secureNoteImage.isHidden = true
+        } else if model.typeData == "type_2" {
             passwordImage.isHidden = false
+            dataImage.isHidden = true
+            secureNoteImage.isHidden = true
+        } else {
+            secureNoteImage.isHidden = false
+            passwordImage.isHidden = true
+            dataImage.isHidden = true
         }
     }
     
