@@ -33,7 +33,6 @@
 		2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */; };
 		2295C5812748722F0050FA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
 		2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5822748722F0050FA7D /* LaunchScreen.storyboard */; };
-		22AA2334276D184A00E46D1B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22AA2336276D184A00E46D1B /* Localizable.strings */; };
 		22CAFBD127543937006D02AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
 		450F955A5EC869D8393191BC /* Pods_Lock_n_Key_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */; };
 /* End PBXBuildFile section */
@@ -70,8 +69,6 @@
 		2298D16B27498A3E00CCFBF2 /* Lock n Key Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lock n Key Wallet.entitlements"; sourceTree = "<group>"; };
 		22AA232F276D151B00E46D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		22AA2330276D154800E46D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		22AA2335276D184A00E46D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		22AA2337276D185E00E46D1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22CAFBD027543937006D02AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3AB8ED985C69AA62012D93F8 /* Pods-Lock n Key Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.release.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		C725C8AD654A6E12103BED73 /* Pods-Lock n Key Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +111,6 @@
 				2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */,
 				2295C5762748722E0050FA7D /* SceneDelegate.swift */,
 				2295C5742748722E0050FA7D /* AppDelegate.swift */,
-				22AA2336276D184A00E46D1B /* Localizable.strings */,
 				227FB7A0275FAEBA0013647B /* Reachability.swift */,
 				22CAFBD027543937006D02AA /* Extensions.swift */,
 			);
@@ -307,7 +303,6 @@
 				222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */,
 				222C971C27487841004C077E /* GoogleService-Info.plist in Resources */,
 				2295C5812748722F0050FA7D /* Assets.xcassets in Resources */,
-				22AA2334276D184A00E46D1B /* Localizable.strings in Resources */,
 				222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */,
 				2295C57C2748722E0050FA7D /* Main.storyboard in Resources */,
 			);
@@ -423,15 +418,6 @@
 				22AA232F276D151B00E46D1B /* es */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		22AA2336276D184A00E46D1B /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22AA2335276D184A00E46D1B /* es */,
-				22AA2337276D185E00E46D1B /* en */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

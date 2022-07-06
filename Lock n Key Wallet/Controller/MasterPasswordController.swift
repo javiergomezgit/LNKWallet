@@ -201,7 +201,7 @@ class MasterPasswordController: UIViewController {
         
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         passwordContainerView.delegate = self
-        passwordContainerView.deleteButtonLocalizedTitle = "Delete".localized()
+        passwordContainerView.deleteButtonLocalizedTitle = "Delete"
         passwordContainerView.touchAuthenticationEnabled = false
 //        passwordContainerView.tintColor = UIColor(named: "darkblueAccent")
 //        passwordContainerView.layer.borderColor = UIColor.red.cgColor
@@ -216,14 +216,14 @@ class MasterPasswordController: UIViewController {
         
         if statusOfPasscode == .verifyPasscode {
             downloadGeneralPasscode()
-            label.text = "Current Passcode".localized()
+            label.text = "Current Passcode"
         }
         if statusOfPasscode == .changePasscode {
-            label.text = "Current Passcode".localized()
+            label.text = "Current Passcode"
             downloadGeneralPasscode()
         }
         if statusOfPasscode == .settingPasscode {
-            label.text = "Set Passcode".localized()
+            label.text = "Set Passcode"
             //downloadGeneralPasscode()
         }
     }
@@ -353,14 +353,14 @@ private extension PasscodeController {
             let generalPass = Encryption.shared.encryptPasscode(passcode: generalPasscode, encrypt: false)
             if input == generalPass && !verified {
                 passwordContainerView.clearInput()
-                label.text = "New Passcode".localized()
+                label.text = "New Passcode"
                 verified = true
                 break
             } else {
                 if tempPasscode == nil && verified {
                     tempPasscode = input
                     passwordContainerView.clearInput()
-                    label.text = "Confirm Passcode".localized()
+                    label.text = "Confirm Passcode"
                 } else {
                     if tempPasscode == input {
                         self.generalPasscode = input
@@ -396,8 +396,8 @@ private extension PasscodeController {
             let amountAttempts = UserDefaults.standard.value(forKey: "amount_attempts") as! Int
             if attempted < amountAttempts {
                 UserDefaults.standard.set(attempted + 1, forKey: "attemptedPasscode")
-                let message = "Your data will be erased. You have ".localized() + String(amountAttempts - attempted) + " more attempt".localized()
-                let alertController = UIAlertController(title: "Security".localized(), message: message, preferredStyle: .alert)
+                let message = "Your data will be erased. You have " + String(amountAttempts - attempted) + " more attempt"
+                let alertController = UIAlertController(title: "Security", message: message, preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                 alertController.addAction(action)
                 self.present(alertController, animated: true)

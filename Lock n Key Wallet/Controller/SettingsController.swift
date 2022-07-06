@@ -66,12 +66,12 @@ class SettingsController: UITableViewController {
     
     //Reset all
     @IBAction func eraseAllTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Delete all data".localized(), message: "Are you sure you want to delete all your information?".localized(), preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Delete all data", message: "Are you sure you want to delete all your information?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             
             DBManager.shared.deleteAllDatas(userID: Auth.auth().currentUser!.uid) { success in
                 if success {
-                    let alertController = UIAlertController(title: "Cleared".localized(), message: "Your information has been erased".localized(), preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Cleared", message: "Your information has been erased", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alertController.addAction(action)
                     self.present(alertController, animated: true)
@@ -80,14 +80,14 @@ class SettingsController: UITableViewController {
             
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
         
     }
     
     @IBAction func deleteAccount(_ sender: Any) {
-        let alert = UIAlertController(title: "Delete account".localized(), message: "Are you sure you want to delete your account?".localized(), preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Delete".localized(), style: .destructive, handler: { _ in
+        let alert = UIAlertController(title: "Delete account", message: "Are you sure you want to delete your account?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
                         
             // Prompt the user to re-provide their sign-in credentials
 //            let user = Auth.auth().currentUser
@@ -115,7 +115,7 @@ class SettingsController: UITableViewController {
 //            }
 //            self.present(vc, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
     }
     

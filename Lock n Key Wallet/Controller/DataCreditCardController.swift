@@ -113,7 +113,7 @@ class DataCreditCardController: UITableViewController {
             if encryptedData != nil {
                 DBManager.shared.saveEncryptedCreditCard(nameOfData: accountNameTextField.text!, lnkDataCreditCard: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
-                        let alertController = UIAlertController(title: "Saved".localized(), message: "Your information has been saved successfully".localized(), preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                         alertController.addAction(action)
                         self.present(alertController, animated: true) { [self] in
@@ -139,7 +139,7 @@ class DataCreditCardController: UITableViewController {
             if encryptedData != nil {
                 DBManager.shared.updateEncryptedCreditCard(nameOfData: accountNameTextField.text!, lnkDataCreditCard: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
-                        let alertController = UIAlertController(title: "Updated".localized(), message: "Your information has been updated successfully".localized(), preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Updated", message: "Your information has been updated successfully", preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
                             self.dismiss(animated: true)
 //                            self.navigationController?.popToRootViewController(animated: true)
@@ -191,7 +191,7 @@ class DataCreditCardController: UITableViewController {
             expirationButton.titleLabel?.text == "" {
             
             verify = false
-            let alertController = UIAlertController(title: "Empty Fields".localized(), message: "You are trying to save empty information".localized(), preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Empty Fields", message: "You are trying to save empty information", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alertController.addAction(action)
             self.present(alertController, animated: true)
@@ -204,10 +204,10 @@ class DataCreditCardController: UITableViewController {
     @IBAction func cameraScannerTapped(_ sender: UIButton) {
         
         let vc = CreditCardScannerViewController(delegate: self)
-        vc.titleLabelText = "Place card".localized()
+        vc.titleLabelText = "Place card"
         vc.subtitleLabelText = "Line up card within the lines"
         vc.labelTextColor = .white
-        vc.cancelButtonTitleText = "Cancel".localized()
+        vc.cancelButtonTitleText = "Cancel"
         vc.cancelButtonTitleTextColor = UIColor(named: "mainOrange")!
         vc.cameraViewCreditCardFrameStrokeColor = .white
         vc.cameraViewMaskLayerColor = .black

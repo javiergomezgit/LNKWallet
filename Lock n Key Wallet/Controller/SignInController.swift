@@ -89,7 +89,7 @@ class SignInController: UIViewController {
         }else{
             print("Internet Connection not Available!")
             
-            let refreshAlert = UIAlertController(title: "Internet connection".localized(), message: "You will need internet for using this app".localized(), preferredStyle: UIAlertController.Style.alert)
+            let refreshAlert = UIAlertController(title: "Internet connection", message: "You will need internet for using this app", preferredStyle: UIAlertController.Style.alert)
 
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                 exit(0);

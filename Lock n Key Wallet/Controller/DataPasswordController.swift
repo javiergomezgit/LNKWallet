@@ -61,7 +61,7 @@ class DataPasswordController: UITableViewController {
     }
     
     private func configureTops() {
-        title = "Save Data".localized()
+        title = "Save Data"
 //        let rightButtonImage = UIImage(systemName: "icloud.and.arrow.up.fill")?.withRenderingMode(.alwaysTemplate)
         if !nameData.isEmpty {
             saveButton.setTitle("UPDATE", for: .normal)
@@ -98,7 +98,7 @@ class DataPasswordController: UITableViewController {
             if encryptedData != nil {
                 DBManager.shared.saveEncryptedDataPassword(nameOfData: titleTextField.text!, lnkDataPassword: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
-                        let alertController = UIAlertController(title: "Saved".localized(), message: "Your information has been saved successfully".localized(), preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
                         alertController.addAction(action)
                         self.present(alertController, animated: true) { [self] in
@@ -120,7 +120,7 @@ class DataPasswordController: UITableViewController {
             if encryptedData != nil {
                 DBManager.shared.updateEncryptedDataPassword(nameOfData: titleTextField.text!, lnkDataPassword: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
-                        let alertController = UIAlertController(title: "Updated".localized(), message: "Your information has been updated successfully".localized(), preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Updated", message: "Your information has been updated successfully", preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
 //                            self.navigationController?.popToRootViewController(animated: true)
                             self.dismiss(animated: true)
@@ -141,7 +141,7 @@ class DataPasswordController: UITableViewController {
         
         if titleTextField.text == "" {
             verify = false
-            let alertController = UIAlertController(title: "Empty Fields".localized(), message: "Please make sure to give a name to this account".localized(), preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Empty Fields", message: "Please make sure to give a name to this account", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alertController.addAction(action)
             self.present(alertController, animated: true)

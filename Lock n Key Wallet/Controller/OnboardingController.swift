@@ -96,11 +96,11 @@ extension OnboardingController: SwiftyOnboardDataSource, SwiftyOnboardDelegate {
         overlay.continueButton.tag = Int(position)
         
         if currentPage == 0.0 || currentPage == 1.0 {
-            overlay.continueButton.setTitle("Continue".localized(), for: .normal)
-            overlay.skipButton.setTitle("Skip".localized(), for: .normal)
+            overlay.continueButton.setTitle("Continue", for: .normal)
+            overlay.skipButton.setTitle("Skip", for: .normal)
             overlay.skipButton.isHidden = false
         } else {
-            overlay.continueButton.setTitle("Get Started!".localized(), for: .normal)
+            overlay.continueButton.setTitle("Get Started!", for: .normal)
             overlay.skipButton.isHidden = true
         }
     }

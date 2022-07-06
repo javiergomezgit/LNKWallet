@@ -13,12 +13,15 @@ class OpenVaultController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let refreshControl = UIRefreshControl()
-    
     private var lnkDatas = [LNKData]()
+    //Search & Filter
+    private var filteredDatas = [LNKData]()
+    private var searchController = UISearchController()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Open Vault".localized()
+        title = "Open Vault"
         configureTops()
         configureSecurity()
         
@@ -26,7 +29,7 @@ class OpenVaultController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh".localized())
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refreshTable), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
@@ -68,6 +71,15 @@ class OpenVaultController: UIViewController {
     }
      
     private func configureTops() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search in Vault"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        
         let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard")) { (action) in
             print("Credit card was tapped")
             self.goToController(nameController: "DataCreditCardController")
@@ -97,6 +109,14 @@ class OpenVaultController: UIViewController {
         }
     }
     
+    func updateUI() {
+        if self.lnkDatas.isEmpty {
+            self.searchController.searchBar.isHidden = true
+        } else {
+            self.searchController.searchBar.isHidden = false
+        }
+    }
+    
     @objc private func goToController(nameController: String) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -111,10 +131,17 @@ class OpenVaultController: UIViewController {
     private func getAllDatas(){
         DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
             
+            self.lnkDatas.removeAll()
+            self.filteredDatas.removeAll()
             self.refreshControl.endRefreshing()
+            
             if result != nil {
                 self.lnkDatas = result!
+                self.filteredDatas = result!
                 self.tableView.reloadData()
+                self.updateUI()
+            } else {
+                self.updateUI()
             }
         }
     }
@@ -122,11 +149,11 @@ class OpenVaultController: UIViewController {
 
 extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lnkDatas.count
+        filteredDatas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = lnkDatas[indexPath.row]
+        let model = filteredDatas[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: DatasViewCell.identifier, for: indexPath) as! DatasViewCell
         
@@ -141,7 +168,7 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let model = lnkDatas[indexPath.row]
+        let model = filteredDatas[indexPath.row]
         
         if model.typeData == "type_2" {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataPasswordController") as! DataPasswordController
@@ -163,15 +190,15 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let lnkData = lnkDatas[indexPath.row]
+        let lnkData = filteredDatas[indexPath.row]
         
         if editingStyle == .delete {
             DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, nameOfData: lnkData.nameData) { deleted in
                 if deleted {
-                    self.lnkDatas.remove(at: indexPath.row)
+                    self.filteredDatas.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     
-                    let alert = UIAlertController(title: "Deleted".localized(), message: "The information has been deleted".localized(), preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: "Deleted", message: "The information has been deleted", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
                         self.navigationController?.popToRootViewController(animated: true)
                     }))
@@ -179,5 +206,21 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
+    }
+}
+
+
+extension OpenVaultController: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredDatas = searchText.isEmpty ? lnkDatas : lnkDatas.filter({ lnkData in
+            return lnkData.nameData.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        
+        tableView.reloadData()
     }
 }
