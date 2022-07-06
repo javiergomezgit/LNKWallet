@@ -39,9 +39,9 @@ extension UIButton {
             smallerSideCorner = self.frame.width / 2
         }
         self.layer.cornerRadius = (smallerSideCorner * amountCornerPercentage) / 100
-        self.layer.shadowOpacity = 0.1
+        self.layer.shadowOpacity = 0.05
         self.layer.shadowRadius = 1.0
-        self.layer.shadowOffset = CGSize.init(width: 5, height: 5)
+        self.layer.shadowOffset = CGSize.init(width: 3, height: 3)
         self.layer.shadowColor = UIColor.lightGray.cgColor
     }
 }

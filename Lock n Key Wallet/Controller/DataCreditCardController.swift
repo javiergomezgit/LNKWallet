@@ -26,8 +26,8 @@ class DataCreditCardController: UITableViewController {
                                                  "May - 5", "June - 6", "July - 7", "August - 8", "September - 9",
                                                  "October - 10", "November - 11", "December - 12")
     
-    let yearPickerData = [String](arrayLiteral: "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033","2034", "2035")
-    let yearNumbers = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+    let yearPickerData = [String](arrayLiteral: "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033","2034", "2035", "2036", "2037")
+    let yearNumbers = [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
     
     public var nameData = ""
     var secretKey = ""
@@ -120,6 +120,7 @@ class DataCreditCardController: UITableViewController {
                             self.accountNameTextField.text = ""
                             self.cardholderNameTextField.text = ""
                             self.cardNumberTextField.text = ""
+                            self.zipCodeTextField.text = ""
                             self.ccvTextField.text = ""
                             self.expirationButton.setTitle("MM/YY", for: .normal)
                             self.expirationButton.setTitleColor(.gray, for: .normal)

@@ -10,18 +10,24 @@ import FirebaseAuth
 
 class OpenVaultController: UIViewController {
     
+    @IBOutlet weak var allButton: UIButton!
+    @IBOutlet weak var passButton: UIButton!
+    @IBOutlet weak var ccButton: UIButton!
+    @IBOutlet weak var noteButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
     
     let refreshControl = UIRefreshControl()
     private var lnkDatas = [LNKData]()
     //Search & Filter
     private var filteredDatas = [LNKData]()
     private var searchController = UISearchController()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Open Vault"
+        
         configureTops()
         configureSecurity()
         
@@ -59,18 +65,23 @@ class OpenVaultController: UIViewController {
             self.present(vc, animated: true)
         } else {
             if UserDefaults.standard.value(forKey: "locked_app") as! Bool == true {
-                    //Goto master password unlock
-                    print ("NOT NEW USER")
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
-                    vc.setPassword = false
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
+                //Goto master password unlock
+                print ("NOT NEW USER")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
+                vc.setPassword = false
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
         }
     }
-     
+    
     private func configureTops() {
+        
+        allButton.roundCorners(amountCornerPercentage: 100)
+        passButton.roundCorners(amountCornerPercentage: 100)
+        ccButton.roundCorners(amountCornerPercentage: 100)
+        noteButton.roundCorners(amountCornerPercentage: 100)
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -121,11 +132,11 @@ class OpenVaultController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: nameController)
-//        vc.definesPresentationContext = true
-//        vc.modalPresentationStyle = .overCurrentContext
-//        navigationController?.present(vc, animated: true, completion: nil)
+        //        vc.definesPresentationContext = true
+        //        vc.modalPresentationStyle = .overCurrentContext
+        //        navigationController?.present(vc, animated: true, completion: nil)
         self.present(vc, animated: true)
-//        self.show(vc, sender: nil)
+        //        self.show(vc, sender: nil)
     }
     
     private func getAllDatas(){
@@ -145,6 +156,35 @@ class OpenVaultController: UIViewController {
             }
         }
     }
+    
+    @IBAction func showAllTapped(_ sender: UIButton) {
+        filteredDatas = lnkDatas
+        tableView.reloadData()
+    }
+    
+    
+    @IBAction func showPasswordsTapped(_ sender: Any) {
+        filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
+            return lnkData.typeData.range(of: "type_2", options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        tableView.reloadData()
+    }
+    
+    @IBAction func showCreditCardsTapped(_ sender: UIButton) {
+        filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
+            return lnkData.typeData.range(of: "type_1", options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        tableView.reloadData()
+    }
+    
+    @IBAction func showSecureNoteTapped(_ sender: Any) {
+        filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
+            return lnkData.typeData.range(of: "type_3", options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        tableView.reloadData()
+        
+    }
+    
 }
 
 extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
@@ -173,13 +213,13 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         if model.typeData == "type_2" {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataPasswordController") as! DataPasswordController
             vc.nameData = model.nameData
-//            self.navigationController?.pushViewController(vc, animated: true)
+            //            self.navigationController?.pushViewController(vc, animated: true)
             self.present(vc, animated: true)
         } else if model.typeData == "type_1"{
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataCreditCardController") as! DataCreditCardController
             vc.nameData = model.nameData
             self.present(vc, animated: true)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            //            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataSecureNoteController") as! DataSecureNoteController
             vc.nameData = model.nameData
@@ -196,6 +236,7 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
             DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, nameOfData: lnkData.nameData) { deleted in
                 if deleted {
                     self.filteredDatas.remove(at: indexPath.row)
+                    self.lnkDatas.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                     
                     let alert = UIAlertController(title: "Deleted", message: "The information has been deleted", preferredStyle: UIAlertController.Style.alert)
@@ -220,7 +261,6 @@ extension OpenVaultController: UISearchResultsUpdating, UISearchControllerDelega
         filteredDatas = searchText.isEmpty ? lnkDatas : lnkDatas.filter({ lnkData in
             return lnkData.nameData.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         })
-        
         tableView.reloadData()
     }
 }
