@@ -19,7 +19,7 @@ class SignInController: UIViewController {
     @IBOutlet weak var loginViewWithLogo: UIView!
     @IBOutlet weak var loginView: UIStackView!
     fileprivate var currentNonce: String?
-//    public var deletingAccount = false
+    public var deletingAccount = false
     private var signedPreviously = false
         
     override func viewDidLoad() {
@@ -32,12 +32,11 @@ class SignInController: UIViewController {
 //            print ("error signin out")
 //        }
         
-//        if !deletingAccount {
-//            setupInitials()
-//        } else {
-//            signinApple()
-//        }
-        setupInitials()
+        if !deletingAccount {
+            setupInitials()
+        } else {
+            signinApple()
+        }
     }
     
     private func setupInitials() {
@@ -230,7 +229,7 @@ extension SignInController: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-//            if !deletingAccount {
+            if !deletingAccount {
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     
                     let timeStampSignup = Int(authResult!.user.metadata.creationDate!.timeIntervalSince1970)
@@ -274,10 +273,10 @@ extension SignInController: ASAuthorizationControllerDelegate {
                         }
                     }
                 }
-//            } else {
-//                //Deleting account
-//                self.completion!(credential)
-//            }
+            } else {
+                //Deleting account
+                self.completion!(credential)
+            }
         }
     }
     

@@ -89,31 +89,31 @@ class SettingsController: UITableViewController {
         let alert = UIAlertController(title: "Delete account", message: "Are you sure you want to delete your account?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
                         
-            // Prompt the user to re-provide their sign-in credentials
-//            let user = Auth.auth().currentUser
-//
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateViewController(identifier: "SignInController") as! SignInController
-//            vc.deletingAccount = true
-//            vc.modalPresentationStyle = .fullScreen
-//            vc.completion = { credential in
-//                user?.reauthenticate(with: credential, completion: { result, error in
-//                    print (result as Any)
-//                    if error == nil {
-//                        DBManager.shared.deleteAccount(userID: Auth.auth().currentUser!.uid) { success in
-//                            if success {
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//                                    UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                                        exit(0)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                })
-//            }
-//            self.present(vc, animated: true)
+            //Prompt the user to re-provide their sign-in credentials
+            let user = Auth.auth().currentUser
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "SignInController") as! SignInController
+            vc.deletingAccount = true
+            vc.modalPresentationStyle = .fullScreen
+            vc.completion = { credential in
+                user?.reauthenticate(with: credential, completion: { result, error in
+                    print (result as Any)
+                    if error == nil {
+                        DBManager.shared.deleteAccount(userID: Auth.auth().currentUser!.uid) { success in
+                            if success {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        exit(0)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+            self.present(vc, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
