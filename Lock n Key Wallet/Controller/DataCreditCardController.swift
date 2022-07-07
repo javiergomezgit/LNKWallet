@@ -84,9 +84,9 @@ class DataCreditCardController: UITableViewController {
     private func configureTops() {
         title = "Credit Card"
         if !nameData.isEmpty {
-            saveButton.setTitle("UPDATE", for: .normal)
+            saveButton.setTitle("Update", for: .normal)
         } else {
-            saveButton.setTitle("SAVE", for: .normal)
+            saveButton.setTitle("Save", for: .normal)
         }
 //        if traitCollection.userInterfaceStyle == .light {
 //            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "darkblueAccent")!

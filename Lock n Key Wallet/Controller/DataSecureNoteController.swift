@@ -23,10 +23,10 @@ class DataSecureNoteController: UITableViewController {
         if !nameData.isEmpty{
             titleTextField.text = nameData
             titleTextField.isEnabled = false
-            saveButton.setTitle("UPDATE", for: .normal)
+            saveButton.setTitle("Update", for: .normal)
             loadEncryptedDataSecureNote()
         } else {
-            saveButton.setTitle("SAVE", for: .normal)
+            saveButton.setTitle("Save", for: .normal)
         }
     }
     

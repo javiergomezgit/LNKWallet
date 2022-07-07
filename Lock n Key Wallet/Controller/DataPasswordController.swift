@@ -64,11 +64,11 @@ class DataPasswordController: UITableViewController {
         title = "Save Data"
 //        let rightButtonImage = UIImage(systemName: "icloud.and.arrow.up.fill")?.withRenderingMode(.alwaysTemplate)
         if !nameData.isEmpty {
-            saveButton.setTitle("UPDATE", for: .normal)
+            saveButton.setTitle("Update", for: .normal)
 //            let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self, action: #selector(updateDataPassword))
 //            self.navigationItem.rightBarButtonItem = rightButton
         } else {
-            saveButton.setTitle("SAVE", for: .normal)
+            saveButton.setTitle("Save", for: .normal)
 //            let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self, action: #selector(saveDataPassword))
 //            self.navigationItem.rightBarButtonItem = rightButton
         }
