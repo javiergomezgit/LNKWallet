@@ -9,11 +9,11 @@ import Foundation
 import FirebaseFirestore
 import CloudKit
 import FirebaseAuth
-//import AVKit
+import FirebaseStorage
 
 final class DBManager {
     static let shared = DBManager()
-        
+    
     //MARK: iCloud Database
     private let databaseCloudKit = CKContainer(identifier: "iCloud.com.jdev.Lock-n-Key-Wallet").publicCloudDatabase
     private let recordTypeName = "Passcodes"
@@ -162,6 +162,32 @@ final class DBManager {
             }
         }
     }
+    
+    public func saveEncryptedDataImage(nameOfData: String, lnkData: Data, userID: String, completion: @escaping(Bool) -> Void) {
+        
+        uploadPhoto(with: lnkData, fileName: nameOfData, pathOfFile: userID, completion: { urlData in
+            if urlData != nil {
+                let content = ["key0" : "type_4",
+                               "key1" : nameOfData, //name of data
+                               "key2" : urlData! //url of the data
+                               ]
+                self.database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
+                    if error != nil {
+                        completion(false)
+                    } else {
+                        print ("save encrypted data")
+                        completion(true)
+                    }
+                }
+                completion(true)
+            } else {
+                print ("ERROR")
+                completion(false)
+            }
+        })
+    }
+    
+
     
     public func getEncryptedDataPassword(userID: String, nameData: String, completion: @escaping(LNKDataPassword?) -> Void) {
         database.collection("User").document(userID).collection("secret_datas").document(nameData).getDocument { (snapshot, err) in
@@ -398,5 +424,73 @@ final class DBManager {
             }
         }
     }
+    
+    
+    //MARK: Fire storage
+    private let storage = Storage.storage().reference()
+    let cache = NSCache<NSString, UIImage>()
 
+    ///Upload photo to storage
+    public func uploadPhoto(with data: Data, fileName: String, pathOfFile: String, completion: @escaping(String?) -> Void) {
+        storage.child("stored_images/\(pathOfFile)/\(fileName)").putData(data) { result in
+            switch result {
+            case .success(let metadata):
+                print (metadata)
+                self.storage.child("stored_images/\(pathOfFile)/\(fileName)").downloadURL { url, error in
+                    guard let url = url else {
+                        completion(nil)
+                        return
+                    }
+                    let urlString = url.absoluteString
+                    print (urlString)
+                    completion(urlString)
+                }
+            case .failure(let error):
+                print (error)
+                completion(nil)
+            }
+        }
+    }
+    
+    ///Download Imge
+    public func downloadImage(for path: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        let reference = storage.child(path)
+    
+        reference.downloadURL { url, error in
+            guard let url = url, error == nil else {
+                completion(.failure(StorageErrors.failedToGetURL))
+                return
+            }
+            //completion(.success(url))
+            if let image = self.cache.object(forKey: url.absoluteString as NSString) {
+                completion(.success(image))
+            } else {
+                let dataTask = URLSession.shared.dataTask(with: url) { data, responseURL, error in
+                    var downloadedImage:UIImage?
+                    
+                    if let data = data {
+                        downloadedImage = UIImage(data: data)
+                    }
+                    if downloadedImage != nil {
+                        self.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
+                    }
+                    DispatchQueue.main.async {
+                        completion(.success(downloadedImage!))
+                    }
+                }
+                dataTask.resume()
+            }
+        }
+    }
+    
+    public enum StorageErrors: Error {
+        case failedToUpload
+        case failedToGetURL
+    }
 }
+
+
+    
+
+    
+

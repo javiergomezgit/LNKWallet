@@ -33,6 +33,7 @@
 		2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */; };
 		2295C5812748722F0050FA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
 		2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5822748722F0050FA7D /* LaunchScreen.storyboard */; };
+		22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BD8B41287A85E800AF53EA /* DataImageController.swift */; };
 		22CAFBD127543937006D02AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
 		450F955A5EC869D8393191BC /* Pods_Lock_n_Key_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCFF155DAF57158E26F2A2A /* Pods_Lock_n_Key_Wallet.framework */; };
 /* End PBXBuildFile section */
@@ -67,8 +68,7 @@
 		2295C5832748722F0050FA7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2295C5852748722F0050FA7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2298D16B27498A3E00CCFBF2 /* Lock n Key Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lock n Key Wallet.entitlements"; sourceTree = "<group>"; };
-		22AA232F276D151B00E46D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		22AA2330276D154800E46D1B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		22BD8B41287A85E800AF53EA /* DataImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageController.swift; sourceTree = "<group>"; };
 		22CAFBD027543937006D02AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3AB8ED985C69AA62012D93F8 /* Pods-Lock n Key Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.release.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		C725C8AD654A6E12103BED73 /* Pods-Lock n Key Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
 				220D757B2870BC88003461D1 /* DataCreditCardController.swift */,
 				220D757D287116AC003461D1 /* DataPasswordController.swift */,
+				22BD8B41287A85E800AF53EA /* DataImageController.swift */,
 				2283FD3D2873B01600F8B21C /* DataSecureNoteController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
@@ -379,6 +380,7 @@
 			files = (
 				220D757E287116AC003461D1 /* DataPasswordController.swift in Sources */,
 				222C972427487B8F004C077E /* SettingsController.swift in Sources */,
+				22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */,
 				2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */,
 				2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,
@@ -406,7 +408,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2295C57B2748722E0050FA7D /* Base */,
-				22AA2330276D154800E46D1B /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -415,7 +416,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2295C5832748722F0050FA7D /* Base */,
-				22AA232F276D151B00E46D1B /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -556,9 +556,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "LNK Wallet";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library to capture the number of your credit card.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture the number of your credit card.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to capture the number of your credit card.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library and camera to obtain images and encrypt";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to obtain images and encrypt";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to obtain images and encrypt";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -595,9 +595,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "LNK Wallet";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library to capture the number of your credit card.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture the number of your credit card.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to capture the number of your credit card.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library and camera to obtain images and encrypt";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to obtain images and encrypt";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to obtain images and encrypt";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

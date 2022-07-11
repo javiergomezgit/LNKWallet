@@ -106,7 +106,13 @@ class OpenVaultController: UIViewController {
             self.goToController(nameController: "DataSecureNoteController")
             //TODO: Crete controller for secure data
         }
-        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [creditCardItem , passwordItem , secureNote])
+        
+        let imageItem = UIAction(title: "Images", image: UIImage(systemName: "note.text")) { (action) in
+            print("Secure note was tapped")
+            self.goToController(nameController: "DataImageController")
+            //TODO: Crete controller for secure data
+        }
+        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [creditCardItem , passwordItem, imageItem, secureNote])
         
         let rightButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
         
@@ -220,6 +226,10 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
             vc.nameData = model.nameData
             self.present(vc, animated: true)
             //            self.navigationController?.pushViewController(vc, animated: true)
+        } else if model.typeData == "type_4" {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DataImageController") as! DataImageController
+            vc.nameData = model.nameData
+            self.present(vc, animated: true)
         } else {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataSecureNoteController") as! DataSecureNoteController
             vc.nameData = model.nameData

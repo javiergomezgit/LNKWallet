@@ -29,6 +29,12 @@ struct LNKDataSecureNote {
     let secureNote: String
 }
 
+struct LNKDataImage {
+    let nameData: String
+    let urlData: String
+    let imageData: Data
+}
+
 struct LNKData {
     let nameData: String
     let typeData: String

@@ -134,13 +134,6 @@ class SettingsController: UITableViewController {
         }
     }
     
-    @IBAction func donateTapped(_ sender: UIButton) {
-        if let url = URL(string: "https://www.locknkey.app/buy-me-a-coffee/") {
-            let svc = SFSafariViewController(url: url)
-            self.present(svc, animated: true, completion: nil)
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 2 ? CGFloat.leastNormalMagnitude : 32
     }
