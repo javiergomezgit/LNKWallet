@@ -130,7 +130,7 @@ final class DBManager {
                        "key4" : lnkDataCreditCard.securityCode,
                        "key5" : lnkDataCreditCard.zipCode,
                        "key6" : lnkDataCreditCard.expDate
-                       ]
+        ]
         
         database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
             if error != nil {
@@ -151,8 +151,8 @@ final class DBManager {
                        "key4" : lnkDataCreditCard.securityCode,
                        "key5" : lnkDataCreditCard.zipCode,
                        "key6" : lnkDataCreditCard.expDate
-                       ]
-                
+        ]
+        
         database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
             if error != nil {
                 completion(false)
@@ -165,12 +165,12 @@ final class DBManager {
     
     public func saveEncryptedDataImage(nameOfData: String, lnkData: Data, userID: String, completion: @escaping(Bool) -> Void) {
         
-        uploadPhoto(with: lnkData, fileName: nameOfData, pathOfFile: userID, completion: { urlData in
+        uploadPhoto(with: lnkData, nameOfData: nameOfData, userID: userID, completion: { urlData in
             if urlData != nil {
                 let content = ["key0" : "type_4",
                                "key1" : nameOfData, //name of data
                                "key2" : urlData! //url of the data
-                               ]
+                ]
                 self.database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
                     if error != nil {
                         completion(false)
@@ -187,7 +187,7 @@ final class DBManager {
         })
     }
     
-
+    
     
     public func getEncryptedDataPassword(userID: String, nameData: String, completion: @escaping(LNKDataPassword?) -> Void) {
         database.collection("User").document(userID).collection("secret_datas").document(nameData).getDocument { (snapshot, err) in
@@ -224,8 +224,8 @@ final class DBManager {
                                "key3" : lnkDataPassword.email,
                                "key4" : lnkDataPassword.password,
                                "key5" : lnkDataPassword.website
-                               ]
-                        
+                ]
+                
                 self.database.collection("User").document(userID).collection("secret_datas").document(newNameOfData).setData(content) { error in
                     if error != nil {
                         completion(false)
@@ -249,8 +249,8 @@ final class DBManager {
                        "key3" : lnkDataPassword.email,
                        "key4" : lnkDataPassword.password,
                        "key5" : lnkDataPassword.website
-                       ]
-                
+        ]
+        
         database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
             if error != nil {
                 completion(false)
@@ -290,8 +290,8 @@ final class DBManager {
                 let content = ["key0" : "type_3",
                                "key1" : lnkDataSecureNote.nameData,
                                "key2" : lnkDataSecureNote.secureNote
-                               ]
-                        
+                ]
+                
                 self.database.collection("User").document(userID).collection("secret_datas").document(newNameOfData).setData(content) { error in
                     if error != nil {
                         completion(false)
@@ -312,8 +312,8 @@ final class DBManager {
         let content = ["key0" : "type_3",
                        "key1" : lnkDataSecureNote.nameData,
                        "key2" : lnkDataSecureNote.secureNote
-                       ]
-                
+        ]
+        
         database.collection("User").document(userID).collection("secret_datas").document(nameOfData).setData(content) { error in
             if error != nil {
                 completion(false)
@@ -323,7 +323,7 @@ final class DBManager {
             }
         }
     }
-        
+    
     public func getAllDatas(userID: String, completion: @escaping([LNKData]?) -> Void) {
         database.collection("User").document(userID).collection("secret_datas").getDocuments { (snapshot, err) in
             if let err = err {
@@ -357,11 +357,15 @@ final class DBManager {
         }
     }
     
-    public func deleteIndividualData(userID: String, nameOfData: String, completion: @escaping(Bool) -> Void) {
+    public func deleteIndividualData(userID: String, lnkData: LNKData, completion: @escaping(Bool) -> Void) {
+        let nameOfData = lnkData.nameData
         database.collection("User").document(userID).collection("secret_datas").document(nameOfData).delete { error in
             if (error != nil) {
                 completion(false)
             } else {
+                if lnkData.typeData == "type_4" {
+                    //TODO: Delete data in firebase
+                }
                 completion(true)
             }
         }
@@ -429,14 +433,14 @@ final class DBManager {
     //MARK: Fire storage
     private let storage = Storage.storage().reference()
     let cache = NSCache<NSString, UIImage>()
-
+    
     ///Upload photo to storage
-    public func uploadPhoto(with data: Data, fileName: String, pathOfFile: String, completion: @escaping(String?) -> Void) {
-        storage.child("stored_images/\(pathOfFile)/\(fileName)").putData(data) { result in
+    public func uploadPhoto(with data: Data, nameOfData: String, userID: String, completion: @escaping(String?) -> Void) {
+        storage.child("stored_images/\(userID)/\(nameOfData)").putData(data) { result in
             switch result {
             case .success(let metadata):
                 print (metadata)
-                self.storage.child("stored_images/\(pathOfFile)/\(fileName)").downloadURL { url, error in
+                self.storage.child("stored_images/\(userID)/\(nameOfData)").downloadURL { url, error in
                     guard let url = url else {
                         completion(nil)
                         return
@@ -453,44 +457,29 @@ final class DBManager {
     }
     
     ///Download Imge
-    public func downloadImage(for path: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    public func downloadData(for userID: String, nameOfData: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let path = "stored_images/\(userID)/\(nameOfData)"
         let reference = storage.child(path)
-    
+        
         reference.downloadURL { url, error in
             guard let url = url, error == nil else {
-                completion(.failure(StorageErrors.failedToGetURL))
+                completion(.failure(error!))
                 return
             }
-            //completion(.success(url))
-            if let image = self.cache.object(forKey: url.absoluteString as NSString) {
-                completion(.success(image))
-            } else {
-                let dataTask = URLSession.shared.dataTask(with: url) { data, responseURL, error in
-                    var downloadedImage:UIImage?
-                    
-                    if let data = data {
-                        downloadedImage = UIImage(data: data)
-                    }
-                    if downloadedImage != nil {
-                        self.cache.setObject(downloadedImage!, forKey: url.absoluteString as NSString)
-                    }
-                    DispatchQueue.main.async {
-                        completion(.success(downloadedImage!))
-                    }
+            let dataTask = URLSession.shared.dataTask(with: url) { data, responseURL, error in
+                if let data = data {
+                    completion(.success(data))
+                } else {
+                    completion(.failure(error!))
                 }
-                dataTask.resume()
             }
+            dataTask.resume()
         }
-    }
-    
-    public enum StorageErrors: Error {
-        case failedToUpload
-        case failedToGetURL
     }
 }
 
 
-    
 
-    
+
+
 

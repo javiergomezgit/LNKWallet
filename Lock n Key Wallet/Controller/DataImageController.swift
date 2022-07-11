@@ -37,7 +37,7 @@ class DataImageController: UIViewController {
             titleTextField.text = nameData
             titleTextField.isEnabled = false
             saveButton.setTitle("Update", for: .normal)
-            //TODO: Load encrypted image
+            loadEncryptedData()
         } else {
             saveButton.setTitle("Save", for: .normal)
         }
@@ -66,12 +66,19 @@ class DataImageController: UIViewController {
     private func saveDataImage() {
         if titleTextField.text != "" {
             let encryptedData = encryptImage()
-            DispatchQueue.main.async {
-                DBManager.shared.saveEncryptedDataImage(nameOfData: self.titleTextField.text!, lnkData: encryptedData, userID: self.user!.uid) { success in
-                    if success {
-                        print (success)
+            if encryptedData != nil {
+                DispatchQueue.main.async {
+                    DBManager.shared.saveEncryptedDataImage(nameOfData: self.titleTextField.text!, lnkData: encryptedData!, userID: self.user!.uid) { success in
+                        if success {
+                            self.dismiss(animated: true)
+                        }
                     }
                 }
+            } else {
+                let alertController = UIAlertController(title: "Error", message: "There was an error storing your image, try again later!", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alertController.addAction(action)
+                self.present(alertController, animated: true)
             }
         } else {
             let alertController = UIAlertController(title: "Empty name", message: "What is the title you want to assign to this image?", preferredStyle: .alert)
@@ -81,23 +88,56 @@ class DataImageController: UIViewController {
         }
     }
     
-    private func updateDataImage() {
-        //TODO: Save updated image / ??? Note: Consider this feature
+    private func loadEncryptedData(){
+        DBManager.shared.downloadData(for: user!.uid, nameOfData: nameData) { result in
+            switch result {
+            case .success(let encryptedData):
+                var decryptedImage = Encryption.shared.decryptImage(data: encryptedData, lengthKey: 10)
+                if decryptedImage == nil {
+                    decryptedImage = UIImage(named: "LogoIcon")!
+                }
+                DispatchQueue.main.async {
+                    self.imageView.image = decryptedImage
+                }
+            case .failure(_):
+                let alertController = UIAlertController(title: "Error", message: "There was an error downloading your image, try again later!", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alertController.addAction(action)
+                self.present(alertController, animated: true)
+            }
+        }
     }
     
-    private func encryptImage() -> Data {
+    private func updateDataImage() {
+        let encryptedData = encryptImage()
+        if encryptedData != nil {
+            DispatchQueue.main.async {
+                DBManager.shared.saveEncryptedDataImage(nameOfData: self.titleTextField.text!, lnkData: encryptedData!, userID: self.user!.uid) { success in
+                    if success {
+                        self.dismiss(animated: true)
+                    }
+                }
+            }
+        } else {
+            let alertController = UIAlertController(title: "Error", message: "There was an error storing your image, try again later!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true)
+        }
+    }
+    
+    private func encryptImage() -> Data? {
         var image = UIImage()
         if imageView.image == nil {
             image = UIImage(named: "LogoIcon")!
         } else {
             image = imageView.image!
         }
-        let encryptedData = Encryption.shared.encryptImage(oldImage: image, secretKey: secretKey, creationTime: creationDate)
-        return encryptedData
-    }
-    
-    private func decryptionImage() {
-        //TODO: Decryption data
+        if let encryptedData = Encryption.shared.encryptImage(oldImage: image, lengthKey: 10) {
+            return encryptedData
+        } else {
+            return nil
+        }
     }
 }
 

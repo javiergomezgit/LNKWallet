@@ -49,16 +49,26 @@
                                 <imageReference key="image" image="key.viewfinder" symbolScale="default"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="regular"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aQH-bE-Qln">
+                                <rect key="frame" x="15" y="25.5" width="24.5" height="22"/>
+                                <color key="tintColor" systemColor="systemGray2Color"/>
+                                <imageReference key="image" image="photo.circle" catalog="system" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="regular"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="4Gg-7l-xZc"/>
                             <constraint firstItem="wXB-fp-HFy" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="4b0-WH-Ag0"/>
                             <constraint firstItem="34x-8t-EZu" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="IvQ-JJ-nCX"/>
                             <constraint firstItem="34x-8t-EZu" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.45" id="Jxg-BL-LVU"/>
                             <constraint firstItem="yVV-O5-7qG" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="PMM-gf-J4R"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="aQH-bE-Qln" secondAttribute="height" multiplier="1:1" id="QTn-bk-TYD"/>
                             <constraint firstItem="yVV-O5-7qG" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="X2k-Yn-pt0"/>
                             <constraint firstItem="wXB-fp-HFy" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="ZBO-6t-unk"/>
                             <constraint firstItem="wXB-fp-HFy" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="kGP-yk-Us6"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="o8S-mo-rKq"/>
                             <constraint firstItem="34x-8t-EZu" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="rDa-WS-O8i"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.45" id="rs6-rD-oYc"/>
                             <constraint firstItem="yVV-O5-7qG" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="zTV-1T-Vbe"/>
                         </constraints>
                     </view>
@@ -85,6 +95,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dataImage" destination="wXB-fp-HFy" id="jw1-Q0-zJA"/>
+                <outlet property="imageImage" destination="aQH-bE-Qln" id="gvx-ls-5TF"/>
                 <outlet property="nameOfDataLabel" destination="Xh3-28-J6Z" id="bb2-W4-Ovo"/>
                 <outlet property="passwordImage" destination="yVV-O5-7qG" id="sW3-pR-EIQ"/>
                 <outlet property="secureNoteImage" destination="34x-8t-EZu" id="AWm-H8-Qru"/>
@@ -96,6 +107,7 @@
         <image name="creditcard.circle" catalog="system" width="128" height="121"/>
         <image name="doc.circle" catalog="system" width="128" height="121"/>
         <image name="key.viewfinder" width="10" height="10"/>
+        <image name="photo.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemCyanColor">
             <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

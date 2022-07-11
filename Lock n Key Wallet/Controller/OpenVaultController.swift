@@ -57,7 +57,6 @@ class OpenVaultController: UIViewController {
         
         if UserDefaults.standard.value(forKey: "is_new_user") as! Bool == true {
             print ("NEW USER")
-            //TODO: SHOW master password set password
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
             vc.setPassword = true
@@ -90,12 +89,11 @@ class OpenVaultController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        
-        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard")) { (action) in
-            print("Credit card was tapped")
-            self.goToController(nameController: "DataCreditCardController")
-        }
-        
+//        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard")) { (action) in
+//            print("Credit card was tapped")
+//            self.goToController(nameController: "DataCreditCardController")
+//        }
+            
         let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "staroflife.fill")) { (action) in
             print("Password action was tapped")
             self.goToController(nameController: "DataPasswordController")
@@ -104,15 +102,13 @@ class OpenVaultController: UIViewController {
         let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "note.text")) { (action) in
             print("Secure note was tapped")
             self.goToController(nameController: "DataSecureNoteController")
-            //TODO: Crete controller for secure data
         }
         
-        let imageItem = UIAction(title: "Images", image: UIImage(systemName: "note.text")) { (action) in
-            print("Secure note was tapped")
+        let imageItem = UIAction(title: "Image", image: UIImage(named: "photo.circle")) { (action) in
+            print("Image was tapped")
             self.goToController(nameController: "DataImageController")
-            //TODO: Crete controller for secure data
         }
-        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [creditCardItem , passwordItem, imageItem, secureNote])
+        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, imageItem, secureNote])
         
         let rightButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
         
@@ -178,7 +174,7 @@ class OpenVaultController: UIViewController {
     
     @IBAction func showCreditCardsTapped(_ sender: UIButton) {
         filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
-            return lnkData.typeData.range(of: "type_1", options: .caseInsensitive, range: nil, locale: nil) != nil
+            return lnkData.typeData.range(of: "type_4", options: .caseInsensitive, range: nil, locale: nil) != nil
         })
         tableView.reloadData()
     }
@@ -188,7 +184,6 @@ class OpenVaultController: UIViewController {
             return lnkData.typeData.range(of: "type_3", options: .caseInsensitive, range: nil, locale: nil) != nil
         })
         tableView.reloadData()
-        
     }
     
 }
@@ -219,13 +214,11 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         if model.typeData == "type_2" {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataPasswordController") as! DataPasswordController
             vc.nameData = model.nameData
-            //            self.navigationController?.pushViewController(vc, animated: true)
             self.present(vc, animated: true)
         } else if model.typeData == "type_1"{
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataCreditCardController") as! DataCreditCardController
             vc.nameData = model.nameData
             self.present(vc, animated: true)
-            //            self.navigationController?.pushViewController(vc, animated: true)
         } else if model.typeData == "type_4" {
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataImageController") as! DataImageController
             vc.nameData = model.nameData
@@ -243,7 +236,7 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         let lnkData = filteredDatas[indexPath.row]
         
         if editingStyle == .delete {
-            DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, nameOfData: lnkData.nameData) { deleted in
+            DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, lnkData: lnkData) { deleted in
                 if deleted {
                     self.filteredDatas.remove(at: indexPath.row)
                     self.lnkDatas.remove(at: indexPath.row)
