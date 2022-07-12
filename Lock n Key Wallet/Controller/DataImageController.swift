@@ -14,6 +14,7 @@ class DataImageController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var backViewTitle: UIView!
     
     public var nameData = ""
     var secretKey = ""
@@ -22,6 +23,8 @@ class DataImageController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backViewTitle.cornersView(border: false, roundedCorner: 10)
         
         if user  != nil {
             secretKey = user!.uid
@@ -114,7 +117,17 @@ class DataImageController: UIViewController {
             DispatchQueue.main.async {
                 DBManager.shared.saveEncryptedDataImage(nameOfData: self.titleTextField.text!, lnkData: encryptedData!, userID: self.user!.uid) { success in
                     if success {
-                        self.dismiss(animated: true)
+//                        self.dismiss(animated: true)
+                        let alertController = UIAlertController(title: "Updated", message: "Your image has been updated successfully", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                            self.dismiss(animated: true)
+                        })
+                        alertController.addAction(action)
+                        
+                        self.present(alertController, animated: true) {
+                            print ("Update")
+                        }
+                        
                     }
                 }
             }

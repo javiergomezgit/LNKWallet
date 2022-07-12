@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZP-Ix-AZG">
                         <rect key="frame" x="0.0" y="0.0" width="54.5" height="73"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-fp-HFy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-fp-HFy">
                                 <rect key="frame" x="11" y="20.5" width="32.5" height="32.5"/>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
                                 <constraints>
@@ -41,7 +41,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="light"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="34x-8t-EZu">
-                                <rect key="frame" x="15" y="24.5" width="24.5" height="24"/>
+                                <rect key="frame" x="14.5" y="23.5" width="25.5" height="26"/>
                                 <color key="tintColor" systemColor="systemCyanColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="34x-8t-EZu" secondAttribute="height" multiplier="1:1" id="AHQ-Hx-ejY"/>
@@ -50,7 +50,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="regular"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aQH-bE-Qln">
-                                <rect key="frame" x="15" y="25.5" width="24.5" height="22"/>
+                                <rect key="frame" x="11" y="21" width="32.5" height="31"/>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
                                 <imageReference key="image" image="photo.circle" catalog="system" symbolScale="default"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="regular"/>
@@ -60,7 +60,7 @@
                             <constraint firstItem="aQH-bE-Qln" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="4Gg-7l-xZc"/>
                             <constraint firstItem="wXB-fp-HFy" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="4b0-WH-Ag0"/>
                             <constraint firstItem="34x-8t-EZu" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="IvQ-JJ-nCX"/>
-                            <constraint firstItem="34x-8t-EZu" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.45" id="Jxg-BL-LVU"/>
+                            <constraint firstItem="34x-8t-EZu" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.47" id="Jxg-BL-LVU"/>
                             <constraint firstItem="yVV-O5-7qG" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="PMM-gf-J4R"/>
                             <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="aQH-bE-Qln" secondAttribute="height" multiplier="1:1" id="QTn-bk-TYD"/>
                             <constraint firstItem="yVV-O5-7qG" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="X2k-Yn-pt0"/>
@@ -68,7 +68,7 @@
                             <constraint firstItem="wXB-fp-HFy" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="kGP-yk-Us6"/>
                             <constraint firstItem="aQH-bE-Qln" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="o8S-mo-rKq"/>
                             <constraint firstItem="34x-8t-EZu" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="rDa-WS-O8i"/>
-                            <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.45" id="rs6-rD-oYc"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="rs6-rD-oYc"/>
                             <constraint firstItem="yVV-O5-7qG" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="zTV-1T-Vbe"/>
                         </constraints>
                     </view>

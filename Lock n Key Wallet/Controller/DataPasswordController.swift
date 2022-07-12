@@ -98,16 +98,18 @@ class DataPasswordController: UITableViewController {
             if encryptedData != nil {
                 DBManager.shared.saveEncryptedDataPassword(nameOfData: titleTextField.text!, lnkDataPassword: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
-                        let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                        alertController.addAction(action)
-                        self.present(alertController, animated: true) { [self] in
-                            self.titleTextField.text = ""
-                            self.emailTextField.text = ""
-                            self.otherTextField.text = ""
-                            self.passwordTextField.text = ""
-                            self.websiteTextField.text = ""
-                        }
+                        self.dismiss(animated: true)
+                        
+//                        let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
+//                        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//                        alertController.addAction(action)
+//                        self.present(alertController, animated: true) { [self] in
+//                            self.titleTextField.text = ""
+//                            self.emailTextField.text = ""
+//                            self.otherTextField.text = ""
+//                            self.passwordTextField.text = ""
+//                            self.websiteTextField.text = ""
+//                        }
                     }
                 }
             }

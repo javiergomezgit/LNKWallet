@@ -72,13 +72,14 @@ class DataSecureNoteController: UITableViewController {
         if encryptedData != nil {
             DBManager.shared.saveEncryptedDataSecureNote(nameOfData: titleTextField.text!, lnkDataSecureNote: encryptedData!, userID: user!.uid) { success in
                 if success {
-                    let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    alertController.addAction(action)
-                    self.present(alertController, animated: true) { [self] in
-                        self.titleTextField.text = ""
-                        self.secureNoteTextView.text = ""
-                    }
+                    self.dismiss(animated: true)
+//                    let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
+//                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//                    alertController.addAction(action)
+//                    self.present(alertController, animated: true) { [self] in
+//                        self.titleTextField.text = ""
+//                        self.secureNoteTextView.text = ""
+//                    }
                 }
             }
         }

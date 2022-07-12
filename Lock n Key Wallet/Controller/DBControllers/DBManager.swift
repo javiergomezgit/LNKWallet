@@ -352,7 +352,13 @@ final class DBManager {
                     let nameData = document.documentID
                     self.database.collection("User").document(userID).collection("secret_datas").document(nameData).delete()
                 }
-                completion(true)
+                self.deleteFolderData(userID: userID) { success in
+                    if success {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                }
             }
         }
     }
@@ -364,9 +370,15 @@ final class DBManager {
                 completion(false)
             } else {
                 if lnkData.typeData == "type_4" {
-                    //TODO: Delete data in firebase
+                    self.deleteData(userID: userID, nameOfData: nameOfData) { success in
+                        if success {
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    }
                 }
-                completion(true)
+                
             }
         }
     }
@@ -390,7 +402,13 @@ final class DBManager {
                             if let error = error  {
                                 print ("\(error) error happened deleting firebase user")
                             } else {
-                                completion(true)
+                                self.deleteAllDatas(userID: userID) { success in
+                                    if success {
+                                        completion(true)
+                                    } else {
+                                        completion(false)
+                                    }
+                                }
                             }
                         })
                     }
@@ -432,7 +450,6 @@ final class DBManager {
     
     //MARK: Fire storage
     private let storage = Storage.storage().reference()
-    let cache = NSCache<NSString, UIImage>()
     
     ///Upload photo to storage
     public func uploadPhoto(with data: Data, nameOfData: String, userID: String, completion: @escaping(String?) -> Void) {
@@ -474,6 +491,42 @@ final class DBManager {
                 }
             }
             dataTask.resume()
+        }
+    }
+    
+    ///Delete  data
+    public func deleteData(userID: String, nameOfData: String, completion: @escaping (Bool) -> Void) {
+        let path = "stored_images/\(userID)/\(nameOfData)"
+        let reference = storage.child(path)
+     
+        reference.delete { error in
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    ///Delete all data for a folder
+    public func deleteFolderData(userID: String, completion: @escaping (Bool) -> Void) {
+        let path = "stored_images/\(userID)/"
+        let reference = storage.child(path)
+     
+        reference.listAll { result in
+            switch result {
+                
+            case .success(let listItems):
+                for item in listItems.items {
+                    item.delete { error in
+                        print (error as Any)
+                    }
+                }
+                completion(true)
+            case .failure(let error):
+                completion(false)
+                print ("error \(error)")
+            }
         }
     }
 }
