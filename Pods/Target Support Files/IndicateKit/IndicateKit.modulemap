@@ -1,0 +1,6 @@
+framework module Indicate {
+  umbrella header "IndicateKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

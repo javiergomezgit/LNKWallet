@@ -1,0 +1,6 @@
+framework module Pods_Lock_n_Key_Wallet {
+  umbrella header "Pods-Lock n Key Wallet-umbrella.h"
+
+  export *
+  module * { export * }
+}

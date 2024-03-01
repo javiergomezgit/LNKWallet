@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="KGk-i7-Jjw" customClass="DatasViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZP-Ix-AZG">
+                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="73"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXB-fp-HFy">
+                                <rect key="frame" x="11" y="20.5" width="32.5" height="32.5"/>
+                                <color key="tintColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wXB-fp-HFy" secondAttribute="height" multiplier="20:21" id="SeJ-Eg-Yu6"/>
+                                </constraints>
+                                <imageReference key="image" image="creditcard.circle" catalog="system" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="light"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yVV-O5-7qG">
+                                <rect key="frame" x="11" y="20.5" width="32.5" height="32.5"/>
+                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yVV-O5-7qG" secondAttribute="height" multiplier="20:21" id="bsb-hJ-Wit"/>
+                                </constraints>
+                                <imageReference key="image" image="doc.circle" catalog="system" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="light"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="34x-8t-EZu">
+                                <rect key="frame" x="14.5" y="23.5" width="25.5" height="26"/>
+                                <color key="tintColor" systemColor="systemCyanColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="34x-8t-EZu" secondAttribute="height" multiplier="1:1" id="AHQ-Hx-ejY"/>
+                                </constraints>
+                                <imageReference key="image" image="key.viewfinder" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="regular"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aQH-bE-Qln">
+                                <rect key="frame" x="11" y="21" width="32.5" height="31"/>
+                                <color key="tintColor" systemColor="systemGray2Color"/>
+                                <imageReference key="image" image="photo.circle" catalog="system" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35" scale="default" weight="regular"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="4Gg-7l-xZc"/>
+                            <constraint firstItem="wXB-fp-HFy" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="4b0-WH-Ag0"/>
+                            <constraint firstItem="34x-8t-EZu" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="IvQ-JJ-nCX"/>
+                            <constraint firstItem="34x-8t-EZu" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.47" id="Jxg-BL-LVU"/>
+                            <constraint firstItem="yVV-O5-7qG" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="PMM-gf-J4R"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="aQH-bE-Qln" secondAttribute="height" multiplier="1:1" id="QTn-bk-TYD"/>
+                            <constraint firstItem="yVV-O5-7qG" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="X2k-Yn-pt0"/>
+                            <constraint firstItem="wXB-fp-HFy" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="ZBO-6t-unk"/>
+                            <constraint firstItem="wXB-fp-HFy" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="kGP-yk-Us6"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="centerY" secondItem="eZP-Ix-AZG" secondAttribute="centerY" id="o8S-mo-rKq"/>
+                            <constraint firstItem="34x-8t-EZu" firstAttribute="centerX" secondItem="eZP-Ix-AZG" secondAttribute="centerX" id="rDa-WS-O8i"/>
+                            <constraint firstItem="aQH-bE-Qln" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="rs6-rD-oYc"/>
+                            <constraint firstItem="yVV-O5-7qG" firstAttribute="width" secondItem="eZP-Ix-AZG" secondAttribute="width" multiplier="0.6" id="zTV-1T-Vbe"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xh3-28-J6Z">
+                        <rect key="frame" x="51.5" y="19" width="200" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="V3O-PM-WhB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eZP-Ix-AZG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1y1-oT-Nce"/>
+                    <constraint firstItem="Xh3-28-J6Z" firstAttribute="leading" secondItem="eZP-Ix-AZG" secondAttribute="trailing" constant="-3" id="9kf-zB-YVY"/>
+                    <constraint firstAttribute="bottom" secondItem="eZP-Ix-AZG" secondAttribute="bottom" id="fZC-68-0AZ"/>
+                    <constraint firstItem="eZP-Ix-AZG" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.17" id="lgw-w6-pep"/>
+                    <constraint firstItem="Xh3-28-J6Z" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.625" id="oTW-b1-EC4"/>
+                    <constraint firstItem="eZP-Ix-AZG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uHf-NW-GGp"/>
+                    <constraint firstItem="Xh3-28-J6Z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vhh-sS-c2R"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dataImage" destination="wXB-fp-HFy" id="jw1-Q0-zJA"/>
+                <outlet property="imageImage" destination="aQH-bE-Qln" id="gvx-ls-5TF"/>
+                <outlet property="nameOfDataLabel" destination="Xh3-28-J6Z" id="bb2-W4-Ovo"/>
+                <outlet property="passwordImage" destination="yVV-O5-7qG" id="sW3-pR-EIQ"/>
+                <outlet property="secureNoteImage" destination="34x-8t-EZu" id="AWm-H8-Qru"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="123.54910714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="creditcard.circle" catalog="system" width="128" height="121"/>
+        <image name="doc.circle" catalog="system" width="128" height="121"/>
+        <image name="key.viewfinder" width="10" height="10"/>
+        <image name="photo.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
