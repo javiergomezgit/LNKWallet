@@ -1,0 +1,83 @@
+
+Resources/.DS_Store
+Resources/73974-lock.json
+Resources/ios/AppIcon.appiconset/Contents.json
+Resources/ios/AppIcon.appiconset/Icon-App-20x20@1x.png
+Resources/ios/AppIcon.appiconset/Icon-App-20x20@2x.png
+Resources/ios/AppIcon.appiconset/Icon-App-20x20@3x.png
+Resources/ios/AppIcon.appiconset/Icon-App-29x29@1x.png
+Resources/ios/AppIcon.appiconset/Icon-App-29x29@2x.png
+Resources/ios/AppIcon.appiconset/Icon-App-29x29@3x.png
+Resources/ios/AppIcon.appiconset/Icon-App-40x40@1x.png
+Resources/ios/AppIcon.appiconset/Icon-App-40x40@2x.png
+Resources/ios/AppIcon.appiconset/Icon-App-40x40@3x.png
+Resources/ios/AppIcon.appiconset/Icon-App-60x60@2x.png
+Resources/ios/AppIcon.appiconset/Icon-App-60x60@3x.png
+Resources/ios/AppIcon.appiconset/Icon-App-76x76@1x.png
+Resources/ios/AppIcon.appiconset/Icon-App-76x76@2x.png
+Resources/ios/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png
+Resources/ios/AppIcon.appiconset/ItunesArtwork@2x.png
+Resources/ios/iTunesArtwork@1x.png
+Resources/ios/iTunesArtwork@2x.png
+Resources/ios/iTunesArtwork@3x.png
+Resources/ios/README.md
+Resources/Logo.png
+Resources/Logo.psd
+Resources/LogoIconDark.png
+Resources/LogoIconLight.png
+Resources/Onboarding/page1-ES.png
+Resources/Onboarding/page1.psd
+Resources/Onboarding/page2-ES.png
+Resources/Onboarding/page2.psd
+Resources/Onboarding/page3-ES.png
+Resources/Onboarding/page3.psd
+Resources/Screenshots/.DS_Store
+Resources/Screenshots/Apple iPhone 11 Pro Max (1242x2688)/Apple iPhone 11 Pro Max Screenshot 0.png
+Resources/Screenshots/Apple iPhone 11 Pro Max (1242x2688)/Apple iPhone 11 Pro Max Screenshot 1.png
+Resources/Screenshots/Apple iPhone 11 Pro Max (1242x2688)/Apple iPhone 11 Pro Max Screenshot 2.png
+Resources/Screenshots/Apple iPhone 11 Pro Max (1242x2688)/Apple iPhone 11 Pro Max Screenshot 3.png
+Resources/Screenshots/Apple iPhone 11 Pro Max (1242x2688)/Apple iPhone 11 Pro Max Screenshot 4.png
+Resources/Screenshots/Apple iPhone 8 Plus (1242x2208)/Apple iPhone 8 Plus Screenshot 0.png
+Resources/Screenshots/Apple iPhone 8 Plus (1242x2208)/Apple iPhone 8 Plus Screenshot 1.png
+Resources/Screenshots/Apple iPhone 8 Plus (1242x2208)/Apple iPhone 8 Plus Screenshot 2.png
+Resources/Screenshots/Apple iPhone 8 Plus (1242x2208)/Apple iPhone 8 Plus Screenshot 3.png
+Resources/Screenshots/Apple iPhone 8 Plus (1242x2208)/Apple iPhone 8 Plus Screenshot 4.png
+Resources/Screenshots/Home Page Web.png
+Resources/Screenshots/IMG_1349.PNG
+Resources/Screenshots/IMG_1350.PNG
+Resources/Screenshots/IMG_1351.PNG
+Resources/Screenshots/IMG_1352.PNG
+Resources/Screenshots/Lock n Key Wallet-ES.mockup
+Resources/Screenshots/Lock n Key Wallet.mockup
+Resources/Screenshots/Mockup.psd
+Resources/Screenshots/Simulator Screen Shot - iPhone 13 Pro Max - 2021-12-08 at 10.37.49.png
+Resources/Screenshots/Simulator Screen Shot - iPhone 13 Pro Max - 2021-12-08 at 10.39.40.png
+Resources/Vector not used/.DS_Store
+Resources/Vector not used/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection/Data_security_28.eps
+Resources/Vector not used/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection/Data_security_28.jpg
+Resources/Vector not used/safe-concept-illustration/2867965.jpg
+Resources/Vector not used/safe-concept-illustration/2867966.ai
+Resources/Vector not used/safe-concept-illustration/2876888.eps
+Resources/Vector not used/safe-concept-illustration/License free.txt
+Resources/Vector not used/safe-concept-illustration/License premium.txt
+Resources/Vector not used/secure-server-concept-illustration/2948506.ai
+Resources/Vector not used/secure-server-concept-illustration/2948507.jpg
+Resources/Vector not used/secure-server-concept-illustration/2961021.eps
+Resources/Vector not used/secure-server-concept-illustration/License free.txt
+Resources/Vector not used/secure-server-concept-illustration/License premium.txt
+Resources/Vectors/-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection/Data_security_01.eps
+Resources/Vectors/-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection/Data_security_01.jpg
+Resources/Vectors/-hacker-breaking-lock-get-access-personal-information-computer-isometric/2007.i039.019_cyber_security_spyware_data_protection_isometric_set-16.eps
+Resources/Vectors/-hacker-breaking-lock-get-access-personal-information-computer-isometric/2007.i039.019_cyber_security_spyware_data_protection_isometric_set-16.jpg
+Resources/Vectors/-security-concept-illustration/2892856.jpg
+Resources/Vectors/-security-concept-illustration/2905296.eps
+Resources/Vectors/.DS_Store
+.DS_Store
+Lock n Key Wallet/Controller/DBControllers/DBManager.swift
+Lock n Key Wallet/Extras/.DS_Store
+Lock n Key Wallet/Extras/Encryption/Encryption.swift
+Lock n Key Wallet/Extras/Encryption/EncryptionPassword.swift
+Lock n Key Wallet/Resources/GoogleService-Info.plist
+Lock n Key Wallet/Resources/Info.plist
+.DS_Store
+Lock n Key Wallet/Extras/.DS_Store
