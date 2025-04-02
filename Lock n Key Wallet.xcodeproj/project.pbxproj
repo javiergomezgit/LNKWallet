@@ -33,13 +33,21 @@
 		2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */; };
 		2295C5812748722F0050FA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
 		2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5822748722F0050FA7D /* LaunchScreen.storyboard */; };
+		229F7EB72D9DBFCD00180C6B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EB62D9DBFCD00180C6B /* SDWebImage */; };
+		229F7EB92D9DBFCD00180C6B /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EB82D9DBFCD00180C6B /* SDWebImageMapKit */; };
+		229F7EBC2D9DC09F00180C6B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBB2D9DC09F00180C6B /* FirebaseAnalytics */; };
+		229F7EBE2D9DC09F00180C6B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBD2D9DC09F00180C6B /* FirebaseAuth */; };
+		229F7EC02D9DC09F00180C6B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBF2D9DC09F00180C6B /* FirebaseCrashlytics */; };
+		229F7EC22D9DC09F00180C6B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC12D9DC09F00180C6B /* FirebaseDatabase */; };
+		229F7EC42D9DC09F00180C6B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC32D9DC09F00180C6B /* FirebaseFirestore */; };
+		229F7EC62D9DC09F00180C6B /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC52D9DC09F00180C6B /* FirebaseInAppMessaging-Beta */; };
+		229F7EC82D9DC09F00180C6B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC72D9DC09F00180C6B /* FirebaseStorage */; };
 		22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BD8B41287A85E800AF53EA /* DataImageController.swift */; };
 		22CAFBD127543937006D02AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
-		B756A449FBC6C3F9D5732537 /* Pods_Lock_n_Key_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F86BDBF09CD8D15C4AF9BC2 /* Pods_Lock_n_Key_Wallet.framework */; };
+		3D69823B568CFCA67A0E9E2A /* Pods_Lock_n_Key_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB8B1DD79F69EF8022AD25B /* Pods_Lock_n_Key_Wallet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		20D5F502AE2A09042B9FCEC5 /* Pods-Lock n Key Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.release.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.release.xcconfig"; sourceTree = "<group>"; };
 		220ADAF8274DA60F0030FAAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		220ADAFA274DA9D70030FAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		220D757B2870BC88003461D1 /* DataCreditCardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCreditCardController.swift; sourceTree = "<group>"; };
@@ -70,8 +78,9 @@
 		2298D16B27498A3E00CCFBF2 /* Lock n Key Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lock n Key Wallet.entitlements"; sourceTree = "<group>"; };
 		22BD8B41287A85E800AF53EA /* DataImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageController.swift; sourceTree = "<group>"; };
 		22CAFBD027543937006D02AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		6F86BDBF09CD8D15C4AF9BC2 /* Pods_Lock_n_Key_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lock_n_Key_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB25395300FF7885990B7384 /* Pods-Lock n Key Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.debug.xcconfig"; sourceTree = "<group>"; };
+		6CB8B1DD79F69EF8022AD25B /* Pods_Lock_n_Key_Wallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lock_n_Key_Wallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DEFD857917A44C05E4B1287 /* Pods-Lock n Key Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.debug.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.debug.xcconfig"; sourceTree = "<group>"; };
+		B8DBF98E4D8E7459231A086E /* Pods-Lock n Key Wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock n Key Wallet.release.xcconfig"; path = "Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +89,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				220ADAF9274DA60F0030FAAD /* CloudKit.framework in Frameworks */,
+				229F7EB92D9DBFCD00180C6B /* SDWebImageMapKit in Frameworks */,
+				229F7EBC2D9DC09F00180C6B /* FirebaseAnalytics in Frameworks */,
+				229F7EC42D9DC09F00180C6B /* FirebaseFirestore in Frameworks */,
 				227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */,
-				B756A449FBC6C3F9D5732537 /* Pods_Lock_n_Key_Wallet.framework in Frameworks */,
+				229F7EC82D9DC09F00180C6B /* FirebaseStorage in Frameworks */,
+				229F7EB72D9DBFCD00180C6B /* SDWebImage in Frameworks */,
+				229F7EC62D9DC09F00180C6B /* FirebaseInAppMessaging-Beta in Frameworks */,
+				229F7EC02D9DC09F00180C6B /* FirebaseCrashlytics in Frameworks */,
+				229F7EC22D9DC09F00180C6B /* FirebaseDatabase in Frameworks */,
+				229F7EBE2D9DC09F00180C6B /* FirebaseAuth in Frameworks */,
+				3D69823B568CFCA67A0E9E2A /* Pods_Lock_n_Key_Wallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				220ADAF8274DA60F0030FAAD /* CloudKit.framework */,
-				6F86BDBF09CD8D15C4AF9BC2 /* Pods_Lock_n_Key_Wallet.framework */,
+				6CB8B1DD79F69EF8022AD25B /* Pods_Lock_n_Key_Wallet.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,8 +243,8 @@
 		958EFBAC3130A2ABABC21C9B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FB25395300FF7885990B7384 /* Pods-Lock n Key Wallet.debug.xcconfig */,
-				20D5F502AE2A09042B9FCEC5 /* Pods-Lock n Key Wallet.release.xcconfig */,
+				6DEFD857917A44C05E4B1287 /* Pods-Lock n Key Wallet.debug.xcconfig */,
+				B8DBF98E4D8E7459231A086E /* Pods-Lock n Key Wallet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -238,12 +256,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2295C5882748722F0050FA7D /* Build configuration list for PBXNativeTarget "Lock n Key Wallet" */;
 			buildPhases = (
-				2356B6BD00FAD98AC8CECC06 /* [CP] Check Pods Manifest.lock */,
+				01708F345D80D815DB081F64 /* [CP] Check Pods Manifest.lock */,
 				2295C56D2748722E0050FA7D /* Sources */,
 				2295C56E2748722E0050FA7D /* Frameworks */,
 				2295C56F2748722E0050FA7D /* Resources */,
 				22AA2339276D261A00E46D1B /* ShellScript */,
-				ED0F04DA0EA7D5A73D1C84FB /* [CP] Embed Pods Frameworks */,
+				ACFD765FA82778B05E38318D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,6 +270,15 @@
 			name = "Lock n Key Wallet";
 			packageProductDependencies = (
 				227B18F6285EB3320092D67E /* CreditCardScanner */,
+				229F7EB62D9DBFCD00180C6B /* SDWebImage */,
+				229F7EB82D9DBFCD00180C6B /* SDWebImageMapKit */,
+				229F7EBB2D9DC09F00180C6B /* FirebaseAnalytics */,
+				229F7EBD2D9DC09F00180C6B /* FirebaseAuth */,
+				229F7EBF2D9DC09F00180C6B /* FirebaseCrashlytics */,
+				229F7EC12D9DC09F00180C6B /* FirebaseDatabase */,
+				229F7EC32D9DC09F00180C6B /* FirebaseFirestore */,
+				229F7EC52D9DC09F00180C6B /* FirebaseInAppMessaging-Beta */,
+				229F7EC72D9DC09F00180C6B /* FirebaseStorage */,
 			);
 			productName = "Lock n Key Wallet";
 			productReference = 2295C5712748722E0050FA7D /* Lock n Key Wallet.app */;
@@ -265,7 +292,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					2295C5702748722E0050FA7D = {
 						CreatedOnToolsVersion = 13.1;
@@ -285,6 +312,8 @@
 			mainGroup = 2295C5682748722E0050FA7D;
 			packageReferences = (
 				227B18F5285EB3320092D67E /* XCRemoteSwiftPackageReference "credit-card-scanner" */,
+				229F7EB52D9DBFCD00180C6B /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 2295C5722748722E0050FA7D /* Products */;
 			projectDirPath = "";
@@ -312,26 +341,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22AA2339276D261A00E46D1B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\n";
-		};
-		2356B6BD00FAD98AC8CECC06 /* [CP] Check Pods Manifest.lock */ = {
+		01708F345D80D815DB081F64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,7 +363,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ED0F04DA0EA7D5A73D1C84FB /* [CP] Embed Pods Frameworks */ = {
+		22AA2339276D261A00E46D1B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_TEMP_DIR}/crashlytics_upload.log",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+		ACFD765FA82778B05E38318D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,9 +392,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Lock n Key Wallet/Pods-Lock n Key Wallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -426,6 +461,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -458,8 +494,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -488,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -520,8 +559,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -542,7 +583,7 @@
 		};
 		2295C5892748722F0050FA7D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB25395300FF7885990B7384 /* Pods-Lock n Key Wallet.debug.xcconfig */;
+			baseConfigurationReference = 6DEFD857917A44C05E4B1287 /* Pods-Lock n Key Wallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -551,7 +592,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SJK4QJY486;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "LNK Wallet";
@@ -581,7 +622,7 @@
 		};
 		2295C58A2748722F0050FA7D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20D5F502AE2A09042B9FCEC5 /* Pods-Lock n Key Wallet.release.xcconfig */;
+			baseConfigurationReference = B8DBF98E4D8E7459231A086E /* Pods-Lock n Key Wallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -590,7 +631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SJK4QJY486;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "LNK Wallet";
@@ -649,6 +690,22 @@
 				kind = branch;
 			};
 		};
+		229F7EB52D9DBFCD00180C6B /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.1.0;
+			};
+		};
+		229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -656,6 +713,51 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 227B18F5285EB3320092D67E /* XCRemoteSwiftPackageReference "credit-card-scanner" */;
 			productName = CreditCardScanner;
+		};
+		229F7EB62D9DBFCD00180C6B /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EB52D9DBFCD00180C6B /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		229F7EB82D9DBFCD00180C6B /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EB52D9DBFCD00180C6B /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		229F7EBB2D9DC09F00180C6B /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		229F7EBD2D9DC09F00180C6B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		229F7EBF2D9DC09F00180C6B /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		229F7EC12D9DC09F00180C6B /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		229F7EC32D9DC09F00180C6B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		229F7EC52D9DC09F00180C6B /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		229F7EC72D9DC09F00180C6B /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -6,15 +6,15 @@ target 'Lock n Key Wallet' do
   use_frameworks!
 
   # Pods for Lock n Key Wallet
-  pod 'SDWebImage'
+#  pod 'SDWebImage'
   pod 'SwiftyOnboard'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Crashlytics'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/Firestore'
+#  pod 'Firebase/Auth'
+#  pod 'Firebase/Database'
+#  pod 'Firebase/Storage'
+#  pod 'Firebase/Crashlytics'
+#  pod 'Firebase/Analytics'
+#  pod 'Firebase/Messaging'
+#  pod 'Firebase/Firestore'
   pod 'IndicateKit', '~> 1.0.5'
 
 end

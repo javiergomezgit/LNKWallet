@@ -228,9 +228,15 @@ extension SignInController: ASAuthorizationControllerDelegate {
                 return
             }
             
-            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+            let providerID = AuthProviderID.apple
+            let credential = OAuthProvider.credential(providerID: providerID,
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
+                                                    
+            //credential(providerID: AuthProviderID, idToken: String, rawNonce: String, accessToken: String? = nil) -> OAuthCredential`
+//            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+//                                                      idToken: idTokenString,
+//                                                      rawNonce: nonce)
             if !deletingAccount {
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     
