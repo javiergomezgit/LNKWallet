@@ -13,24 +13,24 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class SignInController: UIViewController {
-
+    
     public var completion: ((OAuthCredential) -> (Void))?
-        
+    
     @IBOutlet weak var loginViewWithLogo: UIView!
     @IBOutlet weak var loginView: UIStackView!
     fileprivate var currentNonce: String?
     public var deletingAccount = false
     private var signedPreviously = false
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        do {
-//            try Auth.auth().signOut()
-//            print ("SIGNout Firebase")
-//        } catch {
-//            print ("error signin out")
-//        }
+        //        do {
+        //            try Auth.auth().signOut()
+        //            print ("SIGNout Firebase")
+        //        } catch {
+        //            print ("error signin out")
+        //        }
         
         if !deletingAccount {
             setupInitials()
@@ -40,18 +40,18 @@ class SignInController: UIViewController {
     }
     
     private func setupInitials() {
-//        if UserDefaults.standard.value(forKey: "instant_auto_lock_time") == nil {
-//            UserDefaults.standard.set(true, forKey: "instant_auto_lock_time")
-//            UserDefaults.standard.set(true, forKey: "locked_app")
-//            UserDefaults.standard.set(true, forKey: "is_new_user")
-//            UserDefaults.standard.set(false, forKey: "found_passcode")
-//        }
-//        if UserDefaults.standard.value(forKey: "save_offline") == nil {
-//            UserDefaults.standard.set(false, forKey: "save_offline")
-//        }
-//        if UserDefaults.standard.value(forKey: "wrong_passcode") == nil {
-//            UserDefaults.standard.set("0", forKey: "wrong_passcode")
-//        }
+        //        if UserDefaults.standard.value(forKey: "instant_auto_lock_time") == nil {
+        //            UserDefaults.standard.set(true, forKey: "instant_auto_lock_time")
+        //            UserDefaults.standard.set(true, forKey: "locked_app")
+        //            UserDefaults.standard.set(true, forKey: "is_new_user")
+        //            UserDefaults.standard.set(false, forKey: "found_passcode")
+        //        }
+        //        if UserDefaults.standard.value(forKey: "save_offline") == nil {
+        //            UserDefaults.standard.set(false, forKey: "save_offline")
+        //        }
+        //        if UserDefaults.standard.value(forKey: "wrong_passcode") == nil {
+        //            UserDefaults.standard.set("0", forKey: "wrong_passcode")
+        //        }
         if UserDefaults.standard.value(forKey: "auto_lock_time") == nil {
             UserDefaults.standard.set(0, forKey: "auto_lock_time")
             UserDefaults.standard.set(true, forKey: "locked_app")
@@ -59,14 +59,14 @@ class SignInController: UIViewController {
             UserDefaults.standard.set(3, forKey: "amount_attempts")
             UserDefaults.standard.set(0, forKey: "attempted_failed")
         }
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         verifyNetwork()
-//        if !deletingAccount {
-//            verifyNetwork()
-//        }
+        //        if !deletingAccount {
+        //            verifyNetwork()
+        //        }
     }
     
     private func verifyNetwork() {
@@ -90,11 +90,11 @@ class SignInController: UIViewController {
             print("Internet Connection not Available!")
             
             let refreshAlert = UIAlertController(title: "Internet connection", message: "You will need internet for using this app", preferredStyle: UIAlertController.Style.alert)
-
+            
             refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                 exit(0);
             }))
-
+            
             present(refreshAlert, animated: true, completion: nil)
         }
     }
@@ -115,8 +115,8 @@ class SignInController: UIViewController {
         let userID = UserDefaults.standard.value(forKey: "firebase_user_id")
         if userID != nil && Auth.auth().currentUser?.uid != nil {
             DBManager.shared.verifyUserExists(userID: Auth.auth().currentUser!.uid) { exists in
-                print (exists)
                 if exists {
+                    print("User Exists")
                     DispatchQueue.main.async {
                         print("GOING to MAIN")
                         UserDefaults.standard.set(false, forKey: "is_new_user")
@@ -214,78 +214,109 @@ extension SignInController {
 }
 
 extension SignInController: ASAuthorizationControllerDelegate {
+
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        // Handle Apple ID credential
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
-                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+                fatalError("Invalid state: Login callback received without a nonce.")
             }
-            guard let appleIDToken = appleIDCredential.identityToken else {
-                print("Unable to fetch identity token")
+            guard let appleIDToken = appleIDCredential.identityToken,
+                  let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Failed to fetch or serialize identity token: \(appleIDCredential.identityToken?.debugDescription ?? "nil")")
                 return
             }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-                return
-            }
-            
-            let providerID = AuthProviderID.apple
-            let credential = OAuthProvider.credential(providerID: providerID,
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonce)
-                                                    
-            //credential(providerID: AuthProviderID, idToken: String, rawNonce: String, accessToken: String? = nil) -> OAuthCredential`
-//            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-//                                                      idToken: idTokenString,
-//                                                      rawNonce: nonce)
+
+            // Extract Apple ID info
+            let userID = appleIDCredential.user // Stable Apple ID identifier
+            let email = appleIDCredential.email // Available on first sign-in
+            let fullName = appleIDCredential.fullName // Available on first sign-in
+            let givenName = fullName?.givenName ?? ""
+            let familyName = fullName?.familyName ?? ""
+            let displayName = [givenName, familyName].joined(separator: " ").trimmingCharacters(in: .whitespaces)
+            let authorizedScopes = appleIDCredential.authorizedScopes // e.g., [.fullName, .email]
+
+            // Debug log
+            print("Apple ID: \(userID), Email: \(email ?? "nil"), Name: \(displayName), Scopes: \(authorizedScopes)")
+
+            // Create Firebase credential
+            let credential = OAuthProvider.credential(providerID: .apple, idToken: idTokenString, rawNonce: nonce)
+
             if !deletingAccount {
-                Auth.auth().signIn(with: credential) { (authResult, error) in
-                    
-                    let timeStampSignup = Int(authResult!.user.metadata.creationDate!.timeIntervalSince1970)
-                    UserDefaults.standard.set(timeStampSignup, forKey: "date_creation_user")
-
-                    if error != nil {
-                        print(error?.localizedDescription ?? "")
+                // Sign in with Firebase
+                Auth.auth().signIn(with: credential) { authResult, error in
+                    if let error = error {
+                        print("Firebase sign-in error: \(error.localizedDescription)")
                         return
-                    } else {
-                        guard let user = authResult?.user else { return }
-                        let isNewUser = authResult!.additionalUserInfo!.isNewUser
-                                                
-                        if isNewUser {
-                            UserDefaults.standard.set(true, forKey: "is_new_user")
-                            UserDefaults.standard.set(true, forKey: "locked_app")
-                            UserDefaults.standard.set(user.uid, forKey: "firebase_user_id")
+                    }
 
-                            
-                            let email = user.email ?? ""
-                            let displayName = user.displayName ?? ""
-                            let photoURL = user.photoURL?.absoluteString  ?? ""
-                            
-                            let db = Firestore.firestore()
-                            db.collection("User").document(user.uid).setData(["email": email, "displayName": displayName, "uid": user.uid, "dateCreated" : timeStampSignup, "photoURL": photoURL]) { err in
-                                if let err = err {
-                                    print("Error writing document: \(err)")
-                                } else {
-                                    print("the user has sign up or is logged in")
-                                }
+                    guard let user = authResult?.user else {
+                        print("No Firebase user returned")
+                        return
+                    }
+
+                    // Save creation timestamp
+                    let timeStampSignup = Int(user.metadata.creationDate?.timeIntervalSince1970 ?? 0)
+                    UserDefaults.standard.set(timeStampSignup, forKey: "date_creation_user")
+                    UserDefaults.standard.set(user.uid, forKey: "firebase_user_id")
+
+                    let isNewUser = authResult?.additionalUserInfo?.isNewUser ?? false
+                    UserDefaults.standard.set(isNewUser, forKey: "is_new_user")
+
+                    // Prepare Firestore data
+                    let db = Firestore.firestore()
+                    var userData: [String: Any] = [
+                        "uid": user.uid,
+                        "email": user.email ?? email ?? "",
+                        "displayName": user.displayName ?? displayName,
+                        "dateCreated": timeStampSignup,
+                        "photoURL": user.photoURL?.absoluteString ?? ""
+                    ]
+
+                    // Add Apple-specific fields
+                    if let appleEmail = email {
+                        userData["appleEmail"] = appleEmail
+                    }
+                    if !givenName.isEmpty {
+                        userData["givenName"] = givenName
+                    }
+                    if !familyName.isEmpty {
+                        userData["familyName"] = familyName
+                    }
+
+                    // Store or update Firestore
+                    if isNewUser {
+                        UserDefaults.standard.set(true, forKey: "locked_app")
+                        db.collection("User").document(user.uid).setData(userData) { err in
+                            if let err = err {
+                                print("Error writing to Firestore: \(err.localizedDescription)")
+                            } else {
+                                print("User data saved: \(user.uid)")
                             }
-                        } else {
-                            UserDefaults.standard.set(false, forKey: "is_new_user")
-                            UserDefaults.standard.set(user.uid, forKey: "firebase_user_id")
                         }
-                        
-                        DispatchQueue.main.async {
-                            print("GOING to MAIN")
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
-                            vc.modalPresentationStyle = .fullScreen
-                            vc.modalTransitionStyle = .crossDissolve
-                            self.show(vc, sender: nil)
+                    } else {
+                        db.collection("User").document(user.uid).updateData(userData) { err in
+                            if let err = err {
+                                print("Error updating Firestore: \(err.localizedDescription)")
+                            } else {
+                                print("User data updated: \(user.uid)")
+                            }
                         }
+                    }
+
+                    // Navigate to main screen
+                    DispatchQueue.main.async {
+                        print("Navigating to MainController")
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
+                        vc.modalPresentationStyle = .fullScreen
+                        vc.modalTransitionStyle = .crossDissolve
+                        self.show(vc, sender: nil)
                     }
                 }
             } else {
-                //Deleting account
-                self.completion!(credential)
+                // Handle account deletion
+                self.completion?(credential)
             }
         }
     }

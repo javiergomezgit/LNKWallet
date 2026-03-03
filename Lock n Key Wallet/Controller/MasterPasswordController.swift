@@ -30,6 +30,7 @@ class MasterPasswordController: UIViewController {
         passwordText.enablePasswordToggle()
         
         if setPassword {
+            //If new user or erased info -> Setting a new master password
             passwordText.placeholder = "Set Master Password"
             passwordButton.setTitle("Set Password", for: .normal)
         } else {
@@ -59,7 +60,7 @@ class MasterPasswordController: UIViewController {
                     self.passwordButton.setTitle("Set Password", for: .normal)
                 }
             } else {
-                print ("FOUND")
+                print ("FOUND pass")
                 self.setPassword = false
                 DispatchQueue.main.async {
                     self.passwordText.placeholder = "Type Password"
@@ -78,7 +79,7 @@ class MasterPasswordController: UIViewController {
         let timeStamp = Int(user.metadata.creationDate!.timeIntervalSince1970)
         UserDefaults.standard.set(timeStamp, forKey: "date_creation_user")
                             
-        if setPassword {
+        if self.setPassword {
             if temporalPassword == "" {
                 temporalPassword = cleanPassword
                 passwordText.text = ""
@@ -93,6 +94,13 @@ class MasterPasswordController: UIViewController {
                         if success {
                             DispatchQueue.main.async {
                                 self.dismiss(animated: true)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                let alertController = UIAlertController(title: "Error", message: "Couldn't save your master password. Please try again.", preferredStyle: .alert)
+                                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                                alertController.addAction(action)
+                                self.present(alertController, animated: true)
                             }
                         }
                         print ("Good pass \(cleanPassword)")
@@ -160,13 +168,14 @@ class MasterPasswordController: UIViewController {
 
         if sizePassword > 8 && specialCharacter && uppercase {
             passwordButton.isEnabled = true
-            requirementsLabel.alpha = 0.9
+            passwordButton.alpha = 1
+            requirementsLabel.alpha = 1
             requirementsLabel.textColor = .blue
         } else {
             requirementsLabel.alpha = 0.5
             requirementsLabel.textColor = .label
             passwordButton.isEnabled = false
+            passwordButton.alpha = 0.5
         }
     }
 }
-

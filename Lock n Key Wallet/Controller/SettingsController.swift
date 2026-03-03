@@ -14,6 +14,13 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var attemptsTextField: UITextField!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var instantAutoLockSwitch: UISwitch!
+
+    private func configureActionSheetPopover(_ alert: UIAlertController, sourceView: UIView?) {
+        guard let popover = alert.popoverPresentationController else { return }
+        popover.sourceView = sourceView ?? view
+        popover.sourceRect = sourceView?.bounds ?? CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 1, height: 1)
+        popover.permittedArrowDirections = sourceView == nil ? [] : .any
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +88,7 @@ class SettingsController: UITableViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        configureActionSheetPopover(alert, sourceView: sender)
         present(alert, animated: true)
         
     }
@@ -102,10 +110,22 @@ class SettingsController: UITableViewController {
                     if error == nil {
                         DBManager.shared.deleteAccount(userID: Auth.auth().currentUser!.uid) { success in
                             if success {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                        exit(0)
+                                DispatchQueue.main.async {
+                                    do {
+                                        try Auth.auth().signOut()
+                                    } catch {
+                                        print("Error signing out after deleting account: \(error)")
+                                    }
+
+                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let signInVC = storyboard.instantiateViewController(identifier: "SignInController")
+                                    signInVC.modalPresentationStyle = .fullScreen
+
+                                    if let window = self.view.window {
+                                        window.rootViewController = signInVC
+                                        window.makeKeyAndVisible()
+                                    } else {
+                                        self.present(signInVC, animated: true)
                                     }
                                 }
                             }
@@ -116,6 +136,7 @@ class SettingsController: UITableViewController {
             self.present(vc, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        configureActionSheetPopover(alert, sourceView: sender as? UIView)
         present(alert, animated: true)
     }
     
@@ -158,5 +179,4 @@ class SettingsController: UITableViewController {
 //        header.textLabel?.textAlignment = .justified
     }
 }
-
 

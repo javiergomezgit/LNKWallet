@@ -175,38 +175,19 @@ class CopyableLabel: UILabel {
 
     func sharedInit() {
         self.isUserInteractionEnabled = true
-        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.showMenu)))
-    }
-
-    @objc func showMenu(sender: AnyObject?) {
-        self.becomeFirstResponder()
-
-        let menu = UIMenuController.shared
-
-        if !menu.isMenuVisible {
-            menu.showMenu(from: self, rect: self.bounds)
-        }
-    }
-
-    override func copy(_ sender: Any?) {
-        let board = UIPasteboard.general
-
-        board.string = text
-
-        let menu = UIMenuController.shared
-
-        menu.showMenu(from: self, rect: self.bounds)
-    }
-
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return action == #selector(UIResponderStandardEditActions.copy)
+        self.addInteraction(UIContextMenuInteraction(delegate: self))
     }
 }
 
-
+extension CopyableLabel: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+            let copyAction = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+                UIPasteboard.general.string = self?.text
+            }
+            return UIMenu(title: "", children: [copyAction])
+        }
+    }
+}
 
 

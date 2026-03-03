@@ -54,8 +54,11 @@ class OpenVaultController: UIViewController {
         //        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
         //            UserDefaults.standard.set(true, forKey: "is_new_user")
         //        }
-        
-        if UserDefaults.standard.value(forKey: "is_new_user") as! Bool == true {
+
+        let isNewUser = UserDefaults.standard.object(forKey: "is_new_user") as? Bool ?? true
+        let isLocked = UserDefaults.standard.object(forKey: "locked_app") as? Bool ?? true
+
+        if isNewUser {
             print ("NEW USER")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
@@ -63,7 +66,7 @@ class OpenVaultController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         } else {
-            if UserDefaults.standard.value(forKey: "locked_app") as! Bool == true {
+            if isLocked {
                 //Goto master password unlock 
                 print ("NOT NEW USER")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
