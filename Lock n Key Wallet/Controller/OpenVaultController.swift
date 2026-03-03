@@ -97,17 +97,18 @@ class OpenVaultController: UIViewController {
 //            self.goToController(nameController: "DataCreditCardController")
 //        }
             
-        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "staroflife.fill")) { (action) in
+        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { (action) in
             print("Password action was tapped")
             self.goToController(nameController: "DataPasswordController")
         }
         
-        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "note.text")) { (action) in
+        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { (action) in
             print("Secure note was tapped")
             self.goToController(nameController: "DataSecureNoteController")
         }
         
-        let imageItem = UIAction(title: "Image", image: UIImage(named: "photo.circle")) { (action) in
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular)
+        let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill", withConfiguration: imageConfig)) { (action) in
             print("Image was tapped")
             self.goToController(nameController: "DataImageController")
         }

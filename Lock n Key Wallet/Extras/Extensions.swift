@@ -91,7 +91,13 @@ extension UIView {
 extension UITextField {
     fileprivate func setPasswordToggleImage(_ button: UIButton) {
         if(isSecureTextEntry){
-            button.setImage(UIImage(named: "eye"), for: .normal)
+            if #available(iOS 15.0, *) {
+                var config = button.configuration ?? UIButton.Configuration.plain()
+                config.image = UIImage(named: "eye")
+                button.configuration = config
+            } else {
+                button.setImage(UIImage(named: "eye"), for: .normal)
+            }
             
             if traitCollection.userInterfaceStyle == .light {
                 button.tintColor = UIColor(named: "darkblueAccent")!
@@ -99,7 +105,13 @@ extension UITextField {
                 button.tintColor = UIColor(named: "greenAccent")!
             }
         }else{
-            button.setImage(UIImage(named: "eye.slash"), for: .normal)
+            if #available(iOS 15.0, *) {
+                var config = button.configuration ?? UIButton.Configuration.plain()
+                config.image = UIImage(named: "eye.slash")
+                button.configuration = config
+            } else {
+                button.setImage(UIImage(named: "eye.slash"), for: .normal)
+            }
             if traitCollection.userInterfaceStyle == .light {
                 button.tintColor = UIColor(named: "greenAccent")!
             } else {
@@ -112,7 +124,13 @@ extension UITextField {
     func enablePasswordToggle(){
         let button = UIButton(type: .custom)
         setPasswordToggleImage(button)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        if #available(iOS 15.0, *) {
+            var config = UIButton.Configuration.plain()
+            config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: -16, bottom: 0, trailing: 0)
+            button.configuration = config
+        } else {
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        }
         button.frame = CGRect(x: CGFloat(self.frame.size.width - 25), y: CGFloat(5), width: CGFloat(35), height: CGFloat(35))
         button.addTarget(self, action: #selector(self.togglePasswordView), for: .touchUpInside)
         self.rightView = button
@@ -189,5 +207,4 @@ extension CopyableLabel: UIContextMenuInteractionDelegate {
         }
     }
 }
-
 

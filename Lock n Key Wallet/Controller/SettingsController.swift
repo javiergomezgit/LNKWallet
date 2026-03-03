@@ -142,14 +142,14 @@ class SettingsController: UITableViewController {
     
     
     @IBAction func privacyTapped(_ sender: UIButton) {
-        if let url = URL(string: "https://www.locknkey.app/privacy-policy-lock-n-key-wallet/") {
+        if let url = URL(string: "https://jdevit.com/privacy-policy-lock-n-key-wallet/") {
             let svc = SFSafariViewController(url: url)
             self.present(svc, animated: true, completion: nil)
         }
     }
     
     @IBAction func contactTapped(_ sender: UIButton) {
-        if let url = URL(string: "https://www.locknkey.app/contact/") {
+        if let url = URL(string: "https://jdevit.com/contact/") {
             let svc = SFSafariViewController(url: url)
             self.present(svc, animated: true, completion: nil)
         }

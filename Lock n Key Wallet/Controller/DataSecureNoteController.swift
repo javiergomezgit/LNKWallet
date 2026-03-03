@@ -17,7 +17,6 @@ class DataSecureNoteController: UITableViewController {
     public var nameData = ""
     var secretKey = ""
     var creationDate = 0
-    var user = Auth.auth().currentUser
     
     override func viewWillAppear(_ animated: Bool) {
         if !nameData.isEmpty{
@@ -31,8 +30,11 @@ class DataSecureNoteController: UITableViewController {
     }
     
     private func loadEncryptedDataSecureNote() {
-        
-        DBManager.shared.getEncryptedDataSecureNote(userID: user!.uid, nameData: nameData) { lnkDataSecureNote in
+        guard let user = Auth.auth().currentUser else {
+            SessionManager.resetToSignIn(window: view.window)
+            return
+        }
+        DBManager.shared.getEncryptedDataSecureNote(userID: user.uid, nameData: nameData) { lnkDataSecureNote in
             if lnkDataSecureNote != nil {
                 let decryptedData = self.decryptDataSecureNote(encryptedDataSecureNote: lnkDataSecureNote!)
                 self.secureNoteTextView.text = decryptedData.secureNote
@@ -44,12 +46,13 @@ class DataSecureNoteController: UITableViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
-        if user  != nil {
-            secretKey = user!.uid
-            creationDate = Int(user!.metadata.creationDate!.timeIntervalSince1970)
-        } else {
-            print("NO user signed in")
-            exit(0)
+        guard let user = Auth.auth().currentUser else {
+            SessionManager.resetToSignIn(window: view.window)
+            return
+        }
+        secretKey = user.uid
+        if let creationDate = user.metadata.creationDate {
+            self.creationDate = Int(creationDate.timeIntervalSince1970)
         }
         
         //secureNoteTextView.cornersView(border: true, roundedCorner: 10)
@@ -69,8 +72,12 @@ class DataSecureNoteController: UITableViewController {
     
     private func saveDataPassword() {
         let encryptedData = encryptDataSecureNote()
+        guard let user = Auth.auth().currentUser else {
+            SessionManager.resetToSignIn(window: view.window)
+            return
+        }
         if encryptedData != nil {
-            DBManager.shared.saveEncryptedDataSecureNote(nameOfData: titleTextField.text!, lnkDataSecureNote: encryptedData!, userID: user!.uid) { success in
+            DBManager.shared.saveEncryptedDataSecureNote(nameOfData: titleTextField.text!, lnkDataSecureNote: encryptedData!, userID: user.uid) { success in
                 if success {
                     self.dismiss(animated: true)
 //                    let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
@@ -87,8 +94,12 @@ class DataSecureNoteController: UITableViewController {
     
     private func updateDataPassword() {
         let encryptedData = encryptDataSecureNote()
+        guard let user = Auth.auth().currentUser else {
+            SessionManager.resetToSignIn(window: view.window)
+            return
+        }
         if encryptedData != nil {
-            DBManager.shared.updateEncryptedDataSecureNote(nameOfData: titleTextField.text!, lnkDataSecureNote: encryptedData!, userID: user!.uid) { success in
+            DBManager.shared.updateEncryptedDataSecureNote(nameOfData: titleTextField.text!, lnkDataSecureNote: encryptedData!, userID: user.uid) { success in
                 if success {
                     let alertController = UIAlertController(title: "Updated", message: "Your information has been updated successfully", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in

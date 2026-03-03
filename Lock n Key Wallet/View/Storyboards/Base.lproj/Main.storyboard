@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cHw-rI-gwM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cHw-rI-gwM">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -606,7 +606,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vc-rN-NhJ">
-                                <rect key="frame" x="0.0" y="138" width="390" height="60"/>
+                                <rect key="frame" x="0.0" y="148" width="390" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ort-vU-x6k">
                                         <rect key="frame" x="16" y="14" width="75" height="32"/>
@@ -666,7 +666,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tZF-Ld-jRD">
-                                <rect key="frame" x="0.0" y="198" width="390" height="646"/>
+                                <rect key="frame" x="0.0" y="208" width="390" height="636"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lef-Yi-Uex"/>
@@ -879,7 +879,7 @@
                                                     </connections>
                                                 </button>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ULe-Pg-cda">
-                                                    <rect key="frame" x="294" y="9.6666666666666643" width="51" height="31"/>
+                                                    <rect key="frame" x="282" y="11" width="63" height="28"/>
                                                     <connections>
                                                         <action selector="instantAutoLockChanged:" destination="pjT-Mw-F6Z" eventType="valueChanged" id="u4B-xn-twt"/>
                                                     </connections>
@@ -989,7 +989,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPn-eI-s6V">
                                                     <rect key="frame" x="15" y="10" width="30" height="30"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.plaintext.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JUU-pI-23e">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.page.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JUU-pI-23e">
                                                             <rect key="frame" x="4.6666666666666679" y="4.9999999999999982" width="21" height="20.666666666666668"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -1190,7 +1190,7 @@
                     <tabBarItem key="tabBarItem" title="Open Vault" image="lock.rectangle.stack.fill" catalog="system" id="IrB-6a-cZz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RgG-RZ-RE9">
-                        <rect key="frame" x="0.0" y="94" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="94" width="390" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1211,7 +1211,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThO-kA-gzt">
-                                <rect key="frame" x="0.0" y="138" width="390" height="143.33333333333337"/>
+                                <rect key="frame" x="0.0" y="148" width="390" height="143.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasd@#wq3er2!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="fiU-4H-qaK">
                                         <rect key="frame" x="19.666666666666657" y="5.0000000000000036" width="351" height="57.333333333333343"/>
@@ -1239,7 +1239,7 @@
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="6" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="vCv-Jj-u6X">
-                                <rect key="frame" x="50.666666666666657" y="301.33333333333331" width="289" height="31"/>
+                                <rect key="frame" x="52.666666666666657" y="311.33333333333331" width="285" height="34"/>
                                 <color key="minimumTrackTintColor" systemColor="systemGray3Color"/>
                                 <color key="maximumTrackTintColor" systemColor="labelColor"/>
                                 <color key="thumbTintColor" name="darkblueHeader"/>
@@ -1248,37 +1248,37 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HC-UW-c2h">
-                                <rect key="frame" x="188.66666666666666" y="341.33333333333331" width="13" height="24"/>
+                                <rect key="frame" x="188.66666666666666" y="355.33333333333331" width="13" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzh-hN-ti8">
-                                <rect key="frame" x="36.333333333333336" y="301.33333333333331" width="11.333333333333336" height="30"/>
+                                <rect key="frame" x="36.333333333333336" y="311.33333333333331" width="11.333333333333336" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uM-fz-DhA">
-                                <rect key="frame" x="340.66666666666669" y="301.33333333333331" width="16.666666666666686" height="30"/>
+                                <rect key="frame" x="340.66666666666669" y="311.33333333333331" width="16.666666666666686" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="DnC-fT-QYx">
-                                <rect key="frame" x="58.666666666666657" y="401.33333333333331" width="273" height="126.66666666666669"/>
+                                <rect key="frame" x="58.666666666666657" y="415.33333333333331" width="273" height="126.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTp-ae-eBb">
-                                        <rect key="frame" x="0.0" y="0.0" width="273" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="273" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uppercase ABC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8f-7A-xlJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="224" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="28"/>
                                                 <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BKV-h7-i3h">
-                                                <rect key="frame" x="224.00000000000003" y="0.0" width="50.999999999999972" height="31"/>
+                                                <rect key="frame" x="212.00000000000003" y="0.0" width="62.999999999999972" height="28"/>
                                                 <connections>
                                                     <action selector="capitalLetterChanged:" destination="oAU-Yz-ohH" eventType="valueChanged" id="gfP-d7-4eJ"/>
                                                 </connections>
@@ -1286,16 +1286,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWl-5l-GCL">
-                                        <rect key="frame" x="0.0" y="48" width="273" height="31"/>
+                                        <rect key="frame" x="0.0" y="49.333333333333371" width="273" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers 123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xl6-dg-bAK">
-                                                <rect key="frame" x="0.0" y="0.0" width="224" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="28"/>
                                                 <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUp-1I-gOm">
-                                                <rect key="frame" x="224.00000000000003" y="0.0" width="50.999999999999972" height="31"/>
+                                                <rect key="frame" x="212.00000000000003" y="0.0" width="62.999999999999972" height="28"/>
                                                 <connections>
                                                     <action selector="digitsChanged:" destination="oAU-Yz-ohH" eventType="valueChanged" id="dGK-A2-RqS"/>
                                                 </connections>
@@ -1303,16 +1303,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y9-6a-sZQ">
-                                        <rect key="frame" x="0.0" y="95.666666666666686" width="273" height="31"/>
+                                        <rect key="frame" x="0.0" y="98.666666666666686" width="273" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbols ^@#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ph-WT-pKu">
-                                                <rect key="frame" x="0.0" y="0.0" width="224" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="212" height="28"/>
                                                 <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-8O-NZ8">
-                                                <rect key="frame" x="224.00000000000003" y="0.0" width="50.999999999999972" height="31"/>
+                                                <rect key="frame" x="212.00000000000003" y="0.0" width="62.999999999999972" height="28"/>
                                                 <connections>
                                                     <action selector="symbolsChanged:" destination="oAU-Yz-ohH" eventType="valueChanged" id="vzJ-b1-zCC"/>
                                                 </connections>
@@ -1330,8 +1330,8 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="doc.on.clipboard" catalog="system" symbolScale="large"/>
+                                <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule">
+                                    <imageReference key="image" image="document.on.clipboard" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17" scale="large"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -1344,9 +1344,14 @@
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
-                                    <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="eraser" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="large"/>
                                 </state>
+                                <buttonConfiguration key="configuration" style="plain" cornerStyle="capsule">
+                                    <imageReference key="image" image="eraser" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17" scale="large"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="regenerateButtonTapped:" destination="oAU-Yz-ohH" eventType="touchUpInside" id="Oz7-kw-xTv"/>
                                 </connections>
@@ -1403,8 +1408,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Generator" id="h6F-RA-kc6">
                         <barButtonItem key="rightBarButtonItem" id="wSu-2K-DOm">
-                            <view key="customView" userInteractionEnabled="NO" contentMode="scaleToFill" id="G4Y-lY-qjm">
-                                <rect key="frame" x="288" y="0.0" width="86" height="44"/>
+                            <view key="customView" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="G4Y-lY-qjm">
+                                <rect key="frame" x="284" y="4.0000000000000009" width="86" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -1434,7 +1439,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="gear.circle" catalog="system" id="5QX-fc-HQq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="maE-mU-r5o">
-                        <rect key="frame" x="0.0" y="94" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="94" width="390" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1453,7 +1458,7 @@
                     <tabBarItem key="tabBarItem" title="Generator" image="star.bubble.fill" catalog="system" id="kFN-gu-dHe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UWU-Ux-uI7">
-                        <rect key="frame" x="0.0" y="94" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="94" width="390" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1785,14 +1790,15 @@
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="coverUIView" width="1050" height="1050"/>
         <image name="delete.left.fill" catalog="system" width="128" height="102"/>
-        <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
-        <image name="doc.plaintext.fill" catalog="system" width="115" height="128"/>
+        <image name="document.on.clipboard" catalog="system" width="116" height="128"/>
         <image name="envelope.fill" catalog="system" width="128" height="85"/>
+        <image name="eraser" catalog="system" width="128" height="119"/>
         <image name="gear.circle" catalog="system" width="128" height="123"/>
         <image name="list.number" catalog="system" width="128" height="97"/>
         <image name="lock.rectangle.stack.fill" catalog="system" width="126" height="128"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="star.bubble.fill" catalog="system" width="128" height="110"/>
+        <image name="text.page.fill" catalog="system" width="115" height="128"/>
         <image name="x.circle.fill" catalog="system" width="128" height="123"/>
         <image name="xmark.octagon.fill" catalog="system" width="128" height="112"/>
         <namedColor name="allBubble">
@@ -1820,34 +1826,34 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

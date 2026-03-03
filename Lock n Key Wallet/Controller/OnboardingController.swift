@@ -48,7 +48,7 @@ extension OnboardingController: SwiftyOnboardDataSource, SwiftyOnboardDelegate {
         
         page.backgroundColor = UIColor(named: "mainOrange")
         
-        let locale = NSLocale.current.languageCode
+        let locale = Locale.current.language.languageCode?.identifier
         
         var nameOfImage = ""
         if locale == "es" {
