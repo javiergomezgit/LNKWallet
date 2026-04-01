@@ -46,7 +46,7 @@ extension OnboardingController: SwiftyOnboardDataSource, SwiftyOnboardDelegate {
         page.subTitle.isHidden = true
         page.title.isHidden = true
         
-        page.backgroundColor = UIColor(named: "mainOrange")
+        page.backgroundColor = .accentBrand
         
         let locale = Locale.current.language.languageCode?.identifier
         

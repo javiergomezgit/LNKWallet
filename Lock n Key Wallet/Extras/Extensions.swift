@@ -90,7 +90,7 @@ extension UIView {
 
 extension UITextField {
     fileprivate func setPasswordToggleImage(_ button: UIButton) {
-        if(isSecureTextEntry){
+        if isSecureTextEntry {
             if #available(iOS 15.0, *) {
                 var config = button.configuration ?? UIButton.Configuration.plain()
                 config.image = UIImage(named: "eye")
@@ -98,13 +98,8 @@ extension UITextField {
             } else {
                 button.setImage(UIImage(named: "eye"), for: .normal)
             }
-            
-            if traitCollection.userInterfaceStyle == .light {
-                button.tintColor = UIColor(named: "darkblueAccent")!
-            } else {
-                button.tintColor = UIColor(named: "greenAccent")!
-            }
-        }else{
+            button.tintColor = .accentBrand
+        } else {
             if #available(iOS 15.0, *) {
                 var config = button.configuration ?? UIButton.Configuration.plain()
                 config.image = UIImage(named: "eye.slash")
@@ -112,12 +107,7 @@ extension UITextField {
             } else {
                 button.setImage(UIImage(named: "eye.slash"), for: .normal)
             }
-            if traitCollection.userInterfaceStyle == .light {
-                button.tintColor = UIColor(named: "greenAccent")!
-            } else {
-                button.tintColor = UIColor(named: "mainOrange")!
-            }
-            
+            button.tintColor = .textSecondary
         }
     }
     

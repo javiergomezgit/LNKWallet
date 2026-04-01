@@ -18,7 +18,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        configureTabBar()
+        
         return true
+    }
+    
+    private func configureTabBar() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .backgroundChrome
+        appearance.shadowColor = .border
+
+        // Kill the pill
+        appearance.selectionIndicatorTintColor = .clear
+        appearance.selectionIndicatorImage = UIImage()
+
+        // Active
+        appearance.stackedLayoutAppearance.selected.iconColor = .accentBrand
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor.accentBrand,
+            .font: UIFont.systemFont(ofSize: 10, weight: .medium)
+        ]
+
+        // Inactive
+        appearance.stackedLayoutAppearance.normal.iconColor = .textSecondary
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.textSecondary,
+            .font: UIFont.systemFont(ofSize: 10, weight: .regular)
+        ]
+
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().tintColor = .accentBrand
+        UITabBar.appearance().unselectedItemTintColor = .textSecondary
+
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+        
+//        UITabBar.appearance().tintColor = .accentBrand
+//        UITabBar.appearance().unselectedItemTintColor = .textSecondary
     }
 
     // MARK: UISceneSession Lifecycle

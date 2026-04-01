@@ -16,16 +16,18 @@ class OpenVaultController: UIViewController {
     @IBOutlet weak var noteButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    
     let refreshControl = UIRefreshControl()
     private var lnkDatas = [LNKData]()
     //Search & Filter
     private var filteredDatas = [LNKData]()
     private var searchController = UISearchController()
     
+    var preFilterType: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .backgroundPrimary
         title = "Open Vault"
         
         configureTops()
@@ -46,14 +48,11 @@ class OpenVaultController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getAllDatas()
-        
     }
     
     @objc private func configureSecurity() {
-        //        if (UserDefaults.standard.value(forKey: "found_passcode") as! Bool) == false {
-        //            UserDefaults.standard.set(true, forKey: "is_new_user")
-        //        }
 
         let isNewUser = UserDefaults.standard.object(forKey: "is_new_user") as? Bool ?? true
         let isLocked = UserDefaults.standard.object(forKey: "locked_app") as? Bool ?? true
@@ -79,51 +78,32 @@ class OpenVaultController: UIViewController {
     }
     
     private func configureTops() {
-        
         allButton.roundCorners(amountCornerPercentage: 100)
         passButton.roundCorners(amountCornerPercentage: 100)
         ccButton.roundCorners(amountCornerPercentage: 100)
         noteButton.roundCorners(amountCornerPercentage: 100)
-        
+
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search in Vault"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-//        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard")) { (action) in
-//            print("Credit card was tapped")
-//            self.goToController(nameController: "DataCreditCardController")
-//        }
-            
-        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { (action) in
-            print("Password action was tapped")
+
+        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { _ in
             self.goToController(nameController: "DataPasswordController")
         }
-        
-        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { (action) in
-            print("Secure note was tapped")
+        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { _ in
             self.goToController(nameController: "DataSecureNoteController")
         }
-        
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular)
-        let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill", withConfiguration: imageConfig)) { (action) in
-            print("Image was tapped")
+        let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill")) { _ in
             self.goToController(nameController: "DataImageController")
         }
         let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, imageItem, secureNote])
-        
-        let rightButtonItem = UIBarButtonItem(image:  UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
-        
+
+        let rightButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
+        rightButtonItem.tintColor = .accentBrand  // ← set tint directly on the item, not via navigationItem
         self.navigationItem.rightBarButtonItem = rightButtonItem
-        
-        
-        if traitCollection.userInterfaceStyle == .light {
-            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "darkblueAccent")!
-        } else {
-            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "mainOrange")!
-        }
     }
     
     func updateUI() {
@@ -135,26 +115,43 @@ class OpenVaultController: UIViewController {
     }
     
     @objc private func goToController(nameController: String) {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: nameController)
-        //        vc.definesPresentationContext = true
-        //        vc.modalPresentationStyle = .overCurrentContext
-        //        navigationController?.present(vc, animated: true, completion: nil)
         self.present(vc, animated: true)
-        //        self.show(vc, sender: nil)
     }
     
-    private func getAllDatas(){
+//    private func getAllDatas(){
+//        DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
+//            
+//            self.lnkDatas.removeAll()
+//            self.filteredDatas.removeAll()
+//            self.refreshControl.endRefreshing()
+//            
+//            if result != nil {
+//                self.lnkDatas = result!
+//                self.filteredDatas = result!
+//                self.tableView.reloadData()
+//                self.updateUI()
+//            } else {
+//                self.updateUI()
+//            }
+//        }
+//    }
+  
+    private func getAllDatas() {
         DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
-            
             self.lnkDatas.removeAll()
             self.filteredDatas.removeAll()
             self.refreshControl.endRefreshing()
-            
-            if result != nil {
-                self.lnkDatas = result!
-                self.filteredDatas = result!
+
+            if let result {
+                self.lnkDatas = result
+                // Apply pre-filter if coming from home card
+                if let type = self.preFilterType {
+                    self.filteredDatas = result.filter { $0.typeData == type }
+                } else {
+                    self.filteredDatas = result
+                }
                 self.tableView.reloadData()
                 self.updateUI()
             } else {
@@ -167,7 +164,6 @@ class OpenVaultController: UIViewController {
         filteredDatas = lnkDatas
         tableView.reloadData()
     }
-    
     
     @IBAction func showPasswordsTapped(_ sender: Any) {
         filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
@@ -189,7 +185,6 @@ class OpenVaultController: UIViewController {
         })
         tableView.reloadData()
     }
-    
 }
 
 extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {

@@ -87,11 +87,6 @@ class DataCreditCardController: UITableViewController {
         } else {
             saveButton.setTitle("Save", for: .normal)
         }
-//        if traitCollection.userInterfaceStyle == .light {
-//            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "darkblueAccent")!
-//        } else {
-//            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "mainOrange")!
-//        }
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
@@ -208,7 +203,7 @@ class DataCreditCardController: UITableViewController {
         vc.subtitleLabelText = "Line up card within the lines"
         vc.labelTextColor = .white
         vc.cancelButtonTitleText = "Cancel"
-        vc.cancelButtonTitleTextColor = UIColor(named: "mainOrange")!
+        vc.cancelButtonTitleTextColor = .accentBrand
         vc.cameraViewCreditCardFrameStrokeColor = .white
         vc.cameraViewMaskLayerColor = .black
         vc.cameraViewMaskAlpha = 0.7

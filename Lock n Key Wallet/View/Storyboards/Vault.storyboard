@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aL9-4V-w4e">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Vault Home View Controller-->
+        <scene sceneID="br2-44-boC">
+            <objects>
+                <viewController storyboardIdentifier="VaultHomeViewController" id="aL9-4V-w4e" customClass="VaultHomeViewController" customModule="Lock_n_Key_Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q4o-Cw-gqV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8Xf-ZJ-Gtb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ5-1X-2QV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="663" y="-110"/>
+        </scene>
+        <!--Open Vault-->
+        <scene sceneID="NI0-xr-inb">
+            <objects>
+                <viewController storyboardIdentifier="OpenVaultController" title="Open Vault" id="9tD-iP-BuC" customClass="OpenVaultController" customModule="Lock_n_Key_Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uLC-7H-OHo">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ud-se-U1r">
+                                <rect key="frame" x="0.0" y="118" width="393" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="des-8e-6jg">
+                                        <rect key="frame" x="16" y="14" width="75" height="32"/>
+                                        <color key="backgroundColor" name="allBubble"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="All">
+                                            <color key="titleColor" name="darkblueAccent"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showAllTapped:" destination="9tD-iP-BuC" eventType="touchUpInside" id="vmQ-pd-EEz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="kRe-kV-cjR">
+                                        <rect key="frame" x="217" y="14" width="97" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="filterBubbles"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Passwords">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPasswordsTapped:" destination="9tD-iP-BuC" eventType="touchUpInside" id="j1A-rp-1T5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ux1-bn-GnV">
+                                        <rect key="frame" x="99" y="14" width="110" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="filterBubbles"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Images">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showCreditCardsTapped:" destination="9tD-iP-BuC" eventType="touchUpInside" id="Vcm-Kq-Qk4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="1DJ-jr-Nb7">
+                                        <rect key="frame" x="322" y="14" width="52" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="filterBubbles"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Notes">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showSecureNoteTapped:" destination="9tD-iP-BuC" eventType="touchUpInside" id="4nN-7r-teP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="des-8e-6jg" firstAttribute="top" secondItem="ux1-bn-GnV" secondAttribute="top" id="0ns-QA-tnk"/>
+                                    <constraint firstItem="des-8e-6jg" firstAttribute="firstBaseline" secondItem="ux1-bn-GnV" secondAttribute="baseline" id="6M5-l5-O6X"/>
+                                    <constraint firstAttribute="height" constant="60" id="Cjs-h5-GAj"/>
+                                    <constraint firstItem="des-8e-6jg" firstAttribute="leading" secondItem="9ud-se-U1r" secondAttribute="leading" constant="16" id="Z2w-JC-eWV"/>
+                                    <constraint firstItem="ux1-bn-GnV" firstAttribute="leading" secondItem="des-8e-6jg" secondAttribute="trailing" constant="8" id="ain-MP-X8D"/>
+                                    <constraint firstItem="kRe-kV-cjR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ux1-bn-GnV" secondAttribute="trailing" constant="8" symbolic="YES" id="uQZ-fn-BKD"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="poi-cB-pth">
+                                <rect key="frame" x="0.0" y="178" width="393" height="674"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Gq-p4-eeO"/>
+                        <constraints>
+                            <constraint firstItem="poi-cB-pth" firstAttribute="trailing" secondItem="9Gq-p4-eeO" secondAttribute="trailing" id="9sU-oN-ihZ"/>
+                            <constraint firstItem="9ud-se-U1r" firstAttribute="top" secondItem="9Gq-p4-eeO" secondAttribute="top" id="LNK-kz-6vz"/>
+                            <constraint firstItem="poi-cB-pth" firstAttribute="top" secondItem="9ud-se-U1r" secondAttribute="bottom" id="ML7-sE-oZC"/>
+                            <constraint firstItem="9ud-se-U1r" firstAttribute="leading" secondItem="9Gq-p4-eeO" secondAttribute="leading" id="adP-T5-UrJ"/>
+                            <constraint firstItem="poi-cB-pth" firstAttribute="leading" secondItem="9Gq-p4-eeO" secondAttribute="leading" id="b4y-Kv-7RM"/>
+                            <constraint firstItem="9Gq-p4-eeO" firstAttribute="trailing" secondItem="9ud-se-U1r" secondAttribute="trailing" id="l0z-xw-xlZ"/>
+                            <constraint firstAttribute="bottom" secondItem="poi-cB-pth" secondAttribute="bottom" id="vab-4x-Ad4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Open Vault" largeTitleDisplayMode="always" id="Hsl-qn-OBX"/>
+                    <connections>
+                        <outlet property="allButton" destination="des-8e-6jg" id="EHv-kH-nw7"/>
+                        <outlet property="ccButton" destination="ux1-bn-GnV" id="85q-o7-yHD"/>
+                        <outlet property="noteButton" destination="1DJ-jr-Nb7" id="mx7-1m-EX9"/>
+                        <outlet property="passButton" destination="kRe-kV-cjR" id="GYW-c4-bYe"/>
+                        <outlet property="tableView" destination="poi-cB-pth" id="sZY-kj-NKX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2P-Gm-vT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1463" y="-111"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="allBubble">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darkblueAccent">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="filterBubbles">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

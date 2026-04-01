@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cHw-rI-gwM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cHw-rI-gwM">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -94,20 +93,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q84-dl-pi3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="mainOrange"/>
-                        <color key="barTintColor" name="mainOrange"/>
-                        <color key="selectedImageTintColor" name="darkblueAccent"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
-                                <color key="value" name="lightBackground"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" name="darkblueAccent"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                <color key="value" name="mainOrange"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="na0-FH-jEh" kind="relationship" relationship="viewControllers" id="4Mt-Ab-3Wf"/>
@@ -596,103 +581,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDw-Qv-xLA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1460" y="-1"/>
-        </scene>
-        <!--Open Vault-->
-        <scene sceneID="hYo-2L-9qU">
-            <objects>
-                <viewController storyboardIdentifier="OpenVaultController" title="Open Vault" id="xuO-Mn-Q3W" customClass="OpenVaultController" customModule="Lock_n_Key_Wallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="puy-vx-PSz">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vc-rN-NhJ">
-                                <rect key="frame" x="0.0" y="148" width="390" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ort-vU-x6k">
-                                        <rect key="frame" x="16" y="14" width="75" height="32"/>
-                                        <color key="backgroundColor" name="allBubble"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="All">
-                                            <color key="titleColor" name="darkblueAccent"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showAllTapped:" destination="xuO-Mn-Q3W" eventType="touchUpInside" id="i7O-hk-Ky8"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Dpk-uA-PMo">
-                                        <rect key="frame" x="217" y="14" width="97" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="filterBubbles"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Passwords">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showPasswordsTapped:" destination="xuO-Mn-Q3W" eventType="touchUpInside" id="4rg-js-X4T"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="gFt-Fb-McT">
-                                        <rect key="frame" x="99" y="14" width="110" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="filterBubbles"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Images">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showCreditCardsTapped:" destination="xuO-Mn-Q3W" eventType="touchUpInside" id="GPP-cw-11Q"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="NCz-Yf-Rg7">
-                                        <rect key="frame" x="322" y="14" width="52" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="filterBubbles"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Notes">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showSecureNoteTapped:" destination="xuO-Mn-Q3W" eventType="touchUpInside" id="706-bA-NTE"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="ort-vU-x6k" firstAttribute="leading" secondItem="6Vc-rN-NhJ" secondAttribute="leading" constant="16" id="AgC-08-8ms"/>
-                                    <constraint firstItem="gFt-Fb-McT" firstAttribute="leading" secondItem="ort-vU-x6k" secondAttribute="trailing" constant="8" id="cgq-PY-TD4"/>
-                                    <constraint firstAttribute="height" constant="60" id="eqb-j1-cM4"/>
-                                    <constraint firstItem="ort-vU-x6k" firstAttribute="top" secondItem="gFt-Fb-McT" secondAttribute="top" id="je8-dJ-nEt"/>
-                                    <constraint firstItem="Dpk-uA-PMo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gFt-Fb-McT" secondAttribute="trailing" constant="8" symbolic="YES" id="noC-bA-6ia"/>
-                                    <constraint firstItem="ort-vU-x6k" firstAttribute="firstBaseline" secondItem="gFt-Fb-McT" secondAttribute="baseline" id="r47-ZM-cUK"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="scrollableAxes" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tZF-Ld-jRD">
-                                <rect key="frame" x="0.0" y="208" width="390" height="636"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="lef-Yi-Uex"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="tZF-Ld-jRD" firstAttribute="leading" secondItem="lef-Yi-Uex" secondAttribute="leading" id="0q6-CF-xKn"/>
-                            <constraint firstItem="tZF-Ld-jRD" firstAttribute="top" secondItem="6Vc-rN-NhJ" secondAttribute="bottom" id="9Bc-HG-1O9"/>
-                            <constraint firstItem="tZF-Ld-jRD" firstAttribute="trailing" secondItem="lef-Yi-Uex" secondAttribute="trailing" id="9Hi-Nu-9OB"/>
-                            <constraint firstAttribute="bottom" secondItem="tZF-Ld-jRD" secondAttribute="bottom" id="F1w-8F-Z5q"/>
-                            <constraint firstItem="6Vc-rN-NhJ" firstAttribute="top" secondItem="lef-Yi-Uex" secondAttribute="top" id="F3P-kS-N01"/>
-                            <constraint firstItem="lef-Yi-Uex" firstAttribute="trailing" secondItem="6Vc-rN-NhJ" secondAttribute="trailing" id="PWB-Vy-cxF"/>
-                            <constraint firstItem="6Vc-rN-NhJ" firstAttribute="leading" secondItem="lef-Yi-Uex" secondAttribute="leading" id="kHP-VP-yEq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Open Vault" largeTitleDisplayMode="always" id="xWa-Ea-gk2"/>
-                    <connections>
-                        <outlet property="allButton" destination="ort-vU-x6k" id="4ww-la-R3d"/>
-                        <outlet property="ccButton" destination="gFt-Fb-McT" id="mGh-Iv-njG"/>
-                        <outlet property="noteButton" destination="NCz-Yf-Rg7" id="BAZ-Db-HX4"/>
-                        <outlet property="passButton" destination="Dpk-uA-PMo" id="ZOY-fl-aPX"/>
-                        <outlet property="tableView" destination="tZF-Ld-jRD" id="2jS-WY-mgA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AP4-nd-gUh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-804.61538461538464" y="1425.3554502369668"/>
         </scene>
         <!--Settings-->
         <scene sceneID="OLJ-QR-67W">
@@ -1195,12 +1083,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="xuO-Mn-Q3W" kind="relationship" relationship="rootViewController" id="K2Q-If-QMC"/>
+                        <segue destination="ByE-lt-QiF" kind="relationship" relationship="rootViewController" id="m3Y-8x-4MC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C14-TX-M50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-804" y="723"/>
+        </scene>
+        <!--VaultHomeViewController-->
+        <scene sceneID="jdD-nL-iAh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Vault" referencedIdentifier="VaultHomeViewController" id="ByE-lt-QiF" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="te7-th-tvc"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Uo-W4-OfI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-805" y="1157"/>
         </scene>
         <!--GeneratePasswordController-->
         <scene sceneID="NJk-aw-ugU">
@@ -1408,7 +1306,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Generator" id="h6F-RA-kc6">
                         <barButtonItem key="rightBarButtonItem" id="wSu-2K-DOm">
-                            <view key="customView" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" id="G4Y-lY-qjm">
+                            <view key="customView" userInteractionEnabled="NO" contentMode="scaleToFill" id="G4Y-lY-qjm">
                                 <rect key="frame" x="284" y="4.0000000000000009" width="86" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1801,14 +1699,8 @@
         <image name="text.page.fill" catalog="system" width="115" height="128"/>
         <image name="x.circle.fill" catalog="system" width="128" height="123"/>
         <image name="xmark.octagon.fill" catalog="system" width="128" height="112"/>
-        <namedColor name="allBubble">
-            <color red="0.98400002717971802" green="0.92500001192092896" blue="0.7369999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="darkBackground">
             <color red="0.078000001609325409" green="0.078000001609325409" blue="0.078000001609325409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="darkblueAccent">
-            <color red="0.0040000001899898052" green="0.086000002920627594" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="darkblueHeader">
             <color red="0.0040000001899898052" green="0.086000002920627594" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1826,34 +1718,34 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.55294117647058827" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.55294117649999996" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.21960784310000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

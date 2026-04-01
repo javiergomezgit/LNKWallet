@@ -62,22 +62,13 @@ class DataPasswordController: UITableViewController {
     
     private func configureTops() {
         title = "Save Data"
-//        let rightButtonImage = UIImage(systemName: "icloud.and.arrow.up.fill")?.withRenderingMode(.alwaysTemplate)
         if !nameData.isEmpty {
             saveButton.setTitle("Update", for: .normal)
-//            let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self, action: #selector(updateDataPassword))
-//            self.navigationItem.rightBarButtonItem = rightButton
+
         } else {
             saveButton.setTitle("Save", for: .normal)
-//            let rightButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self, action: #selector(saveDataPassword))
-//            self.navigationItem.rightBarButtonItem = rightButton
+
         }
-//
-//        if traitCollection.userInterfaceStyle == .light {
-//            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "darkblueAccent")!
-//        } else {
-//            navigationItem.rightBarButtonItem!.tintColor = UIColor(named: "mainOrange")!
-//        }
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {

@@ -22,6 +22,11 @@
 		222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222C972927487D9C004C077E /* Onboarding.storyboard */; };
 		224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
 		224E868D285F6FE200F4A575 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868B285F6FE200F4A575 /* Encryption.swift */; };
+		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
+		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
+		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
+		227421842F7DAE280027D985 /* CategoryCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421832F7DAE030027D985 /* CategoryCardCell.swift */; };
+		227421862F7DAE620027D985 /* RecentItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421852F7DAE530027D985 /* RecentItemCell.swift */; };
 		227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 227B18F6285EB3320092D67E /* CreditCardScanner */; };
 		227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB79E275FABCB0013647B /* OnboardingController.swift */; };
 		227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FB7A0275FAEBA0013647B /* Reachability.swift */; };
@@ -64,6 +69,11 @@
 		222C972927487D9C004C077E /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		224E868A285F6FE100F4A575 /* EncryptionPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionPassword.swift; sourceTree = "<group>"; };
 		224E868B285F6FE200F4A575 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
+		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
+		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
+		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
+		227421832F7DAE030027D985 /* CategoryCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCardCell.swift; sourceTree = "<group>"; };
+		227421852F7DAE530027D985 /* RecentItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentItemCell.swift; sourceTree = "<group>"; };
 		227FB79E275FABCB0013647B /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		227FB7A0275FAEBA0013647B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		2283FD3D2873B01600F8B21C /* DataSecureNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSecureNoteController.swift; sourceTree = "<group>"; };
@@ -143,8 +153,8 @@
 			children = (
 				2295C5822748722F0050FA7D /* LaunchScreen.storyboard */,
 				2295C57A2748722E0050FA7D /* Main.storyboard */,
+				2274217D2F7DA7200027D985 /* Vault.storyboard */,
 				222C972927487D9C004C077E /* Onboarding.storyboard */,
-				222384EF27517FFF00FBF76A /* DatasViewCell.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -153,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				220ADAFA274DA9D70030FAAD /* Model.swift */,
+				227421812F7DAD530027D985 /* VaultCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +171,9 @@
 		222C971827487746004C077E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				227421852F7DAE530027D985 /* RecentItemCell.swift */,
+				222384EF27517FFF00FBF76A /* DatasViewCell.swift */,
+				227421832F7DAE030027D985 /* CategoryCardCell.swift */,
 				222C97162748772D004C077E /* Storyboards */,
 				222384F32751800400FBF76A /* xib */,
 			);
@@ -179,6 +193,7 @@
 				222C972327487B8F004C077E /* SettingsController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
+				2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */,
 				222384EC2751791400FBF76A /* DBControllers */,
 			);
 			path = Controller;
@@ -295,7 +310,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					2295C5702748722E0050FA7D = {
 						CreatedOnToolsVersion = 13.1;
@@ -333,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */,
+				2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */,
 				222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */,
 				222C971C27487841004C077E /* GoogleService-Info.plist in Resources */,
 				2295C5812748722F0050FA7D /* Assets.xcassets in Resources */,
@@ -416,12 +432,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				220D757E287116AC003461D1 /* DataPasswordController.swift in Sources */,
+				227421842F7DAE280027D985 /* CategoryCardCell.swift in Sources */,
 				7A1B2C3D4E5F678901234568 /* SessionManager.swift in Sources */,
 				222C972427487B8F004C077E /* SettingsController.swift in Sources */,
 				22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */,
 				2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */,
 				2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */,
+				227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,
+				227421862F7DAE620027D985 /* RecentItemCell.swift in Sources */,
 				2283FD3E2873B01600F8B21C /* DataSecureNoteController.swift in Sources */,
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
@@ -434,6 +453,7 @@
 				22CAFBD127543937006D02AA /* Extensions.swift in Sources */,
 				222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */,
 				227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */,
+				227421822F7DAD550027D985 /* VaultCategory.swift in Sources */,
 				2295C5772748722E0050FA7D /* SceneDelegate.swift in Sources */,
 				222384C7274D361D00FBF76A /* MasterPasswordController.swift in Sources */,
 			);
@@ -596,9 +616,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
@@ -620,6 +642,7 @@
 				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_COMPILATION_MODE = incremental;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -636,9 +659,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2.0.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Lock n Key Wallet/Resources/Info.plist";
@@ -660,6 +685,7 @@
 				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
