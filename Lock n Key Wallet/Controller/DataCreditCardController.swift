@@ -18,7 +18,6 @@ class DataCreditCardController: UITableViewController {
     @IBOutlet weak var ccvTextField: UITextField!
     @IBOutlet weak var zipCodeTextField: UITextField!
     @IBOutlet weak var expirationButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     
     
     let pickerView = UIPickerView()
@@ -34,7 +33,7 @@ class DataCreditCardController: UITableViewController {
     var creationDate = 0
     var user = Auth.auth().currentUser
     
-    @IBAction func exitButtonTapped(_ sender: UIButton) {
+    @IBAction func exitButtonTapped(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
@@ -62,34 +61,61 @@ class DataCreditCardController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.hideKeyboardWhenTappedAround()
-        configureTops()
-        expirationButton.cornersView(border: true, roundedCorner: 10)
-        
-        if user  != nil {
+        view.backgroundColor = .backgroundPrimary
+        tableView.backgroundColor = .backgroundPrimary
+        tableView.separatorColor = .clear
+
+        styleFormNavBar(title: nameData.isEmpty ? "New Card" : "Credit Card")
+        styleTextField(accountNameTextField, placeholder: "Card nickname (e.g. Chase Visa)", accent: .accentCards)
+        styleTextField(cardholderNameTextField, placeholder: "Cardholder name", accent: .accentCards)
+        styleTextField(cardNumberTextField, placeholder: "Card number", accent: .accentCards)
+        styleTextField(ccvTextField, placeholder: "CCV", accent: .accentCards)
+        styleTextField(zipCodeTextField, placeholder: "ZIP code", accent: .accentCards)
+
+        // Style expiration button
+        // Replace the expiration button config block with this:
+        var config = UIButton.Configuration.plain()
+        config.title = "MM / YY"
+        config.baseForegroundColor = .textSecondary
+        config.background.backgroundColor = .backgroundSecondary
+        config.background.strokeColor = UIColor.border
+        config.background.strokeWidth = 0.5
+        config.background.cornerRadius = 10
+        config.cornerStyle = .fixed
+        expirationButton.configuration = config
+
+        if user != nil {
             secretKey = user!.uid
             creationDate = Int(user!.metadata.creationDate!.timeIntervalSince1970)
         } else {
-            print("NO user signed in")
             exit(0)
         }
-        
+
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20.0, height: 200)
+        pickerView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width - 20, height: 200)
+        
+        // Left — close button
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(exitButtonTapped))
+        closeButton.tintColor = .textSecondary
+        navigationItem.leftBarButtonItem = closeButton
+
+        // Right — save button
+        let saveBtn = UIBarButtonItem(title: nameData.isEmpty ? "Save" : "Update",
+                                       style: .done,
+                                       target: self,
+                                       action: #selector(saveButtonTapped))
+        saveBtn.tintColor = .accentCards
+        navigationItem.rightBarButtonItem = saveBtn
+
+        self.title = nameData.isEmpty ? "New Card" : "Card"
     }
     
-    private func configureTops() {
-        title = "Credit Card"
-        if !nameData.isEmpty {
-            saveButton.setTitle("Update", for: .normal)
-        } else {
-            saveButton.setTitle("Save", for: .normal)
-        }
-    }
-    
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
+    @IBAction func saveButtonTapped(_ sender: Any) {
         if !nameData.isEmpty {
             updateData()
         } else {
@@ -97,13 +123,10 @@ class DataCreditCardController: UITableViewController {
         }
     }
     
-    
     private func saveData() {
     
         if verifyEmptyField() {
-           
             let encryptedData =  encryptDataCreditCard()
-            
             if encryptedData != nil {
                 DBManager.shared.saveEncryptedCreditCard(nameOfData: accountNameTextField.text!, lnkDataCreditCard: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
@@ -137,7 +160,6 @@ class DataCreditCardController: UITableViewController {
                         let alertController = UIAlertController(title: "Updated", message: "Your information has been updated successfully", preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
                             self.dismiss(animated: true)
-//                            self.navigationController?.popToRootViewController(animated: true)
                         })
                         alertController.addAction(action)
                         self.present(alertController, animated: true) {
@@ -174,9 +196,7 @@ class DataCreditCardController: UITableViewController {
         let decryptedData = LNKDataCreditCard(nameData: accName, nameOnCard: name, numberCard: number, securityCode: ccv, zipCode: zip, expDate: exp)
         return decryptedData
     }
-    
-    
-    
+        
     private func verifyEmptyField() -> Bool {
         var verify = false
         if accountNameTextField.text == "" ||
@@ -210,7 +230,6 @@ class DataCreditCardController: UITableViewController {
         vc.textBackgroundColor = .black
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
-        
         
     }
     
@@ -283,7 +302,6 @@ extension DataCreditCardController: CreditCardScannerViewControllerDelegate {
     
     func creditCardScannerViewController(_ viewController: CreditCardScannerViewController, didErrorWith error: CreditCardScannerError) {
         print(error.errorDescription ?? "")
-        //        resultLabel.text = error.errorDescription
         viewController.dismiss(animated: true, completion: nil)
     }
     

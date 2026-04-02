@@ -59,26 +59,50 @@ class VaultHomeViewController: UIViewController {
     // MARK: - Data
     private func fetchData() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
 
-        DBManager.shared.getAllDatas(userID: uid) { [weak self] result in
-            guard let self else { return }
-            self.allDatas = result ?? []
+        // Fetch all for counts
+        db.collection("User").document(uid)
+            .collection("secret_datas")
+            .getDocuments { [weak self] snapshot, _ in
+                guard let self, let docs = snapshot?.documents else { return }
 
-            // Reset counts
-            self.counts = ["type_2": 0, "type_1": 0, "type_4": 0, "type_3": 0]
-            for item in self.allDatas {
-                self.counts[item.typeData, default: 0] += 1
+                var all: [LNKData] = []
+                self.counts = ["type_2": 0, "type_1": 0, "type_4": 0, "type_3": 0]
+
+                for doc in docs {
+                    let name = doc.documentID
+                    let type = doc.get("key0") as? String ?? ""
+                    let item = LNKData(nameData: name, typeData: type)
+                    all.append(item)
+                    self.counts[type, default: 0] += 1
+                }
+
+                self.allDatas = all
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
 
-            // Recent = last 5 items (order from Firestore is insertion order)
-            self.recentItems = Array(self.allDatas.prefix(5))
+        // Fetch recent by lastAccessed
+        db.collection("User").document(uid)
+            .collection("secret_datas")
+            .order(by: "lastAccessed", descending: true)
+            .limit(to: 5)
+            .getDocuments { [weak self] snapshot, _ in
+                guard let self, let docs = snapshot?.documents else { return }
 
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.recentTableView.reloadData()
-                self.recentLabel.isHidden = self.recentItems.isEmpty
+                self.recentItems = docs.compactMap { doc in
+                    let name = doc.documentID
+                    guard let type = doc.get("key0") as? String else { return nil }
+                    return LNKData(nameData: name, typeData: type)
+                }
+
+                DispatchQueue.main.async {
+                    self.recentTableView.reloadData()
+                    self.recentLabel.isHidden = self.recentItems.isEmpty
+                }
             }
-        }
     }
 
     // MARK: - Navigation
@@ -90,23 +114,26 @@ class VaultHomeViewController: UIViewController {
     }
 
     private func navigateToAdd(_ identifier: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Vault", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: identifier)
-        present(vc, animated: true)
+        self.present(vc, animated: true)
     }
 
     // MARK: - Add Button Menu
     private func setupAddButton() {
         let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { _ in
-            self.navigateToAdd("DataPasswordController")
+            self.navigateToAdd("NavDataPasswordController")
+        }
+        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard.fill")) { _ in
+            self.navigateToAdd("NavDataCreditCardController")
         }
         let noteItem = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { _ in
-            self.navigateToAdd("DataSecureNoteController")
+            self.navigateToAdd("NavDataSecureNoteController")
         }
         let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill")) { _ in
-            self.navigateToAdd("DataImageController")
+            self.navigateToAdd("NavDataImageController")
         }
-        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, imageItem, noteItem])
+        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, creditCardItem, imageItem, noteItem])
         addButton.menu = menu
         addButton.showsMenuAsPrimaryAction = true
     }

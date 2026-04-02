@@ -12,7 +12,6 @@ class DataSecureNoteController: UITableViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var secureNoteTextView: UITextView!
-    @IBOutlet weak var saveButton: UIButton!
     
     public var nameData = ""
     var secretKey = ""
@@ -22,10 +21,10 @@ class DataSecureNoteController: UITableViewController {
         if !nameData.isEmpty{
             titleTextField.text = nameData
             titleTextField.isEnabled = false
-            saveButton.setTitle("Update", for: .normal)
+//            saveButton.setTitle("Update", for: .normal)
             loadEncryptedDataSecureNote()
         } else {
-            saveButton.setTitle("Save", for: .normal)
+//            saveButton.setTitle("Save", for: .normal)
         }
     }
     
@@ -45,32 +44,56 @@ class DataSecureNoteController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
+        view.backgroundColor = .backgroundPrimary
+        tableView.backgroundColor = .backgroundPrimary
+        tableView.separatorColor = .clear
+
+        styleFormNavBar(title: nameData.isEmpty ? "New Note" : "Secure Note")
+        styleTextField(titleTextField, placeholder: "Note title", accent: .accentNotes)
+        styleTextView(secureNoteTextView)
+//        stylePrimaryButton(saveButton, title: nameData.isEmpty ? "Save" : "Update", accent: .accentNotes)
+
         guard let user = Auth.auth().currentUser else {
             SessionManager.resetToSignIn(window: view.window)
             return
         }
         secretKey = user.uid
-        if let creationDate = user.metadata.creationDate {
-            self.creationDate = Int(creationDate.timeIntervalSince1970)
+        if let date = user.metadata.creationDate {
+            creationDate = Int(date.timeIntervalSince1970)
         }
         
-        //secureNoteTextView.cornersView(border: true, roundedCorner: 10)
+        // Left — close button
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(exitButtonTapped))
+        closeButton.tintColor = .textSecondary
+        navigationItem.leftBarButtonItem = closeButton
+
+        // Right — save button
+        let saveBtn = UIBarButtonItem(title: nameData.isEmpty ? "Save" : "Update",
+                                       style: .done,
+                                       target: self,
+                                       action: #selector(saveButtonTapped))
+        saveBtn.tintColor = .accentNotes
+        navigationItem.rightBarButtonItem = saveBtn
+
+        self.title = nameData.isEmpty ? "New Secure Note" : "Secure Note"
     }
     
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
+    @IBAction func exitButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
+    @IBAction func saveButtonTapped(_ sender: Any) {
         if !nameData.isEmpty {
-            updateDataPassword()
+            updateDataSecureNote()
         } else {
-            saveDataPassword()
+            saveDataSecureNote()
         }
     }
     
-    @IBAction func exitButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
-    
-    private func saveDataPassword() {
+    private func saveDataSecureNote() {
         let encryptedData = encryptDataSecureNote()
         guard let user = Auth.auth().currentUser else {
             SessionManager.resetToSignIn(window: view.window)
@@ -80,19 +103,12 @@ class DataSecureNoteController: UITableViewController {
             DBManager.shared.saveEncryptedDataSecureNote(nameOfData: titleTextField.text!, lnkDataSecureNote: encryptedData!, userID: user.uid) { success in
                 if success {
                     self.dismiss(animated: true)
-//                    let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
-//                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//                    alertController.addAction(action)
-//                    self.present(alertController, animated: true) { [self] in
-//                        self.titleTextField.text = ""
-//                        self.secureNoteTextView.text = ""
-//                    }
                 }
             }
         }
     }
     
-    private func updateDataPassword() {
+    private func updateDataSecureNote() {
         let encryptedData = encryptDataSecureNote()
         guard let user = Auth.auth().currentUser else {
             SessionManager.resetToSignIn(window: view.window)

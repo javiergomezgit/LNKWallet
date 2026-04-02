@@ -20,6 +20,62 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func styleFormNavBar(title: String, accent: UIColor = .accentBrand) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .backgroundPrimary
+        appearance.shadowColor = .border
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.textPrimary,
+            .font: UIFont.systemFont(ofSize: 16, weight: .medium)
+        ]
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.title = title
+    }
+    
+    func styleTextField(_ textField: UITextField,
+                        placeholder: String,
+                        accent: UIColor = .accentBrand) {
+        textField.placeholder = placeholder
+        textField.font = .systemFont(ofSize: 15)
+        textField.textColor = .textPrimary
+        textField.backgroundColor = .backgroundSecondary
+        textField.layer.cornerRadius = 10
+        textField.layer.masksToBounds = true
+        textField.layer.borderWidth = 0.5
+        textField.layer.borderColor = UIColor.border.cgColor
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: textField.frame.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+    }
+    
+    func styleTextView(_ textView: UITextView) {
+        textView.font = .systemFont(ofSize: 15)
+        textView.textColor = .textPrimary
+        textView.backgroundColor = .backgroundSecondary
+        textView.layer.cornerRadius = 10
+        textView.layer.masksToBounds = true
+        textView.layer.borderWidth = 0.5
+        textView.layer.borderColor = UIColor.border.cgColor
+        textView.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
+    }
+    
+    func stylePrimaryButton(_ button: UIButton, title: String, accent: UIColor = .accentBrand) {
+        var config = UIButton.Configuration.filled()
+        config.title = title
+        config.baseBackgroundColor = accent
+        config.baseForegroundColor = .white
+        config.cornerStyle = .large
+        config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 20, bottom: 14, trailing: 20)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attrs in
+            var a = attrs
+            a.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+            return a
+        }
+        button.configuration = config
+    }
 }
 
 extension UIButton {

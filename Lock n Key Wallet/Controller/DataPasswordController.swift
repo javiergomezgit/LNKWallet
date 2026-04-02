@@ -15,7 +15,7 @@ class DataPasswordController: UITableViewController {
     @IBOutlet weak var otherTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
+//    @IBOutlet weak var saveButton: UIButton!
     
     public var nameData = ""
     var secretKey = ""
@@ -45,42 +45,67 @@ class DataPasswordController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.hideKeyboardWhenTappedAround()
         passwordTextField.enablePasswordToggle()
-        
-        if user  != nil {
+        view.backgroundColor = .backgroundPrimary
+        tableView.backgroundColor = .backgroundPrimary
+        tableView.separatorColor = .clear
+
+        styleFormNavBar(title: nameData.isEmpty ? "New Password" : "Password")
+        styleTextField(titleTextField, placeholder: "Name (e.g. Gmail)")
+        styleTextField(emailTextField, placeholder: "Email or username")
+        styleTextField(otherTextField, placeholder: "Other (optional)")
+        styleTextField(passwordTextField, placeholder: "Password")
+        styleTextField(websiteTextField, placeholder: "Website")
+//        stylePrimaryButton(saveButton, title: nameData.isEmpty ? "Save" : "Update", accent: .accentBrand)
+
+        if user != nil {
             secretKey = user!.uid
             creationDate = Int(user!.metadata.creationDate!.timeIntervalSince1970)
         } else {
-            print("NO user signed in")
             exit(0)
         }
         
-        configureTops()
+        // Left — close button
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(exitButtonTapped))
+        closeButton.tintColor = .textSecondary
+        navigationItem.leftBarButtonItem = closeButton
+
+        // Right — save button
+        let saveBtn = UIBarButtonItem(title: nameData.isEmpty ? "Save" : "Update",
+                                       style: .done,
+                                       target: self,
+                                       action: #selector(saveButtonTapped))
+        saveBtn.tintColor = .accentBrand
+        navigationItem.rightBarButtonItem = saveBtn
+
+        self.title = nameData.isEmpty ? "New Password" : "Password"
     }
     
-    private func configureTops() {
-        title = "Save Data"
-        if !nameData.isEmpty {
-            saveButton.setTitle("Update", for: .normal)
-
-        } else {
-            saveButton.setTitle("Save", for: .normal)
-
-        }
-    }
+//    private func configureTops() {
+//        title = "Save Data"
+//        if !nameData.isEmpty {
+//            saveButton.setTitle("Update", for: .normal)
+//
+//        } else {
+//            saveButton.setTitle("Save", for: .normal)
+//
+//        }
+//    }
     
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
+    @IBAction func exitButtonTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
+    @IBAction func saveButtonTapped(_ sender: Any) {
         if !nameData.isEmpty {
             updateDataPassword()
         } else {
             saveDataPassword()
         }
-    }
-    
-    @IBAction func exitButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true)
     }
     
     private func saveDataPassword() {
@@ -90,17 +115,6 @@ class DataPasswordController: UITableViewController {
                 DBManager.shared.saveEncryptedDataPassword(nameOfData: titleTextField.text!, lnkDataPassword: encryptedData!, userID: Auth.auth().currentUser!.uid) { success in
                     if success {
                         self.dismiss(animated: true)
-                        
-//                        let alertController = UIAlertController(title: "Saved", message: "Your information has been saved successfully", preferredStyle: .alert)
-//                        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//                        alertController.addAction(action)
-//                        self.present(alertController, animated: true) { [self] in
-//                            self.titleTextField.text = ""
-//                            self.emailTextField.text = ""
-//                            self.otherTextField.text = ""
-//                            self.passwordTextField.text = ""
-//                            self.websiteTextField.text = ""
-//                        }
                     }
                 }
             }
@@ -115,7 +129,6 @@ class DataPasswordController: UITableViewController {
                     if success {
                         let alertController = UIAlertController(title: "Updated", message: "Your information has been updated successfully", preferredStyle: .alert)
                         let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-//                            self.navigationController?.popToRootViewController(animated: true)
                             self.dismiss(animated: true)
                         })
                         alertController.addAction(action)

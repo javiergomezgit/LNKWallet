@@ -7,82 +7,51 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class OpenVaultController: UIViewController {
-    
-    @IBOutlet weak var allButton: UIButton!
-    @IBOutlet weak var passButton: UIButton!
-    @IBOutlet weak var ccButton: UIButton!
-    @IBOutlet weak var noteButton: UIButton!
+
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
-    
+
+    // MARK: - Filter
+    private let filterScrollView = UIScrollView()
+    private let filterStackView  = UIStackView()
+    private var filterButtons: [UIButton] = []
+
+    private let filterOptions: [(title: String, type: String?)] = [
+        ("All", nil),
+        ("Passwords", "type_2"),
+        ("Cards", "type_1"),
+        ("Images", "type_4"),
+        ("Notes", "type_3")
+    ]
+
+    // MARK: - Data
     let refreshControl = UIRefreshControl()
-    private var lnkDatas = [LNKData]()
-    //Search & Filter
-    private var filteredDatas = [LNKData]()
+    private var lnkDatas: [LNKData] = []
+    private var filteredDatas: [LNKData] = []
     private var searchController = UISearchController()
-    
     var preFilterType: String? = nil
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .backgroundPrimary
-        title = "Open Vault"
-        
-        configureTops()
+        setupNavBar()
+        setupFilterChips()
+        setupTableView()
+        updateNavTitle()
         configureSecurity()
-        
-        tableView.register(DatasViewCell.nib, forCellReuseIdentifier: DatasViewCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView(frame: .zero)
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refreshTable), for: .valueChanged)
-        tableView.addSubview(refreshControl)
-        
     }
-    
-    @objc func refreshTable(notification: NSNotification) {
-        getAllDatas()
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAllDatas()
     }
-    
-    @objc private func configureSecurity() {
 
-        let isNewUser = UserDefaults.standard.object(forKey: "is_new_user") as? Bool ?? true
-        let isLocked = UserDefaults.standard.object(forKey: "locked_app") as? Bool ?? true
-
-        if isNewUser {
-            print ("NEW USER")
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
-            vc.setPassword = true
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        } else {
-            if isLocked {
-                //Goto master password unlock 
-                print ("NOT NEW USER")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
-                vc.setPassword = false
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            }
-        }
-    }
-    
-    private func configureTops() {
-        allButton.roundCorners(amountCornerPercentage: 100)
-        passButton.roundCorners(amountCornerPercentage: 100)
-        ccButton.roundCorners(amountCornerPercentage: 100)
-        noteButton.roundCorners(amountCornerPercentage: 100)
-
+    // MARK: - Nav Bar
+    private func setupNavBar() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -91,178 +60,272 @@ class OpenVaultController: UIViewController {
         definesPresentationContext = true
 
         let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { _ in
-            self.goToController(nameController: "DataPasswordController")
+            self.goToController(nameController: "NavDataPasswordController")
+        }
+        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard.fill")) { _ in
+            self.goToController(nameController: "NavDataCreditCardController")
         }
         let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { _ in
-            self.goToController(nameController: "DataSecureNoteController")
+            self.goToController(nameController: "NavDataSecureNoteController")
         }
         let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill")) { _ in
-            self.goToController(nameController: "DataImageController")
+            self.goToController(nameController: "NavDataImageController")
         }
-        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, imageItem, secureNote])
-
+        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, creditCardItem, imageItem, secureNote])
         let rightButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
-        rightButtonItem.tintColor = .accentBrand  // ← set tint directly on the item, not via navigationItem
-        self.navigationItem.rightBarButtonItem = rightButtonItem
+        rightButtonItem.tintColor = .accentBrand
+        navigationItem.rightBarButtonItem = rightButtonItem
     }
-    
-    func updateUI() {
-        if self.lnkDatas.isEmpty {
-            self.searchController.searchBar.isHidden = true
+
+    private func updateNavTitle() {
+        if let type = preFilterType {
+            title = VaultCategory.allCases.first { $0.typeKey == type }?.title ?? "Open Vault"
         } else {
-            self.searchController.searchBar.isHidden = false
+            title = "Open Vault"
         }
     }
-    
-    @objc private func goToController(nameController: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: nameController)
-        self.present(vc, animated: true)
+
+    // MARK: - Filter Chips
+    private func setupFilterChips() {
+        filterScrollView.showsHorizontalScrollIndicator = false
+        filterScrollView.translatesAutoresizingMaskIntoConstraints = false
+        filterStackView.axis = .horizontal
+        filterStackView.spacing = 8
+        filterStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        filterScrollView.addSubview(filterStackView)
+        view.addSubview(filterScrollView)
+
+        NSLayoutConstraint.activate([
+            filterScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            filterScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            filterScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            filterScrollView.heightAnchor.constraint(equalToConstant: 40),
+
+            filterStackView.topAnchor.constraint(equalTo: filterScrollView.topAnchor),
+            filterStackView.bottomAnchor.constraint(equalTo: filterScrollView.bottomAnchor),
+            filterStackView.leadingAnchor.constraint(equalTo: filterScrollView.leadingAnchor, constant: 16),
+            filterStackView.trailingAnchor.constraint(equalTo: filterScrollView.trailingAnchor, constant: -16),
+            filterStackView.heightAnchor.constraint(equalTo: filterScrollView.heightAnchor),
+        ])
+
+        filterOptions.forEach { option in
+            let button = makeChip(title: option.title, type: option.type)
+            filterStackView.addArrangedSubview(button)
+            filterButtons.append(button)
+        }
+
+        styleChips()
     }
-    
-//    private func getAllDatas(){
-//        DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
-//            
-//            self.lnkDatas.removeAll()
-//            self.filteredDatas.removeAll()
-//            self.refreshControl.endRefreshing()
-//            
-//            if result != nil {
-//                self.lnkDatas = result!
-//                self.filteredDatas = result!
-//                self.tableView.reloadData()
-//                self.updateUI()
-//            } else {
-//                self.updateUI()
-//            }
-//        }
-//    }
-  
+
+    private func makeChip(title: String, type: String?) -> UIButton {
+        var config = UIButton.Configuration.filled()
+        config.title = title
+        config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 14, bottom: 6, trailing: 14)
+        config.cornerStyle = .capsule
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attrs in
+            var a = attrs
+            a.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+            return a
+        }
+        let button = UIButton(configuration: config)
+        button.tag = filterOptions.firstIndex(where: { $0.type == type }) ?? 0
+        button.addTarget(self, action: #selector(filterChipTapped(_:)), for: .touchUpInside)
+        return button
+    }
+
+    private func styleChips() {
+        for (index, button) in filterButtons.enumerated() {
+            let option = filterOptions[index]
+            let isActive = option.type == preFilterType || (option.type == nil && preFilterType == nil)
+            let category = VaultCategory.allCases.first { $0.typeKey == (option.type ?? "") }
+            let accent = category?.accent ?? .accentBrand
+            var config = button.configuration ?? UIButton.Configuration.filled()
+            config.baseForegroundColor = isActive ? accent : .textSecondary
+            config.baseBackgroundColor = isActive ? accent.withAlphaComponent(0.15) : .backgroundSecondary
+            button.configuration = config
+        }
+    }
+
+    @objc private func filterChipTapped(_ sender: UIButton) {
+        let option = filterOptions[sender.tag]
+        preFilterType = option.type
+        filteredDatas = option.type == nil ? lnkDatas : lnkDatas.filter { $0.typeData == option.type }
+        updateNavTitle()
+        styleChips()
+        tableView.reloadData()
+    }
+
+    // MARK: - Table View
+    private func setupTableView() {
+        tableView.register(DatasViewCell.self, forCellReuseIdentifier: DatasViewCell.identifier)
+        tableView.separatorColor = .border
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 68, bottom: 0, right: 0)
+        tableView.backgroundColor = .backgroundPrimary
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
+
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+
+        // Pin table below filter chips
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 56),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
+
+    // MARK: - Data
     private func getAllDatas() {
         DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
             self.lnkDatas.removeAll()
             self.filteredDatas.removeAll()
             self.refreshControl.endRefreshing()
 
-            if let result {
-                self.lnkDatas = result
-                // Apply pre-filter if coming from home card
-                if let type = self.preFilterType {
-                    self.filteredDatas = result.filter { $0.typeData == type }
-                } else {
-                    self.filteredDatas = result
-                }
-                self.tableView.reloadData()
+            guard let result else {
                 self.updateUI()
-            } else {
-                self.updateUI()
+                return
             }
+
+            self.lnkDatas = result
+            self.filteredDatas = self.preFilterType == nil
+                ? result
+                : result.filter { $0.typeData == self.preFilterType }
+            self.tableView.reloadData()
+            self.updateUI()
         }
     }
-    
-    @IBAction func showAllTapped(_ sender: UIButton) {
-        filteredDatas = lnkDatas
-        tableView.reloadData()
+
+    private func updateUI() {
+        searchController.searchBar.isHidden = lnkDatas.isEmpty
     }
-    
-    @IBAction func showPasswordsTapped(_ sender: Any) {
-        filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
-            return lnkData.typeData.range(of: "type_2", options: .caseInsensitive, range: nil, locale: nil) != nil
-        })
-        tableView.reloadData()
+
+    @objc private func refreshTable() {
+        getAllDatas()
     }
-    
-    @IBAction func showCreditCardsTapped(_ sender: UIButton) {
-        filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
-            return lnkData.typeData.range(of: "type_4", options: .caseInsensitive, range: nil, locale: nil) != nil
-        })
-        tableView.reloadData()
+
+    // MARK: - Navigation
+    @objc private func goToController(nameController: String) {
+        let storyboard = UIStoryboard(name: "Vault", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: nameController)
+        present(vc, animated: true)
     }
-    
-    @IBAction func showSecureNoteTapped(_ sender: Any) {
-        filteredDatas = false ? lnkDatas : lnkDatas.filter({ lnkData in
-            return lnkData.typeData.range(of: "type_3", options: .caseInsensitive, range: nil, locale: nil) != nil
-        })
-        tableView.reloadData()
+
+    // MARK: - Security
+    @objc private func configureSecurity() {
+        let isNewUser = UserDefaults.standard.object(forKey: "is_new_user") as? Bool ?? true
+        let isLocked = UserDefaults.standard.object(forKey: "locked_app") as? Bool ?? true
+
+        guard !isNewUser else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
+            vc.setPassword = true
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+            return
+        }
+
+        if isLocked {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
+            vc.setPassword = false
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        }
     }
 }
 
+// MARK: - UITableViewDelegate & DataSource
 extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         filteredDatas.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = filteredDatas[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: DatasViewCell.identifier, for: indexPath) as! DatasViewCell
-        
-        cell.configure(model: model)
+        cell.configure(model: filteredDatas[indexPath.row])
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let model = filteredDatas[indexPath.row]
         
-        if model.typeData == "type_2" {
+        // Record last accessed
+        recordAccess(for: model)
+
+        switch model.typeData {
+        case "type_2":
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataPasswordController") as! DataPasswordController
             vc.nameData = model.nameData
-            self.present(vc, animated: true)
-        } else if model.typeData == "type_1"{
+            present(vc, animated: true)
+        case "type_1":
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataCreditCardController") as! DataCreditCardController
             vc.nameData = model.nameData
-            self.present(vc, animated: true)
-        } else if model.typeData == "type_4" {
+            present(vc, animated: true)
+        case "type_4":
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataImageController") as! DataImageController
             vc.nameData = model.nameData
-            self.present(vc, animated: true)
-        } else {
+            present(vc, animated: true)
+        default:
             let vc = storyboard?.instantiateViewController(withIdentifier: "DataSecureNoteController") as! DataSecureNoteController
             vc.nameData = model.nameData
-            self.present(vc, animated: true)
+            present(vc, animated: true)
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
+    private func recordAccess(for item: LNKData) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection("User")
+            .document(uid)
+            .collection("secret_datas")
+            .document(item.nameData)
+            .updateData(["lastAccessed": FieldValue.serverTimestamp()])
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        guard editingStyle == .delete else { return }
         let lnkData = filteredDatas[indexPath.row]
-        
-        if editingStyle == .delete {
-            DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, lnkData: lnkData) { deleted in
-                if deleted {
-                    self.filteredDatas.remove(at: indexPath.row)
-                    self.lnkDatas.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    
-                    let alert = UIAlertController(title: "Deleted", message: "The information has been deleted", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                }
+
+        DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, lnkData: lnkData) { deleted in
+            guard deleted else { return }
+            self.filteredDatas.remove(at: indexPath.row)
+            if let index = self.lnkDatas.firstIndex(where: { $0.nameData == lnkData.nameData }) {
+                self.lnkDatas.remove(at: index)
             }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+
+            let alert = UIAlertController(title: "Deleted", message: "The information has been deleted", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            })
+            self.present(alert, animated: true)
         }
     }
 }
 
-
+// MARK: - UISearchResultsUpdating
 extension OpenVaultController: UISearchResultsUpdating, UISearchControllerDelegate {
+
     func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
+        filterContentForSearchText(searchController.searchBar.text ?? "")
     }
-    
+
     func filterContentForSearchText(_ searchText: String) {
-        filteredDatas = searchText.isEmpty ? lnkDatas : lnkDatas.filter({ lnkData in
-            return lnkData.nameData.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-        })
+        filteredDatas = searchText.isEmpty
+            ? lnkDatas
+            : lnkDatas.filter { $0.nameData.range(of: searchText, options: .caseInsensitive) != nil }
         tableView.reloadData()
     }
 }
