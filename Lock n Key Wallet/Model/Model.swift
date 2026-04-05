@@ -14,6 +14,7 @@ struct LNKDataCreditCard {
     let securityCode: String
     let zipCode: String
     let expDate: String
+    let address: String
 }
 
 struct LNKDataPassword {
