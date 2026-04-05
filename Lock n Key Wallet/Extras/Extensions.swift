@@ -167,19 +167,19 @@ extension UITextField {
         }
     }
     
-    func enablePasswordToggle(){
+    func enablePasswordToggle() {
         let button = UIButton(type: .custom)
         setPasswordToggleImage(button)
-        if #available(iOS 15.0, *) {
-            var config = UIButton.Configuration.plain()
-            config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: -16, bottom: 0, trailing: 0)
-            button.configuration = config
-        } else {
-            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
-        }
-        button.frame = CGRect(x: CGFloat(self.frame.size.width - 25), y: CGFloat(5), width: CGFloat(35), height: CGFloat(35))
+
+        button.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         button.addTarget(self, action: #selector(self.togglePasswordView), for: .touchUpInside)
-        self.rightView = button
+
+        // Wrap in a container to control right padding
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 52, height: 44))
+        button.center = CGPoint(x: 22, y: 22)
+        container.addSubview(button)
+
+        self.rightView     = container
         self.rightViewMode = .always
     }
     @IBAction func togglePasswordView(_ sender: Any) {

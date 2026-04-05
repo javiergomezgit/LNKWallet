@@ -265,22 +265,31 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         recordAccess(for: model)
 
         switch model.typeData {
-        case "type_2":
-            let vc = storyboard?.instantiateViewController(withIdentifier: "DataPasswordController") as! DataPasswordController
-            vc.nameData = model.nameData
-            present(vc, animated: true)
         case "type_1":
-            let vc = storyboard?.instantiateViewController(withIdentifier: "DataCreditCardController") as! DataCreditCardController
+            let nav = storyboard?.instantiateViewController(withIdentifier: "NavDataCreditCardController") as! UINavigationController
+            let vc = nav.viewControllers.first as! DataCreditCardController
             vc.nameData = model.nameData
-            present(vc, animated: true)
+            present(nav, animated: true)
+        case "type_2":
+            let nav = storyboard?.instantiateViewController(withIdentifier: "NavDataPasswordController") as! UINavigationController
+            let vc = nav.viewControllers.first as! DataPasswordController
+            vc.nameData = model.nameData
+            present(nav, animated: true)
+        case "type_3":
+            let nav = storyboard?.instantiateViewController(withIdentifier: "NavDataSecureNoteController") as! UINavigationController
+            let vc = nav.viewControllers.first as! DataSecureNoteController
+            vc.nameData = model.nameData
+            present(nav, animated: true)
         case "type_4":
-            let vc = storyboard?.instantiateViewController(withIdentifier: "DataImageController") as! DataImageController
+            let nav = storyboard?.instantiateViewController(withIdentifier: "NavDataImageController") as! UINavigationController
+            let vc = nav.viewControllers.first as! DataImageController
             vc.nameData = model.nameData
-            present(vc, animated: true)
+            present(nav, animated: true)
         default:
-            let vc = storyboard?.instantiateViewController(withIdentifier: "DataSecureNoteController") as! DataSecureNoteController
+            let nav = storyboard?.instantiateViewController(withIdentifier: "NavDataSecureNoteController") as! UINavigationController
+            let vc = nav.viewControllers.first as! DataPasswordController
             vc.nameData = model.nameData
-            present(vc, animated: true)
+            present(nav, animated: true)
         }
     }
 

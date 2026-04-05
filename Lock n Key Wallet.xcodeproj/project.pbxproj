@@ -22,6 +22,7 @@
 		222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222C972927487D9C004C077E /* Onboarding.storyboard */; };
 		224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
 		224E868D285F6FE200F4A575 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868B285F6FE200F4A575 /* Encryption.swift */; };
+		22503B942F831E0C0054893A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22503B932F831E0C0054893A /* Settings.storyboard */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -69,6 +70,7 @@
 		222C972927487D9C004C077E /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		224E868A285F6FE100F4A575 /* EncryptionPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionPassword.swift; sourceTree = "<group>"; };
 		224E868B285F6FE200F4A575 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
+		22503B932F831E0C0054893A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
 		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
 		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				2295C5822748722F0050FA7D /* LaunchScreen.storyboard */,
 				2295C57A2748722E0050FA7D /* Main.storyboard */,
+				22503B932F831E0C0054893A /* Settings.storyboard */,
 				2274217D2F7DA7200027D985 /* Vault.storyboard */,
 				222C972927487D9C004C077E /* Onboarding.storyboard */,
 			);
@@ -350,6 +353,7 @@
 				2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */,
 				2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */,
 				222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */,
+				22503B942F831E0C0054893A /* Settings.storyboard in Resources */,
 				222C971C27487841004C077E /* GoogleService-Info.plist in Resources */,
 				2295C5812748722F0050FA7D /* Assets.xcassets in Resources */,
 				222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */,

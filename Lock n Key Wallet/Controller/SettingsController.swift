@@ -6,177 +6,243 @@
 //
 
 import UIKit
-import SafariServices
 import FirebaseAuth
+import SafariServices
 
 class SettingsController: UITableViewController {
-    
-    @IBOutlet weak var attemptsTextField: UITextField!
-    @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var instantAutoLockSwitch: UISwitch!
 
-    private func configureActionSheetPopover(_ alert: UIAlertController, sourceView: UIView?) {
-        guard let popover = alert.popoverPresentationController else { return }
-        popover.sourceView = sourceView ?? view
-        popover.sourceRect = sourceView?.bounds ?? CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 1, height: 1)
-        popover.permittedArrowDirections = sourceView == nil ? [] : .any
-    }
-    
+    // MARK: — Outlets
+    @IBOutlet weak var instantAutoLockSwitch: UISwitch!
+    @IBOutlet weak var attemptsStepper: UIStepper!
+    @IBOutlet weak var attemptsLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
+
+    // MARK: — Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        versionLabel.text = "Version \(appVersion)"
-        
-        self.hideKeyboardWhenTappedAround()
-        loadAttempts()
-        
-        if let autoLock = UserDefaults.standard.value(forKey: "instant_auto_lock") as? Bool {
-            if let lockedApp = UserDefaults.standard.value(forKey: "locked_app") as? Bool {
-                UserDefaults.standard.set(lockedApp, forKey: "locked_app")
-            } else {
-                UserDefaults.standard.set(true, forKey: "locked_app")
-            }
-            instantAutoLockSwitch.isOn = autoLock
-        } else {
-            UserDefaults.standard.set(true, forKey: "instant_auto_lock")
-            UserDefaults.standard.set(true, forKey: "locked_app")
-            instantAutoLockSwitch.isOn = true
-        }
-    }
-    
-    @IBAction func attemptsChanged(_ sender: UITextField) {
-        if let attempts = Int(attemptsTextField.text!) {
-            UserDefaults.standard.set(attempts, forKey: "amount_attempts")
-        } else {
-            attemptsTextField.text! = "3"
-            UserDefaults.standard.set(3, forKey: "amount_attempts")
-        }
-       
-    }
-    
-    @IBAction func instantAutoLockChanged(_ sender: UISwitch) {
-        print (instantAutoLockSwitch.isOn)
-        UserDefaults.standard.set(instantAutoLockSwitch.isOn, forKey: "locked_app")
-        UserDefaults.standard.set(instantAutoLockSwitch.isOn, forKey: "instant_auto_lock")
-    }
-    
-    
-    func loadAttempts(){
-        if let attempts = UserDefaults.standard.value(forKey: "amount_attempts") as? Int {
-            attemptsTextField.text! = String(attempts)
-        } else {
-            attemptsTextField.text! = "3"
-            UserDefaults.standard.set(3, forKey: "amount_attempts")
-        }
 
+        view.backgroundColor      = .backgroundPrimary
+        tableView.backgroundColor = .backgroundPrimary
+        tableView.separatorColor  = .border
+        tableView.separatorInset  = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        tableView.estimatedSectionFooterHeight = 44
+        tableView.estimatedSectionHeaderHeight = 36
+
+        self.title = "Settings"
+
+        setupVersion()
+        setupAutoLock()
+        setupStepper()
+        styleSwitch()
     }
-    
-    //Reset all
+
+    // MARK: — Setup
+
+    private func setupVersion() {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
+        versionLabel.text      = "Version \(version)"
+        versionLabel.textColor = .textSecondary
+        versionLabel.font      = UIFont.systemFont(ofSize: 15, weight: .regular)
+    }
+
+    private func setupAutoLock() {
+        let autoLock = UserDefaults.standard.value(forKey: "instant_auto_lock") as? Bool ?? true
+        instantAutoLockSwitch.isOn = autoLock
+        if UserDefaults.standard.value(forKey: "locked_app") == nil {
+            UserDefaults.standard.set(true, forKey: "locked_app")
+        }
+        if UserDefaults.standard.value(forKey: "instant_auto_lock") == nil {
+            UserDefaults.standard.set(true, forKey: "instant_auto_lock")
+        }
+    }
+
+    private func setupStepper() {
+        let saved = UserDefaults.standard.value(forKey: "amount_attempts") as? Int ?? 3
+        attemptsStepper.minimumValue = 3
+        attemptsStepper.maximumValue = 10
+        attemptsStepper.stepValue    = 1
+        attemptsStepper.value        = Double(saved)
+        attemptsStepper.tintColor    = .accentBrand
+        attemptsLabel.text           = "\(saved)"
+        attemptsLabel.font           = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        attemptsLabel.textColor      = .textPrimary
+        attemptsLabel.textAlignment  = .center
+        attemptsLabel.minWidth(44)
+    }
+
+    private func styleSwitch() {
+        instantAutoLockSwitch.onTintColor = .accentBrand
+    }
+
+    // MARK: — Section headers
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let titles = ["SECURITY", "ACCOUNT", "INFO"]
+        guard section < titles.count else { return nil }
+
+        let container = UIView()
+        container.backgroundColor = .backgroundPrimary
+
+        let label = UILabel()
+        let attributed = NSMutableAttributedString(string: titles[section])
+        attributed.addAttribute(.kern,
+                                value: 0.8,
+                                range: NSRange(location: 0, length: titles[section].count))
+        label.attributedText = attributed
+        label.font      = UIFont.systemFont(ofSize: 11, weight: .semibold)
+        label.textColor = .accentBrand
+        label.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(label)
+
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16),
+            label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -6)
+        ])
+        return container
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        // Footer only for SECURITY section — shows the hint text
+        if section == 0 {
+            let container = UIView()
+            container.backgroundColor = .backgroundPrimary
+            let label = UILabel()
+            label.text          = "Erase all data after the set number of failed passcode attempts."
+            label.font          = UIFont.systemFont(ofSize: 12, weight: .light)
+            label.textColor     = .textSecondary
+            label.numberOfLines = 0
+            label.translatesAutoresizingMaskIntoConstraints = false
+            container.addSubview(label)
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16),
+                label.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16),
+                label.topAnchor.constraint(equalTo: container.topAnchor, constant: 6),
+                label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -6)
+            ])
+            return container
+        }
+        let footer = UIView()
+        footer.backgroundColor = .backgroundPrimary
+        return footer
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 0 ? UITableView.automaticDimension : 8
+    }
+
+    // MARK: — Actions
+
+    @IBAction func instantAutoLockChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "locked_app")
+        UserDefaults.standard.set(sender.isOn, forKey: "instant_auto_lock")
+    }
+
+    @IBAction func attemptsStepperChanged(_ sender: UIStepper) {
+        let value = Int(sender.value)
+        attemptsLabel.text = "\(value)"
+        UserDefaults.standard.set(value, forKey: "amount_attempts")
+    }
+
     @IBAction func eraseAllTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Delete all data", message: "Are you sure you want to delete all your information?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-            
-            DBManager.shared.deleteAllDatas(userID: Auth.auth().currentUser!.uid) { success in
-                if success {
-                    let alertController = UIAlertController(title: "Cleared", message: "Your information has been erased", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    alertController.addAction(action)
-                    self.present(alertController, animated: true)
-                }
+        let alert = UIAlertController(
+            title: "Delete all data",
+            message: "Are you sure you want to delete all your information?",
+            preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            DBManager.shared.deleteAllDatas(userID: uid) { [weak self] success in
+                guard let self = self, success else { return }
+                self.showAlert(title: "Cleared", message: "Your information has been erased.")
             }
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         configureActionSheetPopover(alert, sourceView: sender)
         present(alert, animated: true)
-        
     }
-    
-    @IBAction func deleteAccount(_ sender: Any) {
-        let alert = UIAlertController(title: "Delete account", message: "Are you sure you want to delete your account?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-                        
-            //Prompt the user to re-provide their sign-in credentials
-            let user = Auth.auth().currentUser
 
+    @IBAction func deleteAccount(_ sender: Any) {
+        let alert = UIAlertController(
+            title: "Delete account",
+            message: "Are you sure you want to delete your account? This cannot be undone.",
+            preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            let user = Auth.auth().currentUser
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "SignInController") as! SignInController
             vc.deletingAccount = true
             vc.modalPresentationStyle = .fullScreen
             vc.completion = { credential in
-                user?.reauthenticate(with: credential, completion: { result, error in
-                    print (result as Any)
-                    if error == nil {
-                        DBManager.shared.deleteAccount(userID: Auth.auth().currentUser!.uid) { success in
-                            if success {
-                                DispatchQueue.main.async {
-                                    do {
-                                        try Auth.auth().signOut()
-                                    } catch {
-                                        print("Error signing out after deleting account: \(error)")
-                                    }
-
-                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                    let signInVC = storyboard.instantiateViewController(identifier: "SignInController")
-                                    signInVC.modalPresentationStyle = .fullScreen
-
-                                    if let window = self.view.window {
-                                        window.rootViewController = signInVC
-                                        window.makeKeyAndVisible()
-                                    } else {
-                                        self.present(signInVC, animated: true)
-                                    }
-                                }
+                user?.reauthenticate(with: credential) { _, error in
+                    guard error == nil else { return }
+                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                    DBManager.shared.deleteAccount(userID: uid) { success in
+                        guard success else { return }
+                        DispatchQueue.main.async {
+                            try? Auth.auth().signOut()
+                            let signInVC = storyboard.instantiateViewController(identifier: "SignInController")
+                            signInVC.modalPresentationStyle = .fullScreen
+                            if let window = self.view.window {
+                                window.rootViewController = signInVC
+                                window.makeKeyAndVisible()
                             }
                         }
                     }
-                })
+                }
             }
             self.present(vc, animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         configureActionSheetPopover(alert, sourceView: sender as? UIView)
         present(alert, animated: true)
     }
-    
-    
+
     @IBAction func privacyTapped(_ sender: UIButton) {
-        if let url = URL(string: "https://jdevit.com/privacy-policy-lock-n-key-wallet/") {
-            let svc = SFSafariViewController(url: url)
-            self.present(svc, animated: true, completion: nil)
-        }
+        openURL("https://jdevit.com/privacy-policy-lock-n-key-wallet/")
     }
-    
+
     @IBAction func contactTapped(_ sender: UIButton) {
-        if let url = URL(string: "https://jdevit.com/contact/") {
-            let svc = SFSafariViewController(url: url)
-            self.present(svc, animated: true, completion: nil)
-        }
+        openURL("https://jdevit.com/contact/")
     }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 2 ? CGFloat.leastNormalMagnitude : 32
+
+    // MARK: — Helpers
+
+    private func openURL(_ string: String) {
+        guard let url = URL(string: string) else { return }
+        let svc = SFSafariViewController(url: url)
+        present(svc, animated: true)
     }
-    
-//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 25.0
-//    }
-    
-    
-//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        guard let header = view as? UITableViewHeaderFooterView else { return }
-//        header.textLabel?.textColor = UIColor.red
-//        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-//        header.textLabel?.frame = header.bounds
-//        header.textLabel?.textAlignment = .center
-//    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = UIFont.systemFont(ofSize: 12, weight: .light)
-//        header.textLabel?.frame = header.bounds
-//        header.textLabel?.textAlignment = .justified
+
+    private func configureActionSheetPopover(_ alert: UIAlertController, sourceView: UIView?) {
+        guard let popover = alert.popoverPresentationController else { return }
+        popover.sourceView = sourceView ?? view
+        popover.sourceRect = sourceView?.bounds ?? CGRect(x: view.bounds.midX,
+                                                          y: view.bounds.midY,
+                                                          width: 1, height: 1)
+        popover.permittedArrowDirections = sourceView == nil ? [] : .any
+    }
+
+    private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        present(alert, animated: true)
     }
 }
 
+// MARK: — UILabel min width helper
+
+private extension UILabel {
+    func minWidth(_ width: CGFloat) {
+        let constraint = NSLayoutConstraint(
+            item: self, attribute: .width,
+            relatedBy: .greaterThanOrEqual,
+            toItem: nil, attribute: .notAnAttribute,
+            multiplier: 1, constant: width)
+        addConstraint(constraint)
+    }
+}
