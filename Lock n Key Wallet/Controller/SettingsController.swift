@@ -148,6 +148,34 @@ class SettingsController: UITableViewController {
         UserDefaults.standard.set(value, forKey: "amount_attempts")
     }
 
+    @IBAction func logoutTapped(_ sender: UIButton) {
+        let alert = UIAlertController(
+                title: "Sign Out",
+                message: "Are you sure you want to sign out?",
+                preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive) { [weak self] _ in
+                guard let self = self else { return }
+                do {
+                    UserDefaults.standard.removeObject(forKey: "instant_auto_lock")
+                    UserDefaults.standard.removeObject(forKey: "locked_app")
+                    UserDefaults.standard.removeObject(forKey: "amount_attempts")
+                    try Auth.auth().signOut()
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let signInVC = storyboard.instantiateViewController(identifier: "SignInController")
+                    signInVC.modalPresentationStyle = .fullScreen
+                    if let window = self.view.window {
+                        window.rootViewController = signInVC
+                        window.makeKeyAndVisible()
+                    }
+                } catch {
+                    self.showAlert(title: "Error", message: "Could not sign out. Try again.")
+                }
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            configureActionSheetPopover(alert, sourceView: sender)
+            present(alert, animated: true)
+    }
+    
     @IBAction func eraseAllTapped(_ sender: UIButton) {
         let alert = UIAlertController(
             title: "Delete all data",
@@ -207,7 +235,7 @@ class SettingsController: UITableViewController {
     }
 
     @IBAction func contactTapped(_ sender: UIButton) {
-        openURL("https://jdevit.com/contact/")
+        openURL("https://jdevit.com/contact")
     }
 
     // MARK: — Helpers

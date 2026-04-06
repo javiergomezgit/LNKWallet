@@ -18,6 +18,7 @@ class OpenVaultController: UIViewController {
     private let filterScrollView = UIScrollView()
     private let filterStackView  = UIStackView()
     private var filterButtons: [UIButton] = []
+    var preloadedItems: [LNKData]? = nil
 
     private let filterOptions: [(title: String, type: String?)] = [
         ("All", nil),
@@ -182,6 +183,13 @@ class OpenVaultController: UIViewController {
 
     // MARK: - Data
     private func getAllDatas() {
+        if let preloaded = preloadedItems {
+                lnkDatas      = preloaded
+                filteredDatas  = preloaded
+                tableView.reloadData()
+                updateUI()
+                return
+            }
         DBManager.shared.getAllDatas(userID: Auth.auth().currentUser!.uid) { result in
             self.lnkDatas.removeAll()
             self.filteredDatas.removeAll()

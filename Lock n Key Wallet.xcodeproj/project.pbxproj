@@ -15,6 +15,9 @@
 		222384EE2751793700FBF76A /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384ED2751793700FBF76A /* DBManager.swift */; };
 		222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222384EF27517FFF00FBF76A /* DatasViewCell.swift */; };
 		222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222384F027517FFF00FBF76A /* DatasViewCell.xib */; };
+		22290D332F84310D009B11BA /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22290D322F84310D009B11BA /* Tools.storyboard */; };
+		22290D352F8431B6009B11BA /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22290D342F8431B3009B11BA /* ToolsViewController.swift */; };
+		22290D372F844285009B11BA /* PasswordHealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22290D362F844279009B11BA /* PasswordHealthViewController.swift */; };
 		222C971C27487841004C077E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 222C971B27487841004C077E /* GoogleService-Info.plist */; };
 		222C972027487AAD004C077E /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C971F27487AAD004C077E /* SignInController.swift */; };
 		222C972427487B8F004C077E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972327487B8F004C077E /* SettingsController.swift */; };
@@ -63,6 +66,9 @@
 		222384ED2751793700FBF76A /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		222384EF27517FFF00FBF76A /* DatasViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasViewCell.swift; sourceTree = "<group>"; };
 		222384F027517FFF00FBF76A /* DatasViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatasViewCell.xib; sourceTree = "<group>"; };
+		22290D322F84310D009B11BA /* Tools.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
+		22290D342F8431B3009B11BA /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
+		22290D362F844279009B11BA /* PasswordHealthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHealthViewController.swift; sourceTree = "<group>"; };
 		222C971B27487841004C077E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		222C971F27487AAD004C077E /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		222C972327487B8F004C077E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 			children = (
 				2295C5822748722F0050FA7D /* LaunchScreen.storyboard */,
 				2295C57A2748722E0050FA7D /* Main.storyboard */,
+				22290D322F84310D009B11BA /* Tools.storyboard */,
 				22503B932F831E0C0054893A /* Settings.storyboard */,
 				2274217D2F7DA7200027D985 /* Vault.storyboard */,
 				222C972927487D9C004C077E /* Onboarding.storyboard */,
@@ -190,11 +197,13 @@
 				222384C6274D361D00FBF76A /* MasterPasswordController.swift */,
 				227FB79E275FABCB0013647B /* OnboardingController.swift */,
 				220D757B2870BC88003461D1 /* DataCreditCardController.swift */,
+				22290D342F8431B3009B11BA /* ToolsViewController.swift */,
 				220D757D287116AC003461D1 /* DataPasswordController.swift */,
 				22BD8B41287A85E800AF53EA /* DataImageController.swift */,
 				2283FD3D2873B01600F8B21C /* DataSecureNoteController.swift */,
 				222C972327487B8F004C077E /* SettingsController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
+				22290D362F844279009B11BA /* PasswordHealthViewController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
 				2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */,
 				222384EC2751791400FBF76A /* DBControllers */,
@@ -354,6 +363,7 @@
 				2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */,
 				222C972A27487D9C004C077E /* Onboarding.storyboard in Resources */,
 				22503B942F831E0C0054893A /* Settings.storyboard in Resources */,
+				22290D332F84310D009B11BA /* Tools.storyboard in Resources */,
 				222C971C27487841004C077E /* GoogleService-Info.plist in Resources */,
 				2295C5812748722F0050FA7D /* Assets.xcassets in Resources */,
 				222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */,
@@ -448,6 +458,7 @@
 				2283FD3E2873B01600F8B21C /* DataSecureNoteController.swift in Sources */,
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
+				22290D372F844285009B11BA /* PasswordHealthViewController.swift in Sources */,
 				220D757C2870BC88003461D1 /* DataCreditCardController.swift in Sources */,
 				222384EE2751793700FBF76A /* DBManager.swift in Sources */,
 				224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */,
@@ -455,6 +466,7 @@
 				222C972827487CED004C077E /* OpenVaultController.swift in Sources */,
 				224E868D285F6FE200F4A575 /* Encryption.swift in Sources */,
 				22CAFBD127543937006D02AA /* Extensions.swift in Sources */,
+				22290D352F8431B6009B11BA /* ToolsViewController.swift in Sources */,
 				222384F127517FFF00FBF76A /* DatasViewCell.swift in Sources */,
 				227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */,
 				227421822F7DAD550027D985 /* VaultCategory.swift in Sources */,
