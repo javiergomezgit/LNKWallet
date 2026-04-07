@@ -15,6 +15,9 @@ class ToolsViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentStack = UIStackView()
     private var healthCardView: HealthCardView?
+    
+    private let pageTitleLabel = UILabel()
+    private let pageSupertitleLabel = UILabel()
 
     // MARK: — Lifecycle
 
@@ -27,27 +30,40 @@ class ToolsViewController: UIViewController {
         setupPromoSection()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     // MARK: — Nav Bar
 
     private func setupNavBar() {
-        title = "Tools"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.isHidden = true
 
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .backgroundPrimary
-        appearance.shadowColor = .clear
-        appearance.largeTitleTextAttributes = [
-            .foregroundColor: UIColor.textPrimary,
-            .font: UIFont.systemFont(ofSize: 34, weight: .bold)
-        ]
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.textPrimary
-        ]
-        navigationController?.navigationBar.standardAppearance   = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.compactAppearance    = appearance
+        pageSupertitleLabel.text      = "LOCK N KEY"
+        pageSupertitleLabel.font      = .systemFont(ofSize: 11, weight: .medium)
+        pageSupertitleLabel.textColor = .textSecondary
+        pageSupertitleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        pageTitleLabel.text      = "Tools"
+        pageTitleLabel.font      = .systemFont(ofSize: 26, weight: .medium)
+        pageTitleLabel.textColor = .textPrimary
+        pageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(pageSupertitleLabel)
+        view.addSubview(pageTitleLabel)
+
+        NSLayoutConstraint.activate([
+            pageSupertitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            pageSupertitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            pageTitleLabel.topAnchor.constraint(equalTo: pageSupertitleLabel.bottomAnchor, constant: 4),
+            pageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+        ])
     }
 
     // MARK: — Scroll + Stack
@@ -63,7 +79,7 @@ class ToolsViewController: UIViewController {
         scrollView.addSubview(contentStack)
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: pageTitleLabel.bottomAnchor, constant: 16),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

@@ -30,7 +30,9 @@ class SettingsController: UITableViewController {
         tableView.estimatedSectionHeaderHeight = 36
 
         self.title = "Settings"
-
+        
+        navigationController?.navigationBar.isHidden = true
+        setupCustomHeader()
         setupVersion()
         setupAutoLock()
         setupStepper()
@@ -71,6 +73,43 @@ class SettingsController: UITableViewController {
         attemptsLabel.minWidth(44)
     }
 
+    private func setupCustomHeader() {
+        let container = UIView()
+        container.backgroundColor = .backgroundPrimary
+        container.translatesAutoresizingMaskIntoConstraints = false
+
+        let supertitle = UILabel()
+        supertitle.text      = "LOCK N KEY"
+        supertitle.font      = .systemFont(ofSize: 11, weight: .medium)
+        supertitle.textColor = .textSecondary
+        supertitle.translatesAutoresizingMaskIntoConstraints = false
+
+        let title = UILabel()
+        title.text      = "Settings"
+        title.font      = .systemFont(ofSize: 26, weight: .medium)
+        title.textColor = .textPrimary
+        title.translatesAutoresizingMaskIntoConstraints = false
+
+        container.addSubview(supertitle)
+        container.addSubview(title)
+
+        NSLayoutConstraint.activate([
+            supertitle.topAnchor.constraint(equalTo: container.topAnchor, constant: 16),
+            supertitle.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
+
+            title.topAnchor.constraint(equalTo: supertitle.bottomAnchor, constant: 4),
+            title.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
+            title.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -8)
+        ])
+
+        // Set as table header
+        container.setNeedsLayout()
+        container.layoutIfNeeded()
+        let height = container.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        container.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: height)
+        tableView.tableHeaderView = container
+    }
+    
     private func styleSwitch() {
         instantAutoLockSwitch.onTintColor = .accentBrand
     }

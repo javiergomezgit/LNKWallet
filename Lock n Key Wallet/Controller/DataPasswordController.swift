@@ -169,6 +169,10 @@ class DataPasswordController: UITableViewController {
     }
 
     private func saveDataPassword() {
+        if let website = websiteTextField.text, !website.isEmpty,
+           !website.hasPrefix("http://") && !website.hasPrefix("https://") {
+            websiteTextField.text = "https://\(website)"
+        }
         guard verifyPassFields(), let encrypted = encryptDataPassword() else { return }
         DBManager.shared.saveEncryptedDataPassword(
             nameOfData: titleTextField.text!,
@@ -180,6 +184,10 @@ class DataPasswordController: UITableViewController {
     }
 
     private func updateDataPassword() {
+        if let website = websiteTextField.text, !website.isEmpty,
+           !website.hasPrefix("http://") && !website.hasPrefix("https://") {
+            websiteTextField.text = "https://\(website)"
+        }
         guard verifyPassFields(), let encrypted = encryptDataPassword() else { return }
         DBManager.shared.updateEncryptedDataPassword(
             nameOfData: titleTextField.text!,
@@ -203,6 +211,35 @@ class DataPasswordController: UITableViewController {
             showAlert(title: "Missing Password", message: "Password cannot be empty.")
             return false
         }
+        // Email validation — only if not empty
+        if let email = emailTextField.text, !email.isEmpty {
+            if !isValidEmail(email) {
+                showAlert(title: "Invalid Email", message: "Please enter a valid email address.")
+                return false
+            }
+        }
+        // Website validation — only if not empty
+        if let website = websiteTextField.text, !website.isEmpty {
+            if !isValidURL(website) {
+                showAlert(title: "Invalid Website", message: "Please enter a valid URL (e.g. https://example.com).")
+                return false
+            }
+        }
+        return true
+    }
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        let regex = #"^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"#
+        return email.range(of: regex, options: .regularExpression) != nil
+    }
+
+    private func isValidURL(_ url: String) -> Bool {
+        // Auto-prefix https:// if missing
+        let prefixed = url.hasPrefix("http://") || url.hasPrefix("https://") ? url : "https://\(url)"
+        guard let components = URLComponents(string: prefixed),
+              let host = components.host,
+              !host.isEmpty,
+              host.contains(".") else { return false }
         return true
     }
 

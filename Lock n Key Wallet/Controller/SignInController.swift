@@ -24,14 +24,6 @@ class SignInController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        do {
-        //            try Auth.auth().signOut()
-        //            print ("SIGNout Firebase")
-        //        } catch {
-        //            print ("error signin out")
-        //        }
-        
         if !deletingAccount {
             setupInitials()
         } else {
@@ -40,18 +32,6 @@ class SignInController: UIViewController {
     }
     
     private func setupInitials() {
-        //        if UserDefaults.standard.value(forKey: "instant_auto_lock_time") == nil {
-        //            UserDefaults.standard.set(true, forKey: "instant_auto_lock_time")
-        //            UserDefaults.standard.set(true, forKey: "locked_app")
-        //            UserDefaults.standard.set(true, forKey: "is_new_user")
-        //            UserDefaults.standard.set(false, forKey: "found_passcode")
-        //        }
-        //        if UserDefaults.standard.value(forKey: "save_offline") == nil {
-        //            UserDefaults.standard.set(false, forKey: "save_offline")
-        //        }
-        //        if UserDefaults.standard.value(forKey: "wrong_passcode") == nil {
-        //            UserDefaults.standard.set("0", forKey: "wrong_passcode")
-        //        }
         if UserDefaults.standard.value(forKey: "auto_lock_time") == nil {
             UserDefaults.standard.set(0, forKey: "auto_lock_time")
             UserDefaults.standard.set(true, forKey: "locked_app")
@@ -59,14 +39,10 @@ class SignInController: UIViewController {
             UserDefaults.standard.set(3, forKey: "amount_attempts")
             UserDefaults.standard.set(0, forKey: "attempted_failed")
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         verifyNetwork()
-        //        if !deletingAccount {
-        //            verifyNetwork()
-        //        }
     }
     
     private func verifyNetwork() {

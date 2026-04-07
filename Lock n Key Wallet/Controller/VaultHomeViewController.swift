@@ -160,7 +160,7 @@ extension VaultHomeViewController {
 
         // Add button
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        addButton.tintColor = .textPrimary
+        addButton.tintColor = .accentBrand
         addButton.backgroundColor = .backgroundSecondary
         addButton.layer.cornerRadius = 18
         addButton.layer.borderWidth = 0.5
