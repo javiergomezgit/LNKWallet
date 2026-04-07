@@ -160,6 +160,7 @@ class OnboardingController: UIViewController {
     }
 
     private func finish() {
+        print("→ onboarding finish called")
         dismiss(animated: true)
     }
 

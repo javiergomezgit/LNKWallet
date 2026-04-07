@@ -15,10 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
+        
         authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             guard let self = self else { return }
             if user == nil {
-                SessionManager.resetToSignIn(window: self.window)
+                // Only reset if onboarding is complete
+                let onboardingComplete = UserDefaults.standard.value(forKey: "firstLaunching") != nil
+                if onboardingComplete {
+                    SessionManager.resetToSignIn(window: self.window)
+                }
             }
         }
     }

@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseAuth
 import AuthenticationServices
 
 @main
@@ -19,6 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         configureTabBar()
+        
+        let isFirstRun = !UserDefaults.standard.bool(forKey: "app_has_launched_before")
+        if isFirstRun {
+            // Clear any stale Firebase auth from previous install
+            try? Auth.auth().signOut()
+            // Clear all UserDefaults
+            let domain = Bundle.main.bundleIdentifier!
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+            UserDefaults.standard.set(true, forKey: "app_has_launched_before")
+            UserDefaults.standard.synchronize()
+        }
         
         return true
     }
