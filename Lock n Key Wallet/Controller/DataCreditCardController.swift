@@ -251,7 +251,7 @@ class DataCreditCardController: UITableViewController {
     private func saveData() {
         guard verifyEmptyField(), let encrypted = encryptDataCreditCard() else { return }
         DBManager.shared.saveEncryptedCreditCard(
-            nameOfData: accountNameTextField.text!,
+            nameOfData: accountNameTextField.text!.sanitizeNameForDB(),
             lnkDataCreditCard: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
@@ -264,7 +264,7 @@ class DataCreditCardController: UITableViewController {
     private func updateData() {
         guard verifyEmptyField(), let encrypted = encryptDataCreditCard() else { return }
         DBManager.shared.updateEncryptedCreditCard(
-            nameOfData: accountNameTextField.text!,
+            nameOfData: accountNameTextField.text!.sanitizeNameForDB(),
             lnkDataCreditCard: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }

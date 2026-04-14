@@ -108,7 +108,7 @@ class DataImageController: UIViewController {
         }
         DispatchQueue.main.async {
             DBManager.shared.saveEncryptedDataImage(
-                nameOfData: self.titleTextField.text!,
+                nameOfData: self.titleTextField.text!.sanitizeNameForDB(),
                 lnkData: encrypted,
                 userID: self.user!.uid) { [weak self] success in
                 guard let self = self, success else { return }
@@ -124,7 +124,7 @@ class DataImageController: UIViewController {
         }
         DispatchQueue.main.async {
             DBManager.shared.saveEncryptedDataImage(
-                nameOfData: self.titleTextField.text!,
+                nameOfData: self.titleTextField.text!.sanitizeNameForDB(),
                 lnkData: encrypted,
                 userID: self.user!.uid) { [weak self] success in
                 guard let self = self, success else { return }

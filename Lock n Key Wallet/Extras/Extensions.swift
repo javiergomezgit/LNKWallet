@@ -203,6 +203,14 @@ extension String {
         return self.filter {allowCharacters.contains($0) }
     }
     
+    func sanitizeNameForDB() -> String {
+        return self
+            .replacingOccurrences(of: "/", with: "-")
+            .replacingOccurrences(of: ".", with: "-")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    
 //    var isOnlyCharacters: Bool {
 //        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ1234567890_~!@#$%^&*()_+;':<>?/.,")
 //        if self.rangeOfCharacter(from: characterset.inverted) == nil {

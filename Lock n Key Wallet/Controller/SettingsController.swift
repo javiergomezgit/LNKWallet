@@ -270,11 +270,11 @@ class SettingsController: UITableViewController {
     }
 
     @IBAction func privacyTapped(_ sender: UIButton) {
-        openURL("https://jdevit.com/privacy-policy-lock-n-key-wallet/")
+        openURL("https://jdevit.com/#/apps/lnk-wallet/legal")
     }
 
     @IBAction func contactTapped(_ sender: UIButton) {
-        openURL("https://jdevit.com/contact")
+        openURL("https://jdevit.com/#/contact")
     }
 
     // MARK: — Helpers

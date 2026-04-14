@@ -175,7 +175,7 @@ class DataPasswordController: UITableViewController {
         }
         guard verifyPassFields(), let encrypted = encryptDataPassword() else { return }
         DBManager.shared.saveEncryptedDataPassword(
-            nameOfData: titleTextField.text!,
+            nameOfData: titleTextField.text!.sanitizeNameForDB(),
             lnkDataPassword: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
@@ -190,7 +190,7 @@ class DataPasswordController: UITableViewController {
         }
         guard verifyPassFields(), let encrypted = encryptDataPassword() else { return }
         DBManager.shared.updateEncryptedDataPassword(
-            nameOfData: titleTextField.text!,
+            nameOfData: titleTextField.text!.sanitizeNameForDB(),
             lnkDataPassword: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }

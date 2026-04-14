@@ -154,7 +154,7 @@ class DataSecureNoteController: UITableViewController {
             return
         }
         DBManager.shared.saveEncryptedDataSecureNote(
-            nameOfData: titleTextField.text!,
+            nameOfData: titleTextField.text!.sanitizeNameForDB(),
             lnkDataSecureNote: encrypted,
             userID: user.uid) { [weak self] success in
             guard let self = self, success else { return }
@@ -169,7 +169,7 @@ class DataSecureNoteController: UITableViewController {
             return
         }
         DBManager.shared.updateEncryptedDataSecureNote(
-            nameOfData: titleTextField.text!,
+            nameOfData: titleTextField.text!.sanitizeNameForDB(),
             lnkDataSecureNote: encrypted,
             userID: user.uid) { [weak self] success in
             guard let self = self, success else { return }
