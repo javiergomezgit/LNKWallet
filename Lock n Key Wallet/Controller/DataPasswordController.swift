@@ -42,8 +42,8 @@ class DataPasswordController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.rightBarButtonItem?.title = nameData.isEmpty ? "Save" : "Update"
-        self.title = nameData.isEmpty ? "New Password" : "Password"
+        navigationItem.rightBarButtonItem?.title = nameData.isEmpty ? "button.save".localized() : "button.update".localized()
+        self.title = nameData.isEmpty ? "datapassword.title.new".localized() : "datapassword.title".localized()
 
         if !nameData.isEmpty {
             titleTextField.text      = nameData
@@ -64,7 +64,7 @@ class DataPasswordController: UITableViewController {
         closeBtn.tintColor = .textSecondary
         navigationItem.leftBarButtonItem = closeBtn
 
-        let saveBtn = UIBarButtonItem(title: "Save",
+        let saveBtn = UIBarButtonItem(title: "button.save".localized(),
                                      style: .done,
                                      target: self,
                                      action: #selector(saveButtonTapped))
@@ -73,11 +73,11 @@ class DataPasswordController: UITableViewController {
     }
 
     private func setupTextFields() {
-        styleTextField(titleTextField,    placeholder: "Name (e.g. Gmail)",   accent: .accentBrand)
-        styleTextField(emailTextField,    placeholder: "Email or username",    accent: .accentBrand)
-        styleTextField(otherTextField,    placeholder: "Other (optional)",     accent: .accentBrand)
-        styleTextField(passwordTextField, placeholder: "Password",             accent: .accentBrand)
-        styleTextField(websiteTextField,  placeholder: "Website",              accent: .accentBrand)
+        styleTextField(titleTextField,    placeholder: "datapassword.placeholder.name".localized(), accent: .accentBrand)
+        styleTextField(emailTextField,    placeholder: "datapassword.placeholder.email".localized(), accent: .accentBrand)
+        styleTextField(otherTextField,    placeholder: "datapassword.placeholder.other".localized(), accent: .accentBrand)
+        styleTextField(passwordTextField, placeholder: "datapassword.placeholder.password".localized(), accent: .accentBrand)
+        styleTextField(websiteTextField,  placeholder: "datapassword.placeholder.website".localized(), accent: .accentBrand)
 
         emailTextField.keyboardType              = .emailAddress
         emailTextField.autocapitalizationType    = .none
@@ -102,7 +102,11 @@ class DataPasswordController: UITableViewController {
     // MARK: — Section headers
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let titles = ["ACCOUNT", "CREDENTIALS", "DETAILS"]
+        let titles = [
+            "datapassword.section.account".localized(),
+            "datapassword.section.credentials".localized(),
+            "datapassword.section.details".localized()
+        ]
         guard section < titles.count else { return nil }
 
         let container = UIView()
@@ -194,7 +198,7 @@ class DataPasswordController: UITableViewController {
             lnkDataPassword: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
-            self.showAlert(title: "Updated", message: "Your password has been updated.") {
+            self.showAlert(title: "alert.updated.title".localized(), message: "datapassword.updated.message".localized()) {
                 self.dismiss(animated: true)
             }
         }
@@ -204,24 +208,24 @@ class DataPasswordController: UITableViewController {
 
     private func verifyPassFields() -> Bool {
         if titleTextField.text?.isEmpty == true {
-            showAlert(title: "Missing Name", message: "Please give this account a name.")
+            showAlert(title: "alert.missing_name.title".localized(), message: "alert.missing_name.message".localized())
             return false
         }
         if passwordTextField.text?.isEmpty == true {
-            showAlert(title: "Missing Password", message: "Password cannot be empty.")
+            showAlert(title: "alert.missing_password.title".localized(), message: "alert.missing_password.message".localized())
             return false
         }
         // Email validation — only if not empty
         if let email = emailTextField.text, !email.isEmpty {
             if !isValidEmail(email) {
-                showAlert(title: "Invalid Email", message: "Please enter a valid email address.")
+                showAlert(title: "alert.invalid_email.title".localized(), message: "alert.invalid_email.message".localized())
                 return false
             }
         }
         // Website validation — only if not empty
         if let website = websiteTextField.text, !website.isEmpty {
             if !isValidURL(website) {
-                showAlert(title: "Invalid Website", message: "Please enter a valid URL (e.g. https://example.com).")
+                showAlert(title: "alert.invalid_website.title".localized(), message: "alert.invalid_website.message".localized())
                 return false
             }
         }
@@ -273,7 +277,7 @@ class DataPasswordController: UITableViewController {
 
     private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
     }
 }

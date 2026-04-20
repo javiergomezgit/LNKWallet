@@ -36,10 +36,10 @@ class MasterPasswordController: UIViewController {
         let hasPassword = UserDefaults.standard.bool(forKey: "found_passcode")
         if hasPassword {
             setPassword = false
-            updateUI(placeholder: "Type Password", buttonTitle: "Unlock")
+            updateUI(placeholder: "masterpassword.placeholder.type".localized(), buttonTitle: "masterpassword.button.unlock".localized())
         } else {
             setPassword = true
-            updateUI(placeholder: "Set Master Password", buttonTitle: "Set Password")
+            updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
             // Only fetch from CloudKit if we don't know yet
             downloadMasterPassword()
         }
@@ -64,7 +64,7 @@ class MasterPasswordController: UIViewController {
         passwordText.leftViewMode = .always
 
         passwordText.attributedPlaceholder = NSAttributedString(
-            string: setPassword ? "Set Master Password" : "Type Password",
+            string: setPassword ? "masterpassword.placeholder.set".localized() : "masterpassword.placeholder.type".localized(),
             attributes: [.foregroundColor: UIColor.black.withAlphaComponent(0.5)]
         )
 
@@ -79,11 +79,11 @@ class MasterPasswordController: UIViewController {
         passwordButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         passwordButton.layer.cornerRadius = 14
         passwordButton.layer.backgroundColor = UIColor.black.cgColor
-        passwordButton.setTitle(setPassword ? "Set Password" : "Unlock", for: .normal)
+        passwordButton.setTitle(setPassword ? "masterpassword.button.set".localized() : "masterpassword.button.unlock".localized(), for: .normal)
     }
 
     private func setupRequirementsLabel() {
-        requirementsLabel.text      = "Must have: 1 capital letter, 1 symbol & at least 8 characters."
+        requirementsLabel.text      = "masterpassword.requirements".localized()
         requirementsLabel.font      = UIFont.systemFont(ofSize: 13, weight: .regular)
         requirementsLabel.textColor = UIColor.black.withAlphaComponent(0.6)
         requirementsLabel.numberOfLines = 0
@@ -99,10 +99,10 @@ class MasterPasswordController: UIViewController {
             DispatchQueue.main.async {
                 if encryptedPassword == nil {
                     self.setPassword = true
-                    self.updateUI(placeholder: "Set Master Password", buttonTitle: "Set Password")
+                    self.updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
                 } else {
                     self.setPassword = false
-                    self.updateUI(placeholder: "Type Password", buttonTitle: "Unlock")
+                    self.updateUI(placeholder: "masterpassword.placeholder.type".localized(), buttonTitle: "masterpassword.button.unlock".localized())
                 }
             }
         }
@@ -135,7 +135,7 @@ class MasterPasswordController: UIViewController {
         if temporalPassword.isEmpty {
             temporalPassword = cleanPassword
             passwordText.text = ""
-            updateUI(placeholder: "Verify Password", buttonTitle: "Verify Password")
+            updateUI(placeholder: "masterpassword.placeholder.verify".localized(), buttonTitle: "masterpassword.button.verify".localized())
             passwordButton.isEnabled = false
             passwordButton.alpha     = 0.5
         } else {
@@ -152,17 +152,17 @@ class MasterPasswordController: UIViewController {
                             UserDefaults.standard.set(false, forKey: "locked_app")
                             self.dismiss(animated: true)
                         } else {
-                            self.showAlert(title: "Error",
-                                          message: "Couldn't save your master password. Please try again.")
+                            self.showAlert(title: "alert.error.title".localized(),
+                                          message: "masterpassword.alert.save_error.message".localized())
                         }
                     }
                 }
             } else {
                 temporalPassword = ""
                 passwordText.text = ""
-                updateUI(placeholder: "Set Master Password", buttonTitle: "Set Password")
-                showAlert(title: "Passwords don't match",
-                          message: "Please try again.")
+                updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
+                showAlert(title: "masterpassword.alert.mismatch.title".localized(),
+                          message: "masterpassword.alert.mismatch.message".localized())
             }
         }
     }
@@ -173,8 +173,8 @@ class MasterPasswordController: UIViewController {
 
             guard let encrypted = encryptedPassword else {
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Connection Issue",
-                                  message: "Unable to verify your password right now. Please wait a moment and try again.")
+                    self.showAlert(title: "masterpassword.alert.connection.title".localized(),
+                                  message: "masterpassword.alert.connection.message".localized())
                 }
                 return
             }
@@ -197,8 +197,8 @@ class MasterPasswordController: UIViewController {
                         attempted += 1
                         UserDefaults.standard.set(attempted, forKey: "attempted_failed")
                         let remaining = (attempts + 1) - attempted
-                        self.showAlert(title: "Wrong password",
-                                      message: "Your data will be erased after \(remaining) more failed attempt\(remaining == 1 ? "" : "s").")
+                        self.showAlert(title: "masterpassword.alert.wrong.title".localized(),
+                                      message: "masterpassword.alert.wrong.message".localized(with: remaining))
                     } else {
                         DBManager.shared.deleteAllDatas(userID: user.uid) { success in
                             guard success else { return }
@@ -239,7 +239,7 @@ class MasterPasswordController: UIViewController {
 
     private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
     }
 }

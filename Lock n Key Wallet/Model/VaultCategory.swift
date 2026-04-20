@@ -12,10 +12,10 @@ enum VaultCategory: CaseIterable {
 
     var title: String {
         switch self {
-        case .passwords: return "Passwords"
-        case .cards:     return "Cards"
-        case .images:    return "Images"
-        case .notes:     return "Notes"
+        case .passwords: return "category.passwords".localized()
+        case .cards:     return "category.cards".localized()
+        case .images:    return "category.images".localized()
+        case .notes:     return "category.notes".localized()
         }
     }
 

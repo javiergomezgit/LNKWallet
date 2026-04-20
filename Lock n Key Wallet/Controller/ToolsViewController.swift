@@ -45,12 +45,12 @@ class ToolsViewController: UIViewController {
     private func setupNavBar() {
         navigationController?.navigationBar.isHidden = true
 
-        pageSupertitleLabel.text      = "LOCK N KEY"
+        pageSupertitleLabel.text      = "vault.app_name".localized()
         pageSupertitleLabel.font      = .systemFont(ofSize: 11, weight: .medium)
         pageSupertitleLabel.textColor = .textSecondary
         pageSupertitleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        pageTitleLabel.text      = "Tools"
+        pageTitleLabel.text      = "tools.title".localized()
         pageTitleLabel.font      = .systemFont(ofSize: 26, weight: .medium)
         pageTitleLabel.textColor = .textPrimary
         pageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +103,7 @@ class ToolsViewController: UIViewController {
         // Generator — plain card
         let generatorCard = makeToolCard(
             icon: "key.fill",
-            title: "Password\nGenerator",
+            title: "tools.generator".localized(),
             accent: .accentBrand,
             comingSoon: false,
             action: #selector(generatorTapped)
@@ -112,7 +112,7 @@ class ToolsViewController: UIViewController {
         // Health — plain card
         let healthCard = makeToolCard(
             icon: "heart.text.square.fill",
-            title: "Password\nHealth",
+            title: "tools.health".localized(),
             accent: .accentBrand,
             comingSoon: false,
             action: #selector(healthTapped)
@@ -177,7 +177,7 @@ class ToolsViewController: UIViewController {
         // Coming soon badge
         if comingSoon {
             let badge               = UILabel()
-            badge.text              = "Coming soon"
+            badge.text              = "health.coming_soon".localized()
             badge.font              = UIFont.systemFont(ofSize: 10, weight: .medium)
             badge.textColor         = .textSecondary
             badge.backgroundColor   = .backgroundPrimary
@@ -214,7 +214,7 @@ class ToolsViewController: UIViewController {
     private func setupPromoSection() {
         // Section header
         let header           = UILabel()
-        let attributed       = NSMutableAttributedString(string: "TRY OUR OTHER APP")
+        let attributed       = NSMutableAttributedString(string: "tools.promo_header".localized())
         attributed.addAttribute(.kern,
                                 value: 0.8,
                                 range: NSRange(location: 0, length: attributed.length))
@@ -246,13 +246,13 @@ class ToolsViewController: UIViewController {
 
         // Labels
         let titleLabel           = UILabel()
-        titleLabel.text          = "LNK Chats"
+        titleLabel.text          = "tools.promo_title".localized()
         titleLabel.font          = UIFont.systemFont(ofSize: 15, weight: .semibold)
         titleLabel.textColor     = .textPrimary
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let subtitleLabel        = UILabel()
-        subtitleLabel.text       = "Encrypted instant messaging"
+        subtitleLabel.text       = "tools.promo_subtitle".localized()
         subtitleLabel.font       = UIFont.systemFont(ofSize: 13, weight: .regular)
         subtitleLabel.textColor  = .textSecondary
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false

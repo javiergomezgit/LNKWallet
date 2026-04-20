@@ -79,6 +79,7 @@
                     <connections>
                         <outlet property="loginView" destination="tkp-s9-xVV" id="pcu-KW-Wj7"/>
                         <outlet property="loginViewWithLogo" destination="26S-cQ-LUG" id="8gr-5P-fve"/>
+                        <outlet property="vaultSubtitleLabel" destination="wi7-RT-bxn" id="mFI-gI-6Ac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Owa-PC-eCj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

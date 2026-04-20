@@ -20,6 +20,9 @@ class GeneratePasswordController: UIViewController {
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var viewBackPassword: UIView!
+    @IBOutlet weak var uppercaseLabel: UILabel!
+    @IBOutlet weak var numbersLabel: UILabel!
+    @IBOutlet weak var symbolsLabel: UILabel!
 //    @IBOutlet weak var copiedView: UIView!
 
     // MARK: — Lifecycle
@@ -34,6 +37,7 @@ class GeneratePasswordController: UIViewController {
         setupSwitches()
         setupButtons()
         setupFonts()
+        setupLocalizedLabels()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(passwordLabelTapped))
         passwordLabel.isUserInteractionEnabled = true
@@ -50,7 +54,7 @@ class GeneratePasswordController: UIViewController {
     // MARK: — Setup
 
     private func setupNavBar() {
-        title = "Generator"
+        title = "generator.title".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         extendedLayoutIncludesOpaqueBars = true
@@ -110,7 +114,7 @@ class GeneratePasswordController: UIViewController {
     private func setupButtons() {
         // Copy — filled gold
         var copyConfig = UIButton.Configuration.filled()
-        copyConfig.title               = "Copy"
+        copyConfig.title               = "generator.copy".localized()
         copyConfig.image               = UIImage(systemName: "doc.on.doc")
         copyConfig.imagePlacement      = .leading
         copyConfig.imagePadding        = 8
@@ -121,7 +125,7 @@ class GeneratePasswordController: UIViewController {
 
         // Regenerate — filled gold, slightly transparent
         var resetConfig = UIButton.Configuration.filled()
-        resetConfig.title               = "Refresh"
+        resetConfig.title               = "generator.refresh".localized()
         resetConfig.image               = UIImage(systemName: "arrow.clockwise")
         resetConfig.imagePlacement      = .leading
         resetConfig.imagePadding        = 8
@@ -137,6 +141,12 @@ class GeneratePasswordController: UIViewController {
 
         // Password display — keep monospaced, it's intentional for passwords
         passwordLabel.font = UIFont.monospacedSystemFont(ofSize: 28, weight: .bold)
+    }
+
+    private func setupLocalizedLabels() {
+        uppercaseLabel.text = "generator.option.uppercase".localized()
+        numbersLabel.text = "generator.option.numbers".localized()
+        symbolsLabel.text = "generator.option.symbols".localized()
     }
 
     // MARK: — Actions
@@ -155,12 +165,12 @@ class GeneratePasswordController: UIViewController {
 
     @IBAction func copyButtonTapped(_ sender: UIButton) {
         UIPasteboard.general.string = passwordLabel.text
-        showToast("Password copied")
+        showToast("generator.copied".localized())
     }
     
     @objc private func passwordLabelTapped() {
         UIPasteboard.general.string = passwordLabel.text
-        showToast("Password copied")
+        showToast("generator.copied".localized())
     }
     
     private func showToast(_ message: String) {
@@ -235,4 +245,3 @@ class GeneratePasswordController: UIViewController {
         return result
     }
 }
-

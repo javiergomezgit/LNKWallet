@@ -1,0 +1,198 @@
+/* Common Buttons */
+"button.ok" = "Aceptar";
+"button.cancel" = "Cancelar";
+"button.save" = "Guardar";
+"button.update" = "Actualizar";
+"button.delete" = "Eliminar";
+"button.skip" = "Omitir";
+"button.continue" = "Continuar";
+"button.get_started" = "Comenzar";
+
+/* Common */
+"common.saved_count" = "%d guardados";
+"common.unknown" = "Desconocido";
+
+/* Common Alert Titles */
+"alert.error.title" = "Error";
+"alert.updated.title" = "Actualizado";
+"alert.saved.title" = "Guardado";
+"alert.deleted.title" = "Eliminado";
+"alert.missing_title.title" = "Título faltante";
+"alert.missing_name.title" = "Nombre faltante";
+"alert.missing_password.title" = "Contraseña faltante";
+"alert.invalid_email.title" = "Correo inválido";
+"alert.invalid_website.title" = "Sitio web inválido";
+"alert.empty_fields.title" = "Campos vacíos";
+"alert.empty_note.title" = "Nota vacía";
+
+/* Common Menu */
+"menu.password" = "Contraseña";
+"menu.credit_card" = "Tarjeta de crédito";
+"menu.secure_note" = "Nota segura";
+"menu.image" = "Imagen";
+"menu.store_info" = "Guardar nueva información";
+
+/* Onboarding */
+"onboarding.page1.title" = "Tu bóveda,\ntus reglas.";
+"onboarding.page1.body" = "Guarda contraseñas, tarjetas, notas e imágenes — todo cifrado, todo privado.";
+"onboarding.page2.title" = "Cifrado de\ngrado militar.";
+"onboarding.page2.body" = "Cada dato se cifra antes de salir de tu dispositivo.";
+"onboarding.page3.title" = "Todo\nen un lugar.";
+"onboarding.page3.body" = "Contraseñas, tarjetas, imágenes y notas seguras — organizadas y siempre accesibles.";
+
+/* Sign In */
+"signin.alert.no_internet.title" = "Conexión a internet";
+"signin.alert.no_internet.message" = "Necesitas internet para usar esta app";
+"signin.subtitle" = "Tu bóveda personal cifrada";
+
+/* Master Password */
+"masterpassword.requirements" = "Debe tener: 1 mayúscula, 1 símbolo y al menos 8 caracteres.";
+"masterpassword.placeholder.type" = "Ingresa contraseña";
+"masterpassword.placeholder.set" = "Establece contraseña maestra";
+"masterpassword.placeholder.verify" = "Verifica contraseña";
+"masterpassword.button.unlock" = "Desbloquear";
+"masterpassword.button.set" = "Establecer contraseña";
+"masterpassword.button.verify" = "Verificar contraseña";
+"masterpassword.alert.save_error.message" = "No se pudo guardar tu contraseña maestra. Intenta de nuevo.";
+"masterpassword.alert.mismatch.title" = "Las contraseñas no coinciden";
+"masterpassword.alert.mismatch.message" = "Por favor, intenta de nuevo.";
+"masterpassword.alert.connection.title" = "Problema de conexión";
+"masterpassword.alert.connection.message" = "No se puede verificar tu contraseña ahora. Espera un momento e intenta de nuevo.";
+"masterpassword.alert.wrong.title" = "Contraseña incorrecta";
+"masterpassword.alert.wrong.message" = "Tus datos se borrarán después de %d intento(s) fallido(s) más.";
+
+/* Vault Home */
+"vault.greeting" = "Mi Bóveda";
+"vault.app_name" = "LOCK N KEY";
+"vault.search.placeholder" = "Buscar en bóveda...";
+"vault.recent" = "RECIENTE";
+
+
+/* Settings */
+"settings.title" = "Configuración";
+"settings.section.security" = "SEGURIDAD";
+"settings.section.account" = "CUENTA";
+"settings.section.info" = "INFORMACIÓN";
+"settings.footer.erase" = "Borrar todos los datos al superar el número de intentos fallidos.";
+"settings.menu.instant_auto_lock" = "Bloqueo automático instantáneo";
+"settings.menu.erase_data" = "Borrar datos";
+"settings.menu.signout" = "Cerrar sesión";
+"settings.menu.reset_all" = "Restablecer todo";
+"settings.menu.delete_account" = "Eliminar cuenta";
+"settings.menu.privacy" = "Privacidad";
+"settings.menu.contact" = "Contacto";
+"settings.signout.title" = "Cerrar sesión";
+"settings.signout.message" = "¿Estás seguro de que quieres cerrar sesión?";
+"settings.signout.error.message" = "No se pudo cerrar sesión. Intenta de nuevo.";
+"settings.delete_data.title" = "Eliminar todos los datos";
+"settings.delete_data.message" = "¿Estás seguro de que quieres eliminar toda tu información?";
+"settings.delete_data.success.title" = "Limpiado";
+"settings.delete_data.success.message" = "Tu información ha sido borrada.";
+"settings.delete_account.title" = "Eliminar cuenta";
+"settings.delete_account.message" = "¿Estás seguro de que quieres eliminar tu cuenta? Esto no se puede deshacer.";
+"settings.version" = "Versión %@";
+
+/* Password Generator */
+"generator.title" = "Generador";
+"generator.copy" = "Copiar";
+"generator.refresh" = "Actualizar";
+"generator.copied" = "Contraseña copiada";
+"generator.option.uppercase" = "Mayúsculas ABC";
+"generator.option.numbers" = "Números 123";
+"generator.option.symbols" = "Símbolos ^@#";
+
+/* Password Health */
+"health.title" = "Salud de contraseñas";
+"health.weak.title" = "Contraseñas débiles";
+"health.weak.subtitle" = "Contraseñas cortas o simples";
+"health.reused.title" = "Contraseñas reutilizadas";
+"health.reused.subtitle" = "Usadas en múltiples cuentas";
+"health.leaked.title" = "Contraseñas filtradas";
+"health.leaked.subtitle" = "Encontradas en filtraciones de datos conocidas";
+"health.coming_soon" = "Próximamente";
+"health.all_clear.title" = "Todo bien";
+"health.no_weak.message" = "No se encontraron contraseñas débiles.";
+"health.no_reused.message" = "No se encontraron contraseñas reutilizadas.";
+
+/* Open Vault / Filters */
+"filter.all" = "Todo";
+"filter.passwords" = "Contraseñas";
+"filter.cards" = "Tarjetas";
+"filter.images" = "Imágenes";
+"filter.notes" = "Notas";
+"vault.search_in_vault" = "Buscar en bóveda";
+"vault.open" = "Bóveda";
+"vault.pull_to_refresh" = "Desliza para actualizar";
+"alert.deleted.message" = "La información ha sido eliminada";
+
+/* Vault Categories */
+"category.passwords" = "Contraseñas";
+"category.cards" = "Tarjetas";
+"category.images" = "Imágenes";
+"category.notes" = "Notas";
+
+/* Data Password */
+"datapassword.title.new" = "Nueva contraseña";
+"datapassword.title" = "Contraseña";
+"datapassword.placeholder.name" = "Nombre (ej. Gmail)";
+"datapassword.placeholder.email" = "Correo o nombre de usuario";
+"datapassword.placeholder.other" = "Otro (opcional)";
+"datapassword.placeholder.password" = "Contraseña";
+"datapassword.placeholder.website" = "Sitio web";
+"datapassword.section.account" = "CUENTA";
+"datapassword.section.credentials" = "CREDENCIALES";
+"datapassword.section.details" = "DETALLES";
+"datapassword.updated.message" = "Tu contraseña ha sido actualizada.";
+"alert.missing_name.message" = "Por favor asigna un nombre a esta cuenta.";
+"alert.missing_password.message" = "La contraseña no puede estar vacía.";
+"alert.invalid_email.message" = "Por favor ingresa un correo válido.";
+"alert.invalid_website.message" = "Por favor ingresa una URL válida (ej. https://ejemplo.com).";
+
+/* Data Secure Note */
+"datasecurenote.title.new" = "Nueva nota";
+"datasecurenote.title" = "Nota segura";
+"datasecurenote.placeholder.title" = "Título de la nota";
+"datasecurenote.section.title" = "TÍTULO DE LA NOTA";
+"datasecurenote.section.content" = "CONTENIDO";
+"datasecurenote.updated.message" = "Tu nota ha sido actualizada.";
+"alert.missing_title.note.message" = "Por favor asigna un título a esta nota.";
+"alert.empty_note.message" = "El contenido de la nota no puede estar vacío.";
+
+/* Data Credit Card */
+"datacreditcard.title.new" = "Nueva tarjeta";
+"datacreditcard.title" = "Tarjeta";
+"datacreditcard.placeholder.nickname" = "Alias de tarjeta (ej. Visa Banamex)";
+"datacreditcard.placeholder.cardholder" = "Nombre del titular";
+"datacreditcard.placeholder.number" = "Número de tarjeta";
+"datacreditcard.placeholder.cvv" = "CVV";
+"datacreditcard.placeholder.zip" = "Código postal";
+"datacreditcard.placeholder.address" = "Dirección";
+"datacreditcard.expiration.placeholder" = "MM / AA";
+"datacreditcard.scan" = "Escanear tarjeta";
+"datacreditcard.section.details" = "DATOS DE TARJETA";
+"datacreditcard.section.info" = "INFO DE TARJETA";
+"datacreditcard.section.billing" = "FACTURACIÓN";
+"datacreditcard.scanner.place" = "Coloca la tarjeta";
+"datacreditcard.scanner.lineup" = "Alinea la tarjeta dentro de las líneas";
+"datacreditcard.expiration.title" = "Fecha de vencimiento";
+"datacreditcard.select_date" = "Seleccionar fecha";
+"datacreditcard.saved.message" = "Tu tarjeta ha sido guardada.";
+"datacreditcard.updated.message" = "Tu tarjeta ha sido actualizada.";
+"alert.empty_fields.message" = "Por favor completa todos los campos requeridos.";
+
+/* Data Image */
+"dataimage.title.new" = "Nueva imagen";
+"dataimage.title" = "Imagen";
+"dataimage.placeholder.title" = "Título de la imagen";
+"alert.error.store_image.message" = "Hubo un error al guardar tu imagen. Intenta más tarde.";
+"dataimage.updated.message" = "Tu imagen ha sido actualizada.";
+"alert.error.download_image.message" = "Hubo un error al descargar tu imagen. Intenta más tarde.";
+"alert.missing_title.image.message" = "Por favor asigna un título a esta imagen.";
+
+/* Tools */
+"tools.title" = "Herramientas";
+"tools.generator" = "Generador de\ncontraseñas";
+"tools.health" = "Salud de\ncontraseñas";
+"tools.promo_header" = "PRUEBA NUESTRA OTRA APP";
+"tools.promo_title" = "LNK Chats";
+"tools.promo_subtitle" = "Mensajería instantánea cifrada";

@@ -39,6 +39,9 @@ class VaultHomeViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        let openVaultTabTitle = "vault.open".localized()
+        navigationController?.tabBarItem.title = openVaultTabTitle
+        tabBarItem.title = openVaultTabTitle
         setupUI()
         setupCollectionView()
         setupRecentTableView()
@@ -121,19 +124,19 @@ class VaultHomeViewController: UIViewController {
 
     // MARK: - Add Button Menu
     private func setupAddButton() {
-        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { _ in
+        let passwordItem = UIAction(title: "menu.password".localized(), image: UIImage(systemName: "person.badge.key.fill")) { _ in
             self.navigateToAdd("NavDataPasswordController")
         }
-        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard.fill")) { _ in
+        let creditCardItem = UIAction(title: "menu.credit_card".localized(), image: UIImage(systemName: "creditcard.fill")) { _ in
             self.navigateToAdd("NavDataCreditCardController")
         }
-        let noteItem = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { _ in
+        let noteItem = UIAction(title: "menu.secure_note".localized(), image: UIImage(systemName: "lock.rectangle.fill")) { _ in
             self.navigateToAdd("NavDataSecureNoteController")
         }
-        let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill")) { _ in
+        let imageItem = UIAction(title: "menu.image".localized(), image: UIImage(systemName: "photo.fill")) { _ in
             self.navigateToAdd("NavDataImageController")
         }
-        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, creditCardItem, imageItem, noteItem])
+        let menu = UIMenu(title: "menu.store_info".localized(), options: .displayInline, children: [passwordItem, creditCardItem, imageItem, noteItem])
         addButton.menu = menu
         addButton.showsMenuAsPrimaryAction = true
     }
@@ -146,14 +149,14 @@ extension VaultHomeViewController {
         view.backgroundColor = .backgroundPrimary
 
         // Greeting
-        greetingLabel.text = "My Vault"
+        greetingLabel.text = "vault.greeting".localized()
         greetingLabel.font = .systemFont(ofSize: 26, weight: .medium)
         greetingLabel.textColor = .textPrimary
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
 
         // Subtitle
         let subtitleLabel = UILabel()
-        subtitleLabel.text = "LOCK N KEY"
+        subtitleLabel.text = "vault.app_name".localized()
         subtitleLabel.font = .systemFont(ofSize: 11, weight: .medium)
         subtitleLabel.textColor = .textSecondary
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -169,7 +172,7 @@ extension VaultHomeViewController {
 
         // Search bar
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search vault..."
+        searchBar.placeholder = "vault.search.placeholder".localized()
         searchBar.backgroundImage = UIImage()
         searchBar.backgroundColor = .clear
         searchBar.searchTextField.backgroundColor = .backgroundSecondary
@@ -179,7 +182,7 @@ extension VaultHomeViewController {
         searchBar.delegate = self
 
         // Recent label
-        recentLabel.text = "RECENT"
+        recentLabel.text = "vault.recent".localized()
         recentLabel.font = .systemFont(ofSize: 11, weight: .medium)
         recentLabel.textColor = .textSecondary
         recentLabel.isHidden = true

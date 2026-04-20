@@ -18,6 +18,7 @@ class SignInController: UIViewController {
     
     @IBOutlet weak var loginViewWithLogo: UIView!
     @IBOutlet weak var loginView: UIStackView!
+    @IBOutlet weak var vaultSubtitleLabel: UILabel!
     fileprivate var currentNonce: String?
     public var deletingAccount = false
     private var signedPreviously = false
@@ -26,6 +27,7 @@ class SignInController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        vaultSubtitleLabel.text = "signin.subtitle".localized()
         if !deletingAccount {
             setupInitials()
         } else {
@@ -72,10 +74,10 @@ class SignInController: UIViewController {
                 }
             }
         } else {
-            let refreshAlert = UIAlertController(title: "Internet connection",
-                                                message: "You will need internet for using this app",
+            let refreshAlert = UIAlertController(title: "signin.alert.no_internet.title".localized(),
+                                                message: "signin.alert.no_internet.message".localized(),
                                                 preferredStyle: .alert)
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in exit(0) })
+            refreshAlert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in exit(0) })
             present(refreshAlert, animated: true)
         }
     }

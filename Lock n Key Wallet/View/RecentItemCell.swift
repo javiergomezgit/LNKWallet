@@ -80,7 +80,7 @@ class RecentItemCell: UITableViewCell {
     func configure(with item: LNKData) {
         titleLabel.text = item.nameData
         let category = VaultCategory.allCases.first { $0.typeKey == item.typeData }
-        subtitleLabel.text = category?.title ?? "Unknown"
+        subtitleLabel.text = category?.title ?? "common.unknown".localized()
         iconView.image = category?.icon
         iconView.tintColor = category?.accent ?? .accentBrand
         iconContainer.backgroundColor = (category?.accent ?? .accentBrand).withAlphaComponent(0.12)

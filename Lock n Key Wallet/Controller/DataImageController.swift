@@ -35,8 +35,8 @@ class DataImageController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.rightBarButtonItem?.title = nameData.isEmpty ? "Save" : "Update"
-        self.title = nameData.isEmpty ? "New Image" : "Image"
+        navigationItem.rightBarButtonItem?.title = nameData.isEmpty ? "button.save".localized() : "button.update".localized()
+        self.title = nameData.isEmpty ? "dataimage.title.new".localized() : "dataimage.title".localized()
 
         if !nameData.isEmpty {
             titleTextField.text      = nameData
@@ -57,7 +57,7 @@ class DataImageController: UIViewController {
         closeBtn.tintColor = .textSecondary
         navigationItem.leftBarButtonItem = closeBtn
 
-        let saveBtn = UIBarButtonItem(title: "Save",
+        let saveBtn = UIBarButtonItem(title: "button.save".localized(),
                                      style: .done,
                                      target: self,
                                      action: #selector(saveButtonTapped))
@@ -66,7 +66,7 @@ class DataImageController: UIViewController {
     }
 
     private func setupFields() {
-        styleTextField(titleTextField, placeholder: "Image title", accent: .accentImages)
+        styleTextField(titleTextField, placeholder: "dataimage.placeholder.title".localized(), accent: .accentImages)
 
         backViewTitle.backgroundColor    = .backgroundSecondary
         backViewTitle.layer.cornerRadius = 12
@@ -103,7 +103,7 @@ class DataImageController: UIViewController {
     private func saveDataImage() {
         guard verifyFields() else { return }
         guard let encrypted = encryptImage() else {
-            showAlert(title: "Error", message: "There was an error storing your image. Try again later.")
+            showAlert(title: "alert.error.title".localized(), message: "alert.error.store_image.message".localized())
             return
         }
         DispatchQueue.main.async {
@@ -119,7 +119,7 @@ class DataImageController: UIViewController {
 
     private func updateDataImage() {
         guard let encrypted = encryptImage() else {
-            showAlert(title: "Error", message: "There was an error storing your image. Try again later.")
+            showAlert(title: "alert.error.title".localized(), message: "alert.error.store_image.message".localized())
             return
         }
         DispatchQueue.main.async {
@@ -128,7 +128,7 @@ class DataImageController: UIViewController {
                 lnkData: encrypted,
                 userID: self.user!.uid) { [weak self] success in
                 guard let self = self, success else { return }
-                self.showAlert(title: "Updated", message: "Your image has been updated.") {
+                self.showAlert(title: "alert.updated.title".localized(), message: "dataimage.updated.message".localized()) {
                     self.dismiss(animated: true)
                 }
             }
@@ -144,7 +144,7 @@ class DataImageController: UIViewController {
                 if image == nil { image = UIImage(named: "LogoIcon") }
                 DispatchQueue.main.async { self.imageView.image = image }
             case .failure:
-                self.showAlert(title: "Error", message: "There was an error downloading your image. Try again later.")
+                self.showAlert(title: "alert.error.title".localized(), message: "alert.error.download_image.message".localized())
             }
         }
     }
@@ -153,7 +153,7 @@ class DataImageController: UIViewController {
 
     private func verifyFields() -> Bool {
         if titleTextField.text?.isEmpty == true {
-            showAlert(title: "Missing Title", message: "Please give this image a title.")
+            showAlert(title: "alert.missing_title.title".localized(), message: "alert.missing_title.image.message".localized())
             return false
         }
         return true
@@ -170,7 +170,7 @@ class DataImageController: UIViewController {
 
     private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
     }
 }

@@ -311,7 +311,14 @@
                     <connections>
                         <outlet property="attemptsLabel" destination="QnE-5b-o0O" id="Svp-vA-qvM"/>
                         <outlet property="attemptsStepper" destination="YRC-YQ-cCk" id="bp2-ci-4Df"/>
+                        <outlet property="contactLabel" destination="b0c-Sq-Jgx" id="yjq-s3-P4m"/>
+                        <outlet property="deleteAccountLabel" destination="pRt-No-pEc" id="v3G-Aq-SOk"/>
+                        <outlet property="eraseDataLabel" destination="pGM-7c-3JX" id="0Ms-cB-efL"/>
                         <outlet property="instantAutoLockSwitch" destination="vRj-yL-CDe" id="m4P-8U-bTl"/>
+                        <outlet property="instantAutoLockLabel" destination="LHO-7P-rkV" id="NJI-yq-O8e"/>
+                        <outlet property="privacyLabel" destination="1uB-L6-xxa" id="JEu-E0-rLf"/>
+                        <outlet property="resetAllLabel" destination="h6c-OG-s2G" id="nXP-Oy-Wsa"/>
+                        <outlet property="signOutLabel" destination="p05-CY-gWC" id="x4X-M3-8qd"/>
                         <outlet property="versionLabel" destination="iYR-nE-zMT" id="Uaq-vd-mpQ"/>
                     </connections>
                 </tableViewController>

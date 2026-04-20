@@ -20,12 +20,12 @@ class OpenVaultController: UIViewController {
     private var filterButtons: [UIButton] = []
     var preloadedItems: [LNKData]? = nil
 
-    private let filterOptions: [(title: String, type: String?)] = [
-        ("All", nil),
-        ("Passwords", "type_2"),
-        ("Cards", "type_1"),
-        ("Images", "type_4"),
-        ("Notes", "type_3")
+    private let filterOptions: [(titleKey: String, type: String?)] = [
+        ("filter.all", nil),
+        ("filter.passwords", "type_2"),
+        ("filter.cards", "type_1"),
+        ("filter.images", "type_4"),
+        ("filter.notes", "type_3")
     ]
 
     // MARK: - Data
@@ -56,23 +56,23 @@ class OpenVaultController: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search in Vault"
+        searchController.searchBar.placeholder = "vault.search_in_vault".localized()
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-        let passwordItem = UIAction(title: "Password", image: UIImage(systemName: "person.badge.key.fill")) { _ in
+        let passwordItem = UIAction(title: "menu.password".localized(), image: UIImage(systemName: "person.badge.key.fill")) { _ in
             self.goToController(nameController: "NavDataPasswordController")
         }
-        let creditCardItem = UIAction(title: "Credit Card", image: UIImage(systemName: "creditcard.fill")) { _ in
+        let creditCardItem = UIAction(title: "menu.credit_card".localized(), image: UIImage(systemName: "creditcard.fill")) { _ in
             self.goToController(nameController: "NavDataCreditCardController")
         }
-        let secureNote = UIAction(title: "Secure Note", image: UIImage(systemName: "lock.rectangle.fill")) { _ in
+        let secureNote = UIAction(title: "menu.secure_note".localized(), image: UIImage(systemName: "lock.rectangle.fill")) { _ in
             self.goToController(nameController: "NavDataSecureNoteController")
         }
-        let imageItem = UIAction(title: "Image", image: UIImage(systemName: "photo.fill")) { _ in
+        let imageItem = UIAction(title: "menu.image".localized(), image: UIImage(systemName: "photo.fill")) { _ in
             self.goToController(nameController: "NavDataImageController")
         }
-        let menu = UIMenu(title: "Store new information", options: .displayInline, children: [passwordItem, creditCardItem, imageItem, secureNote])
+        let menu = UIMenu(title: "menu.store_info".localized(), options: .displayInline, children: [passwordItem, creditCardItem, imageItem, secureNote])
         let rightButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), primaryAction: nil, menu: menu)
         rightButtonItem.tintColor = .accentBrand
         navigationItem.rightBarButtonItem = rightButtonItem
@@ -80,9 +80,9 @@ class OpenVaultController: UIViewController {
 
     private func updateNavTitle() {
         if let type = preFilterType {
-            title = VaultCategory.allCases.first { $0.typeKey == type }?.title ?? "Open Vault"
+            title = VaultCategory.allCases.first { $0.typeKey == type }?.title ?? "vault.open".localized()
         } else {
-            title = "Open Vault"
+            title = "vault.open".localized()
         }
     }
 
@@ -111,7 +111,7 @@ class OpenVaultController: UIViewController {
         ])
 
         filterOptions.forEach { option in
-            let button = makeChip(title: option.title, type: option.type)
+            let button = makeChip(title: option.titleKey.localized(), type: option.type)
             filterStackView.addArrangedSubview(button)
             filterButtons.append(button)
         }
@@ -167,7 +167,7 @@ class OpenVaultController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
 
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "vault.pull_to_refresh".localized())
         refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
@@ -323,8 +323,8 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
 
-            let alert = UIAlertController(title: "Deleted", message: "The information has been deleted", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            let alert = UIAlertController(title: "alert.deleted.title".localized(), message: "alert.deleted.message".localized(), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in
                 self.navigationController?.popToRootViewController(animated: true)
             })
             self.present(alert, animated: true)

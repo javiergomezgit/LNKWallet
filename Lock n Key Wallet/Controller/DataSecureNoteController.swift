@@ -38,8 +38,8 @@ class DataSecureNoteController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.rightBarButtonItem?.title = nameData.isEmpty ? "Save" : "Update"
-        self.title = nameData.isEmpty ? "New Note" : "Secure Note"
+        navigationItem.rightBarButtonItem?.title = nameData.isEmpty ? "button.save".localized() : "button.update".localized()
+        self.title = nameData.isEmpty ? "datasecurenote.title.new".localized() : "datasecurenote.title".localized()
 
         if !nameData.isEmpty {
             titleTextField.text      = nameData
@@ -60,7 +60,7 @@ class DataSecureNoteController: UITableViewController {
         closeBtn.tintColor = .textSecondary
         navigationItem.leftBarButtonItem = closeBtn
 
-        let saveBtn = UIBarButtonItem(title: "Save",
+        let saveBtn = UIBarButtonItem(title: "button.save".localized(),
                                      style: .done,
                                      target: self,
                                      action: #selector(saveButtonTapped))
@@ -69,7 +69,7 @@ class DataSecureNoteController: UITableViewController {
     }
 
     private func setupFields() {
-        styleTextField(titleTextField, placeholder: "Note title", accent: .accentNotes)
+        styleTextField(titleTextField, placeholder: "datasecurenote.placeholder.title".localized(), accent: .accentNotes)
         styleTextView(secureNoteTextView)
     }
 
@@ -85,7 +85,7 @@ class DataSecureNoteController: UITableViewController {
     // MARK: — Section headers
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let titles = ["NOTE TITLE", "CONTENT"]
+        let titles = ["datasecurenote.section.title".localized(), "datasecurenote.section.content".localized()]
         guard section < titles.count else { return nil }
 
         let container = UIView()
@@ -173,7 +173,7 @@ class DataSecureNoteController: UITableViewController {
             lnkDataSecureNote: encrypted,
             userID: user.uid) { [weak self] success in
             guard let self = self, success else { return }
-            self.showAlert(title: "Updated", message: "Your note has been updated.") {
+            self.showAlert(title: "alert.updated.title".localized(), message: "datasecurenote.updated.message".localized()) {
                 self.dismiss(animated: true)
             }
         }
@@ -183,11 +183,11 @@ class DataSecureNoteController: UITableViewController {
 
     private func verifyFields() -> Bool {
         if titleTextField.text?.isEmpty == true {
-            showAlert(title: "Missing Title", message: "Please give this note a title.")
+            showAlert(title: "alert.missing_title.title".localized(), message: "alert.missing_title.note.message".localized())
             return false
         }
         if secureNoteTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            showAlert(title: "Empty Note", message: "Note content cannot be empty.")
+            showAlert(title: "alert.empty_note.title".localized(), message: "alert.empty_note.message".localized())
             return false
         }
         return true
@@ -217,7 +217,7 @@ class DataSecureNoteController: UITableViewController {
 
     private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
     }
 }

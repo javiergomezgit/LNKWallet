@@ -1,0 +1,198 @@
+/* Common Buttons */
+"button.ok" = "OK";
+"button.cancel" = "Cancel";
+"button.save" = "Save";
+"button.update" = "Update";
+"button.delete" = "Delete";
+"button.skip" = "Skip";
+"button.continue" = "Continue";
+"button.get_started" = "Get Started";
+
+/* Common */
+"common.saved_count" = "%d saved";
+"common.unknown" = "Unknown";
+
+/* Common Alert Titles */
+"alert.error.title" = "Error";
+"alert.updated.title" = "Updated";
+"alert.saved.title" = "Saved";
+"alert.deleted.title" = "Deleted";
+"alert.missing_title.title" = "Missing Title";
+"alert.missing_name.title" = "Missing Name";
+"alert.missing_password.title" = "Missing Password";
+"alert.invalid_email.title" = "Invalid Email";
+"alert.invalid_website.title" = "Invalid Website";
+"alert.empty_fields.title" = "Empty Fields";
+"alert.empty_note.title" = "Empty Note";
+
+/* Common Menu */
+"menu.password" = "Password";
+"menu.credit_card" = "Credit Card";
+"menu.secure_note" = "Secure Note";
+"menu.image" = "Image";
+"menu.store_info" = "Store new information";
+
+/* Onboarding */
+"onboarding.page1.title" = "Your vault,\nyour rules.";
+"onboarding.page1.body" = "Store passwords, cards, notes and images — all encrypted, all private.";
+"onboarding.page2.title" = "Military-grade\nencryption.";
+"onboarding.page2.body" = "Every piece of data is encrypted before it ever leaves your device.";
+"onboarding.page3.title" = "Everything\nin one place.";
+"onboarding.page3.body" = "Passwords, cards, images, secure notes — organized and always accessible.";
+
+/* Sign In */
+"signin.alert.no_internet.title" = "Internet connection";
+"signin.alert.no_internet.message" = "You will need internet for using this app";
+"signin.subtitle" = "Your encrypted personal vault";
+
+/* Master Password */
+"masterpassword.requirements" = "Must have: 1 capital letter, 1 symbol & at least 8 characters.";
+"masterpassword.placeholder.type" = "Type Password";
+"masterpassword.placeholder.set" = "Set Master Password";
+"masterpassword.placeholder.verify" = "Verify Password";
+"masterpassword.button.unlock" = "Unlock";
+"masterpassword.button.set" = "Set Password";
+"masterpassword.button.verify" = "Verify Password";
+"masterpassword.alert.save_error.message" = "Couldn't save your master password. Please try again.";
+"masterpassword.alert.mismatch.title" = "Passwords don't match";
+"masterpassword.alert.mismatch.message" = "Please try again.";
+"masterpassword.alert.connection.title" = "Connection Issue";
+"masterpassword.alert.connection.message" = "Unable to verify your password right now. Please wait a moment and try again.";
+"masterpassword.alert.wrong.title" = "Wrong password";
+"masterpassword.alert.wrong.message" = "Your data will be erased after %d more failed attempt(s).";
+
+/* Vault Home */
+"vault.greeting" = "My Vault";
+"vault.app_name" = "LOCK N KEY";
+"vault.search.placeholder" = "Search vault...";
+"vault.recent" = "RECENT";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.section.security" = "SECURITY";
+"settings.section.account" = "ACCOUNT";
+"settings.section.info" = "INFO";
+"settings.footer.erase" = "Erase all data after the set number of failed passcode attempts.";
+"settings.menu.instant_auto_lock" = "Instant Auto-lock";
+"settings.menu.erase_data" = "Erase Data";
+"settings.menu.signout" = "Sign Out";
+"settings.menu.reset_all" = "Reset All";
+"settings.menu.delete_account" = "Delete Account";
+"settings.menu.privacy" = "Privacy";
+"settings.menu.contact" = "Contact";
+"settings.signout.title" = "Sign Out";
+"settings.signout.message" = "Are you sure you want to sign out?";
+"settings.signout.error.message" = "Could not sign out. Try again.";
+"settings.delete_data.title" = "Delete all data";
+"settings.delete_data.message" = "Are you sure you want to delete all your information?";
+"settings.delete_data.success.title" = "Cleared";
+"settings.delete_data.success.message" = "Your information has been erased.";
+"settings.delete_account.title" = "Delete account";
+"settings.delete_account.message" = "Are you sure you want to delete your account? This cannot be undone.";
+"settings.version" = "Version %@";
+
+/* Password Generator */
+"generator.title" = "Generator";
+"generator.copy" = "Copy";
+"generator.refresh" = "Refresh";
+"generator.copied" = "Password copied";
+"generator.option.uppercase" = "Uppercase ABC";
+"generator.option.numbers" = "Numbers 123";
+"generator.option.symbols" = "Symbols ^@#";
+
+/* Password Health */
+"health.title" = "Password Health";
+"health.weak.title" = "Weak Passwords";
+"health.weak.subtitle" = "Short or simple passwords";
+"health.reused.title" = "Reused Passwords";
+"health.reused.subtitle" = "Used across multiple accounts";
+"health.leaked.title" = "Leaked Passwords";
+"health.leaked.subtitle" = "Found in known data breaches";
+"health.coming_soon" = "Coming soon";
+"health.all_clear.title" = "All clear";
+"health.no_weak.message" = "No weak passwords found.";
+"health.no_reused.message" = "No reused passwords found.";
+
+/* Open Vault / Filters */
+"filter.all" = "All";
+"filter.passwords" = "Passwords";
+"filter.cards" = "Cards";
+"filter.images" = "Images";
+"filter.notes" = "Notes";
+"vault.search_in_vault" = "Search in Vault";
+"vault.open" = "Vault";
+"vault.pull_to_refresh" = "Pull to refresh";
+"alert.deleted.message" = "The information has been deleted";
+
+
+/* Vault Categories */
+"category.passwords" = "Passwords";
+"category.cards" = "Cards";
+"category.images" = "Images";
+"category.notes" = "Notes";
+
+/* Data Password */
+"datapassword.title.new" = "New Password";
+"datapassword.title" = "Password";
+"datapassword.placeholder.name" = "Name (e.g. Gmail)";
+"datapassword.placeholder.email" = "Email or username";
+"datapassword.placeholder.other" = "Other (optional)";
+"datapassword.placeholder.password" = "Password";
+"datapassword.placeholder.website" = "Website";
+"datapassword.section.account" = "ACCOUNT";
+"datapassword.section.credentials" = "CREDENTIALS";
+"datapassword.section.details" = "DETAILS";
+"datapassword.updated.message" = "Your password has been updated.";
+"alert.missing_name.message" = "Please give this account a name.";
+"alert.missing_password.message" = "Password cannot be empty.";
+"alert.invalid_email.message" = "Please enter a valid email address.";
+"alert.invalid_website.message" = "Please enter a valid URL (e.g. https://example.com).";
+
+/* Data Secure Note */
+"datasecurenote.title.new" = "New Note";
+"datasecurenote.title" = "Secure Note";
+"datasecurenote.placeholder.title" = "Note title";
+"datasecurenote.section.title" = "NOTE TITLE";
+"datasecurenote.section.content" = "CONTENT";
+"datasecurenote.updated.message" = "Your note has been updated.";
+"alert.missing_title.note.message" = "Please give this note a title.";
+"alert.empty_note.message" = "Note content cannot be empty.";
+
+/* Data Credit Card */
+"datacreditcard.title.new" = "New Card";
+"datacreditcard.title" = "Card";
+"datacreditcard.placeholder.nickname" = "Card nickname (e.g. Chase Visa)";
+"datacreditcard.placeholder.cardholder" = "Cardholder name";
+"datacreditcard.placeholder.number" = "Card number";
+"datacreditcard.placeholder.cvv" = "CVV";
+"datacreditcard.placeholder.zip" = "ZIP code";
+"datacreditcard.placeholder.address" = "Address";
+"datacreditcard.expiration.placeholder" = "MM / YY";
+"datacreditcard.scan" = "Scan card";
+"datacreditcard.section.details" = "CARD DETAILS";
+"datacreditcard.section.info" = "CARD INFO";
+"datacreditcard.section.billing" = "BILLING";
+"datacreditcard.scanner.place" = "Place card";
+"datacreditcard.scanner.lineup" = "Line up card within the lines";
+"datacreditcard.expiration.title" = "Expiration Date";
+"datacreditcard.select_date" = "Select Date";
+"datacreditcard.saved.message" = "Your card has been saved.";
+"datacreditcard.updated.message" = "Your card has been updated.";
+"alert.empty_fields.message" = "Please fill in all required fields.";
+
+/* Data Image */
+"dataimage.title.new" = "New Image";
+"dataimage.title" = "Image";
+"dataimage.placeholder.title" = "Image title";
+"alert.error.store_image.message" = "There was an error storing your image. Try again later.";
+"dataimage.updated.message" = "Your image has been updated.";
+"alert.error.download_image.message" = "There was an error downloading your image. Try again later.";
+"alert.missing_title.image.message" = "Please give this image a title.";
+
+/* Tools */
+"tools.title" = "Tools";
+"tools.generator" = "Password\nGenerator";
+"tools.health" = "Password\nHealth";
+"tools.promo_header" = "TRY OUR OTHER APP";
+"tools.promo_title" = "LNK Chats";
+"tools.promo_subtitle" = "Encrypted instant messaging";

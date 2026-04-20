@@ -228,9 +228,12 @@
                         <outlet property="capitalSwitch" destination="XNL-S6-Q4e" id="ehP-MF-i53"/>
                         <outlet property="copyButton" destination="OwD-GC-6PJ" id="Izk-9Y-1b0"/>
                         <outlet property="digitsSwitch" destination="cvy-0m-Va9" id="PH5-rs-BS3"/>
+                        <outlet property="numbersLabel" destination="zMC-TB-nJ9" id="zRb-VM-bQe"/>
                         <outlet property="passwordLabel" destination="gOn-B2-KG5" id="wxk-A4-NOl"/>
                         <outlet property="resetButton" destination="Eba-Ik-DaR" id="pl0-hZ-BcX"/>
+                        <outlet property="symbolsLabel" destination="zkW-St-LxB" id="V6M-vg-58X"/>
                         <outlet property="symbolsSwitch" destination="YRZ-AK-F4Q" id="6rZ-oO-Y7n"/>
+                        <outlet property="uppercaseLabel" destination="8Ac-Ac-A1a" id="gYX-R9-WZa"/>
                         <outlet property="viewBackPassword" destination="JhK-LQ-RPs" id="Z23-cJ-sP5"/>
                     </connections>
                 </viewController>

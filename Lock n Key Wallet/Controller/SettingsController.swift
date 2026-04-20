@@ -16,6 +16,13 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var attemptsStepper: UIStepper!
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var instantAutoLockLabel: UILabel!
+    @IBOutlet weak var eraseDataLabel: UILabel!
+    @IBOutlet weak var signOutLabel: UILabel!
+    @IBOutlet weak var resetAllLabel: UILabel!
+    @IBOutlet weak var deleteAccountLabel: UILabel!
+    @IBOutlet weak var privacyLabel: UILabel!
+    @IBOutlet weak var contactLabel: UILabel!
 
     // MARK: — Lifecycle
 
@@ -29,7 +36,7 @@ class SettingsController: UITableViewController {
         tableView.estimatedSectionFooterHeight = 44
         tableView.estimatedSectionHeaderHeight = 36
 
-        self.title = "Settings"
+        self.title = "settings.title".localized()
         
         navigationController?.navigationBar.isHidden = true
         setupCustomHeader()
@@ -37,13 +44,14 @@ class SettingsController: UITableViewController {
         setupAutoLock()
         setupStepper()
         styleSwitch()
+        setupStaticLabels()
     }
 
     // MARK: — Setup
 
     private func setupVersion() {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
-        versionLabel.text      = "Version \(version)"
+        versionLabel.text      = "settings.version".localized(with: version)
         versionLabel.textColor = .textSecondary
         versionLabel.font      = UIFont.systemFont(ofSize: 15, weight: .regular)
     }
@@ -79,13 +87,13 @@ class SettingsController: UITableViewController {
         container.translatesAutoresizingMaskIntoConstraints = false
 
         let supertitle = UILabel()
-        supertitle.text      = "LOCK N KEY"
+        supertitle.text      = "vault.app_name".localized()
         supertitle.font      = .systemFont(ofSize: 11, weight: .medium)
         supertitle.textColor = .textSecondary
         supertitle.translatesAutoresizingMaskIntoConstraints = false
 
         let title = UILabel()
-        title.text      = "Settings"
+        title.text      = "settings.title".localized()
         title.font      = .systemFont(ofSize: 26, weight: .medium)
         title.textColor = .textPrimary
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -114,10 +122,25 @@ class SettingsController: UITableViewController {
         instantAutoLockSwitch.onTintColor = .accentBrand
     }
 
+    private func setupStaticLabels() {
+        instantAutoLockLabel.text = "settings.menu.instant_auto_lock".localized()
+        eraseDataLabel.text = "settings.menu.erase_data".localized()
+        signOutLabel.text = "settings.menu.signout".localized()
+        resetAllLabel.text = "settings.menu.reset_all".localized()
+        deleteAccountLabel.text = "settings.menu.delete_account".localized()
+        privacyLabel.text = "settings.menu.privacy".localized()
+        contactLabel.text = "settings.menu.contact".localized()
+        tabBarItem.title = "settings.title".localized()
+    }
+
     // MARK: — Section headers
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let titles = ["SECURITY", "ACCOUNT", "INFO"]
+        let titles = [
+            "settings.section.security".localized(),
+            "settings.section.account".localized(),
+            "settings.section.info".localized()
+        ]
         guard section < titles.count else { return nil }
 
         let container = UIView()
@@ -151,7 +174,7 @@ class SettingsController: UITableViewController {
             let container = UIView()
             container.backgroundColor = .backgroundPrimary
             let label = UILabel()
-            label.text          = "Erase all data after the set number of failed passcode attempts."
+            label.text          = "settings.footer.erase".localized()
             label.font          = UIFont.systemFont(ofSize: 12, weight: .light)
             label.textColor     = .textSecondary
             label.numberOfLines = 0
@@ -189,10 +212,10 @@ class SettingsController: UITableViewController {
 
     @IBAction func logoutTapped(_ sender: UIButton) {
         let alert = UIAlertController(
-                title: "Sign Out",
-                message: "Are you sure you want to sign out?",
+                title: "settings.signout.title".localized(),
+                message: "settings.signout.message".localized(),
                 preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Sign Out", style: .destructive) { [weak self] _ in
+            alert.addAction(UIAlertAction(title: "settings.signout.title".localized(), style: .destructive) { [weak self] _ in
                 guard let self = self else { return }
                 do {
                     UserDefaults.standard.removeObject(forKey: "instant_auto_lock")
@@ -207,37 +230,37 @@ class SettingsController: UITableViewController {
                         window.makeKeyAndVisible()
                     }
                 } catch {
-                    self.showAlert(title: "Error", message: "Could not sign out. Try again.")
+                    self.showAlert(title: "alert.error.title".localized(), message: "settings.signout.error.message".localized())
                 }
             })
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel))
             configureActionSheetPopover(alert, sourceView: sender)
             present(alert, animated: true)
     }
     
     @IBAction func eraseAllTapped(_ sender: UIButton) {
         let alert = UIAlertController(
-            title: "Delete all data",
-            message: "Are you sure you want to delete all your information?",
+            title: "settings.delete_data.title".localized(),
+            message: "settings.delete_data.message".localized(),
             preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+        alert.addAction(UIAlertAction(title: "button.delete".localized(), style: .destructive) { _ in
             guard let uid = Auth.auth().currentUser?.uid else { return }
             DBManager.shared.deleteAllDatas(userID: uid) { [weak self] success in
                 guard let self = self, success else { return }
-                self.showAlert(title: "Cleared", message: "Your information has been erased.")
+                self.showAlert(title: "settings.delete_data.success.title".localized(), message: "settings.delete_data.success.message".localized())
             }
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel))
         configureActionSheetPopover(alert, sourceView: sender)
         present(alert, animated: true)
     }
 
     @IBAction func deleteAccount(_ sender: Any) {
         let alert = UIAlertController(
-            title: "Delete account",
-            message: "Are you sure you want to delete your account? This cannot be undone.",
+            title: "settings.delete_account.title".localized(),
+            message: "settings.delete_account.message".localized(),
             preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "button.delete".localized(), style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             let user = Auth.auth().currentUser
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -264,7 +287,7 @@ class SettingsController: UITableViewController {
             }
             self.present(vc, animated: true)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel))
         configureActionSheetPopover(alert, sourceView: sender as? UIView)
         present(alert, animated: true)
     }
@@ -296,7 +319,7 @@ class SettingsController: UITableViewController {
 
     private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
     }
 }

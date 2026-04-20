@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -95,6 +95,11 @@
 		7A1B2C3D4E5F678901234567 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2233FE1E2F96C54B00A542B2 /* en.lproj */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = en.lproj; sourceTree = "<group>"; };
+		2233FE212F96C54B00A542B2 /* es.lproj */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = es.lproj; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		2295C56E2748722E0050FA7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -132,6 +137,8 @@
 		222C9704274873BD004C077E /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				2233FE1E2F96C54B00A542B2 /* en.lproj */,
+				2233FE212F96C54B00A542B2 /* es.lproj */,
 				224E8689285F6FCA00F4A575 /* Encryption */,
 				2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */,
 				2295C5762748722E0050FA7D /* SceneDelegate.swift */,
@@ -270,6 +277,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2233FE1E2F96C54B00A542B2 /* en.lproj */,
+				2233FE212F96C54B00A542B2 /* es.lproj */,
 			);
 			name = "Lock n Key Wallet";
 			packageProductDependencies = (
@@ -559,7 +570,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.3;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -580,7 +591,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -601,7 +612,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.3;
+				CURRENT_PROJECT_VERSION = 2.0.4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -622,7 +633,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

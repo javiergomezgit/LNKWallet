@@ -86,7 +86,7 @@ class DatasViewCell: UITableViewCell {
     func configure(model: LNKData) {
         titleLabel.text = model.nameData
         let category = VaultCategory.allCases.first { $0.typeKey == model.typeData }
-        subtitleLabel.text = category?.title ?? "Unknown"
+        subtitleLabel.text = category?.title ?? "common.unknown".localized()
         iconView.image = category?.icon
         iconView.tintColor = category?.accent ?? .accentBrand
         iconContainer.backgroundColor = (category?.accent ?? .accentBrand).withAlphaComponent(0.12)

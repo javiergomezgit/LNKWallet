@@ -68,7 +68,7 @@ class CategoryCardCell: UICollectionViewCell {
 
     func configure(with category: VaultCategory, count: Int) {
         titleLabel.text = category.title
-        countLabel.text = "\(count) saved"
+        countLabel.text = "common.saved_count".localized(with: count)
         iconView.image = category.icon
         iconView.tintColor = category.accent
         iconContainer.backgroundColor = category.accent.withAlphaComponent(0.12)

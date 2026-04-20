@@ -197,6 +197,10 @@ extension String {
             value: self,
             comment: self)
     }
+
+    func localized(with arguments: CVarArg...) -> String {
+        String(format: localized(), locale: Locale.current, arguments: arguments)
+    }
     
     var cleanPasswordCharacters: String {
         let allowCharacters = Set("abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM1234567890_~!@#$%^&*()_+;':<>?/.,")
@@ -254,11 +258,10 @@ class CopyableLabel: UILabel {
 extension CopyableLabel: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
-            let copyAction = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+            let copyAction = UIAction(title: "generator.copy".localized(), image: UIImage(systemName: "doc.on.doc")) { _ in
                 UIPasteboard.general.string = self?.text
             }
             return UIMenu(title: "", children: [copyAction])
         }
     }
 }
-

@@ -46,7 +46,7 @@ class PasswordHealthViewController: UIViewController {
     // MARK: — Setup
 
     private func setupNavBar() {
-        title = "Password Health"
+        title = "health.title".localized()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
 
@@ -91,22 +91,22 @@ class PasswordHealthViewController: UIViewController {
     private func setupCards() {
         weakCard = HealthCardView(
             icon: "exclamationmark.shield.fill",
-            title: "Weak Passwords",
-            subtitle: "Short or simple passwords",
+            title: "health.weak.title".localized(),
+            subtitle: "health.weak.subtitle".localized(),
             accent: UIColor(hex: "#E8614A"),
             comingSoon: false
         )
         reusedCard = HealthCardView(
             icon: "arrow.triangle.2.circlepath",
-            title: "Reused Passwords",
-            subtitle: "Used across multiple accounts",
+            title: "health.reused.title".localized(),
+            subtitle: "health.reused.subtitle".localized(),
             accent: UIColor(hex: "#C9A84C"),
             comingSoon: false
         )
         leakedCard = HealthCardView(
             icon: "eye.slash.fill",
-            title: "Leaked Passwords",
-            subtitle: "Found in known data breaches",
+            title: "health.leaked.title".localized(),
+            subtitle: "health.leaked.subtitle".localized(),
             accent: UIColor(hex: "#378ADD"),
             comingSoon: true
         )
@@ -207,10 +207,10 @@ class PasswordHealthViewController: UIViewController {
     private func openList(type: HealthCategory) {
         let passwords = type == .weak ? weakPasswords : reusedPasswords
         guard !passwords.isEmpty else {
-            showAlert(title: "All clear",
+            showAlert(title: "health.all_clear.title".localized(),
                       message: type == .weak
-                        ? "No weak passwords found."
-                        : "No reused passwords found.")
+                        ? "health.no_weak.message".localized()
+                        : "health.no_reused.message".localized())
             return
         }
 
@@ -226,7 +226,7 @@ class PasswordHealthViewController: UIViewController {
 
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default))
         present(alert, animated: true)
     }
 }
@@ -316,7 +316,7 @@ class HealthCardView: UIView {
 
         if comingSoon {
             // Coming soon badge
-            badge.text              = "Coming soon"
+            badge.text              = "health.coming_soon".localized()
             badge.font              = UIFont.systemFont(ofSize: 10, weight: .medium)
             badge.textColor         = .textSecondary
             badge.backgroundColor   = .backgroundPrimary

@@ -23,9 +23,7 @@ class DataCreditCardController: UITableViewController {
 
     // MARK: — Picker data
     let pickerView = UIPickerView()
-    let monthPickerData = ["January - 1", "February - 2", "March - 3", "April - 4",
-                           "May - 5", "June - 6", "July - 7", "August - 8",
-                           "September - 9", "October - 10", "November - 11", "December - 12"]
+    let monthPickerData = DateFormatter().monthSymbols.enumerated().map { "\($0.element.capitalized) - \($0.offset + 1)" }
     let yearPickerData = ["2025", "2026", "2027", "2028", "2029", "2030",
                           "2031", "2032", "2033", "2034", "2035", "2036", "2037"]
     let yearNumbers    = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
@@ -66,7 +64,7 @@ class DataCreditCardController: UITableViewController {
     // MARK: — Setup helpers
 
     private func setupNavBar() {
-        styleFormNavBar(title: nameData.isEmpty ? "New Card" : "Card")
+        styleFormNavBar(title: nameData.isEmpty ? "datacreditcard.title.new".localized() : "datacreditcard.title".localized())
 
         let closeBtn = UIBarButtonItem(image: UIImage(systemName: "xmark"),
                                       style: .plain,
@@ -75,7 +73,7 @@ class DataCreditCardController: UITableViewController {
         closeBtn.tintColor = .textSecondary
         navigationItem.leftBarButtonItem = closeBtn
 
-        let saveBtn = UIBarButtonItem(title: nameData.isEmpty ? "Save" : "Update",
+        let saveBtn = UIBarButtonItem(title: nameData.isEmpty ? "button.save".localized() : "button.update".localized(),
                                      style: .done,
                                      target: self,
                                      action: #selector(saveButtonTapped))
@@ -84,12 +82,12 @@ class DataCreditCardController: UITableViewController {
     }
 
     private func setupTextFields() {
-        styleTextField(accountNameTextField,   placeholder: "Card nickname (e.g. Chase Visa)", accent: .accentCards)
-        styleTextField(cardholderNameTextField, placeholder: "Cardholder name",                 accent: .accentCards)
-        styleTextField(cardNumberTextField,    placeholder: "Card number",                      accent: .accentCards)
-        styleTextField(ccvTextField,           placeholder: "CVV",                              accent: .accentCards)
-        styleTextField(zipCodeTextField,       placeholder: "ZIP code",                         accent: .accentCards)
-        styleTextField(addressTextField,       placeholder: "Address",                          accent: .accentCards)
+        styleTextField(accountNameTextField,   placeholder: "datacreditcard.placeholder.nickname".localized(), accent: .accentCards)
+        styleTextField(cardholderNameTextField, placeholder: "datacreditcard.placeholder.cardholder".localized(), accent: .accentCards)
+        styleTextField(cardNumberTextField,    placeholder: "datacreditcard.placeholder.number".localized(), accent: .accentCards)
+        styleTextField(ccvTextField,           placeholder: "datacreditcard.placeholder.cvv".localized(), accent: .accentCards)
+        styleTextField(zipCodeTextField,       placeholder: "datacreditcard.placeholder.zip".localized(), accent: .accentCards)
+        styleTextField(addressTextField,       placeholder: "datacreditcard.placeholder.address".localized(), accent: .accentCards)
 
         cardNumberTextField.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .regular)
         cardNumberTextField.delegate = self
@@ -105,7 +103,7 @@ class DataCreditCardController: UITableViewController {
 
     private func setupExpirationButton() {
         var config = UIButton.Configuration.plain()
-        config.title                          = "MM / YY"
+        config.title                          = "datacreditcard.expiration.placeholder".localized()
         config.baseForegroundColor            = .textSecondary
         config.background.backgroundColor     = .backgroundSecondary
         config.background.strokeColor         = .border
@@ -121,7 +119,7 @@ class DataCreditCardController: UITableViewController {
         config.image                      = UIImage(systemName: "camera.viewfinder")
         config.imagePlacement             = .leading
         config.imagePadding               = 10
-        config.title                      = "Scan card"
+        config.title                      = "datacreditcard.scan".localized()
         config.baseForegroundColor        = .accentCards
         config.background.backgroundColor = .clear
         cameraButton.configuration        = config
@@ -143,7 +141,11 @@ class DataCreditCardController: UITableViewController {
     // MARK: — TableView section headers
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let titles = ["CARD DETAILS", "CARD INFO", "BILLING"]
+        let titles = [
+            "datacreditcard.section.details".localized(),
+            "datacreditcard.section.info".localized(),
+            "datacreditcard.section.billing".localized()
+        ]
         guard section < titles.count else { return nil }
 
         let container = UIView()
@@ -190,10 +192,10 @@ class DataCreditCardController: UITableViewController {
 
     @IBAction func cameraScannerTapped(_ sender: UIButton) {
         let vc = CreditCardScannerViewController(delegate: self)
-        vc.titleLabelText                      = "Place card"
-        vc.subtitleLabelText                   = "Line up card within the lines"
+        vc.titleLabelText                      = "datacreditcard.scanner.place".localized()
+        vc.subtitleLabelText                   = "datacreditcard.scanner.lineup".localized()
         vc.labelTextColor                      = .white
-        vc.cancelButtonTitleText               = "Cancel"
+        vc.cancelButtonTitleText               = "button.cancel".localized()
         vc.cancelButtonTitleTextColor          = .accentBrand
         vc.cameraViewCreditCardFrameStrokeColor = .white
         vc.cameraViewMaskLayerColor            = .black
@@ -204,7 +206,7 @@ class DataCreditCardController: UITableViewController {
     }
 
     @IBAction func expirationButtonTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Expiration Date", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "datacreditcard.expiration.title".localized(), message: "", preferredStyle: .actionSheet)
         alert.isModalInPresentation = false
         alert.view.addSubview(pickerView)
 
@@ -215,7 +217,7 @@ class DataCreditCardController: UITableViewController {
             multiplier: 1, constant: view.frame.height / 3)
         alert.view.addConstraint(heightConstraint)
 
-        let selectAction = UIAlertAction(title: "Select Date", style: .default) { _ in
+        let selectAction = UIAlertAction(title: "datacreditcard.select_date".localized(), style: .default) { _ in
             let month      = self.pickerView.selectedRow(inComponent: 0) + 1
             let yearOffset = self.pickerView.selectedRow(inComponent: 1)
             let year       = self.yearNumbers[yearOffset]
@@ -255,7 +257,7 @@ class DataCreditCardController: UITableViewController {
             lnkDataCreditCard: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
-            self.showAlert(title: "Saved", message: "Your card has been saved.") {
+            self.showAlert(title: "alert.saved.title".localized(), message: "datacreditcard.saved.message".localized()) {
                 self.clearForm()
             }
         }
@@ -268,7 +270,7 @@ class DataCreditCardController: UITableViewController {
             lnkDataCreditCard: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
-            self.showAlert(title: "Updated", message: "Your card has been updated.") {
+            self.showAlert(title: "alert.updated.title".localized(), message: "datacreditcard.updated.message".localized()) {
                 self.dismiss(animated: true)
             }
         }
@@ -281,7 +283,7 @@ class DataCreditCardController: UITableViewController {
         ccvTextField.text            = ""
         zipCodeTextField.text        = ""
         var config                   = expirationButton.configuration
-        config?.title                = "MM / YY"
+        config?.title                = "datacreditcard.expiration.placeholder".localized()
         config?.baseForegroundColor  = .textSecondary
         expirationButton.configuration = config
     }
@@ -322,9 +324,9 @@ class DataCreditCardController: UITableViewController {
                           cardholderNameTextField.text,
                           cardNumberTextField.text,
                           ccvTextField.text].contains("")
-                        && !expTitle.isEmpty && expTitle != "MM / YY"
+                        && !expTitle.isEmpty && expTitle != "datacreditcard.expiration.placeholder".localized()
         if !allFilled {
-            showAlert(title: "Empty Fields", message: "Please fill in all required fields.")
+            showAlert(title: "alert.empty_fields.title".localized(), message: "alert.empty_fields.message".localized())
         }
         return allFilled
     }
@@ -333,7 +335,7 @@ class DataCreditCardController: UITableViewController {
 
     private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in completion?() })
+        alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
     }
 }

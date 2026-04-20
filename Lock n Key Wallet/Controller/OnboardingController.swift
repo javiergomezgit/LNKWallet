@@ -26,20 +26,20 @@ class OnboardingController: UIViewController {
     private let pages: [OnboardingPage] = [
         OnboardingPage(
             icon: "lock.shield.fill",
-            title: "Your vault,\nyour rules.",
-            body: "Store passwords, cards, notes and images — all encrypted, all private.",
+            title: "onboarding.page1.title".localized(),
+            body: "onboarding.page1.body".localized(),
             accent: .accentBrand
         ),
         OnboardingPage(
             icon: "key.fill",
-            title: "Military-grade\nencryption.",
-            body: "Every piece of data is encrypted before it ever leaves your device.",
+            title: "onboarding.page2.title".localized(),
+            body: "onboarding.page2.body".localized(),
             accent: .accentBrand
         ),
         OnboardingPage(
             icon: "square.grid.2x2.fill",
-            title: "Everything\nin one place.",
-            body: "Passwords, cards, images, secure notes — organized and always accessible.",
+            title: "onboarding.page3.title".localized(),
+            body: "onboarding.page3.body".localized(),
             accent: .accentBrand
         )
     ]
@@ -60,7 +60,7 @@ class OnboardingController: UIViewController {
 
     private let skipButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Skip", for: .normal)
+        btn.setTitle("button.skip".localized(), for: .normal)
         btn.setTitleColor(.textSecondary, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +69,7 @@ class OnboardingController: UIViewController {
 
     private let continueButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Continue", for: .normal)
+        btn.setTitle("button.continue".localized(), for: .normal)
         btn.setTitleColor(.backgroundPrimary, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         btn.backgroundColor    = .accentBrand
@@ -167,7 +167,7 @@ class OnboardingController: UIViewController {
     private func updateControls() {
         pageControl.currentPage = currentIndex
         let isLast = currentIndex == pages.count - 1
-        continueButton.setTitle(isLast ? "Get Started" : "Continue", for: .normal)
+        continueButton.setTitle(isLast ? "button.get_started".localized() : "button.continue".localized(), for: .normal)
         skipButton.isHidden = isLast
     }
 }
