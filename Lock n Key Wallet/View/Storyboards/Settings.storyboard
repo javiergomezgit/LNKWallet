@@ -97,12 +97,42 @@
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="Yh1-lC-bmt" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="118" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yh1-lC-bmt" id="qdC-iy-T7J">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock Face ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7Q-l4-Ru4">
+                                                    <rect key="frame" x="15.000000000000007" y="15" width="108.66666666666669" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="M93-gF-yeJ">
+                                                    <rect key="frame" x="277" y="11" width="63" height="28"/>
+                                                    <connections>
+                                                        <action selector="unlockWithFaceIDChanged:" destination="kW5-8e-JeA" eventType="valueChanged" id="8Xz-By-laz"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="M93-gF-yeJ" secondAttribute="trailing" constant="15" id="8YC-Z0-3sT"/>
+                                                <constraint firstItem="Q7Q-l4-Ru4" firstAttribute="centerY" secondItem="qdC-iy-T7J" secondAttribute="centerY" id="TZl-7r-yAx"/>
+                                                <constraint firstItem="Q7Q-l4-Ru4" firstAttribute="leading" secondItem="qdC-iy-T7J" secondAttribute="leading" constant="15" id="fCA-aa-6zr"/>
+                                                <constraint firstItem="M93-gF-yeJ" firstAttribute="centerY" secondItem="qdC-iy-T7J" secondAttribute="centerY" id="y2r-0d-b12"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="dAi-7I-62l">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="7Dx-Xb-AbT" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="166" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="216.00000000000003" width="353" height="49.999999999999972"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Dx-Xb-AbT" id="Aes-ZP-Agw">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -136,7 +166,7 @@
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="nJW-ab-hWb" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="216" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="266" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nJW-ab-hWb" id="VBQ-6f-89A">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -170,7 +200,7 @@
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="wlD-X2-9sc" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="266" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="316" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wlD-X2-9sc" id="7ch-FC-61d">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -208,7 +238,7 @@
                             <tableViewSection id="b2w-m7-wkr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="ygd-e0-126" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="352" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="402.00000000000006" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygd-e0-126" id="o1y-TC-jxM">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -242,7 +272,7 @@
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="4Be-eB-tZx" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="402" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="452.00000000000006" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Be-eB-tZx" id="EC0-B3-aMO">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -276,7 +306,7 @@
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="v8B-P1-Yl1" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="452" width="353" height="50"/>
+                                        <rect key="frame" x="20" y="502" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v8B-P1-Yl1" id="BYl-su-PU4">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -314,11 +344,13 @@
                         <outlet property="contactLabel" destination="b0c-Sq-Jgx" id="yjq-s3-P4m"/>
                         <outlet property="deleteAccountLabel" destination="pRt-No-pEc" id="v3G-Aq-SOk"/>
                         <outlet property="eraseDataLabel" destination="pGM-7c-3JX" id="0Ms-cB-efL"/>
-                        <outlet property="instantAutoLockSwitch" destination="vRj-yL-CDe" id="m4P-8U-bTl"/>
                         <outlet property="instantAutoLockLabel" destination="LHO-7P-rkV" id="NJI-yq-O8e"/>
+                        <outlet property="instantAutoLockSwitch" destination="vRj-yL-CDe" id="m4P-8U-bTl"/>
                         <outlet property="privacyLabel" destination="1uB-L6-xxa" id="JEu-E0-rLf"/>
                         <outlet property="resetAllLabel" destination="h6c-OG-s2G" id="nXP-Oy-Wsa"/>
                         <outlet property="signOutLabel" destination="p05-CY-gWC" id="x4X-M3-8qd"/>
+                        <outlet property="unlockWithFaceID" destination="M93-gF-yeJ" id="gdA-S7-wgS"/>
+                        <outlet property="unlockWithFaceIDLabel" destination="Q7Q-l4-Ru4" id="66A-wb-kPg"/>
                         <outlet property="versionLabel" destination="iYR-nE-zMT" id="Uaq-vd-mpQ"/>
                     </connections>
                 </tableViewController>
@@ -332,7 +364,7 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import SafariServices
+import LocalAuthentication
 
 class SettingsController: UITableViewController {
 
@@ -17,6 +18,8 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var instantAutoLockLabel: UILabel!
+    @IBOutlet weak var unlockWithFaceIDLabel: UILabel!
+    @IBOutlet weak var unlockWithFaceID: UISwitch!
     @IBOutlet weak var eraseDataLabel: UILabel!
     @IBOutlet weak var signOutLabel: UILabel!
     @IBOutlet weak var resetAllLabel: UILabel!
@@ -64,6 +67,44 @@ class SettingsController: UITableViewController {
         }
         if UserDefaults.standard.value(forKey: "instant_auto_lock") == nil {
             UserDefaults.standard.set(true, forKey: "instant_auto_lock")
+        }
+    }
+    
+    private func setupUnlockFaceID() {
+        let faceID = UserDefaults.standard.bool(forKey: "unlock_with_face_id")
+        unlockWithFaceID.isOn = faceID
+    }
+    
+    @IBAction func unlockWithFaceIDChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            // Verify Face ID works before enabling
+            authenticateWithFaceID { success in
+                DispatchQueue.main.async {
+                    if success {
+                        UserDefaults.standard.set(true, forKey: "unlock_with_face_id")
+                    } else {
+                        sender.isOn = false
+                        UserDefaults.standard.set(false, forKey: "unlock_with_face_id")
+                    }
+                }
+            }
+        } else {
+            UserDefaults.standard.set(false, forKey: "unlock_with_face_id")
+        }
+    }
+    
+    private func authenticateWithFaceID(completion: @escaping(Bool) -> Void) {
+        let context = LAContext()
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            showAlert(title: "Face ID unavailable",
+                      message: "Face ID is not available on this device.")
+            completion(false)
+            return
+        }
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+                               localizedReason: "Authenticate to enable Face ID unlock") { success, _ in
+            completion(success)
         }
     }
 
@@ -120,11 +161,13 @@ class SettingsController: UITableViewController {
     
     private func styleSwitch() {
         instantAutoLockSwitch.onTintColor = .accentBrand
+        unlockWithFaceID.onTintColor = .accentBrand
     }
 
     private func setupStaticLabels() {
         instantAutoLockLabel.text = "settings.menu.instant_auto_lock".localized()
         eraseDataLabel.text = "settings.menu.erase_data".localized()
+        unlockWithFaceIDLabel.text = "settings.menu.unlock_face_id".localized()
         signOutLabel.text = "settings.menu.signout".localized()
         resetAllLabel.text = "settings.menu.reset_all".localized()
         deleteAccountLabel.text = "settings.menu.delete_account".localized()

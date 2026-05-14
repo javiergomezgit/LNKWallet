@@ -76,6 +76,7 @@
 "settings.footer.erase" = "Borrar todos los datos al superar el número de intentos fallidos.";
 "settings.menu.instant_auto_lock" = "Bloqueo automático instantáneo";
 "settings.menu.erase_data" = "Borrar datos";
+"settings.menu.unlock_face_id" = "Desbloquear con Face ID";
 "settings.menu.signout" = "Cerrar sesión";
 "settings.menu.reset_all" = "Restablecer todo";
 "settings.menu.delete_account" = "Eliminar cuenta";

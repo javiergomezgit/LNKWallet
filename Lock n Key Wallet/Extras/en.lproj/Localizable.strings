@@ -75,6 +75,7 @@
 "settings.footer.erase" = "Erase all data after the set number of failed passcode attempts.";
 "settings.menu.instant_auto_lock" = "Instant Auto-lock";
 "settings.menu.erase_data" = "Erase Data";
+"settings.menu.unlock_face_id" = "Unlock with Face ID";
 "settings.menu.signout" = "Sign Out";
 "settings.menu.reset_all" = "Reset All";
 "settings.menu.delete_account" = "Delete Account";

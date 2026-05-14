@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import CloudKit
+import LocalAuthentication
 
 class MasterPasswordController: UIViewController {
 
@@ -42,6 +43,10 @@ class MasterPasswordController: UIViewController {
             updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
             // Only fetch from CloudKit if we don't know yet
             downloadMasterPassword()
+        }
+        
+        if !setPassword {
+            tryFaceIDUnlock()
         }
     }
 
@@ -161,8 +166,7 @@ class MasterPasswordController: UIViewController {
                 temporalPassword = ""
                 passwordText.text = ""
                 updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
-                showAlert(title: "masterpassword.alert.mismatch.title".localized(),
-                          message: "masterpassword.alert.mismatch.message".localized())
+                showAlert(title: "masterpassword.axlert.mismatch.title".localized(), message: "masterpassword.alert.mismatch.message".localized())
             }
         }
     }
@@ -208,6 +212,27 @@ class MasterPasswordController: UIViewController {
                             exit(0)
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    //Function that records un userdefaults if app will be unlock with face id
+    private func tryFaceIDUnlock() {
+        let faceIDEnabled = UserDefaults.standard.bool(forKey: "unlock_with_face_id")
+        guard faceIDEnabled else { return }
+
+        let context = LAContext()
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else { return }
+
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+                               localizedReason: "Unlock Lock N Key Wallet") { [weak self] success, _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if success {
+                    UserDefaults.standard.set(false, forKey: "locked_app")
+                    self.dismiss(animated: true)
                 }
             }
         }

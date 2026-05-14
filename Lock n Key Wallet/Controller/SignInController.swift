@@ -82,39 +82,6 @@ class SignInController: UIViewController {
         }
     }
     
-    
-//    private func verifyNetwork() {
-//        if Reachability.isConnectedToNetwork(){
-//            print("Internet Connection Available!")
-//            print("firstLaunching value: \(String(describing: UserDefaults.standard.value(forKey: "firstLaunching")))")
-//                    print("isFirstLaunched result: \(isFirstLaunched())")
-//            //change to true when finished testing
-//            if isFirstLaunched() {
-//                let storyBoard : UIStoryboard = UIStoryboard(name: "Onboarding", bundle:nil)
-//                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "OnboardingController") as! OnboardingController
-//                nextViewController.modalPresentationStyle = .fullScreen
-//                nextViewController.modalTransitionStyle = .crossDissolve
-//                self.present(nextViewController, animated: true, completion: nil)
-//            } else {
-//                DispatchQueue.main.async {
-//                    _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { timer in
-//                        self.isSignedIn()
-//                    })
-//                }
-//            }
-//        }else{
-//            print("Internet Connection not Available!")
-//            
-//            let refreshAlert = UIAlertController(title: "Internet connection", message: "You will need internet for using this app", preferredStyle: UIAlertController.Style.alert)
-//            
-//            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-//                exit(0);
-//            }))
-//            
-//            present(refreshAlert, animated: true, completion: nil)
-//        }
-//    }
-    
     private func isFirstLaunched() -> Bool {
         let isFirstLaunched = UserDefaults.standard.value(forKey: "firstLaunching")
         if isFirstLaunched == nil {
