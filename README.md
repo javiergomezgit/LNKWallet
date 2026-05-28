@@ -3,9 +3,13 @@
 > A security-first iOS vault app for storing passwords, payment cards, images, and secure notes — all encrypted, none stored in plain text.
 
 ---
-<img width="660" height="1434" alt="LNK Wallet-1" src="https://github.com/user-attachments/assets/c0ef0a2b-13ab-4d2c-a4b1-f4cc8b6f2862" />
-<img width="660" height="1434" alt="LNK Wallet-2" src="https://github.com/user-attachments/assets/bb853ad4-e90c-49ea-9ae8-20c7b2e672b3" />
-<img width="660" height="1434" alt="LNK Wallet-3" src="https://github.com/user-attachments/assets/aa1a1009-d9fe-4c87-9415-562e36c5d39f" />
+<table>
+  <tr>
+    <td><img width="220" alt="LNK Wallet-1" src="https://github.com/user-attachments/assets/c0ef0a2b-13ab-4d2c-a4b1-f4cc8b6f2862" /></td>
+    <td><img width="220" alt="LNK Wallet-2" src="https://github.com/user-attachments/assets/bb853ad4-e90c-49ea-9ae8-20c7b2e672b3" /></td>
+    <td><img width="220" alt="LNK Wallet-3" src="https://github.com/user-attachments/assets/aa1a1009-d9fe-4c87-9415-562e36c5d39f" /></td>
+  </tr>
+</table>
 
 <img width="800" height="1738" alt="LNK Wallet" src="https://github.com/user-attachments/assets/4b64c019-78d8-4f4c-90fa-c8dafd72b66d" />
 
