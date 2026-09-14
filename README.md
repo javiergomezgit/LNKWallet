@@ -4,7 +4,13 @@ An iOS vault app for passwords, payment cards, images, and secure notes. Everyth
 is obfuscated on-device before it is written to the backend, behind a master password
 and optional Face ID.
 
-<img width="220" alt="LNK Wallet-1" src="https://github.com/user-attachments/assets/c0ef0a2b-13ab-4d2c-a4b1-f4cc8b6f2862" /> <img width="220" alt="LNK Wallet-2" src="https://github.com/user-attachments/assets/bb853ad4-e90c-49ea-9ae8-20c7b2e672b3" /> <img width="220" alt="LNK Wallet-3" src="https://github.com/user-attachments/assets/aa1a1009-d9fe-4c87-9415-562e36c5d39f" />
+<table>
+  <tr>
+    <td><img width="220" alt="LNK Wallet-1" src="https://github.com/user-attachments/assets/c0ef0a2b-13ab-4d2c-a4b1-f4cc8b6f2862" /></td>
+    <td><img width="220" alt="LNK Wallet-2" src="https://github.com/user-attachments/assets/bb853ad4-e90c-49ea-9ae8-20c7b2e672b3" /></td>
+    <td><img width="220" alt="LNK Wallet-3" src="https://github.com/user-attachments/assets/aa1a1009-d9fe-4c87-9415-562e36c5d39f" /></td>
+  </tr>
+</table>
 
 ## Features
 
