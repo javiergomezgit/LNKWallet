@@ -81,3 +81,7 @@ Lock n Key Wallet/Resources/GoogleService-Info.plist
 Lock n Key Wallet/Resources/Info.plist
 .DS_Store
 Lock n Key Wallet/Extras/.DS_Store
+
+# Local-only working docs (Dropbox-synced, never pushed)
+PROJECT.md
+CLAUDE.md
