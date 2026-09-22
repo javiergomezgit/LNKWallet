@@ -35,6 +35,8 @@
 		225C8361306324A000A059F9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220ADAFA274DA9D70030FAAD /* Model.swift */; };
 		225C8362306324AC00A059F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
 		225C8363306324B500A059F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
+		225C838C3063309900A059F9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C838A3063309900A059F9 /* AppGroup.swift */; };
+		225C838D3063309900A059F9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C838A3063309900A059F9 /* AppGroup.swift */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -107,6 +109,7 @@
 		22503B932F831E0C0054893A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		225C8328306315FC00A059F9 /* LNK AutoFill.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "LNK AutoFill.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225C8329306315FC00A059F9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		225C838A3063309900A059F9 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
 		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
 		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
@@ -280,6 +283,14 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
+		225C838B3063309900A059F9 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				225C838A3063309900A059F9 /* AppGroup.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		2295C5682748722E0050FA7D = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +298,7 @@
 				225C832B306315FC00A059F9 /* LNK AutoFill */,
 				2295C5722748722E0050FA7D /* Products */,
 				366FC2A58726BA3D923BB29A /* Frameworks */,
+				225C838B3063309900A059F9 /* Shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -482,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				225C8362306324AC00A059F9 /* Extensions.swift in Sources */,
+				225C838D3063309900A059F9 /* AppGroup.swift in Sources */,
 				225C835F3063248D00A059F9 /* Encryption.swift in Sources */,
 				225C83603063249400A059F9 /* EncryptionPassword.swift in Sources */,
 				225C8361306324A000A059F9 /* Model.swift in Sources */,
@@ -495,6 +508,7 @@
 				220D757E287116AC003461D1 /* DataPasswordController.swift in Sources */,
 				227421842F7DAE280027D985 /* CategoryCardCell.swift in Sources */,
 				7A1B2C3D4E5F678901234568 /* SessionManager.swift in Sources */,
+				225C838C3063309900A059F9 /* AppGroup.swift in Sources */,
 				222C972427487B8F004C077E /* SettingsController.swift in Sources */,
 				22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */,
 				2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */,

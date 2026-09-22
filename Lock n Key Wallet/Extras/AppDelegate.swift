@@ -18,23 +18,102 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        
+
         configureTabBar()
-        
+
         let isFirstRun = !UserDefaults.standard.bool(forKey: "app_has_launched_before")
         if isFirstRun {
-            // Clear any stale Firebase auth from previous install
+            // Clear any stale Firebase auth from previous install, in both keychain groups
             try? Auth.auth().signOut()
+            if (try? Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)) != nil {
+                try? Auth.auth().signOut()
+            }
             // Clear all UserDefaults
             let domain = Bundle.main.bundleIdentifier!
             UserDefaults.standard.removePersistentDomain(forName: domain)
             UserDefaults.standard.set(true, forKey: "app_has_launched_before")
             UserDefaults.standard.synchronize()
         }
-        
+
+        shareAuthWithAutoFill { [weak self] in
+            self?.markAuthReady()
+        }
+
         return true
     }
-    
+
+    // MARK: — Shared sign-in
+
+    private var isAuthReady       = false
+    private var authReadyHandlers = [() -> Void]()
+
+    // Runs the handler once the Firebase session is in its final keychain group. Anything that
+    // reacts to a nil currentUser must wait for this, or it sees the user mid-migration.
+    func whenAuthReady(_ handler: @escaping () -> Void) {
+        if isAuthReady {
+            handler()
+        } else {
+            authReadyHandlers.append(handler)
+        }
+    }
+
+    private func markAuthReady() {
+        DispatchQueue.main.async {
+            self.isAuthReady = true
+            self.authReadyHandlers.forEach { $0() }
+            self.authReadyHandlers.removeAll()
+        }
+    }
+
+    // Keeps the Firebase session in the keychain group LNK AutoFill can read. Only does real work
+    // once per device, for users signed in before the extension existed: their session sits in the
+    // app's default group and is copied over, then the old copy is removed so a later sign-out
+    // can't bring it back. Never run this in the extension.
+    private func shareAuthWithAutoFill(completion: @escaping () -> Void) {
+        let legacyUser = Auth.auth().currentUser
+
+        do {
+            try Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
+        } catch {
+            // Stay on the default group: the app keeps working, AutoFill can't sign in
+            print("Shared keychain unavailable: \(error)")
+            completion()
+            return
+        }
+
+        guard let legacyUser = legacyUser else {
+            completion()
+            return
+        }
+
+        if Auth.auth().currentUser != nil {
+            removeLegacySession()
+            completion()
+            return
+        }
+
+        Auth.auth().updateCurrentUser(legacyUser) { [weak self] error in
+            if let error = error {
+                // Fall back to the old copy so the user stays signed in; retried next launch
+                print("Moving sign-in to the shared keychain failed: \(error)")
+                try? Auth.auth().useUserAccessGroup(nil)
+            } else {
+                self?.removeLegacySession()
+            }
+            completion()
+        }
+    }
+
+    private func removeLegacySession() {
+        do {
+            try Auth.auth().useUserAccessGroup(nil)
+            try Auth.auth().signOut()
+            try Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
+        } catch {
+            print("Removing the old sign-in copy failed: \(error)")
+        }
+    }
+
     private func configureTabBar() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()

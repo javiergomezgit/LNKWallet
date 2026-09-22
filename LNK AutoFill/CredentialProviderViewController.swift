@@ -80,8 +80,18 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         if FirebaseApp.app() == nil { FirebaseApp.configure() }
         record("2. FirebaseApp.configure()")
 
+        do {
+            try Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
+        } catch {
+            record("   shared keychain error: \(error.localizedDescription)")
+        }
         let user = Auth.auth().currentUser
         record("3. Auth ready (signed in: \(user != nil))")
+        // AutoFill 04 check: the key material comes straight from the shared session
+        if let user = user {
+            let hasCreationDate = user.metadata.creationDate != nil
+            record("   uid: \(user.uid.prefix(4))… · creation date: \(hasCreationDate ? "yes" : "MISSING")")
+        }
 
         // In-memory cache: the extension has no use for Firestore's on-disk cache
         let settings           = FirestoreSettings()
