@@ -44,6 +44,8 @@
 		225C83A73063334800A059F9 /* PasswordRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A13063334800A059F9 /* PasswordRecord.swift */; };
 		225C83A83063334800A059F9 /* ServiceHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A23063334800A059F9 /* ServiceHost.swift */; };
 		225C83AA3063337D00A059F9 /* AutoFillSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A93063337D00A059F9 /* AutoFillSync.swift */; };
+		225C83C03063393200A059F9 /* SharedKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83BF3063393200A059F9 /* SharedKeychain.swift */; };
+		225C83C13063393200A059F9 /* SharedKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83BF3063393200A059F9 /* SharedKeychain.swift */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -121,6 +123,7 @@
 		225C83A13063334800A059F9 /* PasswordRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecord.swift; sourceTree = "<group>"; };
 		225C83A23063334800A059F9 /* ServiceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHost.swift; sourceTree = "<group>"; };
 		225C83A93063337D00A059F9 /* AutoFillSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFillSync.swift; sourceTree = "<group>"; };
+		225C83BF3063393200A059F9 /* SharedKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedKeychain.swift; sourceTree = "<group>"; };
 		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
 		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
 		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 		225C838B3063309900A059F9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				225C83BF3063393200A059F9 /* SharedKeychain.swift */,
 				225C838A3063309900A059F9 /* AppGroup.swift */,
 				225C83A03063334800A059F9 /* AutoFillCache.swift */,
 				225C83A13063334800A059F9 /* PasswordRecord.swift */,
@@ -508,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225C83C13063393200A059F9 /* SharedKeychain.swift in Sources */,
 				225C8362306324AC00A059F9 /* Extensions.swift in Sources */,
 				225C838D3063309900A059F9 /* AppGroup.swift in Sources */,
 				225C835F3063248D00A059F9 /* Encryption.swift in Sources */,
@@ -534,6 +539,7 @@
 				227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,
 				225C83AA3063337D00A059F9 /* AutoFillSync.swift in Sources */,
+				225C83C03063393200A059F9 /* SharedKeychain.swift in Sources */,
 				227421862F7DAE620027D985 /* RecentItemCell.swift in Sources */,
 				2283FD3E2873B01600F8B21C /* DataSecureNoteController.swift in Sources */,
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,

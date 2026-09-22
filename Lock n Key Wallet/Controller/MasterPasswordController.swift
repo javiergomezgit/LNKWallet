@@ -109,6 +109,9 @@ class MasterPasswordController: UIViewController {
                     self.setPassword = false
                     self.updateUI(placeholder: "masterpassword.placeholder.type".localized(), buttonTitle: "masterpassword.button.unlock".localized())
                 }
+                if let encryptedPassword = encryptedPassword {
+                    AutoFillSync.storeMasterPasswordCopy(encryptedPassword)
+                }
             }
         }
     }
@@ -155,6 +158,8 @@ class MasterPasswordController: UIViewController {
                     DispatchQueue.main.async {
                         if success {
                             UserDefaults.standard.set(false, forKey: "locked_app")
+                            AutoFillSync.storeMasterPasswordCopy(encrypted)
+                            AutoFillSync.resetExtensionAttempts()
                             self.dismiss(animated: true)
                         } else {
                             self.showAlert(title: "alert.error.title".localized(),
@@ -191,6 +196,8 @@ class MasterPasswordController: UIViewController {
             DispatchQueue.main.async {
                 if cleanPassword == decrypted {
                     UserDefaults.standard.set(false, forKey: "locked_app")
+                    AutoFillSync.storeMasterPasswordCopy(encrypted)
+                    AutoFillSync.resetExtensionAttempts()
                     self.dismiss(animated: true)
                 } else {
                     self.passwordText.text = ""
@@ -233,6 +240,7 @@ class MasterPasswordController: UIViewController {
             DispatchQueue.main.async {
                 if success {
                     UserDefaults.standard.set(false, forKey: "locked_app")
+                    AutoFillSync.resetExtensionAttempts()
                     self.dismiss(animated: true)
                 }
             }

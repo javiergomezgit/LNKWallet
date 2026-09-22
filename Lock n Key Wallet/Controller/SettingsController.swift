@@ -82,14 +82,17 @@ class SettingsController: UITableViewController {
                 DispatchQueue.main.async {
                     if success {
                         UserDefaults.standard.set(true, forKey: "unlock_with_face_id")
+                        AutoFillSync.syncPreferences()
                     } else {
                         sender.isOn = false
                         UserDefaults.standard.set(false, forKey: "unlock_with_face_id")
+                        AutoFillSync.syncPreferences()
                     }
                 }
             }
         } else {
             UserDefaults.standard.set(false, forKey: "unlock_with_face_id")
+            AutoFillSync.syncPreferences()
         }
     }
     
@@ -251,6 +254,7 @@ class SettingsController: UITableViewController {
         let value = Int(sender.value)
         attemptsLabel.text = "\(value)"
         UserDefaults.standard.set(value, forKey: "amount_attempts")
+        AutoFillSync.syncPreferences()
     }
 
     @IBAction func logoutTapped(_ sender: UIButton) {

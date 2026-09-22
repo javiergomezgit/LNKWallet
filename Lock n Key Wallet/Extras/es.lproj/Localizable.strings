@@ -199,3 +199,14 @@
 "tools.promo_header" = "PRUEBA NUESTRA OTRA APP";
 "tools.promo_title" = "LNK Chats";
 "tools.promo_subtitle" = "Mensajería instantánea cifrada";
+
+/* LNK AutoFill — desbloqueo */
+"autofill.unlock.title" = "Desbloquear LNK Wallet";
+"autofill.unlock.placeholder" = "Contraseña maestra";
+"autofill.unlock.button" = "Desbloquear";
+"autofill.unlock.faceid" = "Usar Face ID";
+"autofill.unlock.faceid_reason" = "Desbloquea tus contraseñas";
+"autofill.unlock.wrong" = "Contraseña maestra incorrecta. Te quedan %d intentos.";
+"autofill.unlock.locked_out" = "Demasiados intentos. Abre LNK Wallet y desbloquéalo para volver a intentarlo aquí.";
+"autofill.unlock.no_copy" = "Abre LNK Wallet y desbloquéalo una vez para usar tu contraseña maestra aquí.";
+"autofill.unlock.signed_out" = "Inicia sesión en LNK Wallet primero y vuelve a intentarlo.";

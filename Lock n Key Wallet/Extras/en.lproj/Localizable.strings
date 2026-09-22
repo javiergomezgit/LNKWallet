@@ -199,3 +199,14 @@
 "tools.promo_header" = "TRY OUR OTHER APP";
 "tools.promo_title" = "LNK Chats";
 "tools.promo_subtitle" = "Encrypted instant messaging";
+
+/* LNK AutoFill — unlock */
+"autofill.unlock.title" = "Unlock LNK Wallet";
+"autofill.unlock.placeholder" = "Master password";
+"autofill.unlock.button" = "Unlock";
+"autofill.unlock.faceid" = "Use Face ID";
+"autofill.unlock.faceid_reason" = "Unlock your passwords";
+"autofill.unlock.wrong" = "Wrong master password. %d attempts left.";
+"autofill.unlock.locked_out" = "Too many attempts. Open LNK Wallet and unlock it to try again here.";
+"autofill.unlock.no_copy" = "Open LNK Wallet and unlock it once to use your master password here.";
+"autofill.unlock.signed_out" = "Sign in to LNK Wallet first, then try again.";

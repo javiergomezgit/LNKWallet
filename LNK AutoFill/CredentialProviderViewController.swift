@@ -39,7 +39,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
     // Tap a password field › key icon › LNK Wallet
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-        runSpike(trigger: "credential list (\(serviceIdentifiers.map { $0.identifier }.joined(separator: ", ")))")
+        requireUnlock { [weak self] in
+            self?.runSpike(trigger: "credential list (\(serviceIdentifiers.map { $0.identifier }.joined(separator: ", ")))")
+        }
     }
 
     // Never hand over a password without the user in front of our UI (AutoFill 06). Both overrides
@@ -51,7 +53,35 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
     // Tap a QuickType suggestion
     override func prepareInterfaceToProvideCredential(for credentialRequest: ASCredentialRequest) {
-        runSpike(trigger: "QuickType (\(credentialRequest.credentialIdentity.serviceIdentifier.identifier))")
+        requireUnlock { [weak self] in
+            self?.runSpike(trigger: "QuickType (\(credentialRequest.credentialIdentity.serviceIdentifier.identifier))")
+        }
+    }
+
+    // MARK: — Unlock (AutoFill 06)
+
+    // Covers the screen with the unlock gate; runs the action only after Face ID or the master password
+    private func requireUnlock(then action: @escaping () -> Void) {
+        if FirebaseApp.app() == nil { FirebaseApp.configure() }
+        try? Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
+        let creationDate = Auth.auth().currentUser?.metadata.creationDate.map { Int($0.timeIntervalSince1970) }
+
+        let unlock = UnlockViewController(creationDate: creationDate)
+        unlock.onUnlock = { [weak unlock] in
+            unlock?.willMove(toParent: nil)
+            unlock?.view.removeFromSuperview()
+            unlock?.removeFromParent()
+            action()
+        }
+        unlock.onCancel = { [weak self] in
+            self?.cancel(nil)
+        }
+
+        addChild(unlock)
+        unlock.view.frame            = view.bounds
+        unlock.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(unlock.view)
+        unlock.didMove(toParent: self)
     }
 
     // MARK: — Setup
