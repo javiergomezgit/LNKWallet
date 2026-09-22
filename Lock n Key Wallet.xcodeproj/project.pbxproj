@@ -18,6 +18,7 @@
 		22290D332F84310D009B11BA /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22290D322F84310D009B11BA /* Tools.storyboard */; };
 		22290D352F8431B6009B11BA /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22290D342F8431B3009B11BA /* ToolsViewController.swift */; };
 		22290D372F844285009B11BA /* PasswordHealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22290D362F844279009B11BA /* PasswordHealthViewController.swift */; };
+		22A1B0C0306400000000A002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */; };
 		222C971C27487841004C077E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 222C971B27487841004C077E /* GoogleService-Info.plist */; };
 		222C972027487AAD004C077E /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C971F27487AAD004C077E /* SignInController.swift */; };
 		222C972427487B8F004C077E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972327487B8F004C077E /* SettingsController.swift */; };
@@ -110,6 +111,7 @@
 		22290D322F84310D009B11BA /* Tools.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		22290D342F8431B3009B11BA /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		22290D362F844279009B11BA /* PasswordHealthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHealthViewController.swift; sourceTree = "<group>"; };
+		22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		222C971B27487841004C077E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		222C971F27487AAD004C077E /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		222C972327487B8F004C077E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				2295C5852748722F0050FA7D /* Info.plist */,
 				222C971B27487841004C077E /* GoogleService-Info.plist */,
 				2295C5802748722F0050FA7D /* Assets.xcassets */,
+				22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				22290D332F84310D009B11BA /* Tools.storyboard in Resources */,
 				222C971C27487841004C077E /* GoogleService-Info.plist in Resources */,
 				2295C5812748722F0050FA7D /* Assets.xcassets in Resources */,
+				22A1B0C0306400000000A002 /* PrivacyInfo.xcprivacy in Resources */,
 				222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */,
 				2295C57C2748722E0050FA7D /* Main.storyboard in Resources */,
 			);
@@ -607,7 +611,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LNK AutoFill/LNK_AutoFill.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -621,7 +625,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet.LNK-AutoFill";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -642,7 +646,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LNK AutoFill/LNK_AutoFill.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -656,7 +660,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet.LNK-AutoFill";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -805,7 +809,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.5;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -826,7 +830,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -849,7 +853,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Lock n Key Wallet/Lock n Key Wallet.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.0.5;
+				CURRENT_PROJECT_VERSION = 2.1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SJK4QJY486;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -870,7 +874,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
