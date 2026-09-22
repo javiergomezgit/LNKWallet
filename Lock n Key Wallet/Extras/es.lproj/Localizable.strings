@@ -124,6 +124,8 @@
 "vault.search_in_vault" = "Buscar en bóveda";
 "vault.open" = "Bóveda";
 "vault.pull_to_refresh" = "Desliza para actualizar";
+"vault.delete_confirm.title" = "Eliminar elemento";
+"vault.delete_confirm.message" = "¿Estás seguro de que quieres eliminar \"%@\"? Esto no se puede deshacer.";
 "alert.deleted.message" = "La información ha sido eliminada";
 
 /* Vault Categories */

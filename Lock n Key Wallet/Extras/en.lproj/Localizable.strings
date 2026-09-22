@@ -123,6 +123,8 @@
 "vault.search_in_vault" = "Search in Vault";
 "vault.open" = "Vault";
 "vault.pull_to_refresh" = "Pull to refresh";
+"vault.delete_confirm.title" = "Delete item";
+"vault.delete_confirm.message" = "Are you sure you want to delete \"%@\"? This cannot be undone.";
 "alert.deleted.message" = "The information has been deleted";
 
 

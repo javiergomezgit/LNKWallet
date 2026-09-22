@@ -315,19 +315,38 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
         guard editingStyle == .delete else { return }
         let lnkData = filteredDatas[indexPath.row]
 
-        DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, lnkData: lnkData) { deleted in
-            guard deleted else { return }
-            self.filteredDatas.remove(at: indexPath.row)
-            if let index = self.lnkDatas.firstIndex(where: { $0.nameData == lnkData.nameData }) {
-                self.lnkDatas.remove(at: index)
-            }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        let alert = UIAlertController(
+            title: "vault.delete_confirm.title".localized(),
+            message: "vault.delete_confirm.message".localized(with: lnkData.nameData),
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "button.delete".localized(), style: .destructive) { [weak self] _ in
+            self?.deleteItem(lnkData, at: indexPath, in: tableView)
+        })
+        alert.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel) { _ in
+            tableView.setEditing(false, animated: true)
+        })
+        present(alert, animated: true)
+    }
 
-            let alert = UIAlertController(title: "alert.deleted.title".localized(), message: "alert.deleted.message".localized(), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in
-                self.navigationController?.popToRootViewController(animated: true)
-            })
-            self.present(alert, animated: true)
+    private func deleteItem(_ lnkData: LNKData, at indexPath: IndexPath, in tableView: UITableView) {
+        DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, lnkData: lnkData) { [weak self] deleted in
+            guard deleted else { return }
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                if let row = self.filteredDatas.firstIndex(where: { $0.nameData == lnkData.nameData }) {
+                    self.filteredDatas.remove(at: row)
+                    tableView.deleteRows(at: [IndexPath(row: row, section: indexPath.section)], with: .fade)
+                }
+                if let index = self.lnkDatas.firstIndex(where: { $0.nameData == lnkData.nameData }) {
+                    self.lnkDatas.remove(at: index)
+                }
+
+                let alert = UIAlertController(title: "alert.deleted.title".localized(), message: "alert.deleted.message".localized(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+                self.present(alert, animated: true)
+            }
         }
     }
 }
