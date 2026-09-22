@@ -210,3 +210,13 @@
 "autofill.unlock.locked_out" = "Too many attempts. Open LNK Wallet and unlock it to try again here.";
 "autofill.unlock.no_copy" = "Open LNK Wallet and unlock it once to use your master password here.";
 "autofill.unlock.signed_out" = "Sign in to LNK Wallet first, then try again.";
+
+/* LNK AutoFill — password list */
+"autofill.list.title" = "LNK Wallet";
+"autofill.list.search" = "Search passwords";
+"autofill.list.suggested" = "For %@";
+"autofill.list.all" = "All passwords";
+"autofill.list.results" = "Results";
+"autofill.list.empty" = "No passwords in LNK Wallet yet. Add them in the app.";
+"autofill.list.no_copy" = "Open LNK Wallet once to load your passwords here.";
+"autofill.list.no_results" = "No passwords match your search.";

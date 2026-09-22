@@ -5,197 +5,116 @@
 //  Created by Javier Gomez on 9/22/26.
 //
 
-//  AUTOFILL 02 SPIKE — throwaway. Measures the memory cost of Firebase Auth + Firestore
-//  inside the extension. Replaced by the real fill UI in AutoFill 07.
-
 import AuthenticationServices
 import FirebaseCore
 import FirebaseAuth
-import FirebaseFirestore
-import os
 
+// Entry point iOS calls for every AutoFill request. Nothing is decrypted or shown until the unlock
+// gate passes; passwords come from the obfuscated offline copy the app writes to the App Group.
 class CredentialProviderViewController: ASCredentialProviderViewController {
-
-    // MARK: — State
-    private let logger   = Logger(subsystem: "com.jdev.Lock-n-Key-Wallet.LNK-AutoFill", category: "spike")
-    private let textView = UITextView()
-    private var report   = ""
-    private var started  = false
-
-    // MARK: — Lifecycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupReportView()
-        record("1. extension loaded")
-    }
 
     // MARK: — Entry points
 
-    // Settings › General › AutoFill & Passwords › toggle LNK Wallet on
-    override func prepareInterfaceForExtensionConfiguration() {
-        runSpike(trigger: "configuration")
-    }
-
     // Tap a password field › key icon › LNK Wallet
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
-        requireUnlock { [weak self] in
-            self?.runSpike(trigger: "credential list (\(serviceIdentifiers.map { $0.identifier }.joined(separator: ", ")))")
+        requireUnlock { [weak self] items in
+            self?.showList(items: items, serviceIdentifiers: serviceIdentifiers)
         }
     }
 
-    // Never hand over a password without the user in front of our UI (AutoFill 06). Both overrides
-    // are required: the base class's default identity and request variants call each other forever.
+    // Never hand over a password without the user in front of our UI. Both overrides are required:
+    // the base class's default identity and request variants call each other forever.
     override func provideCredentialWithoutUserInteraction(for credentialRequest: ASCredentialRequest) {
-        extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain,
-                                                          code: ASExtensionError.userInteractionRequired.rawValue))
+        cancel(with: .userInteractionRequired)
     }
 
-    // Tap a QuickType suggestion
+    // Tap a QuickType suggestion: fill that exact item after unlock, no list
     override func prepareInterfaceToProvideCredential(for credentialRequest: ASCredentialRequest) {
-        requireUnlock { [weak self] in
-            self?.runSpike(trigger: "QuickType (\(credentialRequest.credentialIdentity.serviceIdentifier.identifier))")
+        let identity = credentialRequest.credentialIdentity
+        requireUnlock { [weak self] items in
+            guard let self = self else { return }
+            if let recordID = identity.recordIdentifier,
+               let item = items?.first(where: { $0.documentID == recordID }) {
+                self.complete(with: item)
+            } else {
+                // Deleted since the suggestion was made: drop it and let the user pick
+                self.removeStaleSuggestion(identity)
+                self.showList(items: items, serviceIdentifiers: [identity.serviceIdentifier])
+            }
         }
     }
 
-    // MARK: — Unlock (AutoFill 06)
+    // Settings › AutoFill & Passwords › LNK Wallet turned on. AutoFill 10 adds a screen here.
+    override func prepareInterfaceForExtensionConfiguration() {
+        extensionContext.completeExtensionConfigurationRequest()
+    }
 
-    // Covers the screen with the unlock gate; runs the action only after Face ID or the master password
-    private func requireUnlock(then action: @escaping () -> Void) {
+    // MARK: — Unlock
+
+    // Covers the screen with the unlock gate. Only after Face ID or the master password are the
+    // offline records decrypted and handed to the action (nil when the app hasn't written them yet).
+    private func requireUnlock(then action: @escaping ([FillItem]?) -> Void) {
         if FirebaseApp.app() == nil { FirebaseApp.configure() }
         try? Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
-        let creationDate = Auth.auth().currentUser?.metadata.creationDate.map { Int($0.timeIntervalSince1970) }
+        let user         = Auth.auth().currentUser
+        let creationDate = user?.metadata.creationDate.map { Int($0.timeIntervalSince1970) }
 
         let unlock = UnlockViewController(creationDate: creationDate)
         unlock.onUnlock = { [weak unlock] in
+            guard let user = user, let creationDate = creationDate else { return }
             unlock?.willMove(toParent: nil)
             unlock?.view.removeFromSuperview()
             unlock?.removeFromParent()
-            action()
+
+            let items = AutoFillCache.read(uid: user.uid)?.map {
+                FillItem(decrypting: $0, secretKey: user.uid, creationDate: creationDate)
+            }
+            action(items)
         }
         unlock.onCancel = { [weak self] in
-            self?.cancel(nil)
+            self?.cancel(with: .userCanceled)
         }
-
-        addChild(unlock)
-        unlock.view.frame            = view.bounds
-        unlock.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(unlock.view)
-        unlock.didMove(toParent: self)
+        embed(unlock)
     }
 
-    // MARK: — Setup
+    // MARK: — List
 
-    private func setupReportView() {
-        view.subviews.forEach { $0.isHidden = true }
-
-        textView.isEditable      = false
-        textView.font            = UIFont.monospacedSystemFont(ofSize: 13, weight: .regular)
-        textView.textColor       = .label
-        textView.backgroundColor = .systemBackground
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(textView)
-
-        let doneButton = UIButton(type: .system)
-        doneButton.setTitle("Done", for: .normal)
-        doneButton.addTarget(self, action: #selector(cancel(_:)), for: .touchUpInside)
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(doneButton)
-
-        NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            textView.topAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 8),
-            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-
-    // MARK: — Spike
-
-    private func runSpike(trigger: String) {
-        guard !started else { return }
-        started = true
-        record("   trigger: \(trigger)")
-
-        if FirebaseApp.app() == nil { FirebaseApp.configure() }
-        record("2. FirebaseApp.configure()")
-
-        do {
-            try Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
-        } catch {
-            record("   shared keychain error: \(error.localizedDescription)")
+    private func showList(items: [FillItem]?, serviceIdentifiers: [ASCredentialServiceIdentifier]) {
+        let list = CredentialListViewController(items: items,
+                                                serviceIdentifiers: serviceIdentifiers.map { $0.identifier })
+        list.onSelect = { [weak self] item in
+            self?.complete(with: item)
         }
-        let user = Auth.auth().currentUser
-        record("3. Auth ready (signed in: \(user != nil))")
-        // AutoFill 04 check: the key material comes straight from the shared session
-        if let user = user {
-            let hasCreationDate = user.metadata.creationDate != nil
-            record("   uid: \(user.uid.prefix(4))… · creation date: \(hasCreationDate ? "yes" : "MISSING")")
-            // AutoFill 05 check: the app's offline copy is readable from the App Group
-            if let encryptedRecords = AutoFillCache.read(uid: user.uid) {
-                record("   offline copy: \(encryptedRecords.count) passwords")
-            } else {
-                record("   offline copy: none")
-            }
+        list.onCancel = { [weak self] in
+            self?.cancel(with: .userCanceled)
         }
-
-        // In-memory cache: the extension has no use for Firestore's on-disk cache
-        let settings           = FirestoreSettings()
-        settings.cacheSettings = MemoryCacheSettings()
-        let db                 = Firestore.firestore()
-        db.settings            = settings
-        record("4. Firestore ready")
-
-        // Read-only server round trip: loads the full network stack without writing anything.
-        // Rejected by security rules while the extension has no shared sign-in (AutoFill 04).
-        db.collection("User").document(user?.uid ?? "autofill-spike-probe")
-            .getDocument(source: .server) { [weak self] _, error in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.record("5. server round trip (\(error.map { "error: \($0.localizedDescription)" } ?? "ok"))")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self.record("6. settled +2s")
-                        self.record("\nDone. Screenshot this and tap Done.")
-                    }
-                }
-            }
+        embed(UINavigationController(rootViewController: list))
     }
 
-    // MARK: — Measurement
+    // MARK: — Completion
 
-    private func record(_ step: String) {
-        let used      = Self.footprintMB()
-        let available = Double(os_proc_available_memory()) / 1_048_576
-        let line      = step.hasPrefix(" ") || step.hasPrefix("\n")
-            ? step
-            : String(format: "%@\n   used %.1f MB · free %.1f MB · limit ≈ %.0f MB", step, used, available, used + available)
-
-        report += line + "\n"
-        textView.text = report
-        logger.log("\(line, privacy: .public)")
+    private func complete(with item: FillItem) {
+        let credential = ASPasswordCredential(user: item.user, password: item.password)
+        extensionContext.completeRequest(withSelectedCredential: credential, completionHandler: nil)
     }
 
-    // Same number Xcode's memory gauge and the jetsam limit use
-    private static func footprintMB() -> Double {
-        var info  = task_vm_info_data_t()
-        var count = mach_msg_type_number_t(MemoryLayout<task_vm_info_data_t>.size / MemoryLayout<integer_t>.size)
-        let result = withUnsafeMutablePointer(to: &info) {
-            $0.withMemoryRebound(to: integer_t.self, capacity: Int(count)) {
-                task_info(mach_task_self_, task_flavor_t(TASK_VM_INFO), $0, &count)
-            }
+    private func cancel(with code: ASExtensionError.Code) {
+        extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: code.rawValue))
+    }
+
+    private func removeStaleSuggestion(_ identity: ASCredentialIdentity) {
+        ASCredentialIdentityStore.shared.removeCredentialIdentities([identity]) { _, error in
+            if let error = error { print("Removing stale AutoFill suggestion failed: \(error)") }
         }
-        return result == KERN_SUCCESS ? Double(info.phys_footprint) / 1_048_576 : -1
     }
 
-    // MARK: — Actions
+    // MARK: — Containment
 
-    @IBAction func cancel(_ sender: AnyObject?) {
-        self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userCanceled.rawValue))
-    }
-
-    @IBAction func passwordSelected(_ sender: AnyObject?) {
-        cancel(sender)
+    private func embed(_ child: UIViewController) {
+        addChild(child)
+        child.view.frame            = view.bounds
+        child.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
     }
 }

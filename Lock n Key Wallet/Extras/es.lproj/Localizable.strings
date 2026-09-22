@@ -210,3 +210,13 @@
 "autofill.unlock.locked_out" = "Demasiados intentos. Abre LNK Wallet y desbloquéalo para volver a intentarlo aquí.";
 "autofill.unlock.no_copy" = "Abre LNK Wallet y desbloquéalo una vez para usar tu contraseña maestra aquí.";
 "autofill.unlock.signed_out" = "Inicia sesión en LNK Wallet primero y vuelve a intentarlo.";
+
+/* LNK AutoFill — lista de contraseñas */
+"autofill.list.title" = "LNK Wallet";
+"autofill.list.search" = "Buscar contraseñas";
+"autofill.list.suggested" = "Para %@";
+"autofill.list.all" = "Todas las contraseñas";
+"autofill.list.results" = "Resultados";
+"autofill.list.empty" = "Aún no hay contraseñas en LNK Wallet. Agrégalas en la app.";
+"autofill.list.no_copy" = "Abre LNK Wallet una vez para cargar tus contraseñas aquí.";
+"autofill.list.no_results" = "Ninguna contraseña coincide con tu búsqueda.";
