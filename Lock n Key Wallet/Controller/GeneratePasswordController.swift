@@ -212,36 +212,9 @@ class GeneratePasswordController: UIViewController {
 
     private func generatePassword() {
         let length = Int(amountCharactersSlider.value)
-        passwordLabel.text = randomNonceString(length: length)
-    }
-
-    private func randomNonceString(length: Int) -> String {
-        var charset = "abcdefghijklmnopqrstuvwxyz"
-        if capitalSwitch.isOn  { charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ" }
-        if digitsSwitch.isOn   { charset += "0123456789" }
-        if symbolsSwitch.isOn  { charset += "~!@#$%^&*().,_+=-<>?" }
-
-        let chars: [Character] = Array(charset)
-        var result = ""
-        var remaining = length
-
-        while remaining > 0 {
-            let randoms: [UInt8] = (0..<16).map { _ in
-                var byte: UInt8 = 0
-                let status = SecRandomCopyBytes(kSecRandomDefault, 1, &byte)
-                if status != errSecSuccess {
-                    fatalError("SecRandomCopyBytes failed: \(status)")
-                }
-                return byte
-            }
-            for byte in randoms {
-                guard remaining > 0 else { break }
-                if byte < chars.count {
-                    result.append(chars[Int(byte)])
-                    remaining -= 1
-                }
-            }
-        }
-        return result
+        passwordLabel.text = PasswordGenerator.generate(length:    length,
+                                                        uppercase: capitalSwitch.isOn,
+                                                        digits:    digitsSwitch.isOn,
+                                                        symbols:   symbolsSwitch.isOn)
     }
 }

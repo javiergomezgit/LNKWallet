@@ -46,6 +46,8 @@
 		225C83AA3063337D00A059F9 /* AutoFillSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A93063337D00A059F9 /* AutoFillSync.swift */; };
 		225C83C03063393200A059F9 /* SharedKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83BF3063393200A059F9 /* SharedKeychain.swift */; };
 		225C83C13063393200A059F9 /* SharedKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83BF3063393200A059F9 /* SharedKeychain.swift */; };
+		225C840D3063438E00A059F9 /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C840C3063438E00A059F9 /* PasswordGenerator.swift */; };
+		225C840E3063438E00A059F9 /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C840C3063438E00A059F9 /* PasswordGenerator.swift */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -124,6 +126,7 @@
 		225C83A23063334800A059F9 /* ServiceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHost.swift; sourceTree = "<group>"; };
 		225C83A93063337D00A059F9 /* AutoFillSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFillSync.swift; sourceTree = "<group>"; };
 		225C83BF3063393200A059F9 /* SharedKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedKeychain.swift; sourceTree = "<group>"; };
+		225C840C3063438E00A059F9 /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
 		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
 		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
 		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 				225C838A3063309900A059F9 /* AppGroup.swift */,
 				225C83A03063334800A059F9 /* AutoFillCache.swift */,
 				225C83A13063334800A059F9 /* PasswordRecord.swift */,
+				225C840C3063438E00A059F9 /* PasswordGenerator.swift */,
 				225C83A23063334800A059F9 /* ServiceHost.swift */,
 			);
 			path = Shared;
@@ -515,6 +519,7 @@
 				225C83C13063393200A059F9 /* SharedKeychain.swift in Sources */,
 				225C8362306324AC00A059F9 /* Extensions.swift in Sources */,
 				225C838D3063309900A059F9 /* AppGroup.swift in Sources */,
+				225C840E3063438E00A059F9 /* PasswordGenerator.swift in Sources */,
 				225C835F3063248D00A059F9 /* Encryption.swift in Sources */,
 				225C83603063249400A059F9 /* EncryptionPassword.swift in Sources */,
 				225C83A33063334800A059F9 /* AutoFillCache.swift in Sources */,
@@ -546,6 +551,7 @@
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
 				22290D372F844285009B11BA /* PasswordHealthViewController.swift in Sources */,
 				220D757C2870BC88003461D1 /* DataCreditCardController.swift in Sources */,
+				225C840D3063438E00A059F9 /* PasswordGenerator.swift in Sources */,
 				222384EE2751793700FBF76A /* DBManager.swift in Sources */,
 				224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */,
 				228671D0286BA5B60010AEAF /* GeneratePasswordController.swift in Sources */,

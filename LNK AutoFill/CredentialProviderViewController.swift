@@ -64,6 +64,21 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         }
     }
 
+    // iOS 26.2+: strong password suggestions on sign-up and change-password forms. Random passwords
+    // reveal nothing from the vault, so no unlock. Results follow the site's password rules.
+    @available(iOS 26.2, *)
+    override func performWithoutUserInteraction(generatePasswordsRequest: ASGeneratePasswordsRequest) {
+        extensionContext.completeGeneratePasswordRequest(results: generatedPasswords(for: generatePasswordsRequest),
+                                                         completionHandler: nil)
+    }
+
+    // Only called with SupportsGeneratePasswordCredentialsWithUI, which LNK doesn't declare; answer
+    // the same way rather than leave the request hanging
+    @available(iOS 26.2, *)
+    override func prepareInterface(for generatePasswordsRequest: ASGeneratePasswordsRequest) {
+        performWithoutUserInteraction(generatePasswordsRequest: generatePasswordsRequest)
+    }
+
     // Settings › AutoFill & Passwords › LNK Wallet turned on. AutoFill 10 adds a screen here.
     override func prepareInterfaceForExtensionConfiguration() {
         extensionContext.completeExtensionConfigurationRequest()
@@ -134,6 +149,25 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             self?.cancel(with: .userCanceled)
         }
         embed(UINavigationController(rootViewController: save))
+    }
+
+    // MARK: — Generate
+
+    // Strong first, then letters and numbers when the site allows it. Apple's per-site fixes
+    // (quirks) win over the rules on the form.
+    @available(iOS 26.2, *)
+    private func generatedPasswords(for request: ASGeneratePasswordsRequest) -> [ASGeneratedPassword] {
+        let rules        = PasswordRules(parsing: request.passwordRulesFromQuirks ?? request.passwordFieldPasswordRules)
+        let alphanumeric = Set(PasswordGenerator.lowercase + PasswordGenerator.uppercase + PasswordGenerator.digits)
+
+        var results = [ASGeneratedPassword]()
+        if let strong = PasswordGenerator.generate(following: rules) {
+            results.append(ASGeneratedPassword(kind: .strong, value: strong))
+        }
+        if let simple = PasswordGenerator.generate(following: rules, limitedTo: alphanumeric) {
+            results.append(ASGeneratedPassword(kind: .alphanumeric, value: simple))
+        }
+        return results
     }
 
     // MARK: — Completion
