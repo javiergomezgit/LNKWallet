@@ -17,6 +17,7 @@ class ToolsViewController: UIViewController {
     private var healthCardView: HealthCardView?
     
     private let pageTitleLabel = UILabel()
+    private let autoFillStatusLabel = UILabel()
     private let pageSupertitleLabel = UILabel()
 
     // MARK: — Lifecycle
@@ -27,12 +28,14 @@ class ToolsViewController: UIViewController {
         setupNavBar()
         setupScrollView()
         setupToolCards()
+        setupAutoFillCard()
         setupPromoSection()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        refreshAutoFillStatus()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -209,6 +212,91 @@ class ToolsViewController: UIViewController {
         return card
     }
 
+    // MARK: — AutoFill Card
+
+    // Opens iOS Settings › AutoFill & Passwords; the status refreshes when the user comes back
+    private func setupAutoFillCard() {
+        let card                = UIView()
+        card.backgroundColor    = .backgroundSecondary
+        card.layer.cornerRadius = 16
+        card.layer.borderWidth  = 0.5
+        card.layer.borderColor  = UIColor.border.cgColor
+        card.translatesAutoresizingMaskIntoConstraints = false
+
+        let iconBg                = UIView()
+        iconBg.backgroundColor    = UIColor.accentBrand.withAlphaComponent(0.15)
+        iconBg.layer.cornerRadius = 10
+        iconBg.translatesAutoresizingMaskIntoConstraints = false
+
+        let iconView       = UIImageView()
+        let symConfig      = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+        iconView.image     = UIImage(systemName: "key.viewfinder", withConfiguration: symConfig)
+        iconView.tintColor = .accentBrand
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconBg.addSubview(iconView)
+
+        let titleLabel       = UILabel()
+        titleLabel.text      = "tools.autofill.title".localized()
+        titleLabel.font      = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        titleLabel.textColor = .textPrimary
+
+        autoFillStatusLabel.font          = UIFont.systemFont(ofSize: 13, weight: .regular)
+        autoFillStatusLabel.textColor     = .textSecondary
+        autoFillStatusLabel.numberOfLines = 2
+
+        let chevron       = UIImageView()
+        chevron.image     = UIImage(systemName: "chevron.right")
+        chevron.tintColor = .textSecondary
+        chevron.translatesAutoresizingMaskIntoConstraints = false
+
+        let labelStack     = UIStackView(arrangedSubviews: [titleLabel, autoFillStatusLabel])
+        labelStack.axis    = .vertical
+        labelStack.spacing = 3
+        labelStack.translatesAutoresizingMaskIntoConstraints = false
+
+        card.addSubview(iconBg)
+        card.addSubview(labelStack)
+        card.addSubview(chevron)
+
+        NSLayoutConstraint.activate([
+            card.heightAnchor.constraint(greaterThanOrEqualToConstant: 72),
+
+            iconBg.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
+            iconBg.centerYAnchor.constraint(equalTo: card.centerYAnchor),
+            iconBg.widthAnchor.constraint(equalToConstant: 44),
+            iconBg.heightAnchor.constraint(equalToConstant: 44),
+
+            iconView.centerXAnchor.constraint(equalTo: iconBg.centerXAnchor),
+            iconView.centerYAnchor.constraint(equalTo: iconBg.centerYAnchor),
+
+            labelStack.leadingAnchor.constraint(equalTo: iconBg.trailingAnchor, constant: 12),
+            labelStack.topAnchor.constraint(greaterThanOrEqualTo: card.topAnchor, constant: 12),
+            labelStack.centerYAnchor.constraint(equalTo: card.centerYAnchor),
+            labelStack.trailingAnchor.constraint(equalTo: chevron.leadingAnchor, constant: -8),
+
+            chevron.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
+            chevron.centerYAnchor.constraint(equalTo: card.centerYAnchor),
+            chevron.widthAnchor.constraint(equalToConstant: 12)
+        ])
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(autoFillTapped))
+        card.addGestureRecognizer(tap)
+        card.isUserInteractionEnabled = true
+
+        contentStack.addArrangedSubview(card)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshAutoFillStatus),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+
+    @objc private func refreshAutoFillStatus() {
+        AutoFillSync.checkEnabled { [weak self] enabled in
+            self?.autoFillStatusLabel.text = enabled ? "tools.autofill.on".localized() : "tools.autofill.off".localized()
+        }
+    }
+
     // MARK: — Promo Section
 
     private func setupPromoSection() {
@@ -305,6 +393,10 @@ class ToolsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Tools", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GeneratePasswordController")
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc private func autoFillTapped() {
+        AutoFillSync.openSystemSettings()
     }
 
     @objc private func promoTapped() {

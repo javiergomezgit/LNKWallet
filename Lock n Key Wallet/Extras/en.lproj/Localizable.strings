@@ -232,3 +232,15 @@
 "autofill.save.missing_name" = "Add a name for this login.";
 "autofill.save.missing_password" = "The password is empty.";
 "autofill.save.error" = "Couldn't save. Check your connection and try again.";
+
+/* Password AutoFill — setup */
+"settings.menu.autofill" = "Password AutoFill";
+"settings.autofill.on" = "On";
+"settings.autofill.off" = "Off";
+"tools.autofill.title" = "Password AutoFill";
+"tools.autofill.on" = "On · fills and saves logins in Safari and apps";
+"tools.autofill.off" = "Off · tap to turn it on in Settings";
+"autofill.setup.title" = "LNK Wallet AutoFill is on";
+"autofill.setup.ready" = "Your logins will show up above the keyboard in Safari and apps. You'll unlock with Face ID or your master password each time.";
+"autofill.setup.open_app" = "Open LNK Wallet and unlock it once so your logins are ready to fill.";
+"autofill.setup.done" = "Done";

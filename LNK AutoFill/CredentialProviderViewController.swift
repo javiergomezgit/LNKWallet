@@ -79,9 +79,17 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         performWithoutUserInteraction(generatePasswordsRequest: generatePasswordsRequest)
     }
 
-    // Settings › AutoFill & Passwords › LNK Wallet turned on. AutoFill 10 adds a screen here.
+    // Settings › AutoFill & Passwords › LNK Wallet turned on. No passwords are shown, so no unlock.
     override func prepareInterfaceForExtensionConfiguration() {
-        extensionContext.completeExtensionConfigurationRequest()
+        if FirebaseApp.app() == nil { FirebaseApp.configure() }
+        try? Auth.auth().useUserAccessGroup(AppGroup.keychainAccessGroup)
+        let passwordsReady = Auth.auth().currentUser.flatMap { AutoFillCache.read(uid: $0.uid) } != nil
+
+        let configuration = ConfigurationViewController(passwordsReady: passwordsReady)
+        configuration.onDone = { [weak self] in
+            self?.extensionContext.completeExtensionConfigurationRequest()
+        }
+        embed(configuration)
     }
 
     // MARK: — Unlock

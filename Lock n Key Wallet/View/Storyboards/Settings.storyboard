@@ -127,6 +127,47 @@
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="aF1-Ce-L01">
+                                        <rect key="frame" x="20" y="168" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aF1-Ce-L01" id="aF1-Cv-C01">
+                                            <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password AutoFill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF1-Tl-T01">
+                                                    <rect key="frame" x="15" y="15" width="140" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Off" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF1-St-S01">
+                                                    <rect key="frame" x="290" y="15" width="28" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF1-Bt-B01">
+                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
+                                                    <connections>
+                                                        <action selector="autoFillTapped:" destination="kW5-8e-JeA" eventType="touchUpInside" id="aF1-Ac-A01"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aF1-Tl-T01" firstAttribute="leading" secondItem="aF1-Cv-C01" secondAttribute="leading" constant="15" id="aF1-k1-K01"/>
+                                                <constraint firstItem="aF1-Tl-T01" firstAttribute="centerY" secondItem="aF1-Cv-C01" secondAttribute="centerY" id="aF1-k2-K02"/>
+                                                <constraint firstAttribute="trailing" secondItem="aF1-St-S01" secondAttribute="trailing" constant="8" id="aF1-k3-K03"/>
+                                                <constraint firstItem="aF1-St-S01" firstAttribute="centerY" secondItem="aF1-Cv-C01" secondAttribute="centerY" id="aF1-k4-K04"/>
+                                                <constraint firstItem="aF1-St-S01" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aF1-Tl-T01" secondAttribute="trailing" constant="8" id="aF1-k5-K05"/>
+                                                <constraint firstItem="aF1-Bt-B01" firstAttribute="top" secondItem="aF1-Cv-C01" secondAttribute="top" id="aF1-k6-K06"/>
+                                                <constraint firstAttribute="bottom" secondItem="aF1-Bt-B01" secondAttribute="bottom" id="aF1-k7-K07"/>
+                                                <constraint firstItem="aF1-Bt-B01" firstAttribute="leading" secondItem="aF1-Cv-C01" secondAttribute="leading" id="aF1-k8-K08"/>
+                                                <constraint firstAttribute="trailing" secondItem="aF1-Bt-B01" secondAttribute="trailing" id="aF1-k9-K09"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="dAi-7I-62l">
@@ -340,6 +381,8 @@
                     <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="MTf-pr-C90"/>
                     <connections>
                         <outlet property="attemptsLabel" destination="QnE-5b-o0O" id="Svp-vA-qvM"/>
+                        <outlet property="autoFillLabel" destination="aF1-Tl-T01" id="aF1-Ot-O01"/>
+                        <outlet property="autoFillStatusLabel" destination="aF1-St-S01" id="aF1-Ot-O02"/>
                         <outlet property="attemptsStepper" destination="YRC-YQ-cCk" id="bp2-ci-4Df"/>
                         <outlet property="contactLabel" destination="b0c-Sq-Jgx" id="yjq-s3-P4m"/>
                         <outlet property="deleteAccountLabel" destination="pRt-No-pEc" id="v3G-Aq-SOk"/>

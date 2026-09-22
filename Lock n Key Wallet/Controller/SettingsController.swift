@@ -26,6 +26,8 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var deleteAccountLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var contactLabel: UILabel!
+    @IBOutlet weak var autoFillLabel: UILabel!
+    @IBOutlet weak var autoFillStatusLabel: UILabel!
 
     // MARK: — Lifecycle
 
@@ -48,6 +50,12 @@ class SettingsController: UITableViewController {
         setupStepper()
         styleSwitch()
         setupStaticLabels()
+        setupAutoFill()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshAutoFillStatus()
     }
 
     // MARK: — Setup
@@ -167,6 +175,22 @@ class SettingsController: UITableViewController {
         unlockWithFaceID.onTintColor = .accentBrand
     }
 
+    // Refreshed on return from iOS Settings, where the user turns LNK Wallet on or off
+    private func setupAutoFill() {
+        autoFillLabel.text            = "settings.menu.autofill".localized()
+        autoFillStatusLabel.textColor = .textSecondary
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshAutoFillStatus),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+
+    @objc private func refreshAutoFillStatus() {
+        AutoFillSync.checkEnabled { [weak self] enabled in
+            self?.autoFillStatusLabel.text = enabled ? "settings.autofill.on".localized() : "settings.autofill.off".localized()
+        }
+    }
+
     private func setupStaticLabels() {
         instantAutoLockLabel.text = "settings.menu.instant_auto_lock".localized()
         eraseDataLabel.text = "settings.menu.erase_data".localized()
@@ -255,6 +279,10 @@ class SettingsController: UITableViewController {
         attemptsLabel.text = "\(value)"
         UserDefaults.standard.set(value, forKey: "amount_attempts")
         AutoFillSync.syncPreferences()
+    }
+
+    @IBAction func autoFillTapped(_ sender: UIButton) {
+        AutoFillSync.openSystemSettings()
     }
 
     @IBAction func logoutTapped(_ sender: UIButton) {

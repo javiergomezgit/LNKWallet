@@ -77,6 +77,22 @@ enum AutoFillSync {
         AppGroup.defaults?.set(0, forKey: AppGroup.Key.failedAttempts)
     }
 
+    // MARK: — System setting
+
+    // Whether LNK Wallet is turned on under Settings › General › AutoFill & Passwords. Main queue.
+    static func checkEnabled(completion: @escaping (Bool) -> Void) {
+        ASCredentialIdentityStore.shared.getState { state in
+            DispatchQueue.main.async { completion(state.isEnabled) }
+        }
+    }
+
+    // Opens the AutoFill & Passwords page in iOS Settings, where LNK Wallet is switched on
+    static func openSystemSettings() {
+        ASSettingsHelper.openCredentialProviderAppSettings { error in
+            if let error = error { print("Opening AutoFill settings failed: \(error)") }
+        }
+    }
+
     // MARK: — Suggestions
 
     private static func replaceIdentities(with identities: [ASPasswordCredentialIdentity]) {
