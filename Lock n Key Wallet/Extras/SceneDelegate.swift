@@ -24,6 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
                 guard let self = self else { return }
                 if user == nil {
+                    // Signed out or account deleted: LNK AutoFill must stop offering this vault
+                    AutoFillSync.clear()
                     // Only reset if onboarding is complete
                     let onboardingComplete = UserDefaults.standard.value(forKey: "firstLaunching") != nil
                     if onboardingComplete {
@@ -44,6 +46,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {}
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        // Picks up items added or removed on another device while the app was in the background
+        if Auth.auth().currentUser != nil {
+            AutoFillSync.refresh()
+        }
+
         let isLocked = UserDefaults.standard.bool(forKey: "locked_app")
         guard isLocked, Auth.auth().currentUser != nil else { return }
 

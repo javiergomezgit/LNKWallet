@@ -331,6 +331,9 @@ extension OpenVaultController: UITableViewDelegate, UITableViewDataSource {
     private func deleteItem(_ lnkData: LNKData, at indexPath: IndexPath, in tableView: UITableView) {
         DBManager.shared.deleteIndividualData(userID: Auth.auth().currentUser!.uid, lnkData: lnkData) { [weak self] deleted in
             guard deleted else { return }
+            if lnkData.typeData == PasswordRecord.typeKey {
+                AutoFillSync.refresh()
+            }
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 if let row = self.filteredDatas.firstIndex(where: { $0.nameData == lnkData.nameData }) {

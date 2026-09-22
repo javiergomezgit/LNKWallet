@@ -288,6 +288,7 @@ class SettingsController: UITableViewController {
             preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "button.delete".localized(), style: .destructive) { _ in
             guard let uid = Auth.auth().currentUser?.uid else { return }
+            AutoFillSync.clear()
             DBManager.shared.deleteAllDatas(userID: uid) { [weak self] success in
                 guard let self = self, success else { return }
                 self.showAlert(title: "settings.delete_data.success.title".localized(), message: "settings.delete_data.success.message".localized())

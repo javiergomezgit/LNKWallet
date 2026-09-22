@@ -42,6 +42,18 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         runSpike(trigger: "credential list (\(serviceIdentifiers.map { $0.identifier }.joined(separator: ", ")))")
     }
 
+    // Never hand over a password without the user in front of our UI (AutoFill 06). Both overrides
+    // are required: the base class's default identity and request variants call each other forever.
+    override func provideCredentialWithoutUserInteraction(for credentialRequest: ASCredentialRequest) {
+        extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain,
+                                                          code: ASExtensionError.userInteractionRequired.rawValue))
+    }
+
+    // Tap a QuickType suggestion
+    override func prepareInterfaceToProvideCredential(for credentialRequest: ASCredentialRequest) {
+        runSpike(trigger: "QuickType (\(credentialRequest.credentialIdentity.serviceIdentifier.identifier))")
+    }
+
     // MARK: — Setup
 
     private func setupReportView() {
@@ -91,6 +103,12 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         if let user = user {
             let hasCreationDate = user.metadata.creationDate != nil
             record("   uid: \(user.uid.prefix(4))… · creation date: \(hasCreationDate ? "yes" : "MISSING")")
+            // AutoFill 05 check: the app's offline copy is readable from the App Group
+            if let encryptedRecords = AutoFillCache.read(uid: user.uid) {
+                record("   offline copy: \(encryptedRecords.count) passwords")
+            } else {
+                record("   offline copy: none")
+            }
         }
 
         // In-memory cache: the extension has no use for Firestore's on-disk cache

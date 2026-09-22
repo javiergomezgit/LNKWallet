@@ -46,6 +46,7 @@ class VaultHomeViewController: UIViewController {
         setupCollectionView()
         setupRecentTableView()
         setupAddButton()
+        AutoFillSync.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -204,6 +204,7 @@ class MasterPasswordController: UIViewController {
                         self.showAlert(title: "masterpassword.alert.wrong.title".localized(),
                                       message: "masterpassword.alert.wrong.message".localized(with: remaining))
                     } else {
+                        AutoFillSync.clear()
                         DBManager.shared.deleteAllDatas(userID: user.uid) { success in
                             guard success else { return }
                             UserDefaults.standard.set(3, forKey: "amount_attempts")

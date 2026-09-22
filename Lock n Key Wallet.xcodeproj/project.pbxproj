@@ -37,6 +37,13 @@
 		225C8363306324B500A059F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
 		225C838C3063309900A059F9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C838A3063309900A059F9 /* AppGroup.swift */; };
 		225C838D3063309900A059F9 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C838A3063309900A059F9 /* AppGroup.swift */; };
+		225C83A33063334800A059F9 /* AutoFillCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A03063334800A059F9 /* AutoFillCache.swift */; };
+		225C83A43063334800A059F9 /* PasswordRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A13063334800A059F9 /* PasswordRecord.swift */; };
+		225C83A53063334800A059F9 /* ServiceHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A23063334800A059F9 /* ServiceHost.swift */; };
+		225C83A63063334800A059F9 /* AutoFillCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A03063334800A059F9 /* AutoFillCache.swift */; };
+		225C83A73063334800A059F9 /* PasswordRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A13063334800A059F9 /* PasswordRecord.swift */; };
+		225C83A83063334800A059F9 /* ServiceHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A23063334800A059F9 /* ServiceHost.swift */; };
+		225C83AA3063337D00A059F9 /* AutoFillSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C83A93063337D00A059F9 /* AutoFillSync.swift */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -110,6 +117,10 @@
 		225C8328306315FC00A059F9 /* LNK AutoFill.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "LNK AutoFill.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225C8329306315FC00A059F9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		225C838A3063309900A059F9 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		225C83A03063334800A059F9 /* AutoFillCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFillCache.swift; sourceTree = "<group>"; };
+		225C83A13063334800A059F9 /* PasswordRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecord.swift; sourceTree = "<group>"; };
+		225C83A23063334800A059F9 /* ServiceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHost.swift; sourceTree = "<group>"; };
+		225C83A93063337D00A059F9 /* AutoFillSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFillSync.swift; sourceTree = "<group>"; };
 		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
 		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
 		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
@@ -200,6 +211,7 @@
 				2233FE212F96C54B00A542B2 /* es.lproj */,
 				224E8689285F6FCA00F4A575 /* Encryption */,
 				2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */,
+				225C83A93063337D00A059F9 /* AutoFillSync.swift */,
 				2295C5762748722E0050FA7D /* SceneDelegate.swift */,
 				2295C5742748722E0050FA7D /* AppDelegate.swift */,
 				227FB7A0275FAEBA0013647B /* Reachability.swift */,
@@ -287,6 +299,9 @@
 			isa = PBXGroup;
 			children = (
 				225C838A3063309900A059F9 /* AppGroup.swift */,
+				225C83A03063334800A059F9 /* AutoFillCache.swift */,
+				225C83A13063334800A059F9 /* PasswordRecord.swift */,
+				225C83A23063334800A059F9 /* ServiceHost.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -497,6 +512,9 @@
 				225C838D3063309900A059F9 /* AppGroup.swift in Sources */,
 				225C835F3063248D00A059F9 /* Encryption.swift in Sources */,
 				225C83603063249400A059F9 /* EncryptionPassword.swift in Sources */,
+				225C83A33063334800A059F9 /* AutoFillCache.swift in Sources */,
+				225C83A43063334800A059F9 /* PasswordRecord.swift in Sources */,
+				225C83A53063334800A059F9 /* ServiceHost.swift in Sources */,
 				225C8361306324A000A059F9 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +533,7 @@
 				2295C5752748722E0050FA7D /* AppDelegate.swift in Sources */,
 				227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */,
 				220ADAFB274DA9D70030FAAD /* Model.swift in Sources */,
+				225C83AA3063337D00A059F9 /* AutoFillSync.swift in Sources */,
 				227421862F7DAE620027D985 /* RecentItemCell.swift in Sources */,
 				2283FD3E2873B01600F8B21C /* DataSecureNoteController.swift in Sources */,
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,
@@ -532,6 +551,9 @@
 				227FB7A1275FAEBA0013647B /* Reachability.swift in Sources */,
 				227421822F7DAD550027D985 /* VaultCategory.swift in Sources */,
 				2295C5772748722E0050FA7D /* SceneDelegate.swift in Sources */,
+				225C83A63063334800A059F9 /* AutoFillCache.swift in Sources */,
+				225C83A73063334800A059F9 /* PasswordRecord.swift in Sources */,
+				225C83A83063334800A059F9 /* ServiceHost.swift in Sources */,
 				222384C7274D361D00FBF76A /* MasterPasswordController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
