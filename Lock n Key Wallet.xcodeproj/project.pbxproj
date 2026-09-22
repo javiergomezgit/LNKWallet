@@ -26,6 +26,10 @@
 		224E868C285F6FE200F4A575 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
 		224E868D285F6FE200F4A575 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868B285F6FE200F4A575 /* Encryption.swift */; };
 		22503B942F831E0C0054893A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22503B932F831E0C0054893A /* Settings.storyboard */; };
+		225C832A306315FC00A059F9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225C8329306315FC00A059F9 /* AuthenticationServices.framework */; };
+		225C8335306315FC00A059F9 /* LNK AutoFill.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 225C8328306315FC00A059F9 /* LNK AutoFill.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		225C833C3063162F00A059F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 225C833B3063162F00A059F9 /* FirebaseAuth */; };
+		225C833E3063163700A059F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 225C833D3063163700A059F9 /* FirebaseFirestore */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -52,6 +56,30 @@
 		7A1B2C3D4E5F678901234568 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1B2C3D4E5F678901234567 /* SessionManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		225C8333306315FC00A059F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2295C5692748722E0050FA7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 225C8327306315FC00A059F9;
+			remoteInfo = "LNK AutoFill";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		225C833A306315FC00A059F9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				225C8335306315FC00A059F9 /* LNK AutoFill.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		220ADAF8274DA60F0030FAAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		220ADAFA274DA9D70030FAAD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -72,6 +100,8 @@
 		224E868A285F6FE100F4A575 /* EncryptionPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionPassword.swift; sourceTree = "<group>"; };
 		224E868B285F6FE200F4A575 /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		22503B932F831E0C0054893A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		225C8328306315FC00A059F9 /* LNK AutoFill.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "LNK AutoFill.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		225C8329306315FC00A059F9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		2274217D2F7DA7200027D985 /* Vault.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Vault.storyboard; sourceTree = "<group>"; };
 		2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultHomeViewController.swift; sourceTree = "<group>"; };
 		227421812F7DAD530027D985 /* VaultCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultCategory.swift; sourceTree = "<group>"; };
@@ -95,12 +125,33 @@
 		7A1B2C3D4E5F678901234567 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		225C8336306315FC00A059F9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 225C8327306315FC00A059F9 /* LNK AutoFill */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2233FE1E2F96C54B00A542B2 /* en.lproj */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = en.lproj; sourceTree = "<group>"; };
 		2233FE212F96C54B00A542B2 /* es.lproj */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = es.lproj; sourceTree = "<group>"; };
+		225C832B306315FC00A059F9 /* LNK AutoFill */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (225C8336306315FC00A059F9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "LNK AutoFill"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		225C8325306315FC00A059F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				225C832A306315FC00A059F9 /* AuthenticationServices.framework in Frameworks */,
+				225C833C3063162F00A059F9 /* FirebaseAuth in Frameworks */,
+				225C833E3063163700A059F9 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2295C56E2748722E0050FA7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				2295C5732748722E0050FA7D /* Lock n Key Wallet */,
+				225C832B306315FC00A059F9 /* LNK AutoFill */,
 				2295C5722748722E0050FA7D /* Products */,
 				366FC2A58726BA3D923BB29A /* Frameworks */,
 			);
@@ -237,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				2295C5712748722E0050FA7D /* Lock n Key Wallet.app */,
+				225C8328306315FC00A059F9 /* LNK AutoFill.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				220ADAF8274DA60F0030FAAD /* CloudKit.framework */,
+				225C8329306315FC00A059F9 /* AuthenticationServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -265,6 +319,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		225C8327306315FC00A059F9 /* LNK AutoFill */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 225C8337306315FC00A059F9 /* Build configuration list for PBXNativeTarget "LNK AutoFill" */;
+			buildPhases = (
+				225C8324306315FC00A059F9 /* Sources */,
+				225C8325306315FC00A059F9 /* Frameworks */,
+				225C8326306315FC00A059F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				225C832B306315FC00A059F9 /* LNK AutoFill */,
+			);
+			name = "LNK AutoFill";
+			packageProductDependencies = (
+				225C833B3063162F00A059F9 /* FirebaseAuth */,
+				225C833D3063163700A059F9 /* FirebaseFirestore */,
+			);
+			productName = "LNK AutoFill";
+			productReference = 225C8328306315FC00A059F9 /* LNK AutoFill.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		2295C5702748722E0050FA7D /* Lock n Key Wallet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2295C5882748722F0050FA7D /* Build configuration list for PBXNativeTarget "Lock n Key Wallet" */;
@@ -273,10 +351,12 @@
 				2295C56E2748722E0050FA7D /* Frameworks */,
 				2295C56F2748722E0050FA7D /* Resources */,
 				22AA2339276D261A00E46D1B /* ShellScript */,
+				225C833A306315FC00A059F9 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				225C8334306315FC00A059F9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2233FE1E2F96C54B00A542B2 /* en.lproj */,
@@ -302,9 +382,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					225C8327306315FC00A059F9 = {
+						CreatedOnToolsVersion = 27.0;
+					};
 					2295C5702748722E0050FA7D = {
 						CreatedOnToolsVersion = 13.1;
 						LastSwiftMigration = 1340;
@@ -330,11 +413,19 @@
 			projectRoot = "";
 			targets = (
 				2295C5702748722E0050FA7D /* Lock n Key Wallet */,
+				225C8327306315FC00A059F9 /* LNK AutoFill */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		225C8326306315FC00A059F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2295C56F2748722E0050FA7D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,6 +469,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		225C8324306315FC00A059F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2295C56D2748722E0050FA7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +512,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		225C8334306315FC00A059F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 225C8327306315FC00A059F9 /* LNK AutoFill */;
+			targetProxy = 225C8333306315FC00A059F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2295C57A2748722E0050FA7D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -434,6 +540,75 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		225C8338306315FC00A059F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "LNK AutoFill/LNK_AutoFill.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SJK4QJY486;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LNK AutoFill/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LNK AutoFill";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet.LNK-AutoFill";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		225C8339306315FC00A059F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "LNK AutoFill/LNK_AutoFill.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SJK4QJY486;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LNK AutoFill/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LNK AutoFill";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jdev.Lock-n-Key-Wallet.LNK-AutoFill";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		2295C5862748722F0050FA7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -580,6 +755,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library and camera to obtain images and encrypt";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera and album to obtain images to securely store";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lock N Key Wallet uses Face ID to unlock your vault securely.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to obtain images and encrypt";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -623,6 +799,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need access to your library and camera to obtain images and encrypt";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera and album to obtain images to securely store";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lock N Key Wallet uses Face ID to unlock your vault securely.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your library to obtain images and encrypt";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -648,6 +825,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		225C8337306315FC00A059F9 /* Build configuration list for PBXNativeTarget "LNK AutoFill" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				225C8338306315FC00A059F9 /* Debug */,
+				225C8339306315FC00A059F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2295C56C2748722E0050FA7D /* Build configuration list for PBXProject "Lock n Key Wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -688,6 +874,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		225C833B3063162F00A059F9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		225C833D3063163700A059F9 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		227B18F6285EB3320092D67E /* CreditCardScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 227B18F5285EB3320092D67E /* XCRemoteSwiftPackageReference "credit-card-scanner" */;
