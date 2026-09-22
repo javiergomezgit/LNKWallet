@@ -220,3 +220,15 @@
 "autofill.list.empty" = "No passwords in LNK Wallet yet. Add them in the app.";
 "autofill.list.no_copy" = "Open LNK Wallet once to load your passwords here.";
 "autofill.list.no_results" = "No passwords match your search.";
+
+/* LNK AutoFill — save */
+"autofill.save.title" = "Save to LNK Wallet";
+"autofill.save.name" = "Name";
+"autofill.save.user" = "Username or email";
+"autofill.save.password" = "Password";
+"autofill.save.website" = "Website";
+"autofill.save.update_notice" = "You already have a login for %@ with this username. Update its password?";
+"autofill.save.as_new" = "Save as a new item instead";
+"autofill.save.missing_name" = "Add a name for this login.";
+"autofill.save.missing_password" = "The password is empty.";
+"autofill.save.error" = "Couldn't save. Check your connection and try again.";

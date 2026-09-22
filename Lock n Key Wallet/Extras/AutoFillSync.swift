@@ -40,7 +40,7 @@ enum AutoFillSync {
             DispatchQueue.global(qos: .utility).async {
                 AutoFillCache.write(encryptedRecords, uid: uid)
                 let identities = encryptedRecords.compactMap {
-                    identity(for: $0, secretKey: uid, creationDate: creationDate)
+                    $0.credentialIdentity(secretKey: uid, creationDate: creationDate)
                 }
                 replaceIdentities(with: identities)
             }
@@ -78,19 +78,6 @@ enum AutoFillSync {
     }
 
     // MARK: — Suggestions
-
-    private static func identity(for encrypted: PasswordRecord, secretKey: String, creationDate: Int) -> ASPasswordCredentialIdentity? {
-        let decrypted = encrypted.decrypted(secretKey: secretKey, creationDate: creationDate)
-        guard let host = ServiceHost.normalized(decrypted.website) else { return nil }
-
-        let user = decrypted.username.isEmpty ? decrypted.email : decrypted.username
-        guard !user.isEmpty else { return nil }
-
-        return ASPasswordCredentialIdentity(
-            serviceIdentifier: ASCredentialServiceIdentifier(identifier: host, type: .domain),
-            user:              user,
-            recordIdentifier:  encrypted.documentID)
-    }
 
     private static func replaceIdentities(with identities: [ASPasswordCredentialIdentity]) {
         let store = ASCredentialIdentityStore.shared

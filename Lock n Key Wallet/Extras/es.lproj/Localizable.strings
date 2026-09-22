@@ -220,3 +220,15 @@
 "autofill.list.empty" = "Aún no hay contraseñas en LNK Wallet. Agrégalas en la app.";
 "autofill.list.no_copy" = "Abre LNK Wallet una vez para cargar tus contraseñas aquí.";
 "autofill.list.no_results" = "Ninguna contraseña coincide con tu búsqueda.";
+
+/* LNK AutoFill — guardar */
+"autofill.save.title" = "Guardar en LNK Wallet";
+"autofill.save.name" = "Nombre";
+"autofill.save.user" = "Usuario o correo";
+"autofill.save.password" = "Contraseña";
+"autofill.save.website" = "Sitio web";
+"autofill.save.update_notice" = "Ya tienes un inicio de sesión para %@ con este usuario. ¿Actualizar su contraseña?";
+"autofill.save.as_new" = "Guardar como un elemento nuevo";
+"autofill.save.missing_name" = "Agrega un nombre para este inicio de sesión.";
+"autofill.save.missing_password" = "La contraseña está vacía.";
+"autofill.save.error" = "No se pudo guardar. Revisa tu conexión e inténtalo de nuevo.";

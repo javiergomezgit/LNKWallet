@@ -12,6 +12,8 @@
 				<true/>
 				<key>ShowsConfigurationUI</key>
 				<true/>
+				<key>SupportsSavePasswordCredentials</key>
+				<true/>
 			</dict>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>

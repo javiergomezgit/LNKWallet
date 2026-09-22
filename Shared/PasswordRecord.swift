@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 // One password item exactly as stored in User/{uid}/secret_datas: the plaintext document ID plus
 // the obfuscated key1…key5. The single definition of the password field order, shared by
@@ -62,5 +63,21 @@ struct PasswordRecord: Codable, Equatable {
             password: d(password, p, secretKey, false),
             website:  d(website,  p, secretKey, false)
         )
+    }
+
+    // The QuickType suggestion for this item: its website's host, the username (or the email when
+    // there is none), and the document ID so LNK AutoFill can fill the exact item. nil without a
+    // website or a user. The host and user end up in plaintext in the system's identity store.
+    func credentialIdentity(secretKey: String, creationDate: Int) -> ASPasswordCredentialIdentity? {
+        let decryptedItem = decrypted(secretKey: secretKey, creationDate: creationDate)
+        guard let host = ServiceHost.normalized(decryptedItem.website) else { return nil }
+
+        let user = decryptedItem.username.isEmpty ? decryptedItem.email : decryptedItem.username
+        guard !user.isEmpty else { return nil }
+
+        return ASPasswordCredentialIdentity(
+            serviceIdentifier: ASCredentialServiceIdentifier(identifier: host, type: .domain),
+            user:              user,
+            recordIdentifier:  documentID)
     }
 }
