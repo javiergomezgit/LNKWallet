@@ -30,6 +30,11 @@
 		225C8335306315FC00A059F9 /* LNK AutoFill.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 225C8328306315FC00A059F9 /* LNK AutoFill.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		225C833C3063162F00A059F9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 225C833B3063162F00A059F9 /* FirebaseAuth */; };
 		225C833E3063163700A059F9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 225C833D3063163700A059F9 /* FirebaseFirestore */; };
+		225C835F3063248D00A059F9 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868B285F6FE200F4A575 /* Encryption.swift */; };
+		225C83603063249400A059F9 /* EncryptionPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E868A285F6FE100F4A575 /* EncryptionPassword.swift */; };
+		225C8361306324A000A059F9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220ADAFA274DA9D70030FAAD /* Model.swift */; };
+		225C8362306324AC00A059F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
+		225C8363306324B500A059F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
 		2274217E2F7DA7200027D985 /* Vault.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2274217D2F7DA7200027D985 /* Vault.storyboard */; };
 		227421802F7DAC360027D985 /* VaultHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */; };
 		227421822F7DAD550027D985 /* VaultCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227421812F7DAD530027D985 /* VaultCategory.swift */; };
@@ -332,6 +337,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2233FE1E2F96C54B00A542B2 /* en.lproj */,
+				2233FE212F96C54B00A542B2 /* es.lproj */,
 				225C832B306315FC00A059F9 /* LNK AutoFill */,
 			);
 			name = "LNK AutoFill";
@@ -423,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225C8363306324B500A059F9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +481,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225C8362306324AC00A059F9 /* Extensions.swift in Sources */,
+				225C835F3063248D00A059F9 /* Encryption.swift in Sources */,
+				225C83603063249400A059F9 /* EncryptionPassword.swift in Sources */,
+				225C8361306324A000A059F9 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,5 +18,14 @@
 	<array>
 		<string>CloudKit</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.jdev.Lock-n-Key-Wallet</string>
+	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.jdev.Lock-n-Key-Wallet</string>
+		<string>$(AppIdentifierPrefix)com.jdev.Lock-n-Key-Wallet.shared</string>
+	</array>
 </dict>
 </plist>
