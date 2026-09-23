@@ -18,7 +18,6 @@
 		22290D332F84310D009B11BA /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22290D322F84310D009B11BA /* Tools.storyboard */; };
 		22290D352F8431B6009B11BA /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22290D342F8431B3009B11BA /* ToolsViewController.swift */; };
 		22290D372F844285009B11BA /* PasswordHealthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22290D362F844279009B11BA /* PasswordHealthViewController.swift */; };
-		22A1B0C0306400000000A002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */; };
 		222C971C27487841004C077E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 222C971B27487841004C077E /* GoogleService-Info.plist */; };
 		222C972027487AAD004C077E /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C971F27487AAD004C077E /* SignInController.swift */; };
 		222C972427487B8F004C077E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222C972327487B8F004C077E /* SettingsController.swift */; };
@@ -70,6 +69,7 @@
 		229F7EC02D9DC09F00180C6B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBF2D9DC09F00180C6B /* FirebaseCrashlytics */; };
 		229F7EC42D9DC09F00180C6B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC32D9DC09F00180C6B /* FirebaseFirestore */; };
 		229F7EC82D9DC09F00180C6B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC72D9DC09F00180C6B /* FirebaseStorage */; };
+		22A1B0C0306400000000A002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */; };
 		22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BD8B41287A85E800AF53EA /* DataImageController.swift */; };
 		22CAFBD127543937006D02AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
 		7A1B2C3D4E5F678901234568 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1B2C3D4E5F678901234567 /* SessionManager.swift */; };
@@ -111,7 +111,6 @@
 		22290D322F84310D009B11BA /* Tools.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
 		22290D342F8431B3009B11BA /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		22290D362F844279009B11BA /* PasswordHealthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHealthViewController.swift; sourceTree = "<group>"; };
-		22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		222C971B27487841004C077E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		222C971F27487AAD004C077E /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		222C972327487B8F004C077E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -147,6 +146,7 @@
 		2295C5832748722F0050FA7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2295C5852748722F0050FA7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2298D16B27498A3E00CCFBF2 /* Lock n Key Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lock n Key Wallet.entitlements"; sourceTree = "<group>"; };
+		22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		22BD8B41287A85E800AF53EA /* DataImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageController.swift; sourceTree = "<group>"; };
 		22CAFBD027543937006D02AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7A1B2C3D4E5F678901234567 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -395,8 +395,8 @@
 				2295C56D2748722E0050FA7D /* Sources */,
 				2295C56E2748722E0050FA7D /* Frameworks */,
 				2295C56F2748722E0050FA7D /* Resources */,
-				22AA2339276D261A00E46D1B /* ShellScript */,
 				225C833A306315FC00A059F9 /* Embed Foundation Extensions */,
+				22AA2339276D261A00E46D1B /* ShellScript */,
 			);
 			buildRules = (
 			);
