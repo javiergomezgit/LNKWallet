@@ -26,8 +26,8 @@ enum AutoFillSync {
 
         // Face ID users may never type their master password after this update; fetch the copy once
         if SharedKeychain.string(for: .masterPassword) == nil {
-            DBManager.shared.downloadMasterPassword(userID: uid) { encryptedPassword in
-                if let encryptedPassword = encryptedPassword {
+            DBManager.shared.downloadMasterPassword(userID: uid) { lookup in
+                if case .found(let encryptedPassword) = lookup {
                     storeMasterPasswordCopy(encryptedPassword)
                 }
             }

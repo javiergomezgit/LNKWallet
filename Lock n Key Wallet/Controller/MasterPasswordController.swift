@@ -99,21 +99,38 @@ class MasterPasswordController: UIViewController {
 
     private func downloadMasterPassword() {
         guard let user = Auth.auth().currentUser else { return }
-        DBManager.shared.downloadMasterPassword(userID: user.uid) { [weak self] encryptedPassword in
+        DBManager.shared.downloadMasterPassword(userID: user.uid) { [weak self] lookup in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                if encryptedPassword == nil {
-                    self.setPassword = true
-                    self.updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
-                } else {
-                    self.setPassword = false
-                    self.updateUI(placeholder: "masterpassword.placeholder.type".localized(), buttonTitle: "masterpassword.button.unlock".localized())
-                }
-                if let encryptedPassword = encryptedPassword {
+                switch lookup {
+                case .found(let encryptedPassword):
+                    self.showUnlockMode()
                     AutoFillSync.storeMasterPasswordCopy(encryptedPassword)
+                case .notFound:
+                    self.showSetMode()
+                case .unreadable:
+                    self.showUnlockMode()
+                    self.showAlert(title: "masterpassword.alert.icloud_account.title".localized(),
+                                   message: "masterpassword.alert.icloud_account.message".localized())
+                case .failed:
+                    // A failed lookup is not "no master password": ask again rather than offer to set one
+                    self.showAlert(title: "masterpassword.alert.connection.title".localized(),
+                                   message: "masterpassword.alert.connection.message".localized()) {
+                        self.downloadMasterPassword()
+                    }
                 }
             }
         }
+    }
+
+    private func showSetMode() {
+        setPassword = true
+        updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
+    }
+
+    private func showUnlockMode() {
+        setPassword = false
+        updateUI(placeholder: "masterpassword.placeholder.type".localized(), buttonTitle: "masterpassword.button.unlock".localized())
     }
 
     private func updateUI(placeholder: String, buttonTitle: String) {
@@ -177,13 +194,31 @@ class MasterPasswordController: UIViewController {
     }
 
     private func handleUnlock(cleanPassword: String, user: User, timeStamp: Int) {
-        DBManager.shared.downloadMasterPassword(userID: user.uid) { [weak self] encryptedPassword in
+        DBManager.shared.downloadMasterPassword(userID: user.uid) { [weak self] lookup in
             guard let self = self else { return }
 
-            guard let encrypted = encryptedPassword else {
+            let encrypted: String
+            switch lookup {
+            case .found(let encryptedPassword):
+                encrypted = encryptedPassword
+            case .notFound:
+                DispatchQueue.main.async {
+                    self.passwordText.text = ""
+                    self.showSetMode()
+                    self.showAlert(title: "masterpassword.alert.not_found.title".localized(),
+                                   message: "masterpassword.alert.not_found.message".localized())
+                }
+                return
+            case .unreadable:
+                DispatchQueue.main.async {
+                    self.showAlert(title: "masterpassword.alert.icloud_account.title".localized(),
+                                   message: "masterpassword.alert.icloud_account.message".localized())
+                }
+                return
+            case .failed:
                 DispatchQueue.main.async {
                     self.showAlert(title: "masterpassword.alert.connection.title".localized(),
-                                  message: "masterpassword.alert.connection.message".localized())
+                                   message: "masterpassword.alert.connection.message".localized())
                 }
                 return
             }

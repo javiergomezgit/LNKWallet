@@ -58,6 +58,10 @@
 "masterpassword.alert.mismatch.message" = "Please try again.";
 "masterpassword.alert.connection.title" = "Connection Issue";
 "masterpassword.alert.connection.message" = "Unable to verify your password right now. Please wait a moment and try again.";
+"masterpassword.alert.icloud_account.title" = "Different iCloud account";
+"masterpassword.alert.icloud_account.message" = "Your master password was set while signed in to a different iCloud account. Sign in to iCloud with that account in Settings, then try again.";
+"masterpassword.alert.not_found.title" = "No master password found";
+"masterpassword.alert.not_found.message" = "Set a new master password to continue.";
 "masterpassword.alert.wrong.title" = "Wrong password";
 "masterpassword.alert.wrong.message" = "Your data will be erased after %d more failed attempt(s).";
 

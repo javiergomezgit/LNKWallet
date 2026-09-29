@@ -40,3 +40,12 @@ struct LNKData {
     let nameData: String
     let typeData: String
 }
+
+// Outcome of looking up the user's master password record in CloudKit. Only `.notFound`
+// means the user never set one; every other failure must leave the app in unlock mode.
+enum MasterPasswordLookup {
+    case found(String)  // obfuscated master password, exactly as stored
+    case notFound       // no record for this user
+    case unreadable     // record exists but this iCloud account may not read it (created by another one)
+    case failed         // network, iCloud signed out, server error
+}

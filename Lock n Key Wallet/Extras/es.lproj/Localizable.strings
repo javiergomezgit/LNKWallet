@@ -58,6 +58,10 @@
 "masterpassword.alert.mismatch.message" = "Por favor, intenta de nuevo.";
 "masterpassword.alert.connection.title" = "Problema de conexión";
 "masterpassword.alert.connection.message" = "No se puede verificar tu contraseña ahora. Espera un momento e intenta de nuevo.";
+"masterpassword.alert.icloud_account.title" = "Otra cuenta de iCloud";
+"masterpassword.alert.icloud_account.message" = "Tu contraseña maestra se creó con otra cuenta de iCloud. Inicia sesión en iCloud con esa cuenta en Configuración y vuelve a intentarlo.";
+"masterpassword.alert.not_found.title" = "No se encontró la contraseña maestra";
+"masterpassword.alert.not_found.message" = "Crea una nueva contraseña maestra para continuar.";
 "masterpassword.alert.wrong.title" = "Contraseña incorrecta";
 "masterpassword.alert.wrong.message" = "Tus datos se borrarán después de %d intento(s) fallido(s) más.";
 
