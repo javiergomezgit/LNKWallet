@@ -34,16 +34,16 @@
 
 /* Onboarding */
 "onboarding.page1.title" = "Your vault,\nyour rules.";
-"onboarding.page1.body" = "Store passwords, cards, notes and images — all encrypted, all private.";
-"onboarding.page2.title" = "Military-grade\nencryption.";
-"onboarding.page2.body" = "Every piece of data is encrypted before it ever leaves your device.";
+"onboarding.page1.body" = "Store passwords, cards, notes and images, protected by your master password and Face ID.";
+"onboarding.page2.title" = "Locked\nto you.";
+"onboarding.page2.body" = "Your vault opens only with your master password or Face ID, and can lock itself when you leave the app.";
 "onboarding.page3.title" = "Everything\nin one place.";
 "onboarding.page3.body" = "Passwords, cards, images, secure notes — organized and always accessible.";
 
 /* Sign In */
 "signin.alert.no_internet.title" = "Internet connection";
 "signin.alert.no_internet.message" = "You will need internet for using this app";
-"signin.subtitle" = "Your encrypted personal vault";
+"signin.subtitle" = "Your personal vault";
 
 /* Master Password */
 "masterpassword.requirements" = "Must have: 1 capital letter, 1 symbol & at least 8 characters.";
@@ -202,7 +202,7 @@
 "tools.health" = "Password\nHealth";
 "tools.promo_header" = "TRY OUR OTHER APP";
 "tools.promo_title" = "LNK Chats";
-"tools.promo_subtitle" = "Encrypted instant messaging";
+"tools.promo_subtitle" = "Instant messaging app";
 
 /* LNK AutoFill — unlock */
 "autofill.unlock.title" = "Unlock LNK Wallet";

@@ -34,16 +34,16 @@
 
 /* Onboarding */
 "onboarding.page1.title" = "Tu bóveda,\ntus reglas.";
-"onboarding.page1.body" = "Guarda contraseñas, tarjetas, notas e imágenes — todo cifrado, todo privado.";
-"onboarding.page2.title" = "Cifrado de\ngrado militar.";
-"onboarding.page2.body" = "Cada dato se cifra antes de salir de tu dispositivo.";
+"onboarding.page1.body" = "Guarda contraseñas, tarjetas, notas e imágenes, protegidas con tu contraseña maestra y Face ID.";
+"onboarding.page2.title" = "Solo\npara ti.";
+"onboarding.page2.body" = "Tu bóveda solo se abre con tu contraseña maestra o Face ID, y puede bloquearse sola al salir de la app.";
 "onboarding.page3.title" = "Todo\nen un lugar.";
 "onboarding.page3.body" = "Contraseñas, tarjetas, imágenes y notas seguras — organizadas y siempre accesibles.";
 
 /* Sign In */
 "signin.alert.no_internet.title" = "Conexión a internet";
 "signin.alert.no_internet.message" = "Necesitas internet para usar esta app";
-"signin.subtitle" = "Tu bóveda personal cifrada";
+"signin.subtitle" = "Tu bóveda personal";
 
 /* Master Password */
 "masterpassword.requirements" = "Debe tener: 1 mayúscula, 1 símbolo y al menos 8 caracteres.";
@@ -202,7 +202,7 @@
 "tools.health" = "Salud de\ncontraseñas";
 "tools.promo_header" = "PRUEBA NUESTRA OTRA APP";
 "tools.promo_title" = "LNK Chats";
-"tools.promo_subtitle" = "Mensajería instantánea cifrada";
+"tools.promo_subtitle" = "App de mensajería instantánea";
 
 /* LNK AutoFill — desbloqueo */
 "autofill.unlock.title" = "Desbloquear LNK Wallet";
