@@ -1,0 +1,23 @@
+rules_version = '2';
+
+// LNK Wallet — Firestore security rules.
+// Source of truth for what is published in the Firebase console (project lock-n-key-wallet).
+// Every user may read and write only their own profile and vault. Everything else is denied.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // Profile: written at sign-in, read by verifyUserExists, deleted with the account
+    match /User/{uid} {
+      allow read, write: if isOwner(uid);
+
+      // Vault items (app and LNK AutoFill)
+      match /secret_datas/{item} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+  }
+}

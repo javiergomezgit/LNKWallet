@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// LNK Wallet — Cloud Storage security rules.
+// Source of truth for what is published in the Firebase console (project lock-n-key-wallet).
+// Image items live under stored_images/{uid}/; each user may only touch their own folder.
+// rules_version 2 makes {rest=**} also match the folder itself, which deleteFolderData lists.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /stored_images/{uid}/{rest=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
