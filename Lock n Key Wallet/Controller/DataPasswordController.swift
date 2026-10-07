@@ -84,6 +84,7 @@ class DataPasswordController: UITableViewController {
         emailTextField.textContentType           = .emailAddress
 
         passwordTextField.enablePasswordToggle()
+        passwordTextField.enablePasswordCopy()
         passwordTextField.layoutIfNeeded()
         passwordTextField.textContentType        = .password
 

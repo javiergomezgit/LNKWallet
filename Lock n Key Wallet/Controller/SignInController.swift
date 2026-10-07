@@ -209,17 +209,12 @@ extension SignInController: ASAuthorizationControllerDelegate {
                 return
             }
 
-            // Extract Apple ID info
-            let userID = appleIDCredential.user // Stable Apple ID identifier
+            // Extract Apple ID info. Never log these: they are the user's personal data
             let email = appleIDCredential.email // Available on first sign-in
             let fullName = appleIDCredential.fullName // Available on first sign-in
             let givenName = fullName?.givenName ?? ""
             let familyName = fullName?.familyName ?? ""
             let displayName = [givenName, familyName].joined(separator: " ").trimmingCharacters(in: .whitespaces)
-            let authorizedScopes = appleIDCredential.authorizedScopes // e.g., [.fullName, .email]
-
-            // Debug log
-            print("Apple ID: \(userID), Email: \(email ?? "nil"), Name: \(displayName), Scopes: \(authorizedScopes)")
 
             // Create Firebase credential
             let credential = OAuthProvider.credential(providerID: .apple, idToken: idTokenString, rawNonce: nonce)
@@ -273,7 +268,7 @@ extension SignInController: ASAuthorizationControllerDelegate {
                             if let err = err {
                                 print("Error writing to Firestore: \(err.localizedDescription)")
                             } else {
-                                print("User data saved: \(user.uid)")
+                                print("User data saved")
                             }
                         }
                     } else {
@@ -281,7 +276,7 @@ extension SignInController: ASAuthorizationControllerDelegate {
                             if let err = err {
                                 print("Error updating Firestore: \(err.localizedDescription)")
                             } else {
-                                print("User data updated: \(user.uid)")
+                                print("User data updated")
                             }
                         }
                     }

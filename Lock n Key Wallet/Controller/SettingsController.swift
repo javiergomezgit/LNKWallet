@@ -28,6 +28,8 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var contactLabel: UILabel!
     @IBOutlet weak var autoFillLabel: UILabel!
     @IBOutlet weak var autoFillStatusLabel: UILabel!
+    @IBOutlet weak var clipboardLabel: UILabel!
+    @IBOutlet weak var clipboardStatusLabel: UILabel!
 
     // MARK: — Lifecycle
 
@@ -51,6 +53,7 @@ class SettingsController: UITableViewController {
         styleSwitch()
         setupStaticLabels()
         setupAutoFill()
+        setupClipboard()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -191,6 +194,12 @@ class SettingsController: UITableViewController {
         }
     }
 
+    private func setupClipboard() {
+        clipboardLabel.text            = "settings.menu.clipboard".localized()
+        clipboardStatusLabel.text      = ClipboardClearDelay.current.title
+        clipboardStatusLabel.textColor = .textSecondary
+    }
+
     private func setupStaticLabels() {
         instantAutoLockLabel.text = "settings.menu.instant_auto_lock".localized()
         eraseDataLabel.text = "settings.menu.erase_data".localized()
@@ -283,6 +292,22 @@ class SettingsController: UITableViewController {
 
     @IBAction func autoFillTapped(_ sender: UIButton) {
         AutoFillSync.openSystemSettings()
+    }
+
+    @IBAction func clipboardTapped(_ sender: UIButton) {
+        let sheet = UIAlertController(title: "settings.menu.clipboard".localized(),
+                                      message: "settings.clipboard.message".localized(),
+                                      preferredStyle: .actionSheet)
+        for delay in ClipboardClearDelay.allCases {
+            let action = UIAlertAction(title: delay.title, style: .default) { [weak self] _ in
+                ClipboardClearDelay.current     = delay
+                self?.clipboardStatusLabel.text = delay.title
+            }
+            sheet.addAction(action)
+        }
+        sheet.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel))
+        configureActionSheetPopover(sheet, sourceView: sender)
+        present(sheet, animated: true)
     }
 
     @IBAction func logoutTapped(_ sender: UIButton) {

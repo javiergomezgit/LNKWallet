@@ -164,12 +164,12 @@ class GeneratePasswordController: UIViewController {
     }
 
     @IBAction func copyButtonTapped(_ sender: UIButton) {
-        UIPasteboard.general.string = passwordLabel.text
+        UIPasteboard.general.copySecret(passwordLabel.text)
         showToast("generator.copied".localized())
     }
     
     @objc private func passwordLabelTapped() {
-        UIPasteboard.general.string = passwordLabel.text
+        UIPasteboard.general.copySecret(passwordLabel.text)
         showToast("generator.copied".localized())
     }
     

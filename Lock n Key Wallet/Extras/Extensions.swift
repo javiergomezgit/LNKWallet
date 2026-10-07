@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import UniformTypeIdentifiers
 
 
 //MARK: Extensios for keyboard
@@ -186,6 +187,48 @@ extension UITextField {
         self.isSecureTextEntry = !self.isSecureTextEntry
         setPasswordToggleImage(sender as! UIButton)
     }
+
+    // Copy button on the left, so a password can be copied without revealing it. Replaces the
+    // left padding view; call after styling the field.
+    func enablePasswordCopy() {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
+        button.tintColor          = .accentBrand
+        button.accessibilityLabel = "generator.copy".localized()
+        button.frame              = CGRect(x: 6, y: 0, width: 36, height: 44)
+        button.addTarget(self, action: #selector(copyPasswordTapped(_:)), for: .touchUpInside)
+
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 44))
+        container.addSubview(button)
+
+        self.leftView     = container
+        self.leftViewMode = .always
+    }
+
+    @objc private func copyPasswordTapped(_ sender: UIButton) {
+        guard let text = text, !text.isEmpty else { return }
+        UIPasteboard.general.copySecret(text)
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak sender] in
+            sender?.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
+        }
+    }
+}
+
+extension UIPasteboard {
+    // Copies a password or other secret: this device only (no Universal Clipboard to a Mac or
+    // iPad), and cleared after the delay chosen in Settings (1 min by default). Use this instead
+    // of `.string =` for anything from the vault.
+    func copySecret(_ text: String?) {
+        guard let text = text, !text.isEmpty else { return }
+        var options: [UIPasteboard.OptionsKey: Any] = [.localOnly: true]
+        let delay = ClipboardClearDelay.current
+        if delay != .never {
+            options[.expirationDate] = Date().addingTimeInterval(TimeInterval(delay.rawValue))
+        }
+        setItems([[UTType.utf8PlainText.identifier: text]], options: options)
+    }
 }
 
 extension String {
@@ -259,7 +302,7 @@ extension CopyableLabel: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
             let copyAction = UIAction(title: "generator.copy".localized(), image: UIImage(systemName: "doc.on.doc")) { _ in
-                UIPasteboard.general.string = self?.text
+                UIPasteboard.general.copySecret(self?.text)
             }
             return UIMenu(title: "", children: [copyAction])
         }

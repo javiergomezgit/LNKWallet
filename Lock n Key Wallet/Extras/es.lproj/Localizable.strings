@@ -248,3 +248,12 @@
 "autofill.setup.ready" = "Tus accesos aparecerán sobre el teclado en Safari y en las apps. Desbloquearás con Face ID o tu contraseña maestra cada vez.";
 "autofill.setup.open_app" = "Abre LNK Wallet y desbloquéalo una vez para que tus accesos estén listos.";
 "autofill.setup.done" = "Listo";
+
+/* Clipboard */
+"settings.menu.clipboard" = "Borrar contraseñas copiadas";
+"settings.clipboard.message" = "Las contraseñas copiadas se quedan en este dispositivo y se borran del portapapeles pasado este tiempo.";
+"settings.clipboard.30s" = "30 s";
+"settings.clipboard.1m" = "1 min";
+"settings.clipboard.2m" = "2 min";
+"settings.clipboard.5m" = "5 min";
+"settings.clipboard.never" = "Nunca";

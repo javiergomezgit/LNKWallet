@@ -248,3 +248,12 @@
 "autofill.setup.ready" = "Your logins will show up above the keyboard in Safari and apps. You'll unlock with Face ID or your master password each time.";
 "autofill.setup.open_app" = "Open LNK Wallet and unlock it once so your logins are ready to fill.";
 "autofill.setup.done" = "Done";
+
+/* Clipboard */
+"settings.menu.clipboard" = "Clear Copied Passwords";
+"settings.clipboard.message" = "Copied passwords stay on this device and are removed from the clipboard after this time.";
+"settings.clipboard.30s" = "30 sec";
+"settings.clipboard.1m" = "1 min";
+"settings.clipboard.2m" = "2 min";
+"settings.clipboard.5m" = "5 min";
+"settings.clipboard.never" = "Never";
