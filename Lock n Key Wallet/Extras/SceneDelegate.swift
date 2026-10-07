@@ -12,10 +12,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var authStateHandle: AuthStateDidChangeListenerHandle?
+    private var privacyCover: UIView?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
-        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        // Recording, mirroring or AirPlay starting or stopping while the app is open
+        windowScene.registerForTraitChanges([UITraitSceneCaptureState.self]) { [weak self] (_: UIWindowScene, _: UITraitCollection) in
+            self?.updatePrivacyCover()
+        }
+        updatePrivacyCover()
+
         // Wait for the sign-in to reach the shared keychain, or the first callback can be a
         // transient nil that sends a signed-in user back to the sign-in screen
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -42,8 +49,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {}
-    func sceneWillResignActive(_ scene: UIScene) {}
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        updatePrivacyCover()
+    }
+
+    // Before iOS takes the app-switcher snapshot
+    func sceneWillResignActive(_ scene: UIScene) {
+        showPrivacyCover(capturing: false)
+    }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Picks up items added or removed on another device while the app was in the background
@@ -77,5 +90,62 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if autoLock {
             UserDefaults.standard.set(true, forKey: "locked_app")
         }
+    }
+
+    // MARK: — Privacy cover
+
+    private var isScreenCaptured: Bool {
+        window?.windowScene?.traitCollection.sceneCaptureState == .active
+    }
+
+    // Covered while the screen is recorded, mirrored or on AirPlay; uncovered otherwise
+    private func updatePrivacyCover() {
+        if isScreenCaptured {
+            showPrivacyCover(capturing: true)
+        } else if window?.windowScene?.activationState == .foregroundActive {
+            hidePrivacyCover()
+        }
+    }
+
+    // Hides the vault behind the logo. While capturing, also says why the app is hidden
+    private func showPrivacyCover(capturing: Bool) {
+        guard let window = window else { return }
+        privacyCover?.removeFromSuperview()
+
+        let cover = UIView(frame: window.bounds)
+        cover.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        cover.backgroundColor  = .backgroundPrimary
+
+        let logo = UIImageView(image: UIImage(named: "LogoIcon"))
+        logo.contentMode = .scaleAspectFit
+        logo.translatesAutoresizingMaskIntoConstraints = false
+
+        let message = UILabel()
+        message.text          = capturing ? "privacy.capture.message".localized() : nil
+        message.font          = .systemFont(ofSize: 15, weight: .regular)
+        message.textColor     = .textSecondary
+        message.textAlignment = .center
+        message.numberOfLines = 0
+        message.translatesAutoresizingMaskIntoConstraints = false
+
+        cover.addSubview(logo)
+        cover.addSubview(message)
+        NSLayoutConstraint.activate([
+            logo.centerXAnchor.constraint(equalTo: cover.centerXAnchor),
+            logo.centerYAnchor.constraint(equalTo: cover.centerYAnchor, constant: -40),
+            logo.widthAnchor.constraint(equalToConstant: 120),
+            logo.heightAnchor.constraint(equalToConstant: 120),
+            message.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 24),
+            message.leadingAnchor.constraint(equalTo: cover.leadingAnchor, constant: 32),
+            message.trailingAnchor.constraint(equalTo: cover.trailingAnchor, constant: -32)
+        ])
+
+        window.addSubview(cover)
+        privacyCover = cover
+    }
+
+    private func hidePrivacyCover() {
+        privacyCover?.removeFromSuperview()
+        privacyCover = nil
     }
 }

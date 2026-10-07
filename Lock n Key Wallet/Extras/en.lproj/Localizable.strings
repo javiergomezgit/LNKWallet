@@ -257,3 +257,6 @@
 "settings.clipboard.2m" = "2 min";
 "settings.clipboard.5m" = "5 min";
 "settings.clipboard.never" = "Never";
+
+/* Privacy cover */
+"privacy.capture.message" = "LNK Wallet is hidden while your screen is being recorded or shared.";
