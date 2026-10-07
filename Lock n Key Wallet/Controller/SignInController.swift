@@ -97,11 +97,11 @@ class SignInController: UIViewController {
     private func isSignedIn() {
         let userID = UserDefaults.standard.value(forKey: "firebase_user_id")
         if userID != nil && Auth.auth().currentUser?.uid != nil {
-            DBManager.shared.verifyUserExists(userID: Auth.auth().currentUser!.uid) { exists in
-                if exists {
-                    print("User Exists")
+            DBManager.shared.verifyUserExists(userID: Auth.auth().currentUser!.uid) { lookup in
+                // Only a profile that is confirmed gone signs the user out. A failed check (offline,
+                // server error) keeps the session: signing out on errors logged users out on every launch.
+                if lookup != .missing {
                     DispatchQueue.main.async {
-                        print("GOING to MAIN")
                         UserDefaults.standard.set(false, forKey: "is_new_user")
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "MainController")
@@ -110,7 +110,6 @@ class SignInController: UIViewController {
                         self.show(vc, sender: nil)
                     }
                 } else {
-                    print("doesnt exists")
                     do {
                         try Auth.auth().signOut()
                         UserDefaults.standard.set(0, forKey: "auto_lock_time")

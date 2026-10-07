@@ -49,3 +49,11 @@ enum MasterPasswordLookup {
     case unreadable     // record exists but this iCloud account may not read it (created by another one)
     case failed         // network, iCloud signed out, server error
 }
+
+// Outcome of checking the signed-in user's own profile document. Only `.missing` means the account
+// is gone; a failed check must never sign the user out.
+enum UserProfileLookup {
+    case exists
+    case missing  // no User/{uid} document
+    case failed   // network, permissions, server error
+}
