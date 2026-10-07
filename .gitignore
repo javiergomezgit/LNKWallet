@@ -86,3 +86,6 @@ Lock n Key Wallet/Extras/.DS_Store
 # Local-only working docs (Dropbox-synced, never pushed)
 PROJECT.md
 CLAUDE.md
+
+# Per-user Xcode state (window layout, breakpoints)
+xcuserdata/
