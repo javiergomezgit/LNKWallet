@@ -301,6 +301,10 @@ extension SignInController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         print("Sign in with Apple errored: \(error)")
+        // Cancelled while confirming an account deletion: go back to Settings
+        if deletingAccount {
+            dismiss(animated: true)
+        }
     }
 }
 

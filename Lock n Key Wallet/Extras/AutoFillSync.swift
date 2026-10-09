@@ -53,7 +53,10 @@ enum AutoFillSync {
         [AppGroup.Key.unlockWithFaceID, AppGroup.Key.allowedAttempts, AppGroup.Key.failedAttempts]
             .forEach { AppGroup.defaults?.removeObject(forKey: $0) }
         ASCredentialIdentityStore.shared.removeAllCredentialIdentities { _, error in
-            if let error = error { print("Clearing AutoFill suggestions failed: \(error)") }
+            // .storeDisabled just means LNK Wallet is turned off in Settings › AutoFill & Passwords
+            if let error = error, (error as? ASCredentialIdentityStoreError)?.code != .storeDisabled {
+                print("Clearing AutoFill suggestions failed: \(error)")
+            }
         }
     }
 

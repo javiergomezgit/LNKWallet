@@ -347,8 +347,12 @@ class SettingsController: UITableViewController {
             guard let uid = Auth.auth().currentUser?.uid else { return }
             AutoFillSync.clear()
             DBManager.shared.deleteAllDatas(userID: uid) { [weak self] success in
-                guard let self = self, success else { return }
-                self.showAlert(title: "settings.delete_data.success.title".localized(), message: "settings.delete_data.success.message".localized())
+                guard let self = self else { return }
+                if success {
+                    self.showAlert(title: "settings.delete_data.success.title".localized(), message: "settings.delete_data.success.message".localized())
+                } else {
+                    self.showAlert(title: "alert.error.title".localized(), message: "settings.delete_data.error.message".localized())
+                }
             }
         })
         alert.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel))
@@ -370,10 +374,17 @@ class SettingsController: UITableViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.completion = { credential in
                 user?.reauthenticate(with: credential) { _, error in
-                    guard error == nil else { return }
-                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                    guard error == nil, let uid = Auth.auth().currentUser?.uid else {
+                        DispatchQueue.main.async { self.showDeleteAccountError(closing: vc) }
+                        return
+                    }
                     DBManager.shared.deleteAccount(userID: uid) { success in
-                        guard success else { return }
+                        guard success else {
+                            // The sign-in is only deleted after everything else, so the account still works
+                            self.showDeleteAccountError(closing: vc)
+                            return
+                        }
+                        AutoFillSync.clear()
                         DispatchQueue.main.async {
                             try? Auth.auth().signOut()
                             let signInVC = storyboard.instantiateViewController(identifier: "SignInController")
@@ -402,6 +413,13 @@ class SettingsController: UITableViewController {
     }
 
     // MARK: — Helpers
+
+    // The Apple sign-in sheet is still on screen during deletion; close it so the alert can show
+    private func showDeleteAccountError(closing signInVC: UIViewController) {
+        signInVC.dismiss(animated: true) {
+            self.showAlert(title: "alert.error.title".localized(), message: "settings.delete_account.error.message".localized())
+        }
+    }
 
     private func openURL(_ string: String) {
         guard let url = URL(string: string) else { return }

@@ -260,3 +260,7 @@
 
 /* Privacy cover */
 "privacy.capture.message" = "LNK Wallet se oculta mientras se graba o se comparte la pantalla.";
+
+/* Deletion errors */
+"settings.delete_data.error.message" = "No se pudieron borrar todos tus datos. Revisa tu conexión e inténtalo de nuevo.";
+"settings.delete_account.error.message" = "No se pudo eliminar tu cuenta. Revisa tu conexión e inténtalo de nuevo.";
