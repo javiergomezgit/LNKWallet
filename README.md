@@ -1,8 +1,9 @@
 # LNK Wallet
 
-An iOS vault app for passwords, payment cards, images, and secure notes. Everything
-is obfuscated on-device before it is written to the backend, behind a master password
-and optional Face ID.
+An iOS vault app for passwords, payment cards, images, and secure notes, behind a
+master password and optional Face ID. Item fields are obfuscated on-device before they
+are written to the backend. This is obfuscation, not encryption: item names are stored
+as typed, and real encryption based on the master password is planned.
 
 <table>
   <tr>
@@ -20,7 +21,10 @@ and optional Face ID.
 - **Secure notes** — freeform text, obfuscated like everything else
 - **Tools** — password generator and a password-health check (weak / reused)
 - **Lock** — master password on launch and on return from background, optional
-  Face ID unlock, and a configurable wipe after N failed attempts
+  Face ID unlock, and a configurable wipe after N failed attempts. The vault is
+  covered in the app switcher and while the screen is recorded or shared
+- **Clipboard** — copied passwords stay on the device and are cleared after a delay
+  set in Settings; a saved password can be copied without revealing it
 - **Password AutoFill** (2.1.0) — LNK Wallet is a system password provider: logins
   appear above the keyboard in Safari and apps and fill after Face ID or the master
   password. On iOS 26.2+ it also offers to save new logins and suggests strong
@@ -34,6 +38,14 @@ extension needs iOS 17.6; saving and generating passwords from it need iOS 26.2.
 in with Apple for authentication. Firebase (Auth, Firestore, Storage) for item data, CloudKit for the
 master password. Dependencies are Swift Package Manager only — **there is no
 CocoaPods in this project** and no `.xcworkspace`.
+
+## Firebase rules
+
+`firebase/firestore.rules` and `firebase/storage.rules` are the access rules: each user
+can read and write only their own `User/{uid}` data and `stored_images/{uid}` files.
+They are published by pasting them into the Firebase console; keep the files and the
+console in step. Because of them, the app never queries a whole collection — it reads
+the signed-in user's documents by ID.
 
 ## Build
 
@@ -62,6 +74,9 @@ Signing needs an Apple Developer team with the iCloud container
 the app and the extension — the AutoFill Credential Provider capability, the App Group
 `group.com.jdev.Lock-n-Key-Wallet` and the keychain group
 `com.jdev.Lock-n-Key-Wallet.shared`. Automatic signing sets these up.
+
+Builds run from Xcode use the CloudKit **Development** environment; TestFlight and App
+Store builds use **Production**.
 
 ## License
 
