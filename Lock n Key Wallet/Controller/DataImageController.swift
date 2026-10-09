@@ -112,6 +112,7 @@ class DataImageController: UIViewController {
                 lnkData: encrypted,
                 userID: self.user!.uid) { [weak self] success in
                 guard let self = self, success else { return }
+                NotificationCenter.default.post(name: .vaultDidChange, object: nil)
                 self.dismiss(animated: true)
             }
         }
@@ -128,6 +129,7 @@ class DataImageController: UIViewController {
                 lnkData: encrypted,
                 userID: self.user!.uid) { [weak self] success in
                 guard let self = self, success else { return }
+                NotificationCenter.default.post(name: .vaultDidChange, object: nil)
                 self.showAlert(title: "alert.updated.title".localized(), message: "dataimage.updated.message".localized()) {
                     self.dismiss(animated: true)
                 }

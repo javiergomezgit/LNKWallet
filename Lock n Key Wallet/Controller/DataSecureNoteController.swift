@@ -158,6 +158,7 @@ class DataSecureNoteController: UITableViewController {
             lnkDataSecureNote: encrypted,
             userID: user.uid) { [weak self] success in
             guard let self = self, success else { return }
+            NotificationCenter.default.post(name: .vaultDidChange, object: nil)
             self.dismiss(animated: true)
         }
     }
@@ -173,6 +174,7 @@ class DataSecureNoteController: UITableViewController {
             lnkDataSecureNote: encrypted,
             userID: user.uid) { [weak self] success in
             guard let self = self, success else { return }
+            NotificationCenter.default.post(name: .vaultDidChange, object: nil)
             self.showAlert(title: "alert.updated.title".localized(), message: "datasecurenote.updated.message".localized()) {
                 self.dismiss(animated: true)
             }

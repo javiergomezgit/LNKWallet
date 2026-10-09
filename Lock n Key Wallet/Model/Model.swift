@@ -87,3 +87,9 @@ enum ClipboardClearDelay: Int, CaseIterable {
         }
     }
 }
+
+extension Notification.Name {
+    // Posted after an item is saved or updated. The editors are sheets, and closing a sheet doesn't
+    // call viewWillAppear on the list underneath, so lists listen for this to reload.
+    static let vaultDidChange = Notification.Name("vaultDidChange")
+}

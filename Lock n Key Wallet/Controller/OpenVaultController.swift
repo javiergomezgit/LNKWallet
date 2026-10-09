@@ -44,6 +44,8 @@ class OpenVaultController: UIViewController {
         setupTableView()
         updateNavTitle()
         configureSecurity()
+        NotificationCenter.default.addObserver(self, selector: #selector(vaultDidChange),
+                                               name: .vaultDidChange, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -215,6 +217,12 @@ class OpenVaultController: UIViewController {
 
     @objc private func refreshTable() {
         getAllDatas()
+    }
+
+    // A preloaded list (Password Health) is a fixed snapshot, so it stays as it is
+    @objc private func vaultDidChange() {
+        guard preloadedItems == nil else { return }
+        DispatchQueue.main.async { self.getAllDatas() }
     }
 
     // MARK: - Navigation

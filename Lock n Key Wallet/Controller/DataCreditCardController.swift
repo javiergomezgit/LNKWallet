@@ -257,6 +257,7 @@ class DataCreditCardController: UITableViewController {
             lnkDataCreditCard: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
+            NotificationCenter.default.post(name: .vaultDidChange, object: nil)
             self.showAlert(title: "alert.saved.title".localized(), message: "datacreditcard.saved.message".localized()) {
                 self.clearForm()
             }
@@ -270,6 +271,7 @@ class DataCreditCardController: UITableViewController {
             lnkDataCreditCard: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
+            NotificationCenter.default.post(name: .vaultDidChange, object: nil)
             self.showAlert(title: "alert.updated.title".localized(), message: "datacreditcard.updated.message".localized()) {
                 self.dismiss(animated: true)
             }

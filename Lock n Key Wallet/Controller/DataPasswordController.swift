@@ -184,6 +184,7 @@ class DataPasswordController: UITableViewController {
             lnkDataPassword: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
+            NotificationCenter.default.post(name: .vaultDidChange, object: nil)
             AutoFillSync.refresh()
             self.dismiss(animated: true)
         }
@@ -200,6 +201,7 @@ class DataPasswordController: UITableViewController {
             lnkDataPassword: encrypted,
             userID: user!.uid) { [weak self] success in
             guard let self = self, success else { return }
+            NotificationCenter.default.post(name: .vaultDidChange, object: nil)
             AutoFillSync.refresh()
             self.showAlert(title: "alert.updated.title".localized(), message: "datapassword.updated.message".localized()) {
                 self.dismiss(animated: true)

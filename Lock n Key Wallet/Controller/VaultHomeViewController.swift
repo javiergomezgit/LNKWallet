@@ -47,6 +47,13 @@ class VaultHomeViewController: UIViewController {
         setupRecentTableView()
         setupAddButton()
         AutoFillSync.refresh()
+        NotificationCenter.default.addObserver(self, selector: #selector(vaultDidChange),
+                                               name: .vaultDidChange, object: nil)
+    }
+
+    // Counts and Recent change when an item is added from the + menu here
+    @objc private func vaultDidChange() {
+        DispatchQueue.main.async { self.fetchData() }
     }
 
     override func viewWillAppear(_ animated: Bool) {
