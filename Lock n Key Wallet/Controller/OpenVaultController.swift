@@ -226,25 +226,7 @@ class OpenVaultController: UIViewController {
 
     // MARK: - Security
     @objc private func configureSecurity() {
-        let isNewUser = UserDefaults.standard.object(forKey: "is_new_user") as? Bool ?? true
-        let isLocked = UserDefaults.standard.object(forKey: "locked_app") as? Bool ?? true
-
-        guard !isNewUser else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
-            vc.setPassword = true
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-            return
-        }
-
-        if isLocked {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
-            vc.setPassword = false
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-        }
+        MasterPasswordController.presentIfNeeded(from: self)
     }
 }
 

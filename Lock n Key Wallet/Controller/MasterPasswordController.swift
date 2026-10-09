@@ -175,6 +175,7 @@ class MasterPasswordController: UIViewController {
                     DispatchQueue.main.async {
                         if success {
                             UserDefaults.standard.set(false, forKey: "locked_app")
+                            UserDefaults.standard.set(false, forKey: "is_new_user")
                             AutoFillSync.storeMasterPasswordCopy(encrypted)
                             AutoFillSync.resetExtensionAttempts()
                             self.dismiss(animated: true)
@@ -188,7 +189,7 @@ class MasterPasswordController: UIViewController {
                 temporalPassword = ""
                 passwordText.text = ""
                 updateUI(placeholder: "masterpassword.placeholder.set".localized(), buttonTitle: "masterpassword.button.set".localized())
-                showAlert(title: "masterpassword.axlert.mismatch.title".localized(), message: "masterpassword.alert.mismatch.message".localized())
+                showAlert(title: "masterpassword.alert.mismatch.title".localized(), message: "masterpassword.alert.mismatch.message".localized())
             }
         }
     }
@@ -310,5 +311,29 @@ class MasterPasswordController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "button.ok".localized(), style: .default) { _ in completion?() })
         present(alert, animated: true)
+    }
+}
+
+// MARK: — Lock gate
+
+extension MasterPasswordController {
+    // Shows the set-up screen for a new account without a master password, or the unlock screen when the
+    // app is locked. Called from the vault home and each section; does nothing if one is already showing.
+    static func presentIfNeeded(from presenter: UIViewController) {
+        let isNewUser = UserDefaults.standard.object(forKey: "is_new_user") as? Bool ?? true
+        let isLocked  = UserDefaults.standard.object(forKey: "locked_app") as? Bool ?? true
+        guard isNewUser || isLocked else { return }
+
+        var top = presenter.view.window?.rootViewController ?? presenter
+        while let presented = top.presentedViewController {
+            if presented is MasterPasswordController { return }
+            top = presented
+        }
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "MasterPasswordController") as! MasterPasswordController
+        vc.setPassword            = isNewUser
+        vc.modalPresentationStyle = .fullScreen
+        top.present(vc, animated: true)
     }
 }

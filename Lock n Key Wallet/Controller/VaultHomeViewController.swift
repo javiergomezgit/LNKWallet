@@ -55,6 +55,12 @@ class VaultHomeViewController: UIViewController {
         fetchData()
     }
 
+    // First screen after sign-up: a new account sets its master password here, before adding anything
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MasterPasswordController.presentIfNeeded(from: self)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
