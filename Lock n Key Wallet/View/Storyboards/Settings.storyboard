@@ -31,13 +31,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Br-5D-Yr4">
-                                                    <rect key="frame" x="323" y="0.0" width="30" height="50"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <connections>
-                                                        <action selector="deleteAccount:" destination="kW5-8e-JeA" eventType="touchUpInside" id="O63-Kc-JKm"/>
-                                                    </connections>
-                                                </button>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRj-yL-CDe">
                                                     <rect key="frame" x="277" y="11" width="63" height="28"/>
                                                     <connections>
@@ -47,13 +40,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vRj-yL-CDe" firstAttribute="centerY" secondItem="fcK-eC-YDg" secondAttribute="centerY" id="5eZ-Mn-wQf"/>
-                                                <constraint firstItem="7Br-5D-Yr4" firstAttribute="top" secondItem="fcK-eC-YDg" secondAttribute="top" id="AB5-K1-iho"/>
                                                 <constraint firstItem="LHO-7P-rkV" firstAttribute="leading" secondItem="fcK-eC-YDg" secondAttribute="leading" constant="15" id="GoG-qj-duM"/>
                                                 <constraint firstItem="LHO-7P-rkV" firstAttribute="centerY" secondItem="fcK-eC-YDg" secondAttribute="centerY" id="SPM-zu-wcL"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LHO-7P-rkV" secondAttribute="trailing" constant="20" symbolic="YES" id="a2R-eQ-I4H"/>
-                                                <constraint firstAttribute="trailing" secondItem="7Br-5D-Yr4" secondAttribute="trailing" id="fl0-E8-HOm"/>
                                                 <constraint firstAttribute="trailing" secondItem="vRj-yL-CDe" secondAttribute="trailing" constant="15" id="uiX-R4-4VT"/>
-                                                <constraint firstAttribute="bottom" secondItem="7Br-5D-Yr4" secondAttribute="bottom" id="wqw-cm-qIZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -92,6 +82,37 @@
                                                 <constraint firstAttribute="trailing" secondItem="YRC-YQ-cCk" secondAttribute="trailing" constant="10" id="gib-nJ-UPi"/>
                                                 <constraint firstItem="YRC-YQ-cCk" firstAttribute="centerY" secondItem="0aY-kL-Z2u" secondAttribute="centerY" id="pq3-9P-bzd"/>
                                                 <constraint firstItem="YRC-YQ-cCk" firstAttribute="leading" secondItem="QnE-5b-o0O" secondAttribute="trailing" constant="10" id="zdv-0j-4GN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="eRs-Ce-L01" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="18" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eRs-Ce-L01" id="eRs-Cv-C01">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Erase Vault After Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRs-Tl-T01">
+                                                    <rect key="frame" x="15.000000000000007" y="15" width="124.66666666666669" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRs-Sw-S01">
+                                                    <rect key="frame" x="277" y="11" width="63" height="28"/>
+                                                    <connections>
+                                                        <action selector="eraseVaultChanged:" destination="kW5-8e-JeA" eventType="valueChanged" id="eRs-Ac-A01"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eRs-Sw-S01" firstAttribute="centerY" secondItem="eRs-Cv-C01" secondAttribute="centerY" id="eRs-k1-K01"/>
+                                                <constraint firstItem="eRs-Tl-T01" firstAttribute="leading" secondItem="eRs-Cv-C01" secondAttribute="leading" constant="15" id="eRs-k2-K02"/>
+                                                <constraint firstItem="eRs-Tl-T01" firstAttribute="centerY" secondItem="eRs-Cv-C01" secondAttribute="centerY" id="eRs-k3-K03"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eRs-Tl-T01" secondAttribute="trailing" constant="20" symbolic="YES" id="eRs-k4-K04"/>
+                                                <constraint firstAttribute="trailing" secondItem="eRs-Sw-S01" secondAttribute="trailing" constant="15" id="eRs-k5-K05"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -432,6 +453,8 @@
                         <outlet property="eraseDataLabel" destination="pGM-7c-3JX" id="0Ms-cB-efL"/>
                         <outlet property="instantAutoLockLabel" destination="LHO-7P-rkV" id="NJI-yq-O8e"/>
                         <outlet property="instantAutoLockSwitch" destination="vRj-yL-CDe" id="m4P-8U-bTl"/>
+                        <outlet property="eraseVaultLabel" destination="eRs-Tl-T01" id="eRs-Ot-O01"/>
+                        <outlet property="eraseVaultSwitch" destination="eRs-Sw-S01" id="eRs-Ot-O02"/>
                         <outlet property="privacyLabel" destination="1uB-L6-xxa" id="JEu-E0-rLf"/>
                         <outlet property="resetAllLabel" destination="h6c-OG-s2G" id="nXP-Oy-Wsa"/>
                         <outlet property="signOutLabel" destination="p05-CY-gWC" id="x4X-M3-8qd"/>

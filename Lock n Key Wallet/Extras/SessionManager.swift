@@ -16,6 +16,9 @@ enum SessionManager {
         "locked_app",
         "amount_attempts",
         "attempted_failed",
+        "lockout_level",
+        "lockout_until",
+        "erase_after_failed_attempts",
         "auto_lock_time",
         "instant_auto_lock",
         "firstLaunching"

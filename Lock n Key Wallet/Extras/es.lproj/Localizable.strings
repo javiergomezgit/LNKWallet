@@ -63,7 +63,7 @@
 "masterpassword.alert.not_found.title" = "No se encontró la contraseña maestra";
 "masterpassword.alert.not_found.message" = "Crea una nueva contraseña maestra para continuar.";
 "masterpassword.alert.wrong.title" = "Contraseña incorrecta";
-"masterpassword.alert.wrong.message" = "Tus datos se borrarán después de %d intento(s) fallido(s) más.";
+"masterpassword.alert.wrong.message" = "Te queda(n) %d intento(s) antes de tener que esperar.";
 
 /* Vault Home */
 "vault.greeting" = "Mi Bóveda";
@@ -77,9 +77,9 @@
 "settings.section.security" = "SEGURIDAD";
 "settings.section.account" = "CUENTA";
 "settings.section.info" = "INFORMACIÓN";
-"settings.footer.erase" = "Borrar todos los datos al superar el número de intentos fallidos.";
+"settings.footer.erase" = "Al llegar al número de contraseñas maestras incorrectas, se borra toda tu bóveda de tu cuenta en todos tus dispositivos. No se puede deshacer.";
 "settings.menu.instant_auto_lock" = "Bloqueo automático instantáneo";
-"settings.menu.erase_data" = "Borrar datos";
+"settings.menu.erase_data" = "Límite de intentos fallidos";
 "settings.menu.unlock_face_id" = "Desbloquear con Face ID";
 "settings.menu.signout" = "Cerrar sesión";
 "settings.menu.reset_all" = "Restablecer todo";
@@ -264,3 +264,12 @@
 /* Deletion errors */
 "settings.delete_data.error.message" = "No se pudieron borrar todos tus datos. Revisa tu conexión e inténtalo de nuevo.";
 "settings.delete_account.error.message" = "No se pudo eliminar tu cuenta. Revisa tu conexión e inténtalo de nuevo.";
+
+/* Failed master password attempts */
+"settings.menu.erase_vault" = "Borrar bóveda al llegar al límite";
+"settings.footer.lockout" = "Al llegar al número de contraseñas maestras incorrectas, tendrás que esperar antes de volver a intentarlo: 1 minuto, luego 5, 15 y 60.";
+"settings.erase_vault.title" = "¿Borrar tu bóveda?";
+"settings.erase_vault.message" = "Si alguien escribe mal la contraseña maestra %d veces, LNK Wallet borrará toda tu bóveda (contraseñas, tarjetas, notas y fotos) de tu cuenta en todos tus dispositivos. No se puede deshacer. Déjalo desactivado para que tenga que esperar.";
+"settings.erase_vault.confirm" = "Activar";
+"masterpassword.alert.wrong.erase_message" = "Tu bóveda se borrará después de %d intento(s) fallido(s) más.";
+"masterpassword.button.locked" = "Reintentar en %@";

@@ -93,3 +93,54 @@ extension Notification.Name {
     // call viewWillAppear on the list underneath, so lists listen for this to reload.
     static let vaultDidChange = Notification.Name("vaultDidChange")
 }
+
+// Wrong master passwords typed in the app (LNK AutoFill keeps its own count and never erases).
+// At the limit set in Settings the unlock waits, growing with each further miss, or, only if the
+// user opted in, the vault is erased. A correct unlock or Face ID resets everything.
+enum UnlockAttempts {
+    enum Outcome {
+        case tryAgain(remaining: Int)
+        case lockedOut(TimeInterval)
+        case erase
+    }
+
+    static let lockoutSteps: [TimeInterval] = [60, 300, 900, 3600]
+    static let eraseKey = "erase_after_failed_attempts"
+
+    private static let defaults = UserDefaults.standard
+
+    static var limit: Int {
+        defaults.object(forKey: "amount_attempts") as? Int ?? 3
+    }
+
+    static var eraseVaultAtLimit: Bool {
+        get { defaults.bool(forKey: eraseKey) }
+        set { defaults.set(newValue, forKey: eraseKey) }
+    }
+
+    // Seconds left before the master password can be tried again; 0 when not locked out
+    static var lockoutRemaining: TimeInterval {
+        max(0, defaults.double(forKey: "lockout_until") - Date().timeIntervalSince1970)
+    }
+
+    static func recordFailure() -> Outcome {
+        let failed = (defaults.object(forKey: "attempted_failed") as? Int ?? 0) + 1
+        if failed < limit {
+            defaults.set(failed, forKey: "attempted_failed")
+            return .tryAgain(remaining: limit - failed)
+        }
+        if eraseVaultAtLimit { return .erase }
+
+        let level = defaults.object(forKey: "lockout_level") as? Int ?? 0
+        let wait  = lockoutSteps[min(level, lockoutSteps.count - 1)]
+        defaults.set(level + 1, forKey: "lockout_level")
+        defaults.set(Date().timeIntervalSince1970 + wait, forKey: "lockout_until")
+        // After a wait, every further miss locks again with the next, longer wait
+        defaults.set(limit - 1, forKey: "attempted_failed")
+        return .lockedOut(wait)
+    }
+
+    static func reset() {
+        ["attempted_failed", "lockout_level", "lockout_until"].forEach { defaults.removeObject(forKey: $0) }
+    }
+}

@@ -30,6 +30,8 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var autoFillStatusLabel: UILabel!
     @IBOutlet weak var clipboardLabel: UILabel!
     @IBOutlet weak var clipboardStatusLabel: UILabel!
+    @IBOutlet weak var eraseVaultLabel: UILabel!
+    @IBOutlet weak var eraseVaultSwitch: UISwitch!
 
     // MARK: — Lifecycle
 
@@ -54,6 +56,7 @@ class SettingsController: UITableViewController {
         setupStaticLabels()
         setupAutoFill()
         setupClipboard()
+        setupEraseVault()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -200,6 +203,13 @@ class SettingsController: UITableViewController {
         clipboardStatusLabel.textColor = .textSecondary
     }
 
+    // Off unless the user turns it on: at the limit the unlock waits instead of erasing
+    private func setupEraseVault() {
+        eraseVaultLabel.text          = "settings.menu.erase_vault".localized()
+        eraseVaultSwitch.isOn         = UnlockAttempts.eraseVaultAtLimit
+        eraseVaultSwitch.onTintColor  = .accentBrand
+    }
+
     private func setupStaticLabels() {
         instantAutoLockLabel.text = "settings.menu.instant_auto_lock".localized()
         eraseDataLabel.text = "settings.menu.erase_data".localized()
@@ -253,7 +263,9 @@ class SettingsController: UITableViewController {
             let container = UIView()
             container.backgroundColor = .backgroundPrimary
             let label = UILabel()
-            label.text          = "settings.footer.erase".localized()
+            label.text          = UnlockAttempts.eraseVaultAtLimit
+                ? "settings.footer.erase".localized()
+                : "settings.footer.lockout".localized()
             label.font          = UIFont.systemFont(ofSize: 12, weight: .light)
             label.textColor     = .textSecondary
             label.numberOfLines = 0
@@ -281,6 +293,25 @@ class SettingsController: UITableViewController {
     @IBAction func instantAutoLockChanged(_ sender: UISwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "locked_app")
         UserDefaults.standard.set(sender.isOn, forKey: "instant_auto_lock")
+    }
+
+    @IBAction func eraseVaultChanged(_ sender: UISwitch) {
+        guard sender.isOn else {
+            UnlockAttempts.eraseVaultAtLimit = false
+            tableView.reloadSections(IndexSet(integer: 0), with: .none)
+            return
+        }
+        let alert = UIAlertController(title: "settings.erase_vault.title".localized(),
+                                      message: "settings.erase_vault.message".localized(with: UnlockAttempts.limit),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "button.cancel".localized(), style: .cancel) { _ in
+            sender.setOn(false, animated: true)
+        })
+        alert.addAction(UIAlertAction(title: "settings.erase_vault.confirm".localized(), style: .destructive) { [weak self] _ in
+            UnlockAttempts.eraseVaultAtLimit = true
+            self?.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+        })
+        present(alert, animated: true)
     }
 
     @IBAction func attemptsStepperChanged(_ sender: UIStepper) {

@@ -20,6 +20,7 @@ class MasterPasswordController: UIViewController {
     // MARK: — State
     var setPassword      = true
     var temporalPassword = ""
+    private var lockoutTimer: Timer?
 
     // MARK: — Lifecycle
 
@@ -46,6 +47,7 @@ class MasterPasswordController: UIViewController {
         }
         
         if !setPassword {
+            updateLockout()
             tryFaceIDUnlock()
         }
     }
@@ -131,6 +133,36 @@ class MasterPasswordController: UIViewController {
     private func showUnlockMode() {
         setPassword = false
         updateUI(placeholder: "masterpassword.placeholder.type".localized(), buttonTitle: "masterpassword.button.unlock".localized())
+        updateLockout()
+    }
+
+    // While locked out, the field and button are off and the button counts down. Face ID still unlocks.
+    private func updateLockout() {
+        lockoutTimer?.invalidate()
+        let remaining = UnlockAttempts.lockoutRemaining
+        guard !setPassword, remaining > 0 else {
+            passwordText.isEnabled = true
+            if !setPassword {
+                passwordButton.setTitle("masterpassword.button.unlock".localized(), for: .normal)
+            }
+            return
+        }
+        passwordText.text        = ""
+        passwordText.isEnabled   = false
+        passwordButton.isEnabled = false
+        passwordButton.alpha     = 0.5
+        passwordButton.setTitle("masterpassword.button.locked".localized(with: Self.formatWait(remaining)), for: .normal)
+        lockoutTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+            self?.updateLockout()
+        }
+    }
+
+    private static func formatWait(_ seconds: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits          = [.minute, .second]
+        formatter.unitsStyle            = .positional
+        formatter.zeroFormattingBehavior = .pad
+        return formatter.string(from: seconds.rounded(.up)) ?? ""
     }
 
     private func updateUI(placeholder: String, buttonTitle: String) {
@@ -232,29 +264,22 @@ class MasterPasswordController: UIViewController {
             DispatchQueue.main.async {
                 if cleanPassword == decrypted {
                     UserDefaults.standard.set(false, forKey: "locked_app")
+                    UnlockAttempts.reset()
                     AutoFillSync.storeMasterPasswordCopy(encrypted)
                     AutoFillSync.resetExtensionAttempts()
                     self.dismiss(animated: true)
                 } else {
                     self.passwordText.text = ""
-                    let attempts  = UserDefaults.standard.value(forKey: "amount_attempts") as! Int
-                    var attempted = UserDefaults.standard.value(forKey: "attempted_failed") as! Int
-
-                    if attempted < attempts {
-                        attempted += 1
-                        UserDefaults.standard.set(attempted, forKey: "attempted_failed")
-                        let remaining = (attempts + 1) - attempted
-                        self.showAlert(title: "masterpassword.alert.wrong.title".localized(),
-                                      message: "masterpassword.alert.wrong.message".localized(with: remaining))
-                    } else {
-                        AutoFillSync.clear()
-                        DBManager.shared.deleteAllDatas(userID: user.uid) { success in
-                            guard success else { return }
-                            UserDefaults.standard.set(3, forKey: "amount_attempts")
-                            UserDefaults.standard.set(0, forKey: "attempted_failed")
-                            UserDefaults.standard.set(true, forKey: "locked_app")
-                            exit(0)
-                        }
+                    switch UnlockAttempts.recordFailure() {
+                    case .tryAgain(let remaining):
+                        let message = UnlockAttempts.eraseVaultAtLimit
+                            ? "masterpassword.alert.wrong.erase_message".localized(with: remaining)
+                            : "masterpassword.alert.wrong.message".localized(with: remaining)
+                        self.showAlert(title: "masterpassword.alert.wrong.title".localized(), message: message)
+                    case .lockedOut:
+                        self.updateLockout()
+                    case .erase:
+                        self.eraseVaultAndSignOut(user: user)
                     }
                 }
             }
@@ -276,6 +301,7 @@ class MasterPasswordController: UIViewController {
             DispatchQueue.main.async {
                 if success {
                     UserDefaults.standard.set(false, forKey: "locked_app")
+                    UnlockAttempts.reset()
                     AutoFillSync.resetExtensionAttempts()
                     self.dismiss(animated: true)
                 }
@@ -283,13 +309,25 @@ class MasterPasswordController: UIViewController {
         }
     }
 
+    // Only reached when the user turned on Settings › Erase Vault After Limit. Erased or not (offline),
+    // this device signs out; the owner signs in with Apple again to continue.
+    private func eraseVaultAndSignOut(user: User) {
+        passwordText.isEnabled   = false
+        passwordButton.isEnabled = false
+        AutoFillSync.clear()
+        DBManager.shared.deleteAllDatas(userID: user.uid) { [weak self] _ in
+            UnlockAttempts.reset()
+            SessionManager.forceSignOutAndReset(window: self?.view.window)
+        }
+    }
+
     // MARK: — Text field validation
 
     @objc func textFieldDidChange(_ textField: UITextField) {
         if !setPassword {
-                let hasText = !(textField.text?.isEmpty ?? true)
-                passwordButton.isEnabled = hasText
-                passwordButton.alpha     = hasText ? 1.0 : 0.5
+                let canTry = !(textField.text?.isEmpty ?? true) && UnlockAttempts.lockoutRemaining == 0
+                passwordButton.isEnabled = canTry
+                passwordButton.alpha     = canTry ? 1.0 : 0.5
                 return
             }
 

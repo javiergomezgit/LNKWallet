@@ -63,7 +63,7 @@
 "masterpassword.alert.not_found.title" = "No master password found";
 "masterpassword.alert.not_found.message" = "Set a new master password to continue.";
 "masterpassword.alert.wrong.title" = "Wrong password";
-"masterpassword.alert.wrong.message" = "Your data will be erased after %d more failed attempt(s).";
+"masterpassword.alert.wrong.message" = "%d attempt(s) left before you have to wait.";
 
 /* Vault Home */
 "vault.greeting" = "My Vault";
@@ -76,9 +76,9 @@
 "settings.section.security" = "SECURITY";
 "settings.section.account" = "ACCOUNT";
 "settings.section.info" = "INFO";
-"settings.footer.erase" = "Erase all data after the set number of failed passcode attempts.";
+"settings.footer.erase" = "After the set number of wrong master passwords, your whole vault is erased from your account on every device. This can't be undone.";
 "settings.menu.instant_auto_lock" = "Instant Auto-lock";
-"settings.menu.erase_data" = "Erase Data";
+"settings.menu.erase_data" = "Failed Attempts Limit";
 "settings.menu.unlock_face_id" = "Unlock with Face ID";
 "settings.menu.signout" = "Sign Out";
 "settings.menu.reset_all" = "Reset All";
@@ -264,3 +264,12 @@
 /* Deletion errors */
 "settings.delete_data.error.message" = "Some of your data couldn't be erased. Check your connection and try again.";
 "settings.delete_account.error.message" = "Your account couldn't be deleted. Check your connection and try again.";
+
+/* Failed master password attempts */
+"settings.menu.erase_vault" = "Erase Vault After Limit";
+"settings.footer.lockout" = "After the set number of wrong master passwords, you'll have to wait before trying again: 1 minute, then 5, 15 and 60.";
+"settings.erase_vault.title" = "Erase your vault?";
+"settings.erase_vault.message" = "If someone types the wrong master password %d times, LNK Wallet will erase your whole vault (passwords, cards, notes and photos) from your account on every device. This can't be undone. Leave this off to make them wait instead.";
+"settings.erase_vault.confirm" = "Turn On";
+"masterpassword.alert.wrong.erase_message" = "Your vault will be erased after %d more failed attempt(s).";
+"masterpassword.button.locked" = "Try again in %@";
