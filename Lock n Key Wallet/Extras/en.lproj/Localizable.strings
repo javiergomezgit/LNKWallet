@@ -85,6 +85,7 @@
 "settings.menu.delete_account" = "Delete Account";
 "settings.menu.privacy" = "Privacy";
 "settings.menu.contact" = "Contact";
+"settings.menu.acknowledgements" = "Acknowledgements";
 "settings.signout.title" = "Sign Out";
 "settings.signout.message" = "Are you sure you want to sign out?";
 "settings.signout.error.message" = "Could not sign out. Try again.";

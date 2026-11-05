@@ -86,6 +86,7 @@
 "settings.menu.delete_account" = "Eliminar cuenta";
 "settings.menu.privacy" = "Privacidad";
 "settings.menu.contact" = "Contacto";
+"settings.menu.acknowledgements" = "Reconocimientos";
 "settings.signout.title" = "Cerrar sesión";
 "settings.signout.message" = "¿Estás seguro de que quieres cerrar sesión?";
 "settings.signout.error.message" = "No se pudo cerrar sesión. Intenta de nuevo.";

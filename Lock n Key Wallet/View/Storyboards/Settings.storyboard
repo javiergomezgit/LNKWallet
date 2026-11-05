@@ -408,6 +408,40 @@
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="aKw-C1-c01" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="452.00000000000006" width="353" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aKw-C1-c01" id="aKw-C1-v01">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKw-C1-l01">
+                                                    <rect key="frame" x="31" y="15" width="140" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKw-C1-b01">
+                                                    <rect key="frame" x="31" y="0.0" width="322" height="50"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <connections>
+                                                        <action selector="acknowledgementsTapped:" destination="kW5-8e-JeA" eventType="touchUpInside" id="aKw-C1-a01"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aKw-C1-l01" firstAttribute="leading" secondItem="aKw-C1-b01" secondAttribute="leading" id="aKw-C1-k01"/>
+                                                <constraint firstItem="aKw-C1-b01" firstAttribute="top" secondItem="aKw-C1-v01" secondAttribute="top" id="aKw-C1-k02"/>
+                                                <constraint firstItem="aKw-C1-l01" firstAttribute="leading" secondItem="aKw-C1-v01" secondAttribute="leadingMargin" constant="15" id="aKw-C1-k03"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aKw-C1-l01" secondAttribute="trailing" constant="20" symbolic="YES" id="aKw-C1-k04"/>
+                                                <constraint firstAttribute="bottom" secondItem="aKw-C1-b01" secondAttribute="bottom" id="aKw-C1-k05"/>
+                                                <constraint firstAttribute="trailing" secondItem="aKw-C1-b01" secondAttribute="trailing" id="aKw-C1-k06"/>
+                                                <constraint firstItem="aKw-C1-l01" firstAttribute="centerY" secondItem="aKw-C1-v01" secondAttribute="centerY" id="aKw-C1-k07"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="v8B-P1-Yl1" customClass="SettingViewCell" customModule="Lock_n_Key_Wallet" customModuleProvider="target">
                                         <rect key="frame" x="20" y="502" width="353" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -449,6 +483,7 @@
                         <outlet property="clipboardStatusLabel" destination="cLp-St-S01" id="cLp-Ot-O02"/>
                         <outlet property="attemptsStepper" destination="YRC-YQ-cCk" id="bp2-ci-4Df"/>
                         <outlet property="contactLabel" destination="b0c-Sq-Jgx" id="yjq-s3-P4m"/>
+                        <outlet property="acknowledgementsLabel" destination="aKw-C1-l01" id="aKw-C1-o01"/>
                         <outlet property="deleteAccountLabel" destination="pRt-No-pEc" id="v3G-Aq-SOk"/>
                         <outlet property="eraseDataLabel" destination="pGM-7c-3JX" id="0Ms-cB-efL"/>
                         <outlet property="instantAutoLockLabel" destination="LHO-7P-rkV" id="NJI-yq-O8e"/>

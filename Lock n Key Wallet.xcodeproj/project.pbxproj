@@ -64,12 +64,13 @@
 		2295C57F2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2295C57D2748722E0050FA7D /* Lock_n_Key_Wallet.xcdatamodeld */; };
 		2295C5812748722F0050FA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5802748722F0050FA7D /* Assets.xcassets */; };
 		2295C5842748722F0050FA7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2295C5822748722F0050FA7D /* LaunchScreen.storyboard */; };
-		229F7EBC2D9DC09F00180C6B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBB2D9DC09F00180C6B /* FirebaseAnalytics */; };
 		229F7EBE2D9DC09F00180C6B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBD2D9DC09F00180C6B /* FirebaseAuth */; };
 		229F7EC02D9DC09F00180C6B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EBF2D9DC09F00180C6B /* FirebaseCrashlytics */; };
 		229F7EC42D9DC09F00180C6B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC32D9DC09F00180C6B /* FirebaseFirestore */; };
 		229F7EC82D9DC09F00180C6B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 229F7EC72D9DC09F00180C6B /* FirebaseStorage */; };
 		22A1B0C0306400000000A002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */; };
+		22A1B0C0306400000000A004 /* Acknowledgements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22A1B0C0306400000000A003 /* Acknowledgements.txt */; };
+		22A1B0C0306400000000A006 /* AcknowledgementsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B0C0306400000000A005 /* AcknowledgementsController.swift */; };
 		22BD8B42287A85E800AF53EA /* DataImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BD8B41287A85E800AF53EA /* DataImageController.swift */; };
 		22CAFBD127543937006D02AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CAFBD027543937006D02AA /* Extensions.swift */; };
 		7A1B2C3D4E5F678901234568 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1B2C3D4E5F678901234567 /* SessionManager.swift */; };
@@ -147,6 +148,8 @@
 		2295C5852748722F0050FA7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2298D16B27498A3E00CCFBF2 /* Lock n Key Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lock n Key Wallet.entitlements"; sourceTree = "<group>"; };
 		22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		22A1B0C0306400000000A003 /* Acknowledgements.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Acknowledgements.txt; sourceTree = "<group>"; };
+		22A1B0C0306400000000A005 /* AcknowledgementsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsController.swift; sourceTree = "<group>"; };
 		22BD8B41287A85E800AF53EA /* DataImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImageController.swift; sourceTree = "<group>"; };
 		22CAFBD027543937006D02AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7A1B2C3D4E5F678901234567 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -184,7 +187,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				220ADAF9274DA60F0030FAAD /* CloudKit.framework in Frameworks */,
-				229F7EBC2D9DC09F00180C6B /* FirebaseAnalytics in Frameworks */,
 				229F7EC42D9DC09F00180C6B /* FirebaseFirestore in Frameworks */,
 				227B18F7285EB3320092D67E /* CreditCardScanner in Frameworks */,
 				229F7EC82D9DC09F00180C6B /* FirebaseStorage in Frameworks */,
@@ -277,6 +279,7 @@
 				222C972327487B8F004C077E /* SettingsController.swift */,
 				228671CF286BA5B60010AEAF /* GeneratePasswordController.swift */,
 				22290D362F844279009B11BA /* PasswordHealthViewController.swift */,
+				22A1B0C0306400000000A005 /* AcknowledgementsController.swift */,
 				222C972727487CED004C077E /* OpenVaultController.swift */,
 				2274217F2F7DAC250027D985 /* VaultHomeViewController.swift */,
 				222384EC2751791400FBF76A /* DBControllers */,
@@ -291,6 +294,7 @@
 				222C971B27487841004C077E /* GoogleService-Info.plist */,
 				2295C5802748722F0050FA7D /* Assets.xcassets */,
 				22A1B0C0306400000000A001 /* PrivacyInfo.xcprivacy */,
+				22A1B0C0306400000000A003 /* Acknowledgements.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -410,7 +414,6 @@
 			name = "Lock n Key Wallet";
 			packageProductDependencies = (
 				227B18F6285EB3320092D67E /* CreditCardScanner */,
-				229F7EBB2D9DC09F00180C6B /* FirebaseAnalytics */,
 				229F7EBD2D9DC09F00180C6B /* FirebaseAuth */,
 				229F7EBF2D9DC09F00180C6B /* FirebaseCrashlytics */,
 				229F7EC32D9DC09F00180C6B /* FirebaseFirestore */,
@@ -484,6 +487,7 @@
 				222C971C27487841004C077E /* GoogleService-Info.plist in Resources */,
 				2295C5812748722F0050FA7D /* Assets.xcassets in Resources */,
 				22A1B0C0306400000000A002 /* PrivacyInfo.xcprivacy in Resources */,
+				22A1B0C0306400000000A004 /* Acknowledgements.txt in Resources */,
 				222384F227517FFF00FBF76A /* DatasViewCell.xib in Resources */,
 				2295C57C2748722E0050FA7D /* Main.storyboard in Resources */,
 			);
@@ -557,6 +561,7 @@
 				222C972027487AAD004C077E /* SignInController.swift in Sources */,
 				227FB79F275FABCB0013647B /* OnboardingController.swift in Sources */,
 				22290D372F844285009B11BA /* PasswordHealthViewController.swift in Sources */,
+				22A1B0C0306400000000A006 /* AcknowledgementsController.swift in Sources */,
 				220D757C2870BC88003461D1 /* DataCreditCardController.swift in Sources */,
 				225C840D3063438E00A059F9 /* PasswordGenerator.swift in Sources */,
 				222384EE2751793700FBF76A /* DBManager.swift in Sources */,
@@ -955,11 +960,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 227B18F5285EB3320092D67E /* XCRemoteSwiftPackageReference "credit-card-scanner" */;
 			productName = CreditCardScanner;
-		};
-		229F7EBB2D9DC09F00180C6B /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 229F7EBA2D9DC09F00180C6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
 		};
 		229F7EBD2D9DC09F00180C6B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -26,6 +26,7 @@ class SettingsController: UITableViewController {
     @IBOutlet weak var deleteAccountLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var contactLabel: UILabel!
+    @IBOutlet weak var acknowledgementsLabel: UILabel!
     @IBOutlet weak var autoFillLabel: UILabel!
     @IBOutlet weak var autoFillStatusLabel: UILabel!
     @IBOutlet weak var clipboardLabel: UILabel!
@@ -219,6 +220,7 @@ class SettingsController: UITableViewController {
         deleteAccountLabel.text = "settings.menu.delete_account".localized()
         privacyLabel.text = "settings.menu.privacy".localized()
         contactLabel.text = "settings.menu.contact".localized()
+        acknowledgementsLabel.text = "settings.menu.acknowledgements".localized()
         tabBarItem.title = "settings.title".localized()
     }
 
@@ -441,6 +443,11 @@ class SettingsController: UITableViewController {
 
     @IBAction func contactTapped(_ sender: UIButton) {
         openURL("https://jdevit.com/#/contact")
+    }
+
+    @IBAction func acknowledgementsTapped(_ sender: UIButton) {
+        let nav = UINavigationController(rootViewController: AcknowledgementsController())
+        present(nav, animated: true)
     }
 
     // MARK: — Helpers
